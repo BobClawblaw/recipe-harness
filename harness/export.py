@@ -9,7 +9,7 @@ from pathlib import Path
 from .compare import rulers, suites
 
 PHASES = ["prose", "code", "structured", "list"]
-HARNESS_FILES = {"run.log", "meta.json"}
+HARNESS_FILES = {"run.log", "meta.json", "*.log", "compare-*.md"}   # logs carry local paths
 
 
 def ruler_table(cells: dict) -> str:

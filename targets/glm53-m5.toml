@@ -50,5 +50,6 @@ structured = false    # refused with a 400: the native GLM engine has no grammar
 sampling = false      # greedy only; a temperature is served greedily
 vision_urls = false   # data URLs only
 capacity = false      # one stream
+max_concurrency = 1   # the ruler measures one stream only (parallel = 1)
 thinking = true       # on by default, at effort High
 prompt_cache = true

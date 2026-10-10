@@ -89,7 +89,8 @@ def load_target(name: str) -> Target:
     for k, v in raw.get("vars", {}).items():
         if isinstance(v, str) and v.startswith("CHANGE-ME"):
             raise ConfigError(f"{path.stem}: [vars] {k} is unset; copy {path.stem}.local.example.toml to {local.name} and fill it")
-    t = Target(raw.get("name", path.stem), raw, {k: os.path.expanduser(str(v)) for k, v in raw.get("vars", {}).items()})
+    # values stay as written: a remote path's "~" is for the remote shell; cwd and the lock expand it here
+    t = Target(raw.get("name", path.stem), raw, {k: str(v) for k, v in raw.get("vars", {}).items()})
     for key in ("url",):
         if key not in raw:
             raise ConfigError(f"{t.name}: '{key}' is required")

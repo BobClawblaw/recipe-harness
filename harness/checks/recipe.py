@@ -47,7 +47,9 @@ def ruler_cells(path: Path) -> list[dict]:
 def ruler(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     """``commands.ruler`` with $out (this check's JSON), $concurrency (space-separated) and $args."""
     out = run_dir / f"{name}.json"
-    conc = " ".join(str(c) for c in spec.get("concurrency", [1]))
+    most = target.feature("max_concurrency", None)
+    levels = [c for c in spec.get("concurrency", [1]) if most is None or c <= most] or [1]
+    conc = " ".join(str(c) for c in levels)
     rc, text = _sh(target, target["commands"]["ruler"], timeout=spec.get("timeout", 3 * 3600), out=out, concurrency=conc,
                    args=spec.get("args", ""))
     (run_dir / f"{name}.log").write_text(text)
