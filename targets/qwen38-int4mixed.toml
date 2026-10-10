@@ -1,0 +1,60 @@
+# Qwen3.8-Flash-Next INT4-Mixed on two DGX Sparks (github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks).
+# Machine-specific values go in qwen38-int4mixed.local.toml (git-ignored; copy the .local.example.toml).
+name = "qwen38-int4mixed"
+description = "Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks"
+url = "http://127.0.0.1:$port"
+model = "Qwen3.8-Flash-Next-INT4-Mixed"
+cwd = "$recipe_dir"
+
+[vars]
+recipe_dir = "CHANGE-ME: the recipe checkout on the head node"
+worker = "CHANGE-ME: ssh login of the worker node"
+port = "8888"
+
+[commands]
+up = "python3 -m spark up"
+down = "python3 -m spark down"
+status = "python3 -m spark status"
+# rank 0's own words when a start fails (the worker refusing NCCL's first memory registration shows up here)
+diagnose = "docker logs tf-qwen38-int4mixed 2>&1 | grep -E '^error|cannot load' | head -3"
+suite = "python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+lock = "~/.cache/tf-gpu-pair.lock"   # shared with every GPU job on the pair
+up_retries = 3                       # a start can fail at NCCL's first registration on the worker
+retry_wait = 90
+up_timeout = 3600                    # the first up builds and downloads; later ones load in ~3 minutes
+health_wait = 120
+leave_up = true
+
+# what is serving: the image's patch label must equal the patch recipe.toml pins for its engine
+[[identity]]
+name = "patch_sha"
+cmd = "docker inspect -f '{{index .Config.Labels \"tensorfold.patch_sha\"}}' tf-qwen38-int4mixed"
+expect = "python3 -c \"import tomllib; e = tomllib.load(open('recipe.toml', 'rb'))['engine']; print(e['native_patch_sha256'] if e.get('engine') == 'native' else e['patch_sha256'])\""
+
+[[identity]]
+name = "image"
+cmd = "docker inspect -f '{{.Config.Image}} {{.Image}}' tf-qwen38-int4mixed"
+
+[[identity]]
+name = "server_args"
+cmd = "docker inspect -f '{{join .Args \" \"}}' tf-qwen38-int4mixed | grep -oE -- '--(context|kv-dtype|parallel|vision-urls|vision|thinking|no-thinking)( [^ -][^ ]*)?' | tr '\\n' ' '"
+
+[[memory]]
+name = "head"
+cmd = "free -b"
+
+[[memory]]
+name = "worker"
+cmd = "ssh $worker free -b"
+
+[features]
+drafts = true
+structured = true
+sampling = true
+vision_urls = true
+capacity = true
+thinking = true
+prompt_cache = true

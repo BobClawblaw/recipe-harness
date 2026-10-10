@@ -1,0 +1,5 @@
+# Copy to qwen38-int4mixed.local.toml (git-ignored) and fill in.
+[vars]
+recipe_dir = "~/qwen38-flashnext-int4mixed"
+worker = "user@worker-host"
+port = "8888"

@@ -1,0 +1,6 @@
+# Copy to glm53-m5.local.toml (git-ignored) and fill in.
+[vars]
+mac = "user@mac-host"
+mac_host = "mac-host.local"
+recipe_dir = "~/glm53-flash-mlx4bit-m5-ultra"
+suite_dir = "~/qwen38-flashnext-int4mixed"

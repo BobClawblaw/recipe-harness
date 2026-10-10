@@ -1,0 +1,32 @@
+description = "About 25 minutes: one stream fresh, the serving checks, one stream again after them, the suite's exactness checks"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ruler"
+label = "fresh"
+concurrency = [1]
+
+[[checks]]
+type = "structured"
+
+[[checks]]
+type = "sampling"
+
+[[checks]]
+type = "turns"
+
+[[checks]]
+type = "urls"
+
+[[checks]]
+type = "ruler"
+label = "after"
+concurrency = [1]
+
+[[checks]]
+type = "suite"
+args = "--only drafts concurrent behaviour"

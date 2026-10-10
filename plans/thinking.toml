@@ -1,0 +1,11 @@
+description = "Thinking on: the harness's word problems with enable_thinking, and the recipe suite's checks that honour --thinking (the qwen suite: gsm8k only)"
+restart = false
+
+[[checks]]
+type = "thinking"
+max_tokens = 8192
+
+[[checks]]
+type = "suite"
+name = "suite-thinking"
+args = "--only gsm8k --thinking"

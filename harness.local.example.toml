@@ -1,0 +1,4 @@
+# Copy to harness.local.toml (git-ignored). Extra scrub patterns: your names, usernames, hostnames, emails.
+[scrub]
+patterns = ["yourname", "your-hostname", "you@example\\.com"]
+allow = []   # substrings of lines to let through (e.g. a third-party credit)

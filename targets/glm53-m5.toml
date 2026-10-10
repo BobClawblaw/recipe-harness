@@ -1,0 +1,54 @@
+# GLM-5.3-Flash MLX 4-bit on one M5 Ultra Mac (github.com/BobClawblaw/glm53-flash-mlx4bit-m5-ultra), driven over ssh.
+# The Mac must serve the network (local.toml there: host = "0.0.0.0"). The quality suite and ruler are the qwen Spark
+# recipe's, as the GLM recipe itself uses them: a checkout of that recipe on this machine (suite_dir) runs them
+# against the Mac's endpoint. Machine-specific values go in glm53-m5.local.toml (git-ignored).
+name = "glm53-m5"
+description = "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+url = "http://$mac_host:8888"
+model = "GLM-5.3-Flash-MLX-4bit"
+
+[vars]
+mac = "CHANGE-ME: ssh login of the Mac"
+mac_host = "CHANGE-ME: the Mac's address as this machine reaches it"
+recipe_dir = "CHANGE-ME: the GLM recipe checkout on the Mac"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+
+[commands]
+up = "ssh $mac 'cd $recipe_dir && python3 -m mac up'"
+down = "ssh $mac 'cd $recipe_dir && python3 -m mac down'"
+status = "ssh $mac 'cd $recipe_dir && python3 -m mac status'"
+diagnose = "ssh $mac 'cd $recipe_dir && python3 -m mac logs 2>&1 | tail -5'"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+# no GPU lock: the Mac serves nothing else. After a memguard kill, `mac up` refuses for 15 minutes: one start only.
+up_retries = 1
+up_timeout = 1800
+health_wait = 300
+leave_up = true
+
+[[identity]]
+name = "recipe_commit"
+cmd = "ssh $mac 'cd $recipe_dir && git rev-parse --short HEAD'"
+
+[[identity]]
+name = "patch_sha"
+cmd = "ssh $mac \"cd $recipe_dir && python3 -c \\\"import tomllib; print(tomllib.load(open('recipe.toml', 'rb'))['engine']['patch_sha256'])\\\"\""
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[memory]]
+name = "mac"
+cmd = "ssh $mac 'vm_stat | head -6; sysctl -n kern.memorystatus_vm_pressure_level'"
+
+[features]
+drafts = true
+structured = false    # refused with a 400: the native GLM engine has no grammars yet
+sampling = false      # greedy only; a temperature is served greedily
+vision_urls = false   # data URLs only
+capacity = false      # one stream
+thinking = true       # on by default, at effort High
+prompt_cache = true
