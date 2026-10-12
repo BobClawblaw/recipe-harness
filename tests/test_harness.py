@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from harness import compare, config, export, scrub
-from harness.checks import applies, memory, thinking
+from harness.checks import applies, memory, recipe, thinking
 
 
 def ruler(cells):
@@ -34,6 +34,23 @@ class Compare(unittest.TestCase):
             self.assertIn("ruler -> ruler-fresh", text)
 
 
+class Suite(unittest.TestCase):
+    def verdict(self, results):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d, "report.json")
+            f.write_text(json.dumps({"results": results}))
+            return recipe.suite_verdict(f)
+
+    def test_soak_mismatch_fails(self):
+        v = self.verdict([{"name": "drafts", "passed": 12, "cases": 12}, {"name": "soak", "passed": 0, "cases": 60}])
+        self.assertIs(v["ok"], False)
+        self.assertIn("not exact: soak", v["summary"])
+
+    def test_scores_below_all_are_measured(self):
+        v = self.verdict([{"name": "soak", "passed": 60, "cases": 60}, {"name": "gsm8k", "passed": 230, "cases": 250}])
+        self.assertIsNone(v["ok"])
+
+
 class Scrub(unittest.TestCase):
     def test_generic_patterns(self):
         with tempfile.TemporaryDirectory() as d:
@@ -50,7 +67,7 @@ class Scrub(unittest.TestCase):
 
 class Targets(unittest.TestCase):
     def test_committed_targets_parse_and_expand(self):
-        for name in ("qwen38-int4mixed", "glm53-m5"):
+        for name in ("qwen38-int4mixed", "glm53-m5", "qwen38-27b-5090"):
             raw = config._load(config.ROOT / "targets" / f"{name}.toml")
             t = config.Target(name, raw, {k: "X" for k in raw.get("vars", {})})
             for cmd in raw["commands"].values():

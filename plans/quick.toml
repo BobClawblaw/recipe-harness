@@ -1,4 +1,4 @@
-description = "About 25 minutes: one stream fresh, the serving checks, one stream again after them, the suite's exactness checks"
+description = "About 25 minutes: one stream fresh, the serving checks, one stream again after them, the suite's exactness checks and soak"
 restart = true
 
 [[checks]]
@@ -29,4 +29,4 @@ concurrency = [1]
 
 [[checks]]
 type = "suite"
-args = "--only drafts concurrent behaviour"
+args = "--only soak drafts concurrent behaviour"

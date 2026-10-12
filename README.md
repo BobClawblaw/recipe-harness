@@ -50,7 +50,7 @@ aborted or a check failed.
 
 | Type | What it does | Pass / fail |
 |---|---|---|
-| `suite` | the recipe's quality suite (`commands.suite`, `$args` from the plan); its report goes in `<name>/` | fails when a check has no cases (errors) or drafts/concurrent are not exact |
+| `suite` | the recipe's quality suite (`commands.suite`, `$args` from the plan); its report goes in `<name>/` | fails when a check has no cases (errors) or drafts, concurrent or soak is not exact (soak: concurrent resumes of ~6k-token kept states, every reply equal to the same request alone) |
 | `ruler` | the recipe's ruler (`commands.ruler`, `concurrency = [...]`); label it `fresh`, then `after` other traffic, to catch long-session slowdowns | fails on a cell with no replies |
 | `structured` | json_object, json_schema, guided_json, regex, choice and grammar, each greedy, sampled and thinking; a grammar that cannot compile must be a 400 | every reply obeys and the bad regex gets a 400 |
 | `sampling` | seeded sampled replies, repeated and undrafted | equal every time |
@@ -139,6 +139,21 @@ Settings:
   - `suite_dir`: the qwen recipe checkout here.
 - **On the Mac:** `local.toml` must set `host = "0.0.0.0"`, so the Mac serves the network.
 
+### qwen38-27b-5090: Qwen3.8-27B 4-bit with image input on one RTX 5090
+
+The [recipe](https://github.com/BobClawblaw/qwen38-27b-vision-rtx-5090) is a systemd service on the machine the harness
+runs on. The harness:
+- starts and stops it with `sudo -n systemctl start|stop $unit` (passwordless sudo for those two);
+- runs the qwen recipe's suite and ruler from a local checkout (`suite_dir`), HumanEval's sandbox included.
+
+Settings:
+- **Features off:** capacity and a ruler past one stream (one stream at 262k), media URLs (the unit serves data URLs
+  only), and structured output and turns until they are measured on this engine.
+- **Identity:** the recipe's commit, the engine checkout's commit (`engine_src`), the served model list.
+- **Memory:** `nvidia-smi` used and total.
+- **Local values:** `recipe_dir`, `engine_src`, `suite_dir`; `port` (30000) and `unit` (`tensorfold-qwen38`) if yours
+  differ.
+
 ## Plans
 
 `plans/<name>.toml` holds `description`, `restart` and a list of `[[checks]]` (`type`, an optional `name` or `label`,
@@ -146,6 +161,6 @@ and the check's options).
 
 | Plan | Restarts | Checks |
 |---|---|---|
-| `quick` | yes | one stream fresh, the serving checks, one stream after them, then the suite's drafts, concurrent and behaviour checks |
+| `quick` | yes | one stream fresh, the serving checks, one stream after them, then the suite's soak, drafts, concurrent and behaviour checks (the recipe's AGENTS.md requires soak before an engine change ships) |
 | `full` | yes | ruler at 1/4/8/16 streams, the whole suite, the serving checks, ruler at 1 and 16 after them, capacity |
 | `thinking` | no | thinking-on word problems, and the suite's GSM8K with `--thinking` |

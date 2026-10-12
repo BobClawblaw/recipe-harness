@@ -1,0 +1,55 @@
+# Qwen3.8-27B 4-bit with image input on one RTX 5090 (github.com/BobClawblaw/qwen38-27b-vision-rtx-5090), a systemd
+# service on this machine. The quality suite and ruler are the qwen Spark recipe's, from a local checkout (suite_dir).
+# Machine-specific values go in qwen38-27b-5090.local.toml (git-ignored; copy the .local.example.toml).
+name = "qwen38-27b-5090"
+description = "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+url = "http://127.0.0.1:$port"
+model = "qwen38-27b"
+cwd = "$recipe_dir"
+
+[vars]
+recipe_dir = "CHANGE-ME: the recipe checkout"
+engine_src = "CHANGE-ME: the TensorFold checkout the served binary was built from"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+port = "30000"
+unit = "tensorfold-qwen38"
+
+[commands]
+up = "sudo -n systemctl start $unit"
+down = "sudo -n systemctl stop $unit"
+status = "systemctl is-active $unit"
+diagnose = "journalctl -u $unit -n 5 --no-pager; tail -3 $recipe_dir/logs/tensorfold.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 600                     # loads in about a minute
+health_wait = 300
+leave_up = true
+
+[[identity]]
+name = "recipe_commit"
+cmd = "git -C $recipe_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_src rev-parse --short HEAD"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[memory]]
+name = "gpu"
+cmd = "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader"
+
+[features]
+drafts = true
+structured = false    # not measured on this engine yet
+sampling = true
+vision_urls = false   # data URLs only (the unit does not pass --vision-urls)
+capacity = false      # one stream at 262k
+max_concurrency = 1
+thinking = true       # on by default
+prompt_cache = false  # not measured on this engine yet

@@ -26,6 +26,15 @@ def suite(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     report = out / "report.json"
     if not report.is_file():
         return {"ok": False, "summary": f"no report (exit {rc}): {text.strip().splitlines()[-1:] or ''}", "metrics": {}}
+    return suite_verdict(report, spec.get("args", ""))
+
+
+# checks whose every case must pass: replies equal drafted and undrafted, alone and beside others, and resuming kept
+# states under load (soak: the recipe's AGENTS.md requires it before an engine change ships)
+EXACT = ("drafts", "concurrent", "soak")
+
+
+def suite_verdict(report: Path, args: str = "") -> dict:
     scores, broken = {}, []
     for r in suite_results(report):
         scores[r["name"]] = {"passed": r.get("passed"), "cases": r.get("cases"), "score": r.get("score")}
@@ -34,9 +43,11 @@ def suite(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     summary = ", ".join(f"{k} {v['passed']}/{v['cases']}" for k, v in scores.items())
     if broken:
         summary = f"no cases (errors) in {', '.join(broken)}; " + summary
-    exact = [k for k in ("drafts", "concurrent") if k in scores and scores[k]["passed"] != scores[k]["cases"]]
+    exact = [k for k in EXACT if k in scores and scores[k]["passed"] != scores[k]["cases"]]
+    if exact:
+        summary = f"not exact: {', '.join(exact)}; " + summary
     ok = False if broken or exact else None
-    return {"ok": ok, "summary": summary, "metrics": {"scores": scores, "thinking_args": spec.get("args", "")}}
+    return {"ok": ok, "summary": summary, "metrics": {"scores": scores, "thinking_args": args}}
 
 
 def ruler_cells(path: Path) -> list[dict]:
