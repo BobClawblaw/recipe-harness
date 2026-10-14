@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import fcntl
 import json
 import os
 import subprocess
@@ -33,8 +32,35 @@ def tail(text: str, n: int = 6) -> str:
     return "\n".join(l for l in text.strip().splitlines()[-n:])
 
 
+def _lock(fd, block: bool) -> None:
+    """An exclusive lock on an open file: flock on POSIX, msvcrt's byte lock on Windows (BlockingIOError if held)."""
+    if os.name == "nt":
+        import msvcrt
+        fd.seek(0)
+        while True:
+            try:
+                msvcrt.locking(fd.fileno(), msvcrt.LK_NBLCK, 1)
+                return
+            except OSError:
+                if not block:
+                    raise BlockingIOError from None
+                time.sleep(1)
+    import fcntl
+    fcntl.flock(fd, fcntl.LOCK_EX | (0 if block else fcntl.LOCK_NB))
+
+
+def _unlock(fd) -> None:
+    if os.name == "nt":
+        import msvcrt
+        fd.seek(0)
+        msvcrt.locking(fd.fileno(), msvcrt.LK_UNLCK, 1)
+        return
+    import fcntl
+    fcntl.flock(fd, fcntl.LOCK_UN)
+
+
 class Lock:
-    """An flock on the target's lock file (shared with every other GPU job on the machines), or nothing."""
+    """An exclusive lock on the target's lock file (shared with every other GPU job on the machines), or nothing."""
 
     def __init__(self, path: str | None):
         self.path = os.path.expanduser(path) if path else None
@@ -43,18 +69,18 @@ class Lock:
     def __enter__(self):
         if self.path:
             Path(self.path).parent.mkdir(parents=True, exist_ok=True)
-            self.fd = open(self.path, "a")
+            self.fd = open(self.path, "a+")
             try:
-                fcntl.flock(self.fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                _lock(self.fd, block=False)
             except BlockingIOError:
                 log(f"waiting for the lock {self.path}")
-                fcntl.flock(self.fd, fcntl.LOCK_EX)
+                _lock(self.fd, block=True)
             log(f"lock taken: {self.path}")
         return self
 
     def __exit__(self, *exc):
         if self.fd:
-            fcntl.flock(self.fd, fcntl.LOCK_UN)
+            _unlock(self.fd)
             self.fd.close()
             log("lock released")
 
