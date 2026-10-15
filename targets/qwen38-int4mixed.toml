@@ -19,6 +19,8 @@ status = "python3 -m spark status"
 diagnose = "docker logs tf-qwen38-int4mixed 2>&1 | grep -E '^error|cannot load' | head -3"
 suite = "python3 -m quality.suite --url $url --model $model --out $out $args"
 ruler = "python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+# the server's log since $since (Unix seconds): the ruler reads each level's finished requests (rounds, drafts)
+server_log = "docker logs --since $since tf-qwen38-int4mixed 2>&1"
 
 [session]
 lock = "~/.cache/tf-gpu-pair.lock"   # shared with every GPU job on the pair

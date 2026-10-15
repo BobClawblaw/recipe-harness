@@ -1,4 +1,5 @@
-"""Two runs (or evidence folders) side by side: suite scores, ruler tok/s and first-token time, server checks."""
+"""Two runs (or evidence folders) side by side: suite scores, ruler tok/s and first-token time, the engine's rounds
+(when both runs logged them), server checks."""
 
 from __future__ import annotations
 
@@ -24,6 +25,42 @@ def rulers(d: Path) -> dict[str, dict]:
         if isinstance(j, dict) and "cells" in j:
             out[p.stem] = {(c["concurrency"], c["phase"]): c for c in j["cells"]}
     return out
+
+
+def engines(d: Path) -> dict[str, dict[int, dict]]:
+    """A ruler's engine counters by level (<ruler>.engine.json), keyed by the ruler's name."""
+    out = {}
+    for p in sorted(d.glob("ruler*.engine.json")):
+        j = _json(p)
+        if isinstance(j, dict) and "levels" in j:
+            out[p.name[: -len(".engine.json")]] = {int(n): s for n, s in j["levels"].items()}
+    return out
+
+
+def _engine_rows(ea: dict[int, dict], eb: dict[int, dict], label: str, threshold: float, regress: list[str]) -> list[str]:
+    """Tokens a stream-round, drafts accepted and ms a round side by side; a slower level is named rounds or drafting."""
+    lines = [f"## {label}: engine rounds", "", "| users | tokens a round A | B | accepted A | B | ms a round A | B | change |",
+             "|---:|---:|---:|---:|---:|---:|---:|---:|"]
+    for n in sorted(set(ea) & set(eb)):
+        x, y = ea[n], eb[n]
+        if not x.get("requests") or not y.get("requests"):
+            continue
+        ta, tb = x.get("tokens_a_round") or 0, y.get("tokens_a_round") or 0
+        ma, mb = x.get("ms_a_round"), y.get("ms_a_round")
+        acc = lambda s: f"{s['accept_rate'] * 100:.0f}%" if s.get("accept_rate") is not None else ""
+        change = ""
+        if ma and mb:
+            pct = (mb - ma) / ma * 100
+            change = f"{pct:+.1f}%"
+            work = (tb - ta) / ta * 100 if ta else 0
+            if pct > threshold and abs(work) <= threshold / 2:
+                change += " **rounds slower, same drafting**"
+                regress.append(f"{label} c={n}: rounds {ma:.1f} -> {mb:.1f} ms with the same tokens a round ({ta:.2f} -> {tb:.2f})")
+            elif work < -threshold:
+                change += " **less drafted**"
+                regress.append(f"{label} c={n}: tokens a round {ta:.2f} -> {tb:.2f}")
+        lines.append(f"| {n} | {ta:.2f} | {tb:.2f} | {acc(x)} | {acc(y)} | {ma or ''} | {mb or ''} | {change} |")
+    return lines + [""]
 
 
 def suites(d: Path) -> dict[str, dict]:
@@ -75,6 +112,9 @@ def compare(a: Path, b: Path, threshold: float = 5.0) -> tuple[str, list[str]]:
             lines.append(f"| {cell[0]} | {cell[1]} | {va:.1f} | {vb:.1f} | {pct:+.1f}%{flag} | "
                          f"{ta:.2f} | {tb:.2f} |" if ta and tb else f"| {cell[0]} | {cell[1]} | {va:.1f} | {vb:.1f} | {pct:+.1f}%{flag} | | |")
         lines.append("")
+        ea, eb = engines(a).get(ka), engines(b).get(kb)
+        if ea and eb:
+            lines += _engine_rows(ea, eb, f"{ka} -> {kb}", threshold, regress)
     sa, sb = suites(a), suites(b)
     pairs = [(k, k) for k in sorted(set(sa) & set(sb))]
     if not pairs and len(sa) == 1 and len(sb) == 1:

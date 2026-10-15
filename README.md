@@ -51,7 +51,7 @@ aborted or a check failed.
 | Type | What it does | Pass / fail |
 |---|---|---|
 | `suite` | the recipe's quality suite (`commands.suite`, `$args` from the plan); its report goes in `<name>/` | fails when a check has no cases (errors) or drafts, concurrent or soak is not exact (soak: concurrent resumes of ~6k-token kept states, every reply equal to the same request alone) |
-| `ruler` | the recipe's ruler (`commands.ruler`, `concurrency = [...]`); label it `fresh`, then `after` other traffic, to catch long-session slowdowns | fails on a cell with no replies |
+| `ruler` | the recipe's ruler (`commands.ruler`, `concurrency = [...]`); label it `fresh`, then `after` other traffic, to catch long-session slowdowns. With `commands.server_log` it runs one level at a time and writes `<name>.engine.json` (engine rounds, below) | fails on a cell with no replies |
 | `structured` | json_object, json_schema, guided_json, regex, choice and grammar, each greedy, sampled and thinking; a grammar that cannot compile must be a 400 | every reply obeys and the bad regex gets a 400 |
 | `sampling` | seeded sampled replies, repeated and undrafted | equal every time |
 | `turns` | a conversation that resumes its kept prompt; the third turn resumed, again, and cold | all three equal; reports cached tokens and first-token times |
@@ -67,6 +67,21 @@ off checks they don't serve in `[features]`. A greedy-only engine, for example, 
 - The `thinking` plan runs the harness's own thinking-on problems, plus the suite with `--only gsm8k --thinking`.
 - A run's `suite-thinking.summary.json` records exactly which arguments the suite ran with.
 - Every other suite score in a run is thinking off.
+
+## Engine rounds
+
+A target whose `[commands]` has `server_log` (the server's log since `$since`, Unix seconds) gets the engine's own
+account of each ruler level. A TensorFold native server logs a line for every finished request
+(`done … tokens=256 … rounds=55 accepted=200/259`); summed over one level, `<ruler>.engine.json` holds:
+
+- `tokens_a_round`: tokens a stream gets from one round (1 plus its accepted drafts);
+- `accept_rate` and `drafts_a_round`: how many drafts a round proposes and how many land;
+- `ms_a_round`: the ruler's per-stream rate over `tokens_a_round`, the wall time of one round.
+
+`compare` sets these side by side. A slower level whose tokens a round held is **rounds slower, same drafting**:
+admission, the forward or host work between rounds, not the draft planner. Fewer tokens a round is **less
+drafted**. On the qwen pair this split a 7% loss at 16 streams to batched prompt admission that a rebase had left
+unwired: every round's work was the same, each round took longer.
 
 ## Compare, tables, export, scrub
 

@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from harness import compare, config, export, scrub
-from harness.checks import applies, memory, recipe, thinking
+from harness.checks import applies, engine, memory, recipe, thinking
 
 
 def ruler(cells):
@@ -71,7 +71,7 @@ class Targets(unittest.TestCase):
             raw = config._load(config.ROOT / "targets" / f"{name}.toml")
             t = config.Target(name, raw, {k: "X" for k in raw.get("vars", {})})
             for cmd in raw["commands"].values():
-                t.expand(cmd, out="o", args="", concurrency="1")
+                t.expand(cmd, out="o", args="", concurrency="1", since="0")
             for item in raw.get("identity", []):
                 t.expand(item["cmd"])
 
@@ -103,3 +103,42 @@ class Parsing(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+DONE = ("[tensorfold] done chatcmpl-1 prompt=35 cached=34 thinking=False effort=none tokens=256 sha=1ed1 finish=length "
+        "rounds=55 accepted=200/259")
+
+
+def engine_run(p: Path, per_stream: float, tokens_a_round: float):
+    p.mkdir(parents=True)
+    (p / "ruler.json").write_text(json.dumps(ruler([(16, "code", per_stream * 16, 0.6)])))
+    lv = {"requests": 16, "tokens_a_round": tokens_a_round, "accept_rate": 0.82, "ms_a_round": round(1000 * tokens_a_round / per_stream, 2)}
+    (p / "ruler.engine.json").write_text(json.dumps({"levels": {"16": lv}}))
+
+
+class Engine(unittest.TestCase):
+    def test_done_lines(self):
+        reqs = engine.parse("noise\n" + DONE + "\n[tensorfold] 127.0.0.1 \"POST /v1/chat/completions HTTP/1.1\" 200 -\n" + DONE)
+        self.assertEqual(len(reqs), 2)
+        self.assertEqual(reqs[0], {"prompt": 35, "cached": 34, "tokens": 256, "rounds": 55, "accepted": 200, "proposed": 259})
+        lv = engine.level(reqs, 30.0)
+        self.assertAlmostEqual(lv["tokens_a_round"], 256 / 55, places=3)
+        self.assertAlmostEqual(lv["ms_a_round"], 1000 * (256 / 55) / 30.0, places=1)
+        self.assertEqual(engine.level([], 30.0), {"requests": 0})
+
+    def test_slower_rounds_with_the_same_drafting_are_named(self):
+        with tempfile.TemporaryDirectory() as d:
+            a, b = Path(d, "a"), Path(d, "b")
+            engine_run(a, 31.5, 4.4)
+            engine_run(b, 29.0, 4.4)
+            text, reg = compare.compare(a, b, 5)
+            self.assertIn("rounds slower, same drafting", text)
+            self.assertTrue(any("same tokens a round" in r for r in reg))
+
+    def test_less_drafting_is_named(self):
+        with tempfile.TemporaryDirectory() as d:
+            a, b = Path(d, "a"), Path(d, "b")
+            engine_run(a, 31.5, 4.4)
+            engine_run(b, 27.0, 3.6)
+            text, reg = compare.compare(a, b, 5)
+            self.assertIn("less drafted", text)

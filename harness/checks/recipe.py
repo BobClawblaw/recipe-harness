@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import json
+import time
 from pathlib import Path
 
 from ..config import Target
+from . import engine
 
 
 def _sh(target, cmd, **extra):
@@ -55,14 +57,44 @@ def ruler_cells(path: Path) -> list[dict]:
     return d.get("cells", [])
 
 
+def _levels_with_logs(target: Target, spec: dict, run_dir: Path, name: str, levels: list[int]) -> tuple[int, str, dict[int, dict]]:
+    """The ruler one level at a time, each level's server log read after it; its cells merged into $out."""
+    out = run_dir / f"{name}.json"
+    merged: dict | None = None
+    texts, done, rc = [], {}, 0
+    for n in levels:
+        part = run_dir / f"{name}.c{n}.json"
+        since = int(time.time()) - 1
+        rc, text = _sh(target, target["commands"]["ruler"], timeout=spec.get("timeout", 3 * 3600), out=part, concurrency=str(n),
+                       args=spec.get("args", ""))
+        texts.append(text)
+        _, log = _sh(target, target["commands"]["server_log"], timeout=120, since=str(since))
+        done[n] = engine.parse(log)
+        if part.is_file():
+            j = json.loads(part.read_text())
+            if merged is None:
+                merged = j
+            else:
+                merged["cells"] = merged.get("cells", []) + j.get("cells", [])
+            part.unlink()
+    if merged is not None:
+        out.write_text(json.dumps(merged, indent=1))
+    return rc, "\n".join(texts), done
+
+
 def ruler(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
-    """``commands.ruler`` with $out (this check's JSON), $concurrency (space-separated) and $args."""
+    """``commands.ruler`` with $out (this check's JSON), $concurrency (space-separated) and $args. With
+    ``commands.server_log`` each level runs on its own and the engine's round counters for it go in <name>.engine.json."""
     out = run_dir / f"{name}.json"
     most = target.feature("max_concurrency", None)
     levels = [c for c in spec.get("concurrency", [1]) if most is None or c <= most] or [1]
-    conc = " ".join(str(c) for c in levels)
-    rc, text = _sh(target, target["commands"]["ruler"], timeout=spec.get("timeout", 3 * 3600), out=out, concurrency=conc,
-                   args=spec.get("args", ""))
+    done: dict[int, list[dict]] = {}
+    if "server_log" in target.section("commands"):
+        rc, text, done = _levels_with_logs(target, spec, run_dir, name, levels)
+    else:
+        conc = " ".join(str(c) for c in levels)
+        rc, text = _sh(target, target["commands"]["ruler"], timeout=spec.get("timeout", 3 * 3600), out=out, concurrency=conc,
+                       args=spec.get("args", ""))
     (run_dir / f"{name}.log").write_text(text)
     if not out.is_file():
         return {"ok": False, "summary": f"no ruler JSON (exit {rc})", "metrics": {}}
@@ -76,5 +108,14 @@ def ruler(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
         rates = "/".join(f"{p['aggregate']:.1f}" if p.get("aggregate") else "-" for p in phases.values())
         ttfts = [p["ttft"] for p in phases.values() if p.get("ttft")]
         parts.append(f"c={n} {rates}" + (f" ttft {min(ttfts):.2f}-{max(ttfts):.2f}s" if ttfts else ""))
-    return {"ok": False if empty else None, "summary": ("no replies: " + ", ".join(empty) + "; " if empty else "") + "; ".join(parts),
-            "metrics": {"cells": [{k: c.get(k) for k in ("concurrency", "phase", "per_stream", "aggregate", "ttft")} for c in cells]}}
+    metrics = {"cells": [{k: c.get(k) for k in ("concurrency", "phase", "per_stream", "aggregate", "ttft")} for c in cells]}
+    line = ("no replies: " + ", ".join(empty) + "; " if empty else "") + "; ".join(parts)
+    if done:
+        stats = {}
+        for n, reqs in done.items():
+            rates = [p["per_stream"] for p in rows.get(n, {}).values() if p.get("per_stream")]
+            stats[n] = engine.level(reqs, sum(rates) / len(rates) if rates else None)
+        (run_dir / f"{name}.engine.json").write_text(json.dumps({"levels": {str(n): s for n, s in stats.items()}}, indent=1))
+        metrics["engine"] = {str(n): s for n, s in stats.items()}
+        line += "; engine: " + engine.summary(stats)
+    return {"ok": False if empty else None, "summary": line, "metrics": metrics}
