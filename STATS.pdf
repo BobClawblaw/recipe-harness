@@ -3,7 +3,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R] /Count 5 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R] /Count 6 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Courier >>
@@ -15,7 +15,7 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (Served stats) Tj T*
 (============) Tj T*
 () Tj T*
-(Rendered 2026-10-15 17:41 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate ) Tj T*
+(Rendered 2026-10-15 18:33 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate ) Tj T*
 (    tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.) Tj T*
 () Tj T*
 (Overview: by model and hardware) Tj T*
@@ -219,7 +219,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
 endobj
 10 0 obj
-<< /Length 3510 >>
+<< /Length 3507 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  check  passed) Tj T*
@@ -271,7 +271,7 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (------------------------------------------------------------------------------------------------------------) Tj T*
 () Tj T*
 (Target qwen38-int4mixed: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as Qwen3.8-Flash-Next) Tj T*
-(    -INT4-Mixed. Latest: run 20261015-171328-full \(2026-10-15 17:13, plan full, running\).) Tj T*
+(    -INT4-Mixed. Latest: run 20261015-171328-full \(2026-10-15 17:13, plan full, done\).) Tj T*
 () Tj T*
 (Serving: patch_sha 186193c6a530d89ee6383c11a9e41f98bac95bb119959aa5901c65b0f93b21ea; image tf-qwen38-int4mixed:native-v1.0.11-3 sha256:7c5838987336819a3dcc51d8f) Tj T*
 (    9abcf169f80fbfe73222e; server_args --context 1048576 --no-thinking --parallel 16 --vision-urls --vision) Tj T*
@@ -289,7 +289,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
 endobj
 12 0 obj
-<< /Length 3186 >>
+<< /Length 2260 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  8  228.9 \(28.8\)  385.2 \(46.2\)  282.4 \(35.8\)  423.1 \(51.3\)  0.11-0.14 s) Tj T*
@@ -303,17 +303,70 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  8  3.09  2.653  80%  76.26  100) Tj T*
 (  16  3.222  2.925  77%  122.65  196) Tj T*
 () Tj T*
+(ruler-after) Tj T*
+(-----------) Tj T*
+() Tj T*
+(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
+(  1  77.5 \(77.5\)  125.9 \(125.9\)  99.2 \(99.2\)  129.7 \(129.7\)  0.04-0.04 s) Tj T*
+(  16  302.3 \(18.8\)  509.5 \(30.4\)  389.8 \(23.8\)  520.4 \(31.6\)  0.44-0.50 s) Tj T*
+() Tj T*
+(Engine rounds \(ruler-after\):) Tj T*
+() Tj T*
+(  streams  tokens a round  drafts a round  accepted  ms a round  requests) Tj T*
+(  1  3.567  4.016  65%  33.01  13) Tj T*
+(  16  3.21  2.914  76%  122.7  193) Tj T*
+() Tj T*
+(suite) Tj T*
+(-----) Tj T*
+() Tj T*
+(  check  passed) Tj T*
+(  drafts  12/12) Tj T*
+(  concurrent  12/12) Tj T*
+(  streaming  4/4) Tj T*
+(  multiturn  8/8) Tj T*
+(  stop  3/3) Tj T*
+(  thinking  10/10) Tj T*
+(  copy  2/2) Tj T*
+(  max-tokens  3/3) Tj T*
+(  tools  60/60) Tj T*
+(  json  30/30) Tj T*
+(  ifeval  130/150) Tj T*
+(  gsm8k  241/250) Tj T*
+(  mgsm  219/240) Tj T*
+(  mmlu  283/342) Tj T*
+(  humaneval  157/164) Tj T*
+(  repetition  8/8) Tj T*
+(  long-context  55/55) Tj T*
+(  vision  12/12) Tj T*
+(  soak  60/60) Tj T*
+(  snapshot  12/12) Tj T*
+() Tj T*
 (checks) Tj T*
 (------) Tj T*
 () Tj T*
 (  check  result) Tj T*
 (  memory-idle  measured: head 21.8 GiB available; worker 25.2 GiB available) Tj T*
+(  structured  pass: 18/18 obey; a bad regex -> 400) Tj T*
+(  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors) Tj T*
+(  turns  pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.118s, cold 0.035s) Tj T*
+(  urls  pass: public 200; loopback 400; http 400) Tj T*
+(  capacity  pass: 4/6 answered, 2 refused, 0 lost \(no reply\); a short request after: 200) Tj T*
 () Tj T*
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2538 >>
+stream
+BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (history) Tj T*
 (-------) Tj T*
 () Tj T*
 (  run  plan  status  1 stream code  16 streams code  16 streams first token  suite) Tj T*
-(  2026-10-15 17:13  full  running  127.0  509.8  0.44-0.55 s  ) Tj T*
+(  2026-10-15 17:13  full  done  127.0  509.8  0.44-0.55 s  1321/1437) Tj T*
 (  2026-10-15 00:00  published evidence  published  123.4  472.9  0.52-0.74 s  1321/1437) Tj T*
 (  2026-10-15 00:00  published evidence  published        1321/1437) Tj T*
 (  2026-10-11 00:00  published evidence  published  120.1  507.2  0.54-0.62 s  1321/1437) Tj T*
@@ -347,27 +400,29 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 ET
 endstream
 endobj
-13 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
 endobj
 xref
-0 14
+0 16
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000141 00000 n 
-0000000209 00000 n 
-0000004260 00000 n 
-0000004386 00000 n 
-0000006958 00000 n 
-0000007084 00000 n 
-0000010137 00000 n 
-0000010263 00000 n 
-0000013826 00000 n 
-0000013954 00000 n 
-0000017193 00000 n 
+0000000148 00000 n 
+0000000216 00000 n 
+0000004267 00000 n 
+0000004393 00000 n 
+0000006965 00000 n 
+0000007091 00000 n 
+0000010144 00000 n 
+0000010270 00000 n 
+0000013830 00000 n 
+0000013958 00000 n 
+0000016271 00000 n 
+0000016399 00000 n 
+0000018990 00000 n 
 trailer
-<< /Size 14 /Root 1 0 R >>
+<< /Size 16 /Root 1 0 R >>
 startxref
-17321
+19118
 %%EOF

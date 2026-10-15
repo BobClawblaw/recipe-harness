@@ -3163,8 +3163,8 @@
    "model": "Qwen3.8-Flash-Next-INT4-Mixed",
    "plan": "full",
    "started": "20261015-171328",
-   "finished": null,
-   "status": "running",
+   "finished": "20261015-183241",
+   "status": "done",
    "identity": {
     "patch_sha": "186193c6a530d89ee6383c11a9e41f98bac95bb119959aa5901c65b0f93b21ea",
     "image": "tf-qwen38-int4mixed:native-v1.0.11-3 sha256:7c5838987336819a3dcc51d8f9abcf169f80fbfe73222ed9c24f66716a9ff223",
@@ -3284,6 +3284,64 @@
       "per_stream": 31.6,
       "ttft": 0.44
      }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 77.5,
+      "per_stream": 77.5,
+      "ttft": 0.039
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 125.9,
+      "per_stream": 125.9,
+      "ttft": 0.042
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 99.2,
+      "per_stream": 99.2,
+      "ttft": 0.039
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 129.7,
+      "per_stream": 129.7,
+      "ttft": 0.039
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 302.3,
+      "per_stream": 18.8,
+      "ttft": 0.499
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 509.5,
+      "per_stream": 30.4,
+      "ttft": 0.504
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 389.8,
+      "per_stream": 23.8,
+      "ttft": 0.478
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 520.4,
+      "per_stream": 31.6,
+      "ttft": 0.438
+     }
     ]
    },
    "rounds": {
@@ -3340,9 +3398,120 @@
       "accept_rate": 0.766,
       "ms_a_round": 122.65
      }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 954,
+      "cached": 296,
+      "tokens": 2647,
+      "rounds": 742,
+      "accepted": 1925,
+      "proposed": 2980,
+      "tokens_a_round": 3.567,
+      "drafts_a_round": 4.016,
+      "accept_rate": 0.646,
+      "ms_a_round": 33.01
+     },
+     "16": {
+      "requests": 193,
+      "prompt": 7170,
+      "cached": 2383,
+      "tokens": 41110,
+      "rounds": 12807,
+      "accepted": 28543,
+      "proposed": 37325,
+      "tokens_a_round": 3.21,
+      "drafts_a_round": 2.914,
+      "accept_rate": 0.765,
+      "ms_a_round": 122.7
+     }
     }
    },
-   "suite": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
    "checks": {
     "memory-idle": {
      "ok": null,
@@ -3351,6 +3520,34 @@
     "ruler-fresh": {
      "ok": null,
      "summary": "c=1 77.3/127.0/100.6/129.6 ttft 0.03-0.04s; c=4 159.1/253.9/201.7/268.4 ttft 0.08-0.09s; c=8 228.9/385.2/282.4/423.1 ttft 0.11-0.14s; c=16 301.9/509.8/391.3/519.2 ttft 0.44-0.55s; engine: c=1 3.62 tokens a round 66% accepted, 33.3 ms a round; c=4 3.17 tokens a round 75% accepted, 58.6 ms a round; c=8 3.09 tokens a round 79% accepted, 76.3 ms a round; c=16 3.22 tokens a round 77% accepted, 122.7 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 60/60, json 30/30, ifeval 130/150, gsm8k 241/250, mgsm 219/240, mmlu 283/342, humaneval 157/164, repetition 8/8, long-context 55/55, vision 12/12, soak 60/60, snapshot 12/12"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey; a bad regex -> 400"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.118s, cold 0.035s"
+    },
+    "urls": {
+     "ok": true,
+     "summary": "public 200; loopback 400; http 400"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 77.5/125.9/99.2/129.7 ttft 0.04-0.04s; c=16 302.3/509.5/389.8/520.4 ttft 0.44-0.50s; engine: c=1 3.57 tokens a round 65% accepted, 33.0 ms a round; c=16 3.21 tokens a round 76% accepted, 122.7 ms a round"
+    },
+    "capacity": {
+     "ok": true,
+     "summary": "4/6 answered, 2 refused, 0 lost (no reply); a short request after: 200"
     }
    },
    "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",

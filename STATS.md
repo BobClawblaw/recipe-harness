@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-15 17:41 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-15 18:33 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -208,7 +208,7 @@ Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit with image input, 
 
 ## Qwen3.8-Flash-Next INT4-Mixed (AutoRound) on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as `Qwen3.8-Flash-Next-INT4-Mixed`. Latest: run `20261015-171328-full` (2026-10-15 17:13, plan full, running).
+Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as `Qwen3.8-Flash-Next-INT4-Mixed`. Latest: run `20261015-171328-full` (2026-10-15 17:13, plan full, done).
 
 Serving: patch_sha `186193c6a530d89ee6383c11a9e41f98bac95bb119959aa5901c65b0f93b21ea`; image `tf-qwen38-int4mixed:native-v1.0.11-3 sha256:7c5838987336819a3dcc51d8f9abcf169f80fbfe73222e`; server_args `--context 1048576 --no-thinking --parallel 16 --vision-urls --vision`
 
@@ -230,17 +230,61 @@ Engine rounds (ruler-fresh):
 | 8 | 3.09 | 2.653 | 80% | 76.26 | 100 |
 | 16 | 3.222 | 2.925 | 77% | 122.65 | 196 |
 
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 77.5 (77.5) | 125.9 (125.9) | 99.2 (99.2) | 129.7 (129.7) | 0.04-0.04 s |
+| 16 | 302.3 (18.8) | 509.5 (30.4) | 389.8 (23.8) | 520.4 (31.6) | 0.44-0.50 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 3.567 | 4.016 | 65% | 33.01 | 13 |
+| 16 | 3.21 | 2.914 | 76% | 122.7 | 193 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+| tools | 60/60 |
+| json | 30/30 |
+| ifeval | 130/150 |
+| gsm8k | 241/250 |
+| mgsm | 219/240 |
+| mmlu | 283/342 |
+| humaneval | 157/164 |
+| repetition | 8/8 |
+| long-context | 55/55 |
+| vision | 12/12 |
+| soak | 60/60 |
+| snapshot | 12/12 |
+
 ### checks
 
 | check | result |
 |---|---|
 | memory-idle | measured: head 21.8 GiB available; worker 25.2 GiB available |
+| structured | pass: 18/18 obey; a bad regex -> 400 |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.118s, cold 0.035s |
+| urls | pass: public 200; loopback 400; http 400 |
+| capacity | pass: 4/6 answered, 2 refused, 0 lost (no reply); a short request after: 200 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
-| 2026-10-15 17:13 | full | running | 127.0 | 509.8 | 0.44-0.55 s |  |
+| 2026-10-15 17:13 | full | done | 127.0 | 509.8 | 0.44-0.55 s | 1321/1437 |
 | 2026-10-15 00:00 | published evidence | published | 123.4 | 472.9 | 0.52-0.74 s | 1321/1437 |
 | 2026-10-15 00:00 | published evidence | published |  |  |  | 1321/1437 |
 | 2026-10-11 00:00 | published evidence | published | 120.1 | 507.2 | 0.54-0.62 s | 1321/1437 |
