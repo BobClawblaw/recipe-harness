@@ -3,6 +3,9 @@
 # Machine-specific values go in qwen38-27b-5090.local.toml (git-ignored; copy the .local.example.toml).
 name = "qwen38-27b-5090"
 description = "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+model_name = "Qwen3.8-27B, MLX 4-bit + DFlash2"   # the report's model column
+hardware = "1x NVIDIA RTX 5090 (32 GB)"
+engine = "TensorFold native, CUDA"
 url = "http://127.0.0.1:$port"
 model = "qwen38-27b"
 cwd = "$recipe_dir"

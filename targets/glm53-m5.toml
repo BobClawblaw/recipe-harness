@@ -4,6 +4,9 @@
 # against the Mac's endpoint. Machine-specific values go in glm53-m5.local.toml (git-ignored).
 name = "glm53-m5"
 description = "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+model_name = "GLM-5.3-Flash, MLX 4-bit"   # the report's model column
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
 url = "http://$mac_host:8888"
 model = "GLM-5.3-Flash-MLX-4bit"
 

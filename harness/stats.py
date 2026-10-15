@@ -1,0 +1,255 @@
+"""The served-stats ledger and its reports.
+
+``stats/<target>.json`` is the ledger (committed): one compact entry for every finished run on any machine, keyed by
+the run's name, holding what was served (identity), the ruler cells, the engine's rounds, suite scores and the checks'
+one-line results. STATS.md, STATS.txt and STATS.pdf at the repo root are rendered from every target's ledger, so a
+machine that only holds its own runs/ still writes the whole picture. ``record`` adds a run and renders again; a run
+and an export call it, and so does ``python3 -m harness stats``.
+"""
+
+from __future__ import annotations
+
+import json
+import time
+import tomllib
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+LEDGER = ROOT / "stats"
+PHASES = ("prose", "code", "structured", "list")
+
+
+def _json(p: Path):
+    try:
+        return json.loads(p.read_text())
+    except (OSError, ValueError):
+        return None
+
+
+def _r(x, n=1):
+    return round(x, n) if isinstance(x, (int, float)) else x
+
+
+def target_facts(name: str) -> dict:
+    """What the report labels a target with: its model, hardware and engine (the committed target file's own words)."""
+    try:
+        t = tomllib.loads((ROOT / "targets" / f"{name}.toml").read_text())
+    except (OSError, ValueError):
+        return {}
+    return {k: t[k] for k in ("model_name", "hardware", "engine", "description") if k in t}
+
+
+def entry(run: Path) -> dict | None:
+    """A run folder as a ledger entry; None for a run that measured nothing (aborted before its first check)."""
+    meta = _json(run / "meta.json")
+    if not isinstance(meta, dict) or not meta.get("checks"):
+        return None
+    ident = meta.get("identity") or {}
+    e = {"run": run.name, "target": meta.get("target"), "model": meta.get("model"), "plan": meta.get("plan"),
+         "started": meta.get("started"), "finished": meta.get("finished"), "status": meta.get("status"),
+         "identity": {k: (v.get("value", v.get("got")) if isinstance(v, dict) else v) for k, v in ident.items()},
+         "rulers": {}, "rounds": {}, "suite": {}, "checks": {}, **target_facts(meta.get("target") or "")}
+    for c in meta["checks"]:
+        if c.get("skipped"):
+            continue
+        e["checks"][c["name"]] = {"ok": c.get("ok"), "summary": c.get("summary")}
+        s = _json(run / f"{c['name']}.summary.json") or {}
+        m = s.get("metrics") or {}
+        if c.get("type") == "ruler" and m.get("cells"):
+            e["rulers"][c["name"]] = [{"c": x["concurrency"], "phase": x["phase"], "agg": _r(x.get("aggregate")),
+                                       "per_stream": _r(x.get("per_stream")), "ttft": _r(x.get("ttft"), 3)} for x in m["cells"]]
+            if m.get("engine"):
+                e["rounds"][c["name"]] = {n: {k: _r(v, 3) for k, v in lv.items()} for n, lv in m["engine"].items()}
+        if c.get("type") == "suite" and m.get("scores"):
+            e["suite"][c["name"]] = {k: {"passed": v.get("passed"), "cases": v.get("cases")} for k, v in m["scores"].items()}
+    return e
+
+
+def record(run: Path, render_after: bool = True) -> Path | None:
+    """The run added to (or replaced in) its target's ledger, then every report rendered again."""
+    e = entry(run)
+    if e is None or not e.get("target"):
+        return None
+    LEDGER.mkdir(exist_ok=True)
+    path = LEDGER / f"{e['target']}.json"
+    book = _json(path) or {"target": e["target"], "runs": []}
+    book["runs"] = [r for r in book["runs"] if r.get("run") != e["run"]] + [e]
+    book["runs"].sort(key=lambda r: r.get("started") or "")
+    path.write_text(json.dumps(book, indent=1) + "\n")
+    if render_after:
+        render()
+    return path
+
+
+def _books() -> list[dict]:
+    return [b for b in (_json(p) for p in sorted(LEDGER.glob("*.json"))) if isinstance(b, dict) and b.get("runs")]
+
+
+def _when(stamp: str | None) -> str:
+    if not stamp or len(stamp) < 13:
+        return stamp or "?"
+    return f"{stamp[0:4]}-{stamp[4:6]}-{stamp[6:8]} {stamp[9:11]}:{stamp[11:13]}"
+
+
+def _ruler_rows(cells: list[dict]) -> list[str]:
+    by: dict[int, dict] = {}
+    for x in cells:
+        by.setdefault(x["c"], {})[x["phase"]] = x
+    rows = ["| streams | " + " | ".join(f"{p} total (a stream)" for p in PHASES) + " | first token |", "|---:|" + "---:|" * len(PHASES) + "---:|"]
+    for n, ph in sorted(by.items()):
+        rates = [f"{ph[p]['agg']:.1f} ({ph[p]['per_stream']:.1f})" if p in ph and ph[p].get("agg") and ph[p].get("per_stream") else
+                 f"{ph[p]['agg']:.1f}" if p in ph and ph[p].get("agg") else "-" for p in PHASES]
+        t = [ph[p]["ttft"] for p in ph if ph[p].get("ttft")]
+        rows.append(f"| {n} | " + " | ".join(rates) + (f" | {min(t):.2f}-{max(t):.2f} s |" if t else " | |"))
+    return rows
+
+
+def _engine_rows(levels: dict) -> list[str]:
+    rows = ["| streams | tokens a round | drafts a round | accepted | ms a round | requests |", "|---:|---:|---:|---:|---:|---:|"]
+    for n, s in sorted(levels.items(), key=lambda kv: int(kv[0])):
+        if not s.get("requests"):
+            continue
+        acc = f"{s['accept_rate'] * 100:.0f}%" if s.get("accept_rate") is not None else ""
+        rows.append(f"| {n} | {s.get('tokens_a_round', '')} | {s.get('drafts_a_round', '')} | {acc} | {s.get('ms_a_round', '')} | {s.get('requests')} |")
+    return rows
+
+
+def _fresh(e: dict) -> list[dict] | None:
+    for k in ("ruler-fresh", "ruler"):
+        if k in e["rulers"]:
+            return e["rulers"][k]
+    return next(iter(e["rulers"].values()), None)
+
+
+def markdown() -> str:
+    out = ["# Served stats", "",
+           f"Rendered {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())} from `stats/*.json`, the ledger every `harness run` "
+           "and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token "
+           "replies, the recipe's own ruler; engine rounds from the server's own counters.", ""]
+    books = [b for b in _books() if any(r.get("rulers") or r.get("suite") for r in b["runs"])]
+    out += overview(books)
+    for b in books:
+        runs = [r for r in b["runs"] if r.get("rulers") or r.get("suite")]
+        last = runs[-1]
+        facts = {**last, **target_facts(b["target"])}
+        out += [f"## {facts.get('model_name') or last.get('model')} on {facts.get('hardware') or b['target']}", "",
+                f"Target `{b['target']}`: {facts.get('description', '')}. Engine: {facts.get('engine', '?')}; served as `{last.get('model')}`. "
+                f"Latest: run `{last['run']}` ({_when(last.get('started'))}, plan {last.get('plan')}, {last.get('status')}).", ""]
+        ident = last.get("identity") or {}
+        if ident:
+            out += ["Serving: " + "; ".join(f"{k} `{str(v)[:90]}`" for k, v in ident.items() if v), ""]
+        for name, cells in last["rulers"].items():
+            out += [f"### {name}", ""] + _ruler_rows(cells) + [""]
+            if name in last["rounds"]:
+                out += [f"Engine rounds ({name}):", ""] + _engine_rows(last["rounds"][name]) + [""]
+        for name, scores in last["suite"].items():
+            out += [f"### {name}", "", "| check | passed |", "|---|---:|"]
+            out += [f"| {k} | {v['passed']}/{v['cases']} |" for k, v in scores.items()] + [""]
+        other = {k: v for k, v in last["checks"].items() if not k.startswith(("ruler", "suite"))}
+        if other:
+            out += ["### checks", "", "| check | result |", "|---|---|"]
+            out += [f"| {k} | {'pass' if v['ok'] else 'FAIL' if v['ok'] is False else 'measured'}: {v['summary']} |" for k, v in other.items()] + [""]
+        out += ["### history", "", "| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |",
+                "|---|---|---|---:|---:|---:|---|"]
+        for r in reversed(runs):
+            cells = _fresh(r) or []
+            pick = lambda n: next((x for x in cells if x["c"] == n and x["phase"] == "code"), None)
+            one, sixteen = pick(1), pick(16)
+            ttft16 = [x["ttft"] for x in cells if x["c"] == 16 and x.get("ttft")]
+            suite = next(iter(r["suite"].values()), {})
+            passed = sum(v.get("passed") or 0 for v in suite.values())
+            cases = sum(v.get("cases") or 0 for v in suite.values())
+            out.append(f"| {_when(r.get('started'))} | {r.get('plan')} | {r.get('status')} | {one['agg'] if one else ''} | "
+                       f"{sixteen['agg'] if sixteen else ''} | {f'{min(ttft16):.2f}-{max(ttft16):.2f} s' if ttft16 else ''} | "
+                       f"{f'{passed}/{cases}' if cases else ''} |")
+        out.append("")
+    return "\n".join(out) + "\n"
+
+
+def overview(books: list[dict]) -> list[str]:
+    """One row a target, grouped by model then hardware: one stream, the most streams measured, first token, the suite."""
+    rows = []
+    for b in books:
+        runs = [r for r in b["runs"] if r.get("rulers")]
+        last = runs[-1] if runs else b["runs"][-1]
+        facts = {**last, **target_facts(b["target"])}
+        cells = _fresh(last) or []
+        top = max((x["c"] for x in cells), default=None)
+        fmt = lambda n: "/".join(next((f"{x['agg']:.0f}" for x in cells if x["c"] == n and x["phase"] == p and x.get("agg")), "-") for p in PHASES)
+        t1 = [x["ttft"] for x in cells if x["c"] == 1 and x.get("ttft")]
+        tt = [x["ttft"] for x in cells if x["c"] == top and x.get("ttft")]
+        suites = [r for r in b["runs"] if r.get("suite")]
+        sc = next(iter(suites[-1]["suite"].values()), {}) if suites else {}
+        head = ", ".join(f"{k} {sc[k]['passed']}/{sc[k]['cases']}" for k in ("tools", "json", "gsm8k", "humaneval", "ifeval") if k in sc)
+        rows.append((facts.get("model_name") or last.get("model") or b["target"], facts.get("hardware") or "?",
+                     f"| {facts.get('model_name') or last.get('model')} | {facts.get('hardware', '?')} | {fmt(1) if cells else ''} | "
+                     f"{f'{top}: ' + fmt(top) if top and top > 1 else ''} | {f'{min(t1):.2f}' if t1 else ''} / {f'{min(tt):.2f}-{max(tt):.2f}' if tt and top and top > 1 else ''} | "
+                     f"{head} | {_when(last.get('started'))[:10]} |"))
+    if not rows:
+        return []
+    rows.sort(key=lambda r: (r[0], r[1]))
+    return ["## Overview: by model and hardware", "",
+            "Aggregate tok/s as prose/code/structured/list; first token in seconds (one stream / the most streams).", "",
+            "| model | hardware | one stream | most streams: total | first token (s) | suite | measured |",
+            "|---|---|---:|---:|---:|---|---|"] + [r[2] for r in rows] + [""]
+
+
+def text(md: str) -> str:
+    """The markdown as plain text: headings underlined, table rules dropped, columns kept."""
+    lines = []
+    for line in md.splitlines():
+        if line.startswith("#"):
+            title = line.lstrip("#").strip()
+            lines += [title, ("=" if line.startswith("# ") else "-") * len(title)]
+        elif line.startswith("|") and set(line.replace("|", "").strip()) <= set("-:"):
+            continue
+        elif line.startswith("|"):
+            lines.append("  " + "  ".join(c.strip() for c in line.strip("|").split("|")))
+        else:
+            lines.append(line.replace("`", ""))
+    return "\n".join(lines) + "\n"
+
+
+def pdf(txt: str) -> bytes:
+    """Plain text as a PDF: Courier 7.5 pt on landscape letter pages, long lines wrapped."""
+    width, height, size, lead, margin = 792, 612, 7.5, 9.0, 36
+    cols = int((width - 2 * margin) / (size * 0.6))
+    rows = int((height - 2 * margin) / lead)
+    wrapped: list[str] = []
+    for line in txt.splitlines():
+        while len(line) > cols:
+            wrapped.append(line[:cols])
+            line = "    " + line[cols:]
+        wrapped.append(line)
+    pages = [wrapped[i:i + rows] for i in range(0, len(wrapped), rows)] or [[]]
+    esc = lambda s: s.encode("latin-1", "replace").decode("latin-1").replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
+    objs: list[bytes] = [b"<< /Type /Catalog /Pages 2 0 R >>", b"", b"<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>"]
+    kids = []
+    for page in pages:
+        body = [f"BT /F1 {size} Tf {lead} TL {margin} {height - margin} Td"] + [f"({esc(l)}) Tj T*" for l in page] + ["ET"]
+        stream = "\n".join(body).encode("latin-1")
+        objs.append(b"<< /Length %d >>\nstream\n" % len(stream) + stream + b"\nendstream")
+        content = len(objs)
+        objs.append(f"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {width} {height}] /Resources << /Font << /F1 3 0 R >> >> "
+                    f"/Contents {content} 0 R >>".encode())
+        kids.append(len(objs))
+    objs[1] = f"<< /Type /Pages /Kids [{' '.join(f'{k} 0 R' for k in kids)}] /Count {len(kids)} >>".encode()
+    out, offsets = bytearray(b"%PDF-1.4\n"), []
+    for i, o in enumerate(objs, 1):
+        offsets.append(len(out))
+        out += f"{i} 0 obj\n".encode() + o + b"\nendobj\n"
+    xref = len(out)
+    out += f"xref\n0 {len(objs) + 1}\n0000000000 65535 f \n".encode() + b"".join(f"{o:010d} 00000 n \n".encode() for o in offsets)
+    out += f"trailer\n<< /Size {len(objs) + 1} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n".encode()
+    return bytes(out)
+
+
+def render() -> list[Path]:
+    """STATS.md, STATS.txt and STATS.pdf from every target's ledger."""
+    md = markdown()
+    txt = text(md)
+    paths = [ROOT / "STATS.md", ROOT / "STATS.txt", ROOT / "STATS.pdf"]
+    paths[0].write_text(md)
+    paths[1].write_text(txt)
+    paths[2].write_bytes(pdf(txt))
+    return paths

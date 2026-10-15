@@ -83,6 +83,21 @@ admission, the forward or host work between rounds, not the draft planner. Fewer
 drafted**. On the qwen pair this split a 7% loss at 16 streams to batched prompt admission that a rebase had left
 unwired: every round's work was the same, each round took longer.
 
+## Served stats: the ledger and STATS.md / .txt / .pdf
+
+`stats/<target>.json` is the ledger: one entry for every finished run on any machine, with what was served (identity),
+every ruler cell (total and per-stream tok/s, first token), the engine's rounds, suite scores and each check's result.
+Each target names its `model_name`, `hardware` and `engine`, so the reports group results by model and hardware.
+
+- Every `harness run` and `harness export` adds its run and renders `STATS.md`, `STATS.txt` and `STATS.pdf` again.
+- `python3 -m harness stats` adds every finished run under `runs/` (or the folders you name) and renders.
+- The reports open with an overview (one row per model and hardware: one stream, the most streams measured, first
+  token, the suite's headline scores), then each target's latest ruler, engine rounds, suite and checks, then its
+  history.
+
+`runs/` stays on the machine that ran it; the ledger and the reports are committed, so commit `stats/` and `STATS.*`
+with every run you keep (scrub first). Two machines adding runs touch different entries, so pull before you push.
+
 ## Compare, tables, export, scrub
 
 ```bash

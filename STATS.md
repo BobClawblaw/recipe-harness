@@ -1,0 +1,59 @@
+# Served stats
+
+Rendered 2026-10-15 17:32 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+
+## Overview: by model and hardware
+
+Aggregate tok/s as prose/code/structured/list; first token in seconds (one stream / the most streams).
+
+| model | hardware | one stream | most streams: total | first token (s) | suite | measured |
+|---|---|---:|---:|---:|---|---|
+| Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 69/105/86/110 |  | 0.08 /  |  | 2026-10-10 |
+
+## Qwen3.8-Flash-Next INT4-Mixed (AutoRound) on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
+
+Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as `Qwen3.8-Flash-Next-INT4-Mixed`. Latest: run `20261010-094527-quick` (2026-10-10 09:45, plan quick, done).
+
+Serving: patch_sha `bc0402c1b6f31946984c0c469bb85d77eb926f4dc31ff9b8fcdb876ee4dbe8b5`; image `tf-qwen38-int4mixed:native-v1.0.4 sha256:159e8b61d9ec0827e4a2c76b9933b3ec3e358dc05ab0b7067`; server_args `--context 1048576 --no-thinking --parallel 16 --vision-urls --vision`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 68.8 (68.8) | 105.3 (105.3) | 86.0 (86.0) | 109.5 (109.5) | 0.08-0.11 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 67.2 (67.2) | 103.5 (103.5) | 83.8 (83.8) | 108.4 (108.4) | 0.08-0.12 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: head 20.5 GiB available; worker 24.9 GiB available |
+| structured | pass: 18/18 obey; a bad regex -> 400 |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.121s, cold 2.088s |
+| urls | pass: public 200; loopback 400; http 400 |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-10 09:45 | quick | done | 105.3 |  |  | 54/54 |
+

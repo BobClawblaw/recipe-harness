@@ -142,3 +142,38 @@ class Engine(unittest.TestCase):
             engine_run(b, 27.0, 3.6)
             text, reg = compare.compare(a, b, 5)
             self.assertIn("less drafted", text)
+
+
+class Stats(unittest.TestCase):
+    def test_a_run_becomes_a_ledger_entry_and_reports(self):
+        from harness import stats
+        with tempfile.TemporaryDirectory() as d:
+            run = Path(d, "20261015-171328-full")
+            run.mkdir()
+            cells = ruler([(1, "code", 127.0, 0.04), (16, "code", 509.8, 0.5)])["cells"]
+            meta = {"target": "qwen38-int4mixed", "model": "m", "plan": "full", "started": "20261015-171328", "status": "done",
+                    "identity": {"patch_sha": {"value": "186193c6", "exit": 0}},
+                    "checks": [{"name": "ruler-fresh", "type": "ruler", "ok": None, "summary": "c=1 …"},
+                               {"name": "suite", "type": "suite", "ok": None, "summary": "tools 60/60"}]}
+            (run / "meta.json").write_text(json.dumps(meta))
+            (run / "ruler-fresh.summary.json").write_text(json.dumps({"metrics": {"cells": cells, "engine": {"16": {"requests": 196, "tokens_a_round": 3.2, "accept_rate": 0.77, "ms_a_round": 122.6}}}}))
+            (run / "suite.summary.json").write_text(json.dumps({"metrics": {"scores": {"tools": {"passed": 60, "cases": 60}}}}))
+            e = stats.entry(run)
+            self.assertEqual(e["identity"]["patch_sha"], "186193c6")
+            self.assertEqual(e["rounds"]["ruler-fresh"]["16"]["requests"], 196)
+            self.assertEqual(e["hardware"], "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE")
+            old = stats.LEDGER
+            stats.LEDGER = Path(d, "stats")
+            try:
+                stats.record(run, render_after=False)
+                stats.record(run, render_after=False)  # the same run again replaces its entry
+                book = json.loads((stats.LEDGER / "qwen38-int4mixed.json").read_text())
+                self.assertEqual(len(book["runs"]), 1)
+                md = stats.markdown()
+            finally:
+                stats.LEDGER = old
+            self.assertIn("Overview: by model and hardware", md)
+            self.assertIn("509.8 (31.9)", md)
+            self.assertIn("tools 60/60", md)
+            pdf = stats.pdf(stats.text(md))
+            self.assertTrue(pdf.startswith(b"%PDF-1.4") and pdf.rstrip().endswith(b"%%EOF"))

@@ -3,6 +3,9 @@
 # from a local checkout (suite_dir). Machine-specific values go in qwen38-27b-4090.local.toml (git-ignored; copy the .local.example.toml).
 name = "qwen38-27b-4090"
 description = "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 4090, Windows (8192-token window, 2 streams)"
+model_name = "Qwen3.8-27B, MLX 4-bit + DFlash2"   # the report's model column
+hardware = "1x NVIDIA RTX 4090 (24 GB), Windows"
+engine = "TensorFold native, CUDA"
 url = "http://127.0.0.1:$port"
 model = "q27"
 cwd = "$harness_dir"

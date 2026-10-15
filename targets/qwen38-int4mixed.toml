@@ -2,6 +2,9 @@
 # Machine-specific values go in qwen38-int4mixed.local.toml (git-ignored; copy the .local.example.toml).
 name = "qwen38-int4mixed"
 description = "Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks"
+model_name = "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)"   # the report's model column
+hardware = "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE"
+engine = "TensorFold native, CUDA"
 url = "http://127.0.0.1:$port"
 model = "Qwen3.8-Flash-Next-INT4-Mixed"
 cwd = "$recipe_dir"

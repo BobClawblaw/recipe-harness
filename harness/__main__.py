@@ -40,6 +40,8 @@ def main(argv=None) -> int:
     sub.add_parser("plans", help="the plans and their checks")
     h = sub.add_parser("check", help="is a target's server healthy now (no lock, no restart)")
     h.add_argument("target")
+    st = sub.add_parser("stats", help="add runs to the stats/ ledger and render STATS.md, STATS.txt and STATS.pdf")
+    st.add_argument("runs", type=Path, nargs="*", help="run folders to add (default: every finished run under runs/)")
     a = ap.parse_args(argv)
     try:
         return COMMANDS[a.cmd](a)
@@ -54,7 +56,7 @@ def cmd_run(a) -> int:
         from .checks import applies
         print(f"target {target.name}: {target.url} as {target.model}; cwd {target.cwd}")
         for k, v in target.section("commands").items():
-            print(f"  {k}: {target.expand(v, out='<out>', args='<args>', concurrency='<c>')}")
+            print(f"  {k}: {target.expand(v, out='<out>', args='<args>', concurrency='<c>', since='<since>')}")
         for item in target.get("identity", []):
             print(f"  identity {item['name']}: {target.expand(item['cmd'])}" + (f" == {target.expand(item['expect'])}" if "expect" in item else ""))
         print(f"  session: {target.section('session')}")
@@ -64,6 +66,7 @@ def cmd_run(a) -> int:
         return 0
     run_dir = session.run(target, plan, a.plan, restart=False if a.no_restart else None)
     meta = json.loads((run_dir / "meta.json").read_text())
+    _record(run_dir)
     print(tables(run_dir))
     return 0 if meta["status"] == "done" and not any(c.get("ok") is False for c in meta["checks"]) else 1
 
@@ -76,7 +79,27 @@ def cmd_compare(a) -> int:
     return 1 if regress else 0
 
 
+def _record(run_dir: Path) -> None:
+    """The run in the ledger and the reports rendered again; a report that fails never fails the run."""
+    from . import stats
+    try:
+        if stats.record(run_dir):
+            print(f"stats: {run_dir.name} recorded; STATS.md, STATS.txt and STATS.pdf rendered (commit stats/ and STATS.*)")
+    except Exception as err:  # noqa: BLE001
+        print(f"stats: not recorded ({err})", file=sys.stderr)
+
+
+def cmd_stats(a) -> int:
+    from . import stats
+    runs = a.runs or sorted(p for p in (stats.ROOT / "runs").glob("*/*") if (p / "meta.json").is_file())
+    added = [r.name for r in runs if stats.record(r, render_after=False)]
+    paths = stats.render()
+    print(f"stats: {len(added)} runs recorded; rendered {', '.join(p.name for p in paths)}")
+    return 0
+
+
 def cmd_export(a) -> int:
+    _record(a.run)
     dest = export(a.run, a.recipe, a.name)
     hits = scan_tree(dest)
     print(f"exported to {dest}")
@@ -123,7 +146,8 @@ def cmd_check(a) -> int:
     return 0 if ok else 1
 
 
-COMMANDS = {"run": cmd_run, "compare": cmd_compare, "export": cmd_export, "tables": cmd_tables, "scrub": cmd_scrub,
+COMMANDS = {
+    "run": cmd_run, "stats": cmd_stats, "compare": cmd_compare, "export": cmd_export, "tables": cmd_tables, "scrub": cmd_scrub,
             "targets": cmd_targets, "plans": cmd_plans, "check": cmd_check}
 
 if __name__ == "__main__":
