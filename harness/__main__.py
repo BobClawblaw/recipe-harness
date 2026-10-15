@@ -42,6 +42,13 @@ def main(argv=None) -> int:
     h.add_argument("target")
     st = sub.add_parser("stats", help="add runs to the stats/ ledger and render STATS.md, STATS.txt and STATS.pdf")
     st.add_argument("runs", type=Path, nargs="*", help="run folders to add (default: every finished run under runs/)")
+    st.add_argument("--import-evidence", type=Path, metavar="RECIPE", help="a recipe checkout: every dated evidence/ folder into --target's ledger")
+    st.add_argument("--target", help="the ledger to import into (a target name; a new one for a new model or machine)")
+    st.add_argument("--source", help="where the evidence is published, e.g. github.com/<owner>/<recipe>")
+    st.add_argument("--served-model", help="the served model name")
+    st.add_argument("--model-name", help="the report's model column")
+    st.add_argument("--hardware", help="the report's hardware column")
+    st.add_argument("--engine", help="the report's engine (e.g. 'TensorFold native, CUDA')")
     a = ap.parse_args(argv)
     try:
         return COMMANDS[a.cmd](a)
@@ -91,6 +98,14 @@ def _record(run_dir: Path) -> None:
 
 def cmd_stats(a) -> int:
     from . import stats
+    if a.import_evidence:
+        if not (a.target and a.model_name and a.hardware and a.engine):
+            print("stats: --import-evidence needs --target, --model-name, --hardware and --engine", file=sys.stderr)
+            return 2
+        facts = {k: v for k, v in (("served_model", a.served_model), ("model_name", a.model_name), ("hardware", a.hardware),
+                                   ("engine", a.engine)) if v}
+        n = stats.import_evidence(a.import_evidence, a.target, a.source or a.import_evidence.name, facts)
+        print(f"stats: {n} evidence folders of {a.import_evidence} in stats/{a.target}.json")
     runs = a.runs or sorted(p for p in (stats.ROOT / "runs").glob("*/*") if (p / "meta.json").is_file())
     added = [r.name for r in runs if stats.record(r, render_after=False)]
     paths = stats.render()

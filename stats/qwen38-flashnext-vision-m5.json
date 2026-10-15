@@ -1,0 +1,480 @@
+{
+ "target": "qwen38-flashnext-vision-m5",
+ "runs": [
+  {
+   "run": "evidence/2026-10-11-1m-parallel4",
+   "target": "qwen38-flashnext-vision-m5",
+   "model": "Qwen3.8-Flash-Next-6bit",
+   "plan": "published evidence",
+   "started": "20261011-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-vision-m5-ultra/evidence/2026-10-11-1m-parallel4",
+   "identity": {},
+   "rulers": {
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 131.3,
+      "per_stream": 131.3,
+      "ttft": 0.158
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 178.9,
+      "per_stream": 178.9,
+      "ttft": 0.163
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 160.2,
+      "per_stream": 160.2,
+      "ttft": 0.123
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 183.9,
+      "per_stream": 183.9,
+      "ttft": 0.157
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 211.0,
+      "per_stream": 52.0,
+      "ttft": 0.367
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 311.5,
+      "per_stream": 77.0,
+      "ttft": 0.368
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 259.8,
+      "per_stream": 64.7,
+      "ttft": 0.418
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 317.6,
+      "per_stream": 78.8,
+      "ttft": 0.365
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 56,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 132,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next, 6-bit with vision",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-Flash-Next 6-bit with image input, TensorFold native on one M5 Ultra"
+  },
+  {
+   "run": "evidence/2026-10-11-launchd",
+   "target": "qwen38-flashnext-vision-m5",
+   "model": "Qwen3.8-Flash-Next-6bit",
+   "plan": "published evidence",
+   "started": "20261011-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-vision-m5-ultra/evidence/2026-10-11-launchd",
+   "identity": {},
+   "rulers": {
+    "ruler-1user": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 144.6,
+      "per_stream": 144.6,
+      "ttft": 0.201
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 205.6,
+      "per_stream": 205.6,
+      "ttft": 0.131
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 172.6,
+      "per_stream": 172.6,
+      "ttft": 0.095
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 194.7,
+      "per_stream": 194.7,
+      "ttft": 0.115
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 59,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next, 6-bit with vision",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-Flash-Next 6-bit with image input, TensorFold native on one M5 Ultra"
+  },
+  {
+   "run": "evidence/2026-10-12-262k-cache",
+   "target": "qwen38-flashnext-vision-m5",
+   "model": "Qwen3.8-Flash-Next-6bit",
+   "plan": "published evidence",
+   "started": "20261012-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-vision-m5-ultra/evidence/2026-10-12-262k-cache",
+   "identity": {},
+   "rulers": {
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 129.3,
+      "per_stream": 129.3,
+      "ttft": 0.188
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 176.6,
+      "per_stream": 176.6,
+      "ttft": 0.192
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 149.8,
+      "per_stream": 149.8,
+      "ttft": 0.196
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 177.4,
+      "per_stream": 177.4,
+      "ttft": 0.188
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 209.5,
+      "per_stream": 52.6,
+      "ttft": 0.392
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 309.6,
+      "per_stream": 78.3,
+      "ttft": 0.394
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 245.9,
+      "per_stream": 60.7,
+      "ttft": 0.414
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 321.5,
+      "per_stream": 78.4,
+      "ttft": 0.386
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next, 6-bit with vision",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-Flash-Next 6-bit with image input, TensorFold native on one M5 Ultra"
+  },
+  {
+   "run": "evidence/2026-10-12-lane-parity",
+   "target": "qwen38-flashnext-vision-m5",
+   "model": "Qwen3.8-Flash-Next-6bit",
+   "plan": "published evidence",
+   "started": "20261012-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-vision-m5-ultra/evidence/2026-10-12-lane-parity",
+   "identity": {},
+   "rulers": {
+    "ruler_trial": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 141.6,
+      "per_stream": 141.6,
+      "ttft": 0.189
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 202.7,
+      "per_stream": 202.7,
+      "ttft": 0.202
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 169.1,
+      "per_stream": 169.1,
+      "ttft": 0.124
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 191.5,
+      "per_stream": 191.5,
+      "ttft": 0.17
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 244.7,
+      "per_stream": 60.9,
+      "ttft": 0.408
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 325.4,
+      "per_stream": 80.9,
+      "ttft": 0.413
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 277.4,
+      "per_stream": 68.6,
+      "ttft": 0.443
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 327.2,
+      "per_stream": 83.3,
+      "ttft": 0.416
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next, 6-bit with vision",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-Flash-Next 6-bit with image input, TensorFold native on one M5 Ultra"
+  },
+  {
+   "run": "evidence/2026-10-12-parallel8",
+   "target": "qwen38-flashnext-vision-m5",
+   "model": "Qwen3.8-Flash-Next-6bit",
+   "plan": "published evidence",
+   "started": "20261012-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-vision-m5-ultra/evidence/2026-10-12-parallel8",
+   "identity": {},
+   "rulers": {
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 127.7,
+      "per_stream": 127.7,
+      "ttft": 0.167
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 174.1,
+      "per_stream": 174.1,
+      "ttft": 0.169
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 147.8,
+      "per_stream": 147.8,
+      "ttft": 0.175
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 175.4,
+      "per_stream": 175.4,
+      "ttft": 0.164
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 210.2,
+      "per_stream": 52.9,
+      "ttft": 0.373
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 303.3,
+      "per_stream": 76.3,
+      "ttft": 0.371
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 249.2,
+      "per_stream": 61.1,
+      "ttft": 0.396
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 316.9,
+      "per_stream": 77.8,
+      "ttft": 0.371
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 271.5,
+      "per_stream": 34.1,
+      "ttft": 0.843
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 330.0,
+      "per_stream": 40.8,
+      "ttft": 0.759
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 292.5,
+      "per_stream": 36.5,
+      "ttft": 0.829
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 339.3,
+      "per_stream": 41.7,
+      "ttft": 0.829
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next, 6-bit with vision",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-Flash-Next 6-bit with image input, TensorFold native on one M5 Ultra"
+  }
+ ]
+}

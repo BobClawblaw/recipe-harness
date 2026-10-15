@@ -1,0 +1,518 @@
+{
+ "target": "qwen38-27b-5090",
+ "runs": [
+  {
+   "run": "evidence/2026-10-12-fp8-kv",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "published evidence",
+   "started": "20261012-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-27b-vision-rtx-5090/evidence/2026-10-12-fp8-kv",
+   "identity": {},
+   "rulers": {
+    "native-kv8-256k-bench_openai-64tok": [
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 319.6,
+      "per_stream": 319.6,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 243.2,
+      "per_stream": 243.2,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 321.6,
+      "per_stream": 321.6,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 277.4,
+      "per_stream": 277.4,
+      "ttft": 0.1
+     }
+    ],
+    "native-kv8-256k-service-bench_openai-64tok": [
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 304.6,
+      "per_stream": 304.6,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 219.0,
+      "per_stream": 219.0,
+      "ttft": 0.101
+     },
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 307.3,
+      "per_stream": 307.3,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 283.5,
+      "per_stream": 283.5,
+      "ttft": 0.1
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-12-native-vision",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "published evidence",
+   "started": "20261012-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-27b-vision-rtx-5090/evidence/2026-10-12-native-vision",
+   "identity": {},
+   "rulers": {
+    "native-bench_openai-64tok": [
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 321.2,
+      "per_stream": 321.2,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 243.5,
+      "per_stream": 243.5,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 322.9,
+      "per_stream": 322.9,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 297.9,
+      "per_stream": 297.9,
+      "ttft": 0.099
+     }
+    ],
+    "native-vision-bench_openai-64tok": [
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 320.7,
+      "per_stream": 320.7,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 243.9,
+      "per_stream": 243.9,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 323.0,
+      "per_stream": 323.0,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 297.6,
+      "per_stream": 297.6,
+      "ttft": 0.1
+     }
+    ],
+    "tensorfold-0.6.6-bench_openai-64tok": [
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 288.2,
+      "per_stream": 288.2,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 208.3,
+      "per_stream": 208.3,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 277.4,
+      "per_stream": 277.4,
+      "ttft": 0.098
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 261.7,
+      "per_stream": 261.7,
+      "ttft": 0.098
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-12-prompt-cache",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "published evidence",
+   "started": "20261012-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-27b-vision-rtx-5090/evidence/2026-10-12-prompt-cache",
+   "identity": {},
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-native": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 7,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 59,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 124,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 242,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 213,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 268,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 153,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-12-vs-vllm",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "published evidence",
+   "started": "20261012-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-27b-vision-rtx-5090/evidence/2026-10-12-vs-vllm",
+   "identity": {},
+   "rulers": {
+    "native-cmp-bench_openai-64tok": [
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 307.3,
+      "per_stream": 307.3,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 220.3,
+      "per_stream": 220.3,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 309.1,
+      "per_stream": 309.1,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 285.1,
+      "per_stream": 285.1,
+      "ttft": 0.1
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-native": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 7,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 59,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 124,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 242,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 213,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 268,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 153,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 0,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-13-merge-1.0.9",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "published evidence",
+   "started": "20261013-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-27b-vision-rtx-5090/evidence/2026-10-13-merge-1.0.9",
+   "identity": {},
+   "rulers": {
+    "bench_openai-64tok": [
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 305.9,
+      "per_stream": 305.9,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 219.5,
+      "per_stream": 219.5,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 307.9,
+      "per_stream": 307.9,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 283.3,
+      "per_stream": 283.3,
+      "ttft": 0.1
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-14-merge-1.0.11",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "published evidence",
+   "started": "20261014-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-27b-vision-rtx-5090/evidence/2026-10-14-merge-1.0.11",
+   "identity": {},
+   "rulers": {
+    "bench_openai-64tok": [
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 305.2,
+      "per_stream": 305.2,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 218.8,
+      "per_stream": 218.8,
+      "ttft": 0.101
+     },
+     {
+      "c": 1,
+      "phase": "fibonacci-raw",
+      "agg": 306.4,
+      "per_stream": 306.4,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "gpu-chat-no-think",
+      "agg": 283.2,
+      "per_stream": 283.2,
+      "ttft": 0.1
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA"
+  }
+ ]
+}

@@ -74,11 +74,60 @@ def record(run: Path, render_after: bool = True) -> Path | None:
     path = LEDGER / f"{e['target']}.json"
     book = _json(path) or {"target": e["target"], "runs": []}
     book["runs"] = [r for r in book["runs"] if r.get("run") != e["run"]] + [e]
-    book["runs"].sort(key=lambda r: r.get("started") or "")
+    book["runs"].sort(key=lambda r: (r.get("started") or "", r.get("run") or ""))
     path.write_text(json.dumps(book, indent=1) + "\n")
     if render_after:
         render()
     return path
+
+
+def _evidence_entry(folder: Path, target: str, source: str, facts: dict) -> dict | None:
+    """A published recipe's evidence folder as a ledger entry: its rulers, a benchmark's one-stream cells, its suites."""
+    name = folder.name
+    day = name[:10].replace("-", "") if len(name) >= 10 and name[4] == "-" and name[7] == "-" else None
+    if not day:
+        return None
+    e = {"run": f"evidence/{name}", "target": target, "model": facts.get("served_model"), "plan": "published evidence",
+         "started": f"{day}-0000", "status": "published", "source": f"{source}/evidence/{name}", "identity": {},
+         "rulers": {}, "rounds": {}, "suite": {}, "checks": {}, **{k: v for k, v in facts.items() if k != "served_model"}}
+    for p in sorted(folder.glob("ruler*.json")):
+        if p.name.endswith((".summary.json", ".engine.json")) or "vllm" in p.name:
+            continue
+        j = _json(p)
+        if isinstance(j, dict) and j.get("cells"):
+            e["rulers"][p.stem] = [{"c": x["concurrency"], "phase": x["phase"], "agg": _r(x.get("aggregate")),
+                                    "per_stream": _r(x.get("per_stream")), "ttft": _r(x.get("ttft"), 3)} for x in j["cells"]]
+    for p in sorted(folder.glob("*bench_openai*.json")):
+        if "vllm" in p.name:
+            continue
+        j = _json(p)
+        if isinstance(j, list) and j and isinstance(j[0], dict) and "decode_tps_median" in j[0]:
+            e["rulers"][p.stem] = [{"c": 1, "phase": x.get("prompt", "?"), "agg": _r(x.get("decode_tps_median")),
+                                    "per_stream": _r(x.get("decode_tps_median")), "ttft": _r(x.get("ttft_s_median"), 3)} for x in j]
+    for rep in sorted(folder.glob("**/report.json")):
+        rel = str(rep.parent.relative_to(folder))
+        if "vllm" in rel or "/dev" in rel:
+            continue
+        j = _json(rep)
+        if isinstance(j, dict) and j.get("results"):
+            e["suite"]["suite" if rel == "." else rel] = {r["name"]: {"passed": r.get("passed"), "cases": r.get("cases")} for r in j["results"]}
+    return e if e["rulers"] or e["suite"] else None
+
+
+def import_evidence(recipe: Path, target: str, source: str, facts: dict) -> int:
+    """Every dated folder of a published recipe's evidence/ into ``target``'s ledger (dev/ sweeps left out)."""
+    LEDGER.mkdir(exist_ok=True)
+    path = LEDGER / f"{target}.json"
+    book = _json(path) or {"target": target, "runs": []}
+    n = 0
+    for folder in sorted(p for p in (recipe / "evidence").iterdir() if p.is_dir() and p.name != "dev"):
+        e = _evidence_entry(folder, target, source, facts)
+        if e:
+            book["runs"] = [r for r in book["runs"] if r.get("run") != e["run"]] + [e]
+            n += 1
+    book["runs"].sort(key=lambda r: (r.get("started") or "", r.get("run") or ""))
+    path.write_text(json.dumps(book, indent=1) + "\n")
+    return n
 
 
 def _books() -> list[dict]:
@@ -115,10 +164,15 @@ def _engine_rows(levels: dict) -> list[str]:
 
 
 def _fresh(e: dict) -> list[dict] | None:
+    """The run's main ruler: ruler-fresh or ruler, else the one with the most stream levels that is not a variant."""
     for k in ("ruler-fresh", "ruler"):
         if k in e["rulers"]:
             return e["rulers"][k]
-    return next(iter(e["rulers"].values()), None)
+    plain = {k: v for k, v in e["rulers"].items() if not any(w in k for w in ("sampled", "old", "before", "vllm", "repeat"))}
+    pool = plain or e["rulers"]
+    if not pool:
+        return None
+    return max(pool.values(), key=lambda cells: (len({x["c"] for x in cells}), len(cells)))
 
 
 def markdown() -> str:
@@ -163,6 +217,9 @@ def markdown() -> str:
                        f"{sixteen['agg'] if sixteen else ''} | {f'{min(ttft16):.2f}-{max(ttft16):.2f} s' if ttft16 else ''} | "
                        f"{f'{passed}/{cases}' if cases else ''} |")
         out.append("")
+    notes = LEDGER / "notes.md"  # what the ledger cannot hold (README-only recipes), kept by hand
+    if notes.is_file():
+        out += [notes.read_text().rstrip(), ""]
     return "\n".join(out) + "\n"
 
 
@@ -175,7 +232,12 @@ def overview(books: list[dict]) -> list[str]:
         facts = {**last, **target_facts(b["target"])}
         cells = _fresh(last) or []
         top = max((x["c"] for x in cells), default=None)
-        fmt = lambda n: "/".join(next((f"{x['agg']:.0f}" for x in cells if x["c"] == n and x["phase"] == p and x.get("agg")), "-") for p in PHASES)
+        def fmt(n):
+            at = [x for x in cells if x["c"] == n and x.get("agg")]
+            if at and not any(x["phase"] in PHASES for x in at):  # a benchmark of named prompts: their median decode rate
+                v = sorted(x["agg"] for x in at)[len(at) // 2]
+                return f"{v:.0f} (median of {len(at)} prompts)"
+            return "/".join(next((f"{x['agg']:.0f}" for x in at if x["phase"] == p), "-") for p in PHASES)
         t1 = [x["ttft"] for x in cells if x["c"] == 1 and x.get("ttft")]
         tt = [x["ttft"] for x in cells if x["c"] == top and x.get("ttft")]
         suites = [r for r in b["runs"] if r.get("suite")]

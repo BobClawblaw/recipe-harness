@@ -2,6 +2,2295 @@
  "target": "qwen38-int4mixed",
  "runs": [
   {
+   "run": "evidence/2026-10-07-first-boot",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261007-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-07-first-boot",
+   "identity": {},
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "v1-bf16-dense/quality": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "v2-concurrent-1m/quality/q": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "v2-concurrent-1m/quality": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "v2-int8-dense/quality": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-08-prefill-fusions",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261008-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-08-prefill-fusions",
+   "identity": {},
+   "rulers": {
+    "ruler-c1-c16": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 67.6,
+      "per_stream": 67.6,
+      "ttft": 0.075
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 107.6,
+      "per_stream": 107.6,
+      "ttft": 0.075
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 88.0,
+      "per_stream": 88.0,
+      "ttft": 0.097
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 109.9,
+      "per_stream": 109.9,
+      "ttft": 0.063
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 297.9,
+      "per_stream": 18.7,
+      "ttft": 0.448
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 441.7,
+      "per_stream": 26.1,
+      "ttft": 0.509
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 375.3,
+      "per_stream": 23.0,
+      "ttft": 0.579
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 535.3,
+      "per_stream": 33.7,
+      "ttft": 0.511
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-08-python-0.6",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261008-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-08-python-0.6",
+   "identity": {},
+   "rulers": {
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 69.3,
+      "per_stream": 69.3,
+      "ttft": 0.079
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 107.6,
+      "per_stream": 107.6,
+      "ttft": 0.078
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 88.3,
+      "per_stream": 88.3,
+      "ttft": 0.167
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 110.4,
+      "per_stream": 110.4,
+      "ttft": 0.064
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 298.9,
+      "per_stream": 18.8,
+      "ttft": 0.439
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 442.6,
+      "per_stream": 26.1,
+      "ttft": 0.5
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 375.3,
+      "per_stream": 23.2,
+      "ttft": 0.576
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 541.8,
+      "per_stream": 34.1,
+      "ttft": 0.454
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "quality": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "quality-json": {
+     "json-guided": {
+      "passed": 30,
+      "cases": 30
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-08-shipped-image",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261008-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-08-shipped-image",
+   "identity": {},
+   "rulers": {
+    "ruler-dev": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 69.0,
+      "per_stream": 69.0,
+      "ttft": 0.079
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 107.7,
+      "per_stream": 107.7,
+      "ttft": 0.075
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 89.4,
+      "per_stream": 89.4,
+      "ttft": 0.095
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 109.7,
+      "per_stream": 109.7,
+      "ttft": 0.064
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 147.4,
+      "per_stream": 37.1,
+      "ttft": 0.121
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 230.0,
+      "per_stream": 59.8,
+      "ttft": 0.156
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 197.3,
+      "per_stream": 48.8,
+      "ttft": 0.193
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 279.9,
+      "per_stream": 67.0,
+      "ttft": 0.148
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 214.1,
+      "per_stream": 26.9,
+      "ttft": 0.239
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 366.0,
+      "per_stream": 42.3,
+      "ttft": 0.266
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 273.2,
+      "per_stream": 34.8,
+      "ttft": 0.297
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 403.7,
+      "per_stream": 50.0,
+      "ttft": 0.246
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 299.2,
+      "per_stream": 18.8,
+      "ttft": 0.583
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 474.0,
+      "per_stream": 27.4,
+      "ttft": 0.593
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 372.7,
+      "per_stream": 23.0,
+      "ttft": 0.657
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 540.8,
+      "per_stream": 34.1,
+      "ttft": 0.522
+     }
+    ],
+    "ruler-image": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 68.7,
+      "per_stream": 68.7,
+      "ttft": 0.081
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 109.0,
+      "per_stream": 109.0,
+      "ttft": 0.076
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 89.0,
+      "per_stream": 89.0,
+      "ttft": 0.096
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 109.9,
+      "per_stream": 109.9,
+      "ttft": 0.064
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 299.5,
+      "per_stream": 18.8,
+      "ttft": 0.511
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 475.2,
+      "per_stream": 27.5,
+      "ttft": 0.561
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 372.0,
+      "per_stream": 22.8,
+      "ttft": 0.723
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 542.0,
+      "per_stream": 34.1,
+      "ttft": 0.523
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "quality": {
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     }
+    },
+    "quality-image-first": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-08-two-rails",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261008-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-08-two-rails",
+   "identity": {},
+   "rulers": {
+    "ruler-c1-c16": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 68.1,
+      "per_stream": 68.1,
+      "ttft": 0.074
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 107.1,
+      "per_stream": 107.1,
+      "ttft": 0.077
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 88.6,
+      "per_stream": 88.6,
+      "ttft": 0.093
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 108.4,
+      "per_stream": 108.4,
+      "ttft": 0.063
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 300.7,
+      "per_stream": 18.9,
+      "ttft": 0.439
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 519.4,
+      "per_stream": 29.7,
+      "ttft": 0.488
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 377.9,
+      "per_stream": 23.3,
+      "ttft": 0.563
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 540.2,
+      "per_stream": 34.0,
+      "ttft": 0.453
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-09-kv-int4-ab",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261009-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-09-kv-int4-ab",
+   "identity": {},
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "native-int4/suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 58,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 240,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 282,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 156,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "python-int4/suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 58,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 240,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 282,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 156,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 0,
+      "cases": 0
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "snapshot": {
+      "passed": 0,
+      "cases": 0
+     }
+    },
+    "python-int8/suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-09-native-v1.0.2",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261009-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-09-native-v1.0.2",
+   "identity": {},
+   "rulers": {
+    "ruler-c1": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 68.6,
+      "per_stream": 68.6,
+      "ttft": 0.345
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 106.4,
+      "per_stream": 106.4,
+      "ttft": 0.15
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 86.6,
+      "per_stream": 86.6,
+      "ttft": 0.156
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 109.2,
+      "per_stream": 109.2,
+      "ttft": 0.13
+     }
+    ],
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 68.7,
+      "per_stream": 68.7,
+      "ttft": 0.109
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 105.2,
+      "per_stream": 105.2,
+      "ttft": 0.105
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 86.2,
+      "per_stream": 86.2,
+      "ttft": 0.111
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 107.5,
+      "per_stream": 107.5,
+      "ttft": 0.097
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 144.0,
+      "per_stream": 36.1,
+      "ttft": 0.244
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 221.2,
+      "per_stream": 56.6,
+      "ttft": 0.251
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 180.6,
+      "per_stream": 45.1,
+      "ttft": 0.279
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 249.7,
+      "per_stream": 57.9,
+      "ttft": 0.223
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 194.2,
+      "per_stream": 24.3,
+      "ttft": 0.436
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 331.0,
+      "per_stream": 38.6,
+      "ttft": 0.444
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 238.9,
+      "per_stream": 29.2,
+      "ttft": 0.503
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 354.4,
+      "per_stream": 43.9,
+      "ttft": 0.398
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 259.7,
+      "per_stream": 16.4,
+      "ttft": 0.833
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 412.2,
+      "per_stream": 24.3,
+      "ttft": 0.811
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 311.2,
+      "per_stream": 19.0,
+      "ttft": 0.976
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 428.8,
+      "per_stream": 26.5,
+      "ttft": 0.775
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 11,
+      "cases": 12
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "vision/native": {
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "vision/python": {
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-10-native-integrate",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261010-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-10-native-integrate",
+   "identity": {},
+   "rulers": {
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 68.6,
+      "per_stream": 68.6,
+      "ttft": 0.08
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 105.8,
+      "per_stream": 105.8,
+      "ttft": 0.089
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 85.0,
+      "per_stream": 85.0,
+      "ttft": 0.098
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 108.3,
+      "per_stream": 108.3,
+      "ttft": 0.072
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 152.8,
+      "per_stream": 38.1,
+      "ttft": 0.153
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 245.2,
+      "per_stream": 64.4,
+      "ttft": 0.173
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 189.7,
+      "per_stream": 46.9,
+      "ttft": 0.215
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 269.2,
+      "per_stream": 62.2,
+      "ttft": 0.186
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 219.4,
+      "per_stream": 27.8,
+      "ttft": 0.27
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 378.1,
+      "per_stream": 45.2,
+      "ttft": 0.28
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 276.3,
+      "per_stream": 34.7,
+      "ttft": 0.316
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 402.3,
+      "per_stream": 48.9,
+      "ttft": 0.245
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 294.7,
+      "per_stream": 18.4,
+      "ttft": 0.427
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 505.5,
+      "per_stream": 29.9,
+      "ttft": 0.46
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 379.5,
+      "per_stream": 23.4,
+      "ttft": 0.452
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 513.3,
+      "per_stream": 31.3,
+      "ttft": 0.41
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-10-native-v1.0.4",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261010-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-10-native-v1.0.4",
+   "identity": {},
+   "rulers": {
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 69.1,
+      "per_stream": 69.1,
+      "ttft": 0.079
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 110.0,
+      "per_stream": 110.0,
+      "ttft": 0.09
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 88.7,
+      "per_stream": 88.7,
+      "ttft": 0.092
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 112.5,
+      "per_stream": 112.5,
+      "ttft": 0.07
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 157.1,
+      "per_stream": 39.2,
+      "ttft": 0.148
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 252.3,
+      "per_stream": 66.2,
+      "ttft": 0.171
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 197.4,
+      "per_stream": 49.2,
+      "ttft": 0.213
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 288.6,
+      "per_stream": 68.3,
+      "ttft": 0.182
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 221.9,
+      "per_stream": 28.0,
+      "ttft": 0.258
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 382.2,
+      "per_stream": 45.8,
+      "ttft": 0.288
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 279.7,
+      "per_stream": 35.5,
+      "ttft": 0.315
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 412.3,
+      "per_stream": 50.5,
+      "ttft": 0.235
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 297.3,
+      "per_stream": 18.5,
+      "ttft": 0.441
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 511.8,
+      "per_stream": 30.3,
+      "ttft": 0.459
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 383.5,
+      "per_stream": 23.6,
+      "ttft": 0.545
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 519.8,
+      "per_stream": 31.2,
+      "ttft": 0.409
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-10-native-v1.0.4-graphs",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261010-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-10-native-v1.0.4-graphs",
+   "identity": {},
+   "rulers": {
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 67.1,
+      "per_stream": 67.1,
+      "ttft": 0.094
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 103.4,
+      "per_stream": 103.4,
+      "ttft": 0.113
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 84.1,
+      "per_stream": 84.1,
+      "ttft": 0.116
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 107.5,
+      "per_stream": 107.5,
+      "ttft": 0.082
+     }
+    ],
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 66.8,
+      "per_stream": 66.8,
+      "ttft": 0.094
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 106.1,
+      "per_stream": 106.1,
+      "ttft": 0.107
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 85.1,
+      "per_stream": 85.1,
+      "ttft": 0.112
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 106.9,
+      "per_stream": 106.9,
+      "ttft": 0.082
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 295.8,
+      "per_stream": 18.5,
+      "ttft": 0.484
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 506.1,
+      "per_stream": 30.1,
+      "ttft": 0.468
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 380.8,
+      "per_stream": 23.3,
+      "ttft": 0.508
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 501.9,
+      "per_stream": 30.2,
+      "ttft": 0.423
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-10-native-v1.0.4-split-shared",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261010-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-10-native-v1.0.4-split-shared",
+   "identity": {},
+   "rulers": {
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 77.1,
+      "per_stream": 77.1,
+      "ttft": 0.08
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 124.7,
+      "per_stream": 124.7,
+      "ttft": 0.086
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 97.0,
+      "per_stream": 97.0,
+      "ttft": 0.092
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 125.3,
+      "per_stream": 125.3,
+      "ttft": 0.071
+     }
+    ],
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 77.1,
+      "per_stream": 77.1,
+      "ttft": 0.081
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 125.7,
+      "per_stream": 125.7,
+      "ttft": 0.087
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 99.1,
+      "per_stream": 99.1,
+      "ttft": 0.094
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 125.7,
+      "per_stream": 125.7,
+      "ttft": 0.081
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 157.5,
+      "per_stream": 39.5,
+      "ttft": 0.146
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 247.6,
+      "per_stream": 64.9,
+      "ttft": 0.144
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 194.4,
+      "per_stream": 48.3,
+      "ttft": 0.189
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 281.3,
+      "per_stream": 65.6,
+      "ttft": 0.134
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 223.2,
+      "per_stream": 28.1,
+      "ttft": 0.257
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 380.3,
+      "per_stream": 45.2,
+      "ttft": 0.28
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 279.8,
+      "per_stream": 35.0,
+      "ttft": 0.321
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 410.4,
+      "per_stream": 49.8,
+      "ttft": 0.232
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 297.8,
+      "per_stream": 18.6,
+      "ttft": 0.43
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 506.7,
+      "per_stream": 30.5,
+      "ttft": 0.467
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 383.7,
+      "per_stream": 23.7,
+      "ttft": 0.494
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 517.3,
+      "per_stream": 31.4,
+      "ttft": 0.418
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-10-native-v1.0.5",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261010-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-10-native-v1.0.5",
+   "identity": {},
+   "rulers": {
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 76.5,
+      "per_stream": 76.5,
+      "ttft": 0.08
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 124.6,
+      "per_stream": 124.6,
+      "ttft": 0.086
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 97.8,
+      "per_stream": 97.8,
+      "ttft": 0.097
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 125.1,
+      "per_stream": 125.1,
+      "ttft": 0.07
+     }
+    ],
+    "ruler-c1-repeat": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 76.5,
+      "per_stream": 76.5,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 126.4,
+      "per_stream": 126.4,
+      "ttft": 0.035
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 97.9,
+      "per_stream": 97.9,
+      "ttft": 0.036
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 126.9,
+      "per_stream": 126.9,
+      "ttft": 0.036
+     }
+    ],
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 76.9,
+      "per_stream": 76.9,
+      "ttft": 0.079
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 125.9,
+      "per_stream": 125.9,
+      "ttft": 0.086
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 99.3,
+      "per_stream": 99.3,
+      "ttft": 0.092
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 128.0,
+      "per_stream": 128.0,
+      "ttft": 0.069
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 158.5,
+      "per_stream": 39.7,
+      "ttft": 0.146
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 250.3,
+      "per_stream": 64.4,
+      "ttft": 0.17
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 199.6,
+      "per_stream": 49.6,
+      "ttft": 0.213
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 273.7,
+      "per_stream": 63.3,
+      "ttft": 0.138
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 221.5,
+      "per_stream": 28.1,
+      "ttft": 0.26
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 384.6,
+      "per_stream": 45.1,
+      "ttft": 0.263
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 273.2,
+      "per_stream": 34.6,
+      "ttft": 0.298
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 411.0,
+      "per_stream": 50.2,
+      "ttft": 0.242
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 297.2,
+      "per_stream": 18.5,
+      "ttft": 0.438
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 510.9,
+      "per_stream": 30.3,
+      "ttft": 0.449
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 387.7,
+      "per_stream": 23.6,
+      "ttft": 0.487
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 518.4,
+      "per_stream": 31.3,
+      "ttft": 0.44
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "port-checks/suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "soak": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     }
+    },
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-10-native-v1.0.5-kept",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261010-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-10-native-v1.0.5-kept",
+   "identity": {},
+   "rulers": {
+    "ruler-c1-repeat1": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 72.2,
+      "per_stream": 72.2,
+      "ttft": 0.033
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 121.9,
+      "per_stream": 121.9,
+      "ttft": 0.04
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 95.0,
+      "per_stream": 95.0,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 121.7,
+      "per_stream": 121.7,
+      "ttft": 0.033
+     }
+    ],
+    "ruler-c1-repeat2": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 72.3,
+      "per_stream": 72.3,
+      "ttft": 0.034
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 121.5,
+      "per_stream": 121.5,
+      "ttft": 0.036
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 94.6,
+      "per_stream": 94.6,
+      "ttft": 0.036
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 121.9,
+      "per_stream": 121.9,
+      "ttft": 0.034
+     }
+    ],
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 74.8,
+      "per_stream": 74.8,
+      "ttft": 0.034
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 122.0,
+      "per_stream": 122.0,
+      "ttft": 0.037
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 95.9,
+      "per_stream": 95.9,
+      "ttft": 0.039
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 121.6,
+      "per_stream": 121.6,
+      "ttft": 0.035
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 296.4,
+      "per_stream": 18.5,
+      "ttft": 0.437
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 510.3,
+      "per_stream": 30.4,
+      "ttft": 0.403
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 385.9,
+      "per_stream": 23.5,
+      "ttft": 0.493
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 518.3,
+      "per_stream": 31.4,
+      "ttft": 0.442
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "gate": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
    "run": "20261010-094527-quick",
    "target": "qwen38-int4mixed",
    "model": "Qwen3.8-Flash-Next-INT4-Mixed",
@@ -145,6 +2434,923 @@
     "suite": {
      "ok": null,
      "summary": "drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "evidence/2026-10-11-c16",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261011-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-11-c16",
+   "identity": {},
+   "rulers": {
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 72.4,
+      "per_stream": 72.4,
+      "ttft": 0.079
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 120.4,
+      "per_stream": 120.4,
+      "ttft": 0.071
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 95.3,
+      "per_stream": 95.3,
+      "ttft": 0.074
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 121.7,
+      "per_stream": 121.7,
+      "ttft": 0.065
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 295.6,
+      "per_stream": 18.4,
+      "ttft": 0.528
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 507.1,
+      "per_stream": 30.2,
+      "ttft": 0.509
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 384.6,
+      "per_stream": 23.5,
+      "ttft": 0.591
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 516.4,
+      "per_stream": 31.3,
+      "ttft": 0.496
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-11-native-v1.0.7",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261011-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-11-native-v1.0.7",
+   "identity": {},
+   "rulers": {
+    "ruler-before-batched-admission": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 73.2,
+      "per_stream": 73.2,
+      "ttft": 0.076
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 120.5,
+      "per_stream": 120.5,
+      "ttft": 0.07
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 96.6,
+      "per_stream": 96.6,
+      "ttft": 0.074
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 122.3,
+      "per_stream": 122.3,
+      "ttft": 0.062
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 285.6,
+      "per_stream": 18.0,
+      "ttft": 0.713
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 464.0,
+      "per_stream": 27.2,
+      "ttft": 0.646
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 350.6,
+      "per_stream": 21.3,
+      "ttft": 0.829
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 478.8,
+      "per_stream": 29.7,
+      "ttft": 0.698
+     }
+    ],
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 71.7,
+      "per_stream": 71.7,
+      "ttft": 0.08
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 120.1,
+      "per_stream": 120.1,
+      "ttft": 0.071
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 97.0,
+      "per_stream": 97.0,
+      "ttft": 0.081
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 119.7,
+      "per_stream": 119.7,
+      "ttft": 0.063
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 295.9,
+      "per_stream": 18.4,
+      "ttft": 0.545
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 507.2,
+      "per_stream": 30.2,
+      "ttft": 0.555
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 382.3,
+      "per_stream": 23.3,
+      "ttft": 0.616
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 516.5,
+      "per_stream": 31.0,
+      "ttft": 0.535
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "suite-batched": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "suite-batched-2": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-15-native-v1.0.11",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261015-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-15-native-v1.0.11",
+   "identity": {},
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "suite-guided": {
+     "json-guided": {
+      "passed": 30,
+      "cases": 30
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "evidence/2026-10-15-native-v1.0.11-2",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261015-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-15-native-v1.0.11-2",
+   "identity": {},
+   "rulers": {
+    "ruler-c16-repeat": [
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 293.2,
+      "per_stream": 18.4,
+      "ttft": 0.663
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 469.4,
+      "per_stream": 27.7,
+      "ttft": 0.519
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 355.3,
+      "per_stream": 21.9,
+      "ttft": 0.579
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 492.8,
+      "per_stream": 30.5,
+      "ttft": 0.559
+     }
+    ],
+    "ruler-c16-v1.0.11": [
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 286.8,
+      "per_stream": 18.1,
+      "ttft": 0.68
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 467.6,
+      "per_stream": 27.6,
+      "ttft": 0.579
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 349.3,
+      "per_stream": 21.7,
+      "ttft": 0.656
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 489.3,
+      "per_stream": 30.2,
+      "ttft": 0.629
+     }
+    ],
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 75.5,
+      "per_stream": 75.5,
+      "ttft": 0.04
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 123.4,
+      "per_stream": 123.4,
+      "ttft": 0.045
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 99.1,
+      "per_stream": 99.1,
+      "ttft": 0.045
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 125.7,
+      "per_stream": 125.7,
+      "ttft": 0.041
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 155.0,
+      "per_stream": 38.9,
+      "ttft": 0.09
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 250.4,
+      "per_stream": 65.3,
+      "ttft": 0.094
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 197.1,
+      "per_stream": 48.7,
+      "ttft": 0.096
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 270.6,
+      "per_stream": 62.2,
+      "ttft": 0.108
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 291.5,
+      "per_stream": 18.4,
+      "ttft": 0.632
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 472.9,
+      "per_stream": 28.0,
+      "ttft": 0.515
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 360.1,
+      "per_stream": 21.7,
+      "ttft": 0.737
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 490.3,
+      "per_stream": 29.9,
+      "ttft": 0.626
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    },
+    "suite-guided": {
+     "json-guided": {
+      "passed": 30,
+      "cases": 30
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
+  },
+  {
+   "run": "20261015-171328-full",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "full",
+   "started": "20261015-171328",
+   "finished": null,
+   "status": "running",
+   "identity": {
+    "patch_sha": "186193c6a530d89ee6383c11a9e41f98bac95bb119959aa5901c65b0f93b21ea",
+    "image": "tf-qwen38-int4mixed:native-v1.0.11-3 sha256:7c5838987336819a3dcc51d8f9abcf169f80fbfe73222ed9c24f66716a9ff223",
+    "server_args": "--context 1048576 --no-thinking --parallel 16 --vision-urls --vision"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 77.3,
+      "per_stream": 77.3,
+      "ttft": 0.035
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 127.0,
+      "per_stream": 127.0,
+      "ttft": 0.039
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 100.6,
+      "per_stream": 100.6,
+      "ttft": 0.04
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 129.6,
+      "per_stream": 129.6,
+      "ttft": 0.033
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 159.1,
+      "per_stream": 39.8,
+      "ttft": 0.075
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 253.9,
+      "per_stream": 65.0,
+      "ttft": 0.091
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 201.7,
+      "per_stream": 49.8,
+      "ttft": 0.094
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 268.4,
+      "per_stream": 61.8,
+      "ttft": 0.095
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 228.9,
+      "per_stream": 28.8,
+      "ttft": 0.109
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 385.2,
+      "per_stream": 46.2,
+      "ttft": 0.141
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 282.4,
+      "per_stream": 35.8,
+      "ttft": 0.135
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 423.1,
+      "per_stream": 51.3,
+      "ttft": 0.126
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 301.9,
+      "per_stream": 18.8,
+      "ttft": 0.444
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 509.8,
+      "per_stream": 30.6,
+      "ttft": 0.443
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 391.3,
+      "per_stream": 24.0,
+      "ttft": 0.552
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 519.2,
+      "per_stream": 31.6,
+      "ttft": 0.44
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 456,
+      "cached": 296,
+      "tokens": 2607,
+      "rounds": 720,
+      "accepted": 1908,
+      "proposed": 2910,
+      "tokens_a_round": 3.621,
+      "drafts_a_round": 4.042,
+      "accept_rate": 0.656,
+      "ms_a_round": 33.33
+     },
+     "4": {
+      "requests": 49,
+      "prompt": 1821,
+      "cached": 1265,
+      "tokens": 10399,
+      "rounds": 3277,
+      "accepted": 7202,
+      "proposed": 9665,
+      "tokens_a_round": 3.173,
+      "drafts_a_round": 2.949,
+      "accept_rate": 0.745,
+      "ms_a_round": 58.64
+     },
+     "8": {
+      "requests": 100,
+      "prompt": 3669,
+      "cached": 2415,
+      "tokens": 21108,
+      "rounds": 6832,
+      "accepted": 14406,
+      "proposed": 18123,
+      "tokens_a_round": 3.09,
+      "drafts_a_round": 2.653,
+      "accept_rate": 0.795,
+      "ms_a_round": 76.26
+     },
+     "16": {
+      "requests": 196,
+      "prompt": 7252,
+      "cached": 2423,
+      "tokens": 41848,
+      "rounds": 12988,
+      "accepted": 29106,
+      "proposed": 37984,
+      "tokens_a_round": 3.222,
+      "drafts_a_round": 2.925,
+      "accept_rate": 0.766,
+      "ms_a_round": 122.65
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 21.8 GiB available; worker 25.2 GiB available"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 77.3/127.0/100.6/129.6 ttft 0.03-0.04s; c=4 159.1/253.9/201.7/268.4 ttft 0.08-0.09s; c=8 228.9/385.2/282.4/423.1 ttft 0.11-0.14s; c=16 301.9/509.8/391.3/519.2 ttft 0.44-0.55s; engine: c=1 3.62 tokens a round 66% accepted, 33.3 ms a round; c=4 3.17 tokens a round 75% accepted, 58.6 ms a round; c=8 3.09 tokens a round 79% accepted, 76.3 ms a round; c=16 3.22 tokens a round 77% accepted, 122.7 ms a round"
     }
    },
    "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
