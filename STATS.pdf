@@ -3,19 +3,19 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R] /Count 7 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R] /Count 9 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Courier >>
 endobj
 4 0 obj
-<< /Length 4115 >>
+<< /Length 4223 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (Served stats) Tj T*
 (============) Tj T*
 () Tj T*
-(Rendered 2026-10-15 19:05 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate ) Tj T*
+(Rendered 2026-10-15 21:50 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate ) Tj T*
 (    tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.) Tj T*
 () Tj T*
 (Overview: by model and hardware) Tj T*
@@ -27,6 +27,8 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  GLM-5.3-Flash, EXL3 4 bpw  2x NVIDIA DGX Spark \(GB10, 128 GB unified each\), TP=2 over RoCE  46/69/57/59    0.18 /  tools 59/60, json 30/30, gsm8k 246/250, hum) Tj T*
 (    aneval 159/164, ifeval 118/150  2026-10-14) Tj T*
 (  GLM-5.3-Flash, MLX 4-bit  1x Apple M5 Ultra \(256 GB unified\), macOS  91/104/99/42    0.12 /    2026-10-10) Tj T*
+(  NVIDIA Nemotron 3.5 Bolt 74B-A9B \(24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba\) + vision  1x NVIDIA RTX 5090 \(32 GB\)  150/150/150/150    0.03 /  tools 58/60, jso) Tj T*
+(    n 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150  2026-10-15) Tj T*
 (  Qwen3.8-27B, MLX 4-bit + DFlash2  1x NVIDIA RTX 5090 \(32 GB\)  305 \(median of 4 prompts\)    0.10 /  tools 59/60, json 30/30, gsm8k 242/250, humaneval 153/164, ) Tj T*
 (    ifeval 124/150  2026-10-14) Tj T*
 (  Qwen3.8-Flash-Next INT4-Mixed \(AutoRound\)  2x NVIDIA DGX Spark \(GB10, 128 GB unified each\), TP=2 over RoCE  77/127/101/130  16: 302/510/391/519  0.03 / 0.44-0) Tj T*
@@ -70,8 +72,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 () Tj T*
 (ruler-shipped-f95f2f70-c1-sampled) Tj T*
 (---------------------------------) Tj T*
-() Tj T*
-(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
 ET
 endstream
 endobj
@@ -79,9 +79,11 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
 endobj
 6 0 obj
-<< /Length 2467 >>
+<< /Length 2572 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
+() Tj T*
+(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
 (  1  45.4 \(45.4\)  65.8 \(67.0\)  56.4 \(55.9\)  58.1 \(55.3\)  0.17-0.23 s) Tj T*
 () Tj T*
 (ruler-shipped-f95f2f70-c1) Tj T*
@@ -140,8 +142,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (Target glm53-m5: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac \(one stream, greedy\). Engine: TensorFold native, Metal; served as GLM-5.3-Flash-) Tj T*
 (    MLX-4bit. Latest: run evidence/2026-10-10-wiredreads \(2026-10-10 00:00, plan published evidence, published\).) Tj T*
 () Tj T*
-(ruler-repeat) Tj T*
-(------------) Tj T*
 ET
 endstream
 endobj
@@ -149,9 +149,11 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
 endobj
 8 0 obj
-<< /Length 3125 >>
+<< /Length 3049 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
+(ruler-repeat) Tj T*
+(------------) Tj T*
 () Tj T*
 (  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
 (  1  92.4 \(92.4\)  103.6 \(103.6\)  97.0 \(97.0\)  94.9 \(94.9\)  0.11-0.15 s) Tj T*
@@ -182,6 +184,87 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  2026-10-09 00:00  published evidence  published        349/403) Tj T*
 (  2026-10-09 00:00  published evidence  published        42/42) Tj T*
 () Tj T*
+(NVIDIA Nemotron 3.5 Bolt 74B-A9B \(24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba\) + vision on 1x NVIDIA RTX 5090 \(32 GB\)) Tj T*
+(-------------------------------------------------------------------------------------------------------------------) Tj T*
+() Tj T*
+(Target nemotron-bolt-5090: Nemotron 3.5 Bolt 74B-A9B ModelOpt IQ2_XXS/Q8_0/NVFP4, TensorFold native CUDA on one RTX 5090 \(262144, two streams, vision, host prom) Tj T*
+(    pt cache\). Engine: TensorFold native, CUDA; served as nemotron-bolt. Latest: run 20261015-175621-full \(2026-10-15 17:56, plan full, done\).) Tj T*
+() Tj T*
+(Serving: recipe_commit f546a71; engine_commit b2ec378d; served_model {"object": "list", "data": [{"id": "nemotron-bolt", "object": "model", "created": 17920869) Tj T*
+() Tj T*
+(ruler-fresh) Tj T*
+(-----------) Tj T*
+() Tj T*
+(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
+(  1  149.7 \(149.7\)  149.6 \(149.6\)  150.1 \(150.1\)  149.7 \(149.7\)  0.03-0.03 s) Tj T*
+() Tj T*
+(Engine rounds \(ruler-fresh\):) Tj T*
+() Tj T*
+(  streams  tokens a round  drafts a round  accepted  ms a round  requests) Tj T*
+(  1  1.011  0.0    6.75  217) Tj T*
+() Tj T*
+(ruler-after) Tj T*
+(-----------) Tj T*
+() Tj T*
+(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
+(  1  149.3 \(149.3\)  149.2 \(149.2\)  149.7 \(149.7\)  149.3 \(149.3\)  0.03-0.03 s) Tj T*
+() Tj T*
+(Engine rounds \(ruler-after\):) Tj T*
+() Tj T*
+(  streams  tokens a round  drafts a round  accepted  ms a round  requests) Tj T*
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 2236 >>
+stream
+BT /F1 7.5 Tf 9.0 TL 36 576 Td
+(  1  1.007  0.0    6.74  1781) Tj T*
+() Tj T*
+(suite) Tj T*
+(-----) Tj T*
+() Tj T*
+(  check  passed) Tj T*
+(  drafts  12/12) Tj T*
+(  concurrent  12/12) Tj T*
+(  streaming  4/4) Tj T*
+(  multiturn  8/8) Tj T*
+(  stop  3/3) Tj T*
+(  thinking  10/10) Tj T*
+(  copy  2/2) Tj T*
+(  max-tokens  3/3) Tj T*
+(  tools  58/60) Tj T*
+(  json  30/30) Tj T*
+(  ifeval  120/150) Tj T*
+(  gsm8k  241/250) Tj T*
+(  mgsm  190/240) Tj T*
+(  mmlu  279/342) Tj T*
+(  humaneval  153/164) Tj T*
+(  repetition  8/8) Tj T*
+(  long-context  55/55) Tj T*
+(  vision  12/12) Tj T*
+(  soak  60/60) Tj T*
+(  snapshot  12/12) Tj T*
+() Tj T*
+(checks) Tj T*
+(------) Tj T*
+() Tj T*
+(  check  result) Tj T*
+(  memory-idle  measured: gpu: 28716 MiB, 32607 MiB) Tj T*
+(  structured  pass: 18/18 obey; a bad regex -> 400) Tj T*
+(  sampling  pass: 9/9 seeded replies equal on repeat; 0 errors) Tj T*
+(  turns  pass: resumed == again == cold: True; cached 5832 of 5865; ttft resumed 0.053s, cold 0.134s) Tj T*
+(  capacity  pass: 6/6 answered, 0 refused, 0 lost \(no reply\); a short request after: 200) Tj T*
+() Tj T*
+(history) Tj T*
+(-------) Tj T*
+() Tj T*
+(  run  plan  status  1 stream code  16 streams code  16 streams first token  suite) Tj T*
+(  2026-10-15 17:56  full  done  149.6      1272/1437) Tj T*
+() Tj T*
 (Qwen3.8-27B, MLX 4-bit + DFlash2 on 1x NVIDIA RTX 5090 \(32 GB\)) Tj T*
 (--------------------------------------------------------------) Tj T*
 () Tj T*
@@ -199,6 +282,16 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 () Tj T*
 (  run  plan  status  1 stream code  16 streams code  16 streams first token  suite) Tj T*
 (  2026-10-14 00:00  published evidence  published        ) Tj T*
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 3200 >>
+stream
+BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  2026-10-13 00:00  published evidence  published        ) Tj T*
 (  2026-10-12 00:00  published evidence  published        1229/1437) Tj T*
 (  2026-10-12 00:00  published evidence  published        1289/1437) Tj T*
@@ -212,16 +305,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (    ext-MLX-6bit. Latest: run evidence/2026-10-11-suite-rest \(2026-10-11 00:00, plan published evidence, published\).) Tj T*
 () Tj T*
 (suite) Tj T*
-ET
-endstream
-endobj
-9 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
-endobj
-10 0 obj
-<< /Length 3350 >>
-stream
-BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (-----) Tj T*
 () Tj T*
 (  check  passed) Tj T*
@@ -269,6 +352,16 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  2026-10-11 00:00  published evidence  published  205.6      131/132) Tj T*
 (  2026-10-11 00:00  published evidence  published  178.9      513/544) Tj T*
 () Tj T*
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2797 >>
+stream
+BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (Qwen3.8-Flash-Next INT4-Mixed \(AutoRound\) on 2x NVIDIA DGX Spark \(GB10, 128 GB unified each\), TP=2 over RoCE) Tj T*
 (------------------------------------------------------------------------------------------------------------) Tj T*
 () Tj T*
@@ -282,16 +375,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (-----------) Tj T*
 () Tj T*
 (  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
-ET
-endstream
-endobj
-11 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
-endobj
-12 0 obj
-<< /Length 2332 >>
-stream
-BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  1  77.3 \(77.3\)  127.0 \(127.0\)  100.6 \(100.6\)  129.6 \(129.6\)  0.03-0.04 s) Tj T*
 (  4  159.1 \(39.8\)  253.9 \(65.0\)  201.7 \(49.8\)  268.4 \(61.8\)  0.07-0.10 s) Tj T*
 (  8  228.9 \(28.8\)  385.2 \(46.2\)  282.4 \(35.8\)  423.1 \(51.3\)  0.11-0.14 s) Tj T*
@@ -339,6 +422,16 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  humaneval  157/164) Tj T*
 (  repetition  8/8) Tj T*
 (  long-context  55/55) Tj T*
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 3747 >>
+stream
+BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  vision  12/12) Tj T*
 (  soak  60/60) Tj T*
 (  snapshot  12/12) Tj T*
@@ -352,16 +445,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors) Tj T*
 (  turns  pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.118s, cold 0.035s) Tj T*
 (  urls  pass: public 200; loopback 400; http 400) Tj T*
-ET
-endstream
-endobj
-13 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
-endobj
-14 0 obj
-<< /Length 3699 >>
-stream
-BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  capacity  pass: 4/6 answered, 2 refused, 0 lost \(no reply\); a short request after: 200) Tj T*
 () Tj T*
 (history) Tj T*
@@ -409,6 +492,16 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  streams  tokens a round  drafts a round  accepted  ms a round  requests) Tj T*
 (  1  2.381  2.072  67%  53.3  12) Tj T*
 () Tj T*
+ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 2502 >>
+stream
+BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (ruler-after) Tj T*
 (-----------) Tj T*
 () Tj T*
@@ -422,16 +515,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 () Tj T*
 (suite) Tj T*
 (-----) Tj T*
-ET
-endstream
-endobj
-15 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
-endobj
-16 0 obj
-<< /Length 2774 >>
-stream
-BT /F1 7.5 Tf 9.0 TL 36 576 Td
 () Tj T*
 (  check  passed) Tj T*
 (  drafts  12/12) Tj T*
@@ -479,6 +562,16 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (TensorFold native Metal, branch step5-native \(engine 5ad7660c, images aa221b11\), MLX 2-bit experts with the rest) Tj T*
 (8-bit, greedy, one stream. The harness's step5-m5 runs hold the ruler and the suite; these are the rest.) Tj T*
 () Tj T*
+ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 18 0 R >>
+endobj
+20 0 obj
+<< /Length 795 >>
+stream
+BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  what  measured) Tj T*
 (  prompt, 4k / 8k / 16k / 32k tokens  690 / 668 / 647 / 622 tok/s \(the sparse indexer caps each row's keys past 4k\)) Tj T*
 (  131,016-token chat question about its first page  answered exactly, 264 s end to end, at least 23% of memory free) Tj T*
@@ -490,31 +583,35 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 ET
 endstream
 endobj
-17 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 16 0 R >>
+21 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 20 0 R >>
 endobj
 xref
-0 18
+0 22
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000155 00000 n 
-0000000223 00000 n 
-0000004390 00000 n 
-0000004516 00000 n 
-0000007035 00000 n 
-0000007161 00000 n 
-0000010338 00000 n 
-0000010464 00000 n 
-0000013867 00000 n 
-0000013995 00000 n 
-0000016380 00000 n 
-0000016508 00000 n 
-0000020260 00000 n 
-0000020388 00000 n 
-0000023215 00000 n 
+0000000169 00000 n 
+0000000237 00000 n 
+0000004512 00000 n 
+0000004638 00000 n 
+0000007262 00000 n 
+0000007388 00000 n 
+0000010489 00000 n 
+0000010615 00000 n 
+0000012904 00000 n 
+0000013032 00000 n 
+0000016285 00000 n 
+0000016413 00000 n 
+0000019263 00000 n 
+0000019391 00000 n 
+0000023191 00000 n 
+0000023319 00000 n 
+0000025874 00000 n 
+0000026002 00000 n 
+0000026849 00000 n 
 trailer
-<< /Size 18 /Root 1 0 R >>
+<< /Size 22 /Root 1 0 R >>
 startxref
-23343
+26977
 %%EOF

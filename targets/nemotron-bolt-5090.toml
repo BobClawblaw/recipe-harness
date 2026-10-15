@@ -1,0 +1,61 @@
+# NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB) with image input on one RTX 5090, a plain process on this machine
+# (serve.sh through harness.detach). The 5090 also hosts the qwen38-27b-5090 unit: up stops it first, since the two
+# do not fit together. The quality suite and ruler are the qwen Spark recipe's, from a local checkout (suite_dir).
+# Machine-specific values go in nemotron-bolt-5090.local.toml (git-ignored; copy the .local.example.toml).
+name = "nemotron-bolt-5090"
+description = "Nemotron 3.5 Bolt 74B-A9B ModelOpt IQ2_XXS/Q8_0/NVFP4, TensorFold native CUDA on one RTX 5090 (262144, two streams, vision, host prompt cache)"
+url = "http://127.0.0.1:$port"
+model = "nemotron-bolt"
+model_name = "NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision"   # the report's model column
+hardware = "1x NVIDIA RTX 5090 (32 GB)"
+engine = "TensorFold native, CUDA"
+cwd = "$recipe_dir"
+
+[vars]
+recipe_dir = "CHANGE-ME: the recipe checkout"
+harness_dir = "CHANGE-ME: this checkout (up runs python3 -m harness.detach from it)"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+port = "30000"
+other_unit = "tensorfold-qwen38"
+
+[commands]
+up = "sudo -n systemctl stop $other_unit; cd $harness_dir && PORT=$port HOST=127.0.0.1 python3 -m harness.detach --log $recipe_dir/logs/serve.out.log --err $recipe_dir/logs/serve.log -- $recipe_dir/serve.sh"
+down = "pkill -f '^$recipe_dir/engine/zig-out/native/bin/tensorfold-native serve'; for i in $$(seq 60); do pgrep -f '^$recipe_dir/engine/zig-out/native/bin/tensorfold-native serve' >/dev/null || { sleep 5; exit 0; }; sleep 1; done; exit 1"
+status = "pgrep -f '^$recipe_dir/engine/zig-out/native/bin/tensorfold-native serve'"
+diagnose = "tail -5 $recipe_dir/logs/serve.log"
+server_log = "cat $recipe_dir/logs/serve.out.log $recipe_dir/logs/serve.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 2                       # a stop frees the card's memory a few seconds after the process exits
+retry_wait = 20
+up_timeout = 300                     # loads in about 10 s
+health_wait = 300
+leave_up = true
+
+[[identity]]
+name = "recipe_commit"
+cmd = "git -C $recipe_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $recipe_dir/engine rev-parse --short HEAD"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[memory]]
+name = "gpu"
+cmd = "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader"
+
+[features]
+drafts = false        # the checkpoint has no MTP head; the DFlash drafter is vLLM's
+structured = true
+sampling = true
+vision_urls = false   # data URLs only (serve.sh does not pass --vision-urls)
+capacity = true       # two streams at 262144 with vision
+max_concurrency = 2
+thinking = true       # on by default
+prompt_cache = true   # text prompts (image prompts are never kept)

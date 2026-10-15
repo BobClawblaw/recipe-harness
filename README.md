@@ -184,6 +184,24 @@ Settings:
 - **Local values:** `recipe_dir`, `engine_src`, `suite_dir`; `port` (30000) and `unit` (`tensorfold-qwen38`) if yours
   differ.
 
+### nemotron-bolt-5090: Nemotron 3.5 Bolt 74B-A9B with image input on one RTX 5090
+
+NVIDIA's `Nemotron-3.5-Bolt-74B-A9B-24GB` on TensorFold's native CUDA engine. The
+[recipe](https://github.com/BobClawblaw/nemotron-bolt-74b-vision-rtx-5090) runs as a plain process on the machine the harness runs on:
+- `up` stops the `qwen38-27b-5090` unit first, since the two models don't fit on the card together. It then runs the
+  recipe's `serve.sh` through `harness.detach`.
+- `down` stops the server by its binary's full path, then waits a few seconds for the card to free its memory.
+- the qwen recipe's suite and ruler run from a local checkout (`suite_dir`), HumanEval's sandbox included.
+
+Settings:
+- **Features off:** drafts (the checkpoint has no MTP head) and media URLs (data URLs only).
+- **Concurrency:** two streams at a 262,144-token window with the vision tower loaded. Kept prompt states live in pinned
+  host memory (`PROMPT_CACHE_GIB`, 8 by default).
+- **Startup:** two tries, 20 s apart, since a stop frees the card a few seconds after the process exits. It loads in
+  about 10 s.
+- **Identity:** the recipe's commit, the engine checkout's commit (`engine` in the recipe), the served model list.
+- **Local values:** `recipe_dir`, `harness_dir`, `suite_dir`; `port` (30000) if yours differs.
+
 ### step5-m5: Step-5-Preview 2-bit on one M5 Ultra Mac
 
 stepfun-ai's Step-5-Preview (604B MoE, 27B active) on TensorFold's native Metal engine, branch `step5-native`. It
