@@ -1,0 +1,8 @@
+# Copy to qwen35-2b-4090.local.toml (git-ignored) and fill in.
+[vars]
+harness_dir = "C:/src/recipe-harness"
+engine_dir = "C:/src/TensorFold"
+model_dir = "C:/models/Qwen3.5-2B-MLX-4bit"
+drafter_args = ""
+suite_dir = "C:/src/qwen38-flashnext-int4mixed"
+log_dir = "C:/src/logs"

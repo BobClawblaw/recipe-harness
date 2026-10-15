@@ -1,0 +1,63 @@
+# Qwen3.8-27B MLX 4-bit + DFlash2 on one RTX 4090 (24 GB), Windows, TensorFold native CUDA (github.com/ashhart/TensorFold pulls 836 and 856): the
+# server is started and stopped as a process on this machine. The quality suite and ruler are the qwen Spark recipe's,
+# from a local checkout (suite_dir). Machine-specific values go in qwen38-27b-4090.local.toml (git-ignored; copy the .local.example.toml).
+name = "qwen38-27b-4090"
+description = "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 4090, Windows (8192-token window, 2 streams)"
+url = "http://127.0.0.1:$port"
+model = "q27"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout (up runs python -m harness.detach from it)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (zig-out/native/bin/tensorfold-native.exe)"
+model_dir = "CHANGE-ME: the checkpoint folder, with forward slashes"
+drafter_args = "CHANGE-ME: --drafter C:/models/Qwen3.8-27B-DFlash2, or empty"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+log_dir = "CHANGE-ME: a folder for the server's log"
+port = "8888"
+context = "8192"
+parallel = "2"
+
+[commands]
+up = "python -m harness.detach --log $log_dir/$model.out.log --err $log_dir/$model.log -- $engine_dir/zig-out/native/bin/tensorfold-native.exe serve $model_dir --name $model --port $port --context $context --parallel $parallel $drafter_args"
+down = "taskkill /F /IM tensorfold-native.exe"
+status = "tasklist /NH /FI \"IMAGENAME eq tensorfold-native.exe\""
+diagnose = "powershell -NoProfile -Command \"Get-Content '$log_dir/$model.log' -Tail 5\""
+suite = "cd /d $suite_dir && python -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd /d $suite_dir && python bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 120
+health_wait = 300                    # loads in under a minute from a warm disk
+leave_up = true
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "certutil -hashfile $engine_dir/zig-out/native/bin/tensorfold-native.exe SHA256 | findstr /V /I hash"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "gpu"
+cmd = "nvidia-smi --query-gpu=name,driver_version --format=csv,noheader"
+
+[[memory]]
+name = "gpu"
+cmd = "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader"
+
+[features]
+drafts = true
+structured = false    # not measured on this engine yet
+sampling = true
+vision_urls = false   # no image input on this branch
+capacity = false      # 2 streams at an 8192-token window
+max_concurrency = 2
+thinking = true
+prompt_cache = true
