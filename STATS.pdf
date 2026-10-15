@@ -3,19 +3,19 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R] /Count 6 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R] /Count 7 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Courier >>
 endobj
 4 0 obj
-<< /Length 3999 >>
+<< /Length 4115 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (Served stats) Tj T*
 (============) Tj T*
 () Tj T*
-(Rendered 2026-10-15 18:38 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate ) Tj T*
+(Rendered 2026-10-15 19:05 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate ) Tj T*
 (    tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.) Tj T*
 () Tj T*
 (Overview: by model and hardware) Tj T*
@@ -35,6 +35,8 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (    30  2026-10-12) Tj T*
 (  Qwen3.8-Flash-Next, MLX 6-bit  1x Apple M5 Ultra \(256 GB unified\), macOS  145/206/172/194  4: 566/816/673/854  0.09 / 1.63-3.07  gsm8k 242/250, ifeval 134/150) Tj T*
 (      2026-10-11) Tj T*
+(  Step-5-Preview, MLX 2-bit experts \(8-bit rest\) + MTP  1x Apple M5 Ultra \(256 GB unified\), macOS  39/51/41/48    0.23 /  tools 58/60, json 30/30, gsm8k 49/50, ) Tj T*
+(    ifeval 41/50  2026-10-15) Tj T*
 () Tj T*
 (GLM-5.3-Flash, EXL3 4 bpw on 2x NVIDIA DGX Spark \(GB10, 128 GB unified each\), TP=2 over RoCE) Tj T*
 (--------------------------------------------------------------------------------------------) Tj T*
@@ -70,8 +72,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (---------------------------------) Tj T*
 () Tj T*
 (  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
-(  1  45.4 \(45.4\)  65.8 \(67.0\)  56.4 \(55.9\)  58.1 \(55.3\)  0.17-0.23 s) Tj T*
-() Tj T*
 ET
 endstream
 endobj
@@ -79,9 +79,11 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
 endobj
 6 0 obj
-<< /Length 2520 >>
+<< /Length 2467 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
+(  1  45.4 \(45.4\)  65.8 \(67.0\)  56.4 \(55.9\)  58.1 \(55.3\)  0.17-0.23 s) Tj T*
+() Tj T*
 (ruler-shipped-f95f2f70-c1) Tj T*
 (-------------------------) Tj T*
 () Tj T*
@@ -140,8 +142,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 () Tj T*
 (ruler-repeat) Tj T*
 (------------) Tj T*
-() Tj T*
-(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
 ET
 endstream
 endobj
@@ -149,9 +149,11 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
 endobj
 8 0 obj
-<< /Length 3001 >>
+<< /Length 3125 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
+() Tj T*
+(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
 (  1  92.4 \(92.4\)  103.6 \(103.6\)  97.0 \(97.0\)  94.9 \(94.9\)  0.11-0.15 s) Tj T*
 () Tj T*
 (ruler) Tj T*
@@ -210,8 +212,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (    ext-MLX-6bit. Latest: run evidence/2026-10-11-suite-rest \(2026-10-11 00:00, plan published evidence, published\).) Tj T*
 () Tj T*
 (suite) Tj T*
-(-----) Tj T*
-() Tj T*
 ET
 endstream
 endobj
@@ -219,9 +219,11 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
 endobj
 10 0 obj
-<< /Length 3507 >>
+<< /Length 3350 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
+(-----) Tj T*
+() Tj T*
 (  check  passed) Tj T*
 (  ifeval  134/150) Tj T*
 (  gsm8k  242/250) Tj T*
@@ -280,8 +282,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (-----------) Tj T*
 () Tj T*
 (  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
-(  1  77.3 \(77.3\)  127.0 \(127.0\)  100.6 \(100.6\)  129.6 \(129.6\)  0.03-0.04 s) Tj T*
-(  4  159.1 \(39.8\)  253.9 \(65.0\)  201.7 \(49.8\)  268.4 \(61.8\)  0.07-0.10 s) Tj T*
 ET
 endstream
 endobj
@@ -289,9 +289,11 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
 endobj
 12 0 obj
-<< /Length 2260 >>
+<< /Length 2332 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
+(  1  77.3 \(77.3\)  127.0 \(127.0\)  100.6 \(100.6\)  129.6 \(129.6\)  0.03-0.04 s) Tj T*
+(  4  159.1 \(39.8\)  253.9 \(65.0\)  201.7 \(49.8\)  268.4 \(61.8\)  0.07-0.10 s) Tj T*
 (  8  228.9 \(28.8\)  385.2 \(46.2\)  282.4 \(35.8\)  423.1 \(51.3\)  0.11-0.14 s) Tj T*
 (  16  301.9 \(18.8\)  509.8 \(30.6\)  391.3 \(24.0\)  519.2 \(31.6\)  0.44-0.55 s) Tj T*
 () Tj T*
@@ -350,8 +352,6 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors) Tj T*
 (  turns  pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.118s, cold 0.035s) Tj T*
 (  urls  pass: public 200; loopback 400; http 400) Tj T*
-(  capacity  pass: 4/6 answered, 2 refused, 0 lost \(no reply\); a short request after: 200) Tj T*
-() Tj T*
 ET
 endstream
 endobj
@@ -359,9 +359,11 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
 endobj
 14 0 obj
-<< /Length 2538 >>
+<< /Length 3699 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
+(  capacity  pass: 4/6 answered, 2 refused, 0 lost \(no reply\); a short request after: 200) Tj T*
+() Tj T*
 (history) Tj T*
 (-------) Tj T*
 () Tj T*
@@ -386,6 +388,80 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  2026-10-08 00:00  published evidence  published  107.6  441.7  0.45-0.58 s  ) Tj T*
 (  2026-10-07 00:00  published evidence  published        12/12) Tj T*
 () Tj T*
+(Step-5-Preview, MLX 2-bit experts \(8-bit rest\) + MTP on 1x Apple M5 Ultra \(256 GB unified\), macOS) Tj T*
+(-------------------------------------------------------------------------------------------------) Tj T*
+() Tj T*
+(Target step5-m5: Step-5-Preview 2-bit \(experts 2/128, rest 8/64, MTP, images\), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served) Tj T*
+(     as step5-preview. Latest: run 20261015-134330-one-stream \(2026-10-15 13:43, plan one-stream, done\).) Tj T*
+() Tj T*
+(Serving: engine_commit aa221b11; binary_sha256 4f89cf81182d203e84aac48335e84a90a29ba6ae26de96b32ec387e50c7e878f; served_model {"object": "list", "data": [{"id":) Tj T*
+(     "step5-preview", "object": "model", "created": 17920898; chip Apple M5 Ultra) Tj T*
+(274877906944) Tj T*
+() Tj T*
+(ruler-fresh) Tj T*
+(-----------) Tj T*
+() Tj T*
+(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
+(  1  39.2 \(39.2\)  50.6 \(50.6\)  40.7 \(40.7\)  48.2 \(48.2\)  0.23-0.27 s) Tj T*
+() Tj T*
+(Engine rounds \(ruler-fresh\):) Tj T*
+() Tj T*
+(  streams  tokens a round  drafts a round  accepted  ms a round  requests) Tj T*
+(  1  2.381  2.072  67%  53.3  12) Tj T*
+() Tj T*
+(ruler-after) Tj T*
+(-----------) Tj T*
+() Tj T*
+(  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
+(  1  39.2 \(39.2\)  50.6 \(50.6\)  40.6 \(40.6\)  48.1 \(48.1\)  0.23-0.27 s) Tj T*
+() Tj T*
+(Engine rounds \(ruler-after\):) Tj T*
+() Tj T*
+(  streams  tokens a round  drafts a round  accepted  ms a round  requests) Tj T*
+(  1  2.339  1.939  69%  52.42  13) Tj T*
+() Tj T*
+(suite) Tj T*
+(-----) Tj T*
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 2774 >>
+stream
+BT /F1 7.5 Tf 9.0 TL 36 576 Td
+() Tj T*
+(  check  passed) Tj T*
+(  drafts  12/12) Tj T*
+(  streaming  4/4) Tj T*
+(  multiturn  8/8) Tj T*
+(  stop  3/3) Tj T*
+(  thinking  10/10) Tj T*
+(  copy  2/2) Tj T*
+(  max-tokens  3/3) Tj T*
+(  tools  58/60) Tj T*
+(  json  30/30) Tj T*
+(  gsm8k  49/50) Tj T*
+(  ifeval  41/50) Tj T*
+() Tj T*
+(checks) Tj T*
+(------) Tj T*
+() Tj T*
+(  check  result) Tj T*
+(  memory-idle  measured: mac: System-wide memory free percentage: 95%) Tj T*
+(total = 2048.00M  us |) Tj T*
+(  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors) Tj T*
+(  memory-busy  measured: mac: System-wide memory free percentage: 28%) Tj T*
+(total = 2048.00M  us |) Tj T*
+() Tj T*
+(history) Tj T*
+(-------) Tj T*
+() Tj T*
+(  run  plan  status  1 stream code  16 streams code  16 streams first token  suite) Tj T*
+(  2026-10-15 13:43  one-stream  done  50.6      220/232) Tj T*
+() Tj T*
 (Served earlier, numbers in their READMEs only) Tj T*
 (---------------------------------------------) Tj T*
 () Tj T*
@@ -397,32 +473,48 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  Qwen3.8-Flash-Next \(TensorFold 0.6.6 recipe\)  2x NVIDIA DGX Spark \(GB10\), TP=2  TensorFold 0.6.6 \(Python\)  github.com/BobClawblaw/qwen38-flashnext-tensorfold-) Tj T*
 (    2x-dgx-sparks) Tj T*
 () Tj T*
+(Step-5-Preview on one M5 Ultra: measured outside the harness) Tj T*
+(------------------------------------------------------------) Tj T*
+() Tj T*
+(TensorFold native Metal, branch step5-native \(engine 5ad7660c, images aa221b11\), MLX 2-bit experts with the rest) Tj T*
+(8-bit, greedy, one stream. The harness's step5-m5 runs hold the ruler and the suite; these are the rest.) Tj T*
+() Tj T*
+(  what  measured) Tj T*
+(  prompt, 4k / 8k / 16k / 32k tokens  690 / 668 / 647 / 622 tok/s \(the sparse indexer caps each row's keys past 4k\)) Tj T*
+(  131,016-token chat question about its first page  answered exactly, 264 s end to end, at least 23% of memory free) Tj T*
+(  decode without drafts, 20 / 600 / 4,200 / 32,768 tokens of context  29.6 / 21.9 / 14.7 / 14.5 tok/s) Tj T*
+(  MTP drafts against `"draft": false` \(replies token-identical\)  code 25.7 to 44.6 tok/s \(70% accepted\), prose 26.4 to 34.8 \(56%\), math 26.2 to 46.0 \(75%\)) Tj T*
+(  an image, 1200 x 800 PNG \(six 504-px crops and the overview, 692 prompt tokens\)  2.1 s to a 4-token answer) Tj T*
+(  an image, 600 x 400 PNG \(overview only, 193 prompt tokens\)  0.7 s) Tj T*
+() Tj T*
 ET
 endstream
 endobj
-15 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 16 0 R >>
 endobj
 xref
-0 16
+0 18
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000148 00000 n 
-0000000216 00000 n 
-0000004267 00000 n 
-0000004393 00000 n 
-0000006965 00000 n 
-0000007091 00000 n 
-0000010144 00000 n 
-0000010270 00000 n 
-0000013830 00000 n 
-0000013958 00000 n 
-0000016271 00000 n 
-0000016399 00000 n 
-0000018990 00000 n 
+0000000155 00000 n 
+0000000223 00000 n 
+0000004390 00000 n 
+0000004516 00000 n 
+0000007035 00000 n 
+0000007161 00000 n 
+0000010338 00000 n 
+0000010464 00000 n 
+0000013867 00000 n 
+0000013995 00000 n 
+0000016380 00000 n 
+0000016508 00000 n 
+0000020260 00000 n 
+0000020388 00000 n 
+0000023215 00000 n 
 trailer
-<< /Size 16 /Root 1 0 R >>
+<< /Size 18 /Root 1 0 R >>
 startxref
-19118
+23343
 %%EOF

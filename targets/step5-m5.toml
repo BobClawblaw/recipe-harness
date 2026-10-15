@@ -7,6 +7,9 @@ name = "step5-m5"
 description = "Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra"
 url = "http://127.0.0.1:$port"
 model = "step5-preview"
+model_name = "Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP"   # the report's model column
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
 cwd = "$harness_dir"
 
 [vars]

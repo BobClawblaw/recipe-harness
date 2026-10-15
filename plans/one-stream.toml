@@ -1,0 +1,27 @@
+description = "About 30 minutes, for a one-stream engine without kept prompt states: ruler fresh, sampling, the suite's checks that one stream serves, ruler again"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ruler"
+label = "fresh"
+concurrency = [1]
+
+[[checks]]
+type = "sampling"
+
+[[checks]]
+type = "suite"
+args = "--only drafts behaviour tools json gsm8k ifeval --gsm8k-n 50 --ifeval-n 50"
+
+[[checks]]
+type = "ruler"
+label = "after"
+concurrency = [1]
+
+[[checks]]
+type = "memory"
+name = "memory-busy"

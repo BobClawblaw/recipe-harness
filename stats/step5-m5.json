@@ -1,0 +1,192 @@
+{
+ "target": "step5-m5",
+ "runs": [
+  {
+   "run": "20261015-134330-one-stream",
+   "target": "step5-m5",
+   "model": "step5-preview",
+   "plan": "one-stream",
+   "started": "20261015-134330",
+   "finished": "20261015-140518",
+   "status": "done",
+   "identity": {
+    "engine_commit": "aa221b11",
+    "binary_sha256": "4f89cf81182d203e84aac48335e84a90a29ba6ae26de96b32ec387e50c7e878f",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"step5-preview\", \"object\": \"model\", \"created\": 1792089848, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 39.2,
+      "per_stream": 39.2,
+      "ttft": 0.24
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.6,
+      "per_stream": 50.6,
+      "ttft": 0.267
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.7,
+      "per_stream": 40.7,
+      "ttft": 0.273
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.2,
+      "per_stream": 48.2,
+      "ttft": 0.23
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 39.2,
+      "per_stream": 39.2,
+      "ttft": 0.241
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.6,
+      "per_stream": 50.6,
+      "ttft": 0.268
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.6,
+      "per_stream": 40.6,
+      "ttft": 0.274
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.1,
+      "per_stream": 48.1,
+      "ttft": 0.229
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 441,
+      "cached": 0,
+      "tokens": 2271,
+      "rounds": 954,
+      "accepted": 1317,
+      "proposed": 1977,
+      "tokens_a_round": 2.381,
+      "drafts_a_round": 2.072,
+      "accept_rate": 0.666,
+      "ms_a_round": 53.3
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 490,
+      "cached": 0,
+      "tokens": 3471,
+      "rounds": 1484,
+      "accepted": 1986,
+      "proposed": 2877,
+      "tokens_a_round": 2.339,
+      "drafts_a_round": 1.939,
+      "accept_rate": 0.69,
+      "ms_a_round": 52.42
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 58,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "gsm8k": {
+      "passed": 49,
+      "cases": 50
+     },
+     "ifeval": {
+      "passed": 41,
+      "cases": 50
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 95%\ntotal = 2048.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 39.2/50.6/40.7/48.2 ttft 0.23-0.27s; engine: c=1 2.38 tokens a round 67% accepted, 53.3 ms a round"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 58/60, json 30/30, gsm8k 49/50, ifeval 41/50"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 39.2/50.6/40.6/48.1 ttft 0.23-0.27s; engine: c=1 2.34 tokens a round 69% accepted, 52.4 ms a round"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 28%\ntotal = 2048.00M  us"
+    }
+   },
+   "model_name": "Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra"
+  }
+ ]
+}

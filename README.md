@@ -203,30 +203,29 @@ Settings:
   75%-of-RAM limit; `--context 131072` fits.
 - **Local values:** `harness_dir`, `engine_dir`, `model_dir`, `suite_dir`, `log_dir`.
 
-Measured on 2026-10-15, M5 Ultra with 256 GB, engine `5ad7660c` (quick plan) and `aa221b11` (images), greedy:
+Measured on 2026-10-15, M5 Ultra with 256 GB, engine `aa221b11`, greedy (`--plan one-stream`, in the ledger):
 
 | Ruler, one stream | prose | code | structured | list | first token |
 |---|---:|---:|---:|---:|---:|
-| fresh | 38.7 | 50.6 | 40.6 | 48.0 | 0.23-0.27 s |
-| after the serving checks | 39.0 | 50.4 | 40.4 | 48.1 | 0.23-0.27 s |
+| fresh | 39.2 | 50.6 | 40.7 | 48.2 | 0.23-0.27 s |
+| after the suite | 39.2 | 50.6 | 40.6 | 48.1 | 0.23-0.27 s |
 
-Engine rounds (`ruler-fresh.engine.json`): 2.38 tokens a round, 2.07 MTP drafts proposed and 66.6% accepted, 53.5 ms
-a round. Seeded sampling: 9/9 replies equal on repeat and undrafted.
+Engine rounds: 2.34 tokens a round, 69% of the MTP drafts accepted, 52.4 ms a round. Seeded sampling: 9/9 replies
+equal on repeat and undrafted.
 
 | Suite check (suite main `206803c`) | Result |
 |---|---|
-| drafts | 12/12, drafted 38 tok/s against 26 undrafted |
+| drafts | 12/12, drafted 41 tok/s against 26 undrafted |
 | behaviour (streaming, multiturn, stop, thinking, copy, max-tokens) | 30/30 |
 | tools | 58/60 |
 | json | 30/30 |
 | gsm8k (50) | 49/50 |
 | ifeval (50) | 41/50 loose, 37/50 strict |
 
-The suite's `soak` and `concurrent` need a prompt cache and more than one stream, so the quick plan's `--only soak
-drafts concurrent behaviour` doesn't apply; the table is `--only drafts behaviour tools json gsm8k ifeval
---gsm8k-n 50 --ifeval-n 50` against the same server.
+The `one-stream` plan runs the suite's checks one stream serves: `soak` and `concurrent` need kept prompt states and
+more than one stream. The numbers below are in `stats/notes.md`.
 
-Measured outside the harness, the same build:
+Measured outside the harness:
 - **Prompts:** 690 / 668 / 647 / 622 tokens a second at 4k / 8k / 16k / 32k tokens. Past 4k the sparse indexer caps
   each row's keys, so the rate holds. A 131,016-token chat question about the first page of its context was answered
   exactly, 264 s end to end, with at least 23% of memory free throughout.
@@ -245,5 +244,6 @@ and the check's options).
 | Plan | Restarts | Checks |
 |---|---|---|
 | `quick` | yes | one stream fresh, the serving checks, one stream after them, then the suite's soak, drafts, concurrent and behaviour checks (the recipe's AGENTS.md requires soak before an engine change ships) |
+| `one-stream` | yes | one stream fresh, sampling, the suite's checks one stream serves (drafts, behaviour, tools, json, gsm8k and ifeval at 50), one stream again |
 | `full` | yes | ruler at 1/4/8/16 streams, the whole suite, the serving checks, ruler at 1 and 16 after them, capacity |
 | `thinking` | no | thinking-on word problems, and the suite's GSM8K with `--thinking` |
