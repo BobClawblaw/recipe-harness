@@ -1,0 +1,66 @@
+# Step-5-Preview (stepfun-ai, 604B MoE) on one 256 GB M5 Ultra Mac, TensorFold native Metal (branch step5-native):
+# routed experts affine 2-bit in groups of 128, the rest 8-bit, the three MTP layers drafting, images (--vision). The
+# server is a plain process on this machine, its output stamped with Unix seconds for server_log. The quality suite
+# and ruler are the qwen Spark recipe's (main), from a local checkout (suite_dir). Machine-specific values go in
+# step5-m5.local.toml (git-ignored).
+name = "step5-m5"
+description = "Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra"
+url = "http://127.0.0.1:$port"
+model = "step5-preview"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout (up runs python3 -m harness.detach from it)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (zig-out/native/bin/tensorfold-native)"
+model_dir = "CHANGE-ME: the checkpoint tools/step5_fp8_to_mlx.py wrote (with --only-mtp added)"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+log_dir = "CHANGE-ME: a folder for the server's log"
+port = "8888"
+context = "131072"
+parallel = "1"
+
+[commands]
+up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c '$engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --vision --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
+down = "pkill -f 'tensorfold-native serve' ; sleep 3"
+status = "pgrep -fl 'tensorfold-native serve'"
+diagnose = "tail -5 $log_dir/$model.log"
+server_log = "awk -v s=$since '$$1 >= s' $log_dir/$model.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+# no GPU lock: nothing else large runs beside it (the 167 GiB of weights leave about 20 GiB of caches)
+up_retries = 1
+up_timeout = 120
+health_wait = 300                    # loads in about 25 s from a warm disk
+leave_up = false                     # a 604B model is taken down after a run
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+[features]
+drafts = true
+structured = false    # not measured on this engine yet
+sampling = true
+vision_urls = false   # data URLs only: the native server fetches nothing
+capacity = false      # one stream
+max_concurrency = 1
+thinking = true
+prompt_cache = false  # no prompt cache on this family yet

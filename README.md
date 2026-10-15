@@ -184,6 +184,59 @@ Settings:
 - **Local values:** `recipe_dir`, `engine_src`, `suite_dir`; `port` (30000) and `unit` (`tensorfold-qwen38`) if yours
   differ.
 
+### step5-m5: Step-5-Preview 2-bit on one M5 Ultra Mac
+
+stepfun-ai's Step-5-Preview (604B MoE, 27B active) on TensorFold's native Metal engine, branch `step5-native`. It
+isn't a recipe repo yet, so the harness starts the server itself, as a plain process on this machine:
+- `up` runs `tensorfold-native serve` through `harness.detach`, its output stamped with Unix seconds by a one-line
+  perl filter, so `server_log` can hand each ruler level its own `done` lines.
+- the qwen recipe's suite and ruler run from a local checkout (`suite_dir`).
+- the checkpoint is `tools/step5_fp8_to_mlx.py`'s: routed experts affine 2-bit in groups of 128, everything else 8-bit
+  in groups of 64, with the three MTP layers (`--only-mtp`) and the image tower (`--only-vision`) added.
+
+Settings:
+- **Features off:** structured output (not measured yet), turns and prompt cache (the family keeps no prompt states
+  yet), media URLs (data URLs only), capacity (one stream).
+- **Startup:** one start, 120 s. It loads in about 37 s, warm-up included.
+- **Identity:** the engine commit, the binary's SHA-256, `/v1/models`, the chip and its RAM.
+- **Memory:** `memory_pressure` and swap. About 171 GiB of weights leave 16.8 GiB of caches under the engine's
+  75%-of-RAM limit; `--context 131072` fits.
+- **Local values:** `harness_dir`, `engine_dir`, `model_dir`, `suite_dir`, `log_dir`.
+
+Measured on 2026-10-15, M5 Ultra with 256 GB, engine `5ad7660c` (quick plan) and `aa221b11` (images), greedy:
+
+| Ruler, one stream | prose | code | structured | list | first token |
+|---|---:|---:|---:|---:|---:|
+| fresh | 38.7 | 50.6 | 40.6 | 48.0 | 0.23-0.27 s |
+| after the serving checks | 39.0 | 50.4 | 40.4 | 48.1 | 0.23-0.27 s |
+
+Engine rounds (`ruler-fresh.engine.json`): 2.38 tokens a round, 2.07 MTP drafts proposed and 66.6% accepted, 53.5 ms
+a round. Seeded sampling: 9/9 replies equal on repeat and undrafted.
+
+| Suite check (suite main `206803c`) | Result |
+|---|---|
+| drafts | 12/12, drafted 38 tok/s against 26 undrafted |
+| behaviour (streaming, multiturn, stop, thinking, copy, max-tokens) | 30/30 |
+| tools | 58/60 |
+| json | 30/30 |
+| gsm8k (50) | 49/50 |
+| ifeval (50) | 41/50 loose, 37/50 strict |
+
+The suite's `soak` and `concurrent` need a prompt cache and more than one stream, so the quick plan's `--only soak
+drafts concurrent behaviour` doesn't apply; the table is `--only drafts behaviour tools json gsm8k ifeval
+--gsm8k-n 50 --ifeval-n 50` against the same server.
+
+Measured outside the harness, the same build:
+- **Prompts:** 690 / 668 / 647 / 622 tokens a second at 4k / 8k / 16k / 32k tokens. Past 4k the sparse indexer caps
+  each row's keys, so the rate holds. A 131,016-token chat question about the first page of its context was answered
+  exactly, 264 s end to end, with at least 23% of memory free throughout.
+- **Decode, plain:** 29.6 / 21.9 / 14.7 / 14.5 tokens a second at 20 / 600 / 4,200 / 32,768 tokens of context.
+- **Decode, MTP drafts** (three chained layers, every reply token-identical to `"draft": false`): code 25.7 to 44.6 tok/s
+  (1.74x, 70% of drafts accepted), prose 26.4 to 34.8 (1.32x, 56%), math 26.2 to 46.0 (1.75x, 75%).
+- **Images:** a 1200 x 800 PNG becomes six 504-px crops and a 728-px overview (692 prompt tokens), answered in 2.1 s;
+  a 600 x 400 PNG (overview only, 193 tokens) in 0.7 s. The tower's rows are as close to an fp32 run of StepFun's encoder
+  as torch's own bf16 run is.
+
 ## Plans
 
 `plans/<name>.toml` holds `description`, `restart` and a list of `[[checks]]` (`type`, an optional `name` or `label`,

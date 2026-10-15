@@ -1,0 +1,7 @@
+# Copy to step5-m5.local.toml (git-ignored) and fill in.
+[vars]
+harness_dir = "~/recipe-harness"
+engine_dir = "~/TensorFold"
+model_dir = "~/models/Step-5-Preview-MLX-2bit"
+suite_dir = "~/qwen38-flashnext-int4mixed"
+log_dir = "~/models/step5-logs"
