@@ -1,0 +1,8 @@
+# Copy to gemma4-12b-m5.local.toml (git-ignored) and fill in.
+[vars]
+harness_dir = "~/recipe-harness"
+engine_dir = "~/TensorFold"
+model_dir = "~/models/gemma-4-12b"
+drafter_dir = "~/models/gemma-4-12b-assistant"
+suite_dir = "~/qwen-spark-recipe"
+log_dir = "~/models/gemma4-logs"

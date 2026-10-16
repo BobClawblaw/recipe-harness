@@ -1,0 +1,140 @@
+{
+ "target": "gemma4-31b-oq8e-m5",
+ "runs": [
+  {
+   "run": "20261016-180201-speed",
+   "target": "gemma4-31b-oq8e-m5",
+   "model": "gemma4-31b-oq8e",
+   "plan": "speed",
+   "started": "20261016-180201",
+   "finished": "20261016-180738",
+   "status": "done",
+   "identity": {
+    "engine_commit": "d9e36b7f",
+    "binary_sha256": "2e29fee5da96ec1ffb1ba41302ac949dc12205572154f21b800823450eb4b2b0",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"gemma4-31b-oq8e\", \"object\": \"model\", \"created\": 1792191739, \"owned_by\": \"tensorfold\", \"context_length\": 32768, \"max_model_len\": 32768, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 40.3,
+      "per_stream": 40.3,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 63.1,
+      "per_stream": 63.1,
+      "ttft": 0.101
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 52.4,
+      "per_stream": 52.4,
+      "ttft": 0.109
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 54.8,
+      "per_stream": 54.8,
+      "ttft": 0.096
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 109.7,
+      "per_stream": 27.7,
+      "ttft": 0.244
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 172.9,
+      "per_stream": 44.8,
+      "ttft": 0.247
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 141.5,
+      "per_stream": 34.2,
+      "ttft": 0.272
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 180.3,
+      "per_stream": 44.3,
+      "ttft": 0.239
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 471,
+      "cached": 0,
+      "tokens": 2373,
+      "rounds": 860,
+      "accepted": 1525,
+      "proposed": 9328,
+      "tokens_a_round": 2.759,
+      "drafts_a_round": 10.847,
+      "accept_rate": 0.164,
+      "ms_a_round": 52.41
+     },
+     "4": {
+      "requests": 49,
+      "prompt": 1873,
+      "cached": 0,
+      "tokens": 9832,
+      "rounds": 4124,
+      "accepted": 5742,
+      "proposed": 15034,
+      "tokens_a_round": 2.384,
+      "drafts_a_round": 3.645,
+      "accept_rate": 0.382,
+      "ms_a_round": 63.19
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 40.3/63.1/52.4/54.8 ttft 0.10-0.11s; c=4 109.7/172.9/141.5/180.3 ttft 0.24-0.27s; engine: c=1 2.76 tokens a round 16% accepted, 52.4 ms a round; c=4 2.38 tokens a round 38% accepted, 63.2 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey; a bad regex -> 400"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, concurrent 12/12"
+    }
+   },
+   "model_name": "Gemma 4 31B, oQ8e (8-bit) + DFlash",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Gemma 4 31B oQ8e (8-bit, groups of 64), DFlash drafts, images, TensorFold native Metal on one M5 Ultra"
+  }
+ ]
+}
