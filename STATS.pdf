@@ -15,7 +15,7 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (Served stats) Tj T*
 (============) Tj T*
 () Tj T*
-(Rendered 2026-10-15 21:50 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate ) Tj T*
+(Rendered 2026-10-16 01:05 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate ) Tj T*
 (    tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.) Tj T*
 () Tj T*
 (Overview: by model and hardware) Tj T*
@@ -37,7 +37,7 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (    30  2026-10-12) Tj T*
 (  Qwen3.8-Flash-Next, MLX 6-bit  1x Apple M5 Ultra \(256 GB unified\), macOS  145/206/172/194  4: 566/816/673/854  0.09 / 1.63-3.07  gsm8k 242/250, ifeval 134/150) Tj T*
 (      2026-10-11) Tj T*
-(  Step-5-Preview, MLX 2-bit experts \(8-bit rest\) + MTP  1x Apple M5 Ultra \(256 GB unified\), macOS  39/51/41/48    0.23 /  tools 58/60, json 30/30, gsm8k 49/50, ) Tj T*
+(  Step-5-Preview, MLX 2-bit experts \(8-bit rest\) + MTP  1x Apple M5 Ultra \(256 GB unified\), macOS  39/51/41/48    0.24 /  tools 58/60, json 30/30, gsm8k 49/50, ) Tj T*
 (    ifeval 41/50  2026-10-15) Tj T*
 () Tj T*
 (GLM-5.3-Flash, EXL3 4 bpw on 2x NVIDIA DGX Spark \(GB10, 128 GB unified each\), TP=2 over RoCE) Tj T*
@@ -429,7 +429,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
 endobj
 16 0 obj
-<< /Length 3747 >>
+<< /Length 3748 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  vision  12/12) Tj T*
@@ -475,22 +475,22 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (-------------------------------------------------------------------------------------------------) Tj T*
 () Tj T*
 (Target step5-m5: Step-5-Preview 2-bit \(experts 2/128, rest 8/64, MTP, images\), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served) Tj T*
-(     as step5-preview. Latest: run 20261015-134330-one-stream \(2026-10-15 13:43, plan one-stream, done\).) Tj T*
+(     as step5-preview. Latest: run 20261015-194421-one-stream \(2026-10-15 19:44, plan one-stream, done\).) Tj T*
 () Tj T*
-(Serving: engine_commit aa221b11; binary_sha256 4f89cf81182d203e84aac48335e84a90a29ba6ae26de96b32ec387e50c7e878f; served_model {"object": "list", "data": [{"id":) Tj T*
-(     "step5-preview", "object": "model", "created": 17920898; chip Apple M5 Ultra) Tj T*
+(Serving: engine_commit 6e791da6; binary_sha256 be201a04b22bc474aa9f61091078dd7d07354b61683cd1ac0eed12374e3ddaab; served_model {"object": "list", "data": [{"id":) Tj T*
+(     "step5-preview", "object": "model", "created": 17921115; chip Apple M5 Ultra) Tj T*
 (274877906944) Tj T*
 () Tj T*
 (ruler-fresh) Tj T*
 (-----------) Tj T*
 () Tj T*
 (  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
-(  1  39.2 \(39.2\)  50.6 \(50.6\)  40.7 \(40.7\)  48.2 \(48.2\)  0.23-0.27 s) Tj T*
+(  1  39.3 \(39.3\)  50.9 \(50.9\)  40.7 \(40.7\)  48.3 \(48.3\)  0.24-0.28 s) Tj T*
 () Tj T*
 (Engine rounds \(ruler-fresh\):) Tj T*
 () Tj T*
 (  streams  tokens a round  drafts a round  accepted  ms a round  requests) Tj T*
-(  1  2.381  2.072  67%  53.3  12) Tj T*
+(  1  2.381  2.072  67%  53.15  12) Tj T*
 () Tj T*
 ET
 endstream
@@ -499,19 +499,19 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 16 0 R >>
 endobj
 18 0 obj
-<< /Length 2502 >>
+<< /Length 2529 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (ruler-after) Tj T*
 (-----------) Tj T*
 () Tj T*
 (  streams  prose total \(a stream\)  code total \(a stream\)  structured total \(a stream\)  list total \(a stream\)  first token) Tj T*
-(  1  39.2 \(39.2\)  50.6 \(50.6\)  40.6 \(40.6\)  48.1 \(48.1\)  0.23-0.27 s) Tj T*
+(  1  39.1 \(39.1\)  50.6 \(50.6\)  40.6 \(40.6\)  48.2 \(48.2\)  0.24-0.28 s) Tj T*
 () Tj T*
 (Engine rounds \(ruler-after\):) Tj T*
 () Tj T*
 (  streams  tokens a round  drafts a round  accepted  ms a round  requests) Tj T*
-(  1  2.339  1.939  69%  52.42  13) Tj T*
+(  1  2.339  1.939  69%  52.39  13) Tj T*
 () Tj T*
 (suite) Tj T*
 (-----) Tj T*
@@ -533,16 +533,18 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (------) Tj T*
 () Tj T*
 (  check  result) Tj T*
-(  memory-idle  measured: mac: System-wide memory free percentage: 95%) Tj T*
-(total = 2048.00M  us |) Tj T*
+(  memory-idle  measured: mac: System-wide memory free percentage: 27%) Tj T*
+(total = 4096.00M  us |) Tj T*
 (  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors) Tj T*
-(  memory-busy  measured: mac: System-wide memory free percentage: 28%) Tj T*
-(total = 2048.00M  us |) Tj T*
+(  memory-busy  measured: mac: System-wide memory free percentage: 27%) Tj T*
+(total = 4096.00M  us |) Tj T*
 () Tj T*
 (history) Tj T*
 (-------) Tj T*
 () Tj T*
 (  run  plan  status  1 stream code  16 streams code  16 streams first token  suite) Tj T*
+(  2026-10-15 19:44  one-stream  done  50.9      220/232) Tj T*
+(  2026-10-15 19:28  quick  done  50.5      114/114) Tj T*
 (  2026-10-15 13:43  one-stream  done  50.6      220/232) Tj T*
 () Tj T*
 (Served earlier, numbers in their READMEs only) Tj T*
@@ -556,12 +558,10 @@ BT /F1 7.5 Tf 9.0 TL 36 576 Td
 (  Qwen3.8-Flash-Next \(TensorFold 0.6.6 recipe\)  2x NVIDIA DGX Spark \(GB10\), TP=2  TensorFold 0.6.6 \(Python\)  github.com/BobClawblaw/qwen38-flashnext-tensorfold-) Tj T*
 (    2x-dgx-sparks) Tj T*
 () Tj T*
-(Step-5-Preview on one M5 Ultra: measured outside the harness) Tj T*
-(------------------------------------------------------------) Tj T*
+(Step-5-Preview on one M5 Ultra, final build: measured outside the harness) Tj T*
+(-------------------------------------------------------------------------) Tj T*
 () Tj T*
-(TensorFold native Metal, branch step5-native \(engine 5ad7660c, images aa221b11\), MLX 2-bit experts with the rest) Tj T*
-(8-bit, greedy, one stream. The harness's step5-m5 runs hold the ruler and the suite; these are the rest.) Tj T*
-() Tj T*
+(TensorFold native Metal, branch step5-native at engine 6e791da6: 2,048-row prompt chunks, the prompt cache and the) Tj T*
 ET
 endstream
 endobj
@@ -569,9 +569,29 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R >> >> /Contents 18 0 R >>
 endobj
 20 0 obj
-<< /Length 795 >>
+<< /Length 2646 >>
 stream
 BT /F1 7.5 Tf 9.0 TL 36 576 Td
+(idle keepalive's kernel tick. Greedy unless said; served with --parallel 2 --vision at the default context \(227,025\).) Tj T*
+() Tj T*
+(  what  measured) Tj T*
+(  prompt, 4k / 8k / 16k / 32k tokens  868 / 863 / 840 / 800 tok/s \(a 4k prompt right after a pause was 580 before the keepalive fix\)) Tj T*
+(  212k-token chat question, one record's code of 10,500  2 of 3 right \(records 3,000 and 9,800; missed 777\), 376 s each, at least 19% of memory free) Tj T*
+(  129k-token chat question  2 of 2 right \(records 777 and 5,000\), about 200 s each) Tj T*
+(  MTP drafts against `"draft": false`, 200-400-token replies timed with their prompt  identical; code 25.8 to 41.2 tok/s, prose 27.0 to 36.6, math 26.9 to 48.8) Tj T*
+(  prompt cache, an 11.6k-token chat sent again, then two more turns  15.3 s fresh, 1.8 s again, turns resumed at 11,601; replies identical to `--prompt-cache-gi) Tj T*
+(    b 0`) Tj T*
+(  prompt cache, images \(1200 x 800 PNG, 688 tokens\)  resent in 2.15 s instead of 3.8 s; replies identical to the cache off) Tj T*
+(  a kept state that cannot sit beside its stream \(2.4 GiB cache budget\)  dropped before the pass; the prompt read again with the same reply) Tj T*
+(  a 1-token reply after 2 / 6 / 30 / 120 s idle  0.17 / 0.18 / 0.18 / 0.19 s \(about 3 s before the kernel tick and residency set\)) Tj T*
+(  two 18k/31k-token chats at once  both right) Tj T*
+() Tj T*
+(Step-5-Preview on one M5 Ultra, first build \(512-row chunks\): measured outside the harness) Tj T*
+(------------------------------------------------------------------------------------------) Tj T*
+() Tj T*
+(TensorFold native Metal, branch step5-native \(engine 5ad7660c, images aa221b11\), MLX 2-bit experts with the rest) Tj T*
+(8-bit, greedy, one stream. The harness's step5-m5 runs hold the ruler and the suite; these are the rest.) Tj T*
+() Tj T*
 (  what  measured) Tj T*
 (  prompt, 4k / 8k / 16k / 32k tokens  690 / 668 / 647 / 622 tok/s \(the sparse indexer caps each row's keys past 4k\)) Tj T*
 (  131,016-token chat question about its first page  answered exactly, 264 s end to end, at least 23% of memory free) Tj T*
@@ -605,13 +625,13 @@ xref
 0000016413 00000 n 
 0000019263 00000 n 
 0000019391 00000 n 
-0000023191 00000 n 
-0000023319 00000 n 
-0000025874 00000 n 
-0000026002 00000 n 
-0000026849 00000 n 
+0000023192 00000 n 
+0000023320 00000 n 
+0000025902 00000 n 
+0000026030 00000 n 
+0000028729 00000 n 
 trailer
 << /Size 22 /Root 1 0 R >>
 startxref
-26977
+28857
 %%EOF

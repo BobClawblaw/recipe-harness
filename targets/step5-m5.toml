@@ -20,12 +20,12 @@ suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (qua
 log_dir = "CHANGE-ME: a folder for the server's log"
 port = "8888"
 context = "131072"
-parallel = "1"
+parallel = "2"
 
 [commands]
 up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c '$engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --vision --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
-down = "pkill -f 'tensorfold-native serve' ; sleep 3"
-status = "pgrep -fl 'tensorfold-native serve'"
+down = "pkill -f 'tensorfold-native serve $model_dir' ; sleep 3"
+status = "pgrep -fl 'tensorfold-native serve $model_dir'"
 diagnose = "tail -5 $log_dir/$model.log"
 server_log = "awk -v s=$since '$$1 >= s' $log_dir/$model.log"
 suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
@@ -60,10 +60,10 @@ cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
 
 [features]
 drafts = true
-structured = false    # not measured on this engine yet
+structured = true
 sampling = true
 vision_urls = false   # data URLs only: the native server fetches nothing
-capacity = false      # one stream
-max_concurrency = 1
+capacity = false      # two streams at most: the capacity check wants six 240k-token ones
+max_concurrency = 2
 thinking = true
-prompt_cache = false  # no prompt cache on this family yet
+prompt_cache = true
