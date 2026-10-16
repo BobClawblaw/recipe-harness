@@ -1,0 +1,7 @@
+description = "Images and videos only (a few minutes): the recipe suite's vision and vision-concurrent checks"
+restart = true
+
+[[checks]]
+type = "suite"
+name = "suite-vision"
+args = "--only vision vision-concurrent"

@@ -1,6 +1,19 @@
 # GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `glm53-exl3-gb10-port`: GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port). Rendered from `stats/glm53-exl3-gb10-port.json` (1 runs); aggregate tok/s, total (a stream).
+Target `glm53-exl3-gb10-port`: GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port). Rendered from `stats/glm53-exl3-gb10-port.json` (2 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-16 21:03: run `20261016-210300-glm-vision`
+
+Plan glm-vision, done; served as `GLM-5.3-Flash-EXL3`.
+
+Serving: binary `2b666cc74334abec`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 4/6 |
+| vision-concurrent | 0/0 |
 
 ## 2026-10-16 18:10: run `20261016-181039-glm-quality`
 

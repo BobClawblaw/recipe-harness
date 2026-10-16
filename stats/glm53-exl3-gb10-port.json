@@ -72,6 +72,42 @@
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
    "engine": "TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port)",
    "description": "GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261016-210300-glm-vision",
+   "target": "glm53-exl3-gb10-port",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-vision",
+   "started": "20261016-210300",
+   "finished": "20261016-210626",
+   "status": "done",
+   "identity": {
+    "binary": "2b666cc74334abec"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-vision": {
+     "vision": {
+      "passed": 4,
+      "cases": 6
+     },
+     "vision-concurrent": {
+      "passed": 0,
+      "cases": 0
+     }
+    }
+   },
+   "checks": {
+    "suite-vision": {
+     "ok": false,
+     "summary": "no cases (errors) in vision-concurrent; vision 4/6, vision-concurrent 0/0"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port)",
+   "description": "GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks"
   }
  ]
 }
