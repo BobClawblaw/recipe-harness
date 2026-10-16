@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-10-16 11:19 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-16 14:41 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -10,43 +10,43 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 
   model  hardware  one stream  most streams: total  first token (s)  suite  measured
   GLM-5.3-Flash, EXL3 4 bpw  2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE  46/69/57/59    0.18  tools 59/60, json 30/30, gsm8k 246/250, humaneval 159/164, ifeval 118/150  2026-10-14
-  GLM-5.3-Flash, MLX 4-bit  1x Apple M5 Ultra (256 GB unified), macOS  91/104/99/42    0.12    2026-10-10
-  Gemma 4 31B, MLX 4-bit + DFlash  1x Apple M5 Ultra (256 GB unified), macOS  90/154/148/126    0.11    2026-10-15
+  GLM-5.3-Flash, MLX 4-bit  1x Apple M5 Ultra (256 GB unified), macOS  74/78/78/86    0.11  tools 57/60, json 30/30, gsm8k 246/250  2026-10-16
+  Gemma 4 31B, MLX 4-bit + DFlash  1x Apple M5 Ultra (256 GB unified), macOS  87/158/157/130    0.08    2026-10-16
   NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision  1x NVIDIA RTX 5090 (32 GB)  150/150/150/150    0.03  tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150  2026-10-15
   Qwen3.8-27B, MLX 4-bit + DFlash2  1x NVIDIA RTX 5090 (32 GB)  241/459/310/314    0.10    2026-10-16
   Qwen3.8-Flash-Next INT4-Mixed (AutoRound)  2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE  77/127/101/130  16: 302/510/391/519  0.03 / 0.44-0.55  tools 60/60, json 30/30, gsm8k 241/250, humaneval 157/164, ifeval 130/150  2026-10-15
   Qwen3.8-Flash-Next, 6-bit with vision  1x Apple M5 Ultra (256 GB unified), macOS  128/174/148/175  8: 272/330/292/339  0.16 / 0.76-0.84  tools 59/60, json 30/30  2026-10-12
   Qwen3.8-Flash-Next, MLX 6-bit  1x Apple M5 Ultra (256 GB unified), macOS  145/206/172/194  4: 566/816/673/854  0.09 / 1.63-3.07  gsm8k 242/250, ifeval 134/150  2026-10-11
-  Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP  1x Apple M5 Ultra (256 GB unified), macOS  39/51/41/48    0.24  tools 58/60, json 30/30, gsm8k 49/50, ifeval 41/50  2026-10-15
+  Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP  1x Apple M5 Ultra (256 GB unified), macOS  39/50/40/48    0.23  json 30/30  2026-10-16
 
 Gemma 4 31B, MLX 4-bit + DFlash on 1x Apple M5 Ultra (256 GB unified), macOS
 ----------------------------------------------------------------------------
 
-Target gemma4-31b-m5: Gemma 4 31B 4-bit (groups of 64), DFlash drafts, images, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as gemma4-31b. Latest: run 20261015-200951-quick (2026-10-15 20:09, plan quick, done).
+Target gemma4-31b-m5: Gemma 4 31B 4-bit (groups of 64), DFlash drafts, images, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as gemma4-31b. Latest: run 20261016-085420-quick (2026-10-16 08:54, plan quick, done).
 
-Serving: engine_commit 8c37d22c; binary_sha256 bb91242a259030711be1d274c53dbbfbcca01d805d94c2cc6de4da1c07919e2b; served_model {"object": "list", "data": [{"id": "gemma4-31b", "object": "model", "created": 1792113009,; chip Apple M5 Ultra; 274877906944
+Serving: engine_commit e8b60549; binary_sha256 d90e44c9818187ae4bc61d06312989cd796033b5dea6e0fc02164fe2730660fe; served_model {"object": "list", "data": [{"id": "gemma4-31b", "object": "model", "created": 1792158874,; chip Apple M5 Ultra; 274877906944
 
 ruler-fresh
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  90.4 (90.4)  153.8 (153.8)  148.4 (148.4)  126.1 (126.1)  0.11-0.15 s
+  1  87.1 (87.1)  157.9 (157.9)  156.7 (156.7)  130.4 (130.4)  0.08-0.10 s
 
 Engine rounds (ruler-fresh):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  3.315  13.036  18%  25.57  12
+  1  3.288  13.003  18%  24.71  12
 
 ruler-after
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  90.1 (90.1)  164.2 (164.2)  145.9 (145.9)  124.2 (124.2)  0.10-0.16 s
+  1  92.1 (92.1)  161.4 (161.4)  146.6 (146.6)  126.1 (126.1)  0.09-0.10 s
 
 Engine rounds (ruler-after):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  3.328  12.662  18%  25.39  17
+  1  3.333  13.215  18%  25.34  17
 
 suite
 -----
@@ -66,15 +66,17 @@ checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 96%; total = 4096.00M  us
-  structured  FAIL: 0/18 obey; a bad regex -> 400; failed json_object/greedy, json_object/sampled, json_object/thinking, json_schema/greedy, json_schema/sampled, json_schema/thinking, guided_json/greedy, guided_json/sampled, guided_json/thinking, regex/greedy, regex/sampled, regex/thinking, choice/greedy, choice/sampled, choice/thinking, grammar/greedy, grammar/sampled, grammar/thinking
+  memory-idle  measured: mac: System-wide memory free percentage: 75%; total = 3072.00M  us
+  structured  pass: 18/18 obey; a bad regex -> 400
   sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors
-  turns  pass: resumed == again == cold: True; cached 5494 of 5564; ttft resumed 0.135s, cold 0.134s
+  turns  pass: resumed == again == cold: True; cached 5494 of 5564; ttft resumed 0.137s, cold 0.137s
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-16 08:54  quick  done  157.9      114/114
+  2026-10-16 06:28  quick  done  156.5      114/114
   2026-10-15 20:09  quick  done  153.8      114/114
 
 GLM-5.3-Flash, EXL3 4 bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
@@ -165,32 +167,40 @@ history
 GLM-5.3-Flash, MLX 4-bit on 1x Apple M5 Ultra (256 GB unified), macOS
 ---------------------------------------------------------------------
 
-Target glm53-m5: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy). Engine: TensorFold native, Metal; served as GLM-5.3-Flash-MLX-4bit. Latest: run evidence/2026-10-10-wiredreads (2026-10-10 00:00, plan published evidence, published).
+Target glm53-m5: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy). Engine: TensorFold native, Metal; served as GLM-5.3-Flash-MLX-4bit. Latest: run 20261016-082326-glm-gate-novision (2026-10-16 08:23, plan glm-gate-novision, done).
 
-ruler-repeat
-------------
+Serving: engine_commit e8b60549; binary_sha256 d90e44c9818187ae4bc61d06312989cd796033b5dea6e0fc02164fe2730660fe
 
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  92.4 (92.4)  103.6 (103.6)  97.0 (97.0)  94.9 (94.9)  0.11-0.15 s
-
-ruler
------
+ruler-fresh
+-----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  90.7 (90.7)  103.7 (103.7)  99.1 (99.1)  41.8 (41.8)  0.12-0.15 s
+  1  74.4 (74.4)  78.3 (78.3)  77.5 (77.5)  86.5 (86.5)  0.11-0.15 s
 
 suite
 -----
 
   check  passed
-  snapshot  12/12
   drafts  12/12
   concurrent  12/12
+  streaming  4/4
+  multiturn  8/8
+  stop  3/3
+  thinking  10/10
+  copy  2/2
+  max-tokens  3/3
+  tools  57/60
+  json  30/30
+  gsm8k  246/250
+  mmlu  290/342
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-16 08:23  glm-gate-novision  done  78.3      677/736
+  2026-10-16 08:04  glm-gate-novision  done  77.6      679/736
+  2026-10-16 00:35  glm-gate  done  78.7      689/748
   2026-10-10 00:00  published evidence  published  103.7      36/36
   2026-10-10 00:00  published evidence  published        1128/1213
   2026-10-10 00:00  published evidence  published        1137/1213
@@ -473,63 +483,67 @@ history
 Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP on 1x Apple M5 Ultra (256 GB unified), macOS
 -------------------------------------------------------------------------------------------------
 
-Target step5-m5: Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as step5-preview. Latest: run 20261015-194421-one-stream (2026-10-15 19:44, plan one-stream, done).
+Target step5-m5: Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as step5-preview. Latest: run 20261016-092314-pr903 (2026-10-16 09:23, plan pr903, done).
 
-Serving: engine_commit 6e791da6; binary_sha256 be201a04b22bc474aa9f61091078dd7d07354b61683cd1ac0eed12374e3ddaab; served_model {"object": "list", "data": [{"id": "step5-preview", "object": "model", "created": 17921115; chip Apple M5 Ultra; 274877906944
+Serving: engine_commit 6a7672ab; binary_sha256 70a1acbf1d0fdc5f65fffe76781456c5dca173eaac013aed23171f0f7360b7cf; served_model {"object": "list", "data": [{"id": "step5-preview", "object": "model", "created": 17921606; chip Apple M5 Ultra; 274877906944
 
 ruler-fresh
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  39.3 (39.3)  50.9 (50.9)  40.7 (40.7)  48.3 (48.3)  0.24-0.28 s
+  1  39.0 (39.0)  50.4 (50.4)  40.5 (40.5)  48.0 (48.0)  0.23-0.28 s
 
 Engine rounds (ruler-fresh):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  2.381  2.072  67%  53.15  12
+  1  2.381  2.072  67%  53.54  12
 
 ruler-after
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  39.1 (39.1)  50.6 (50.6)  40.6 (40.6)  48.2 (48.2)  0.24-0.28 s
+  1  39.0 (39.0)  50.4 (50.4)  40.5 (40.5)  48.0 (48.0)  0.23-0.28 s
 
 Engine rounds (ruler-after):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  2.339  1.939  69%  52.39  13
+  1  2.382  2.087  66%  53.6  13
 
 suite
 -----
 
   check  passed
+  vision  12/12
   drafts  12/12
+  concurrent  12/12
   streaming  4/4
   multiturn  8/8
   stop  3/3
   thinking  10/10
   copy  2/2
   max-tokens  3/3
-  tools  58/60
   json  30/30
-  gsm8k  49/50
-  ifeval  41/50
+  soak  60/60
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 27%; total = 4096.00M  us
+  memory-idle  measured: mac: System-wide memory free percentage: 26%; total = 5120.00M  us
+  structured  pass: 18/18 obey; a bad regex -> 400
   sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors
-  memory-busy  measured: mac: System-wide memory free percentage: 27%; total = 4096.00M  us
+  turns  pass: resumed == again == cold: True; cached 4514 of 4618; ttft resumed 0.349s, cold 3.214s
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-16 09:23  pr903  done  50.4      156/156
   2026-10-15 19:44  one-stream  done  50.9      220/232
   2026-10-15 19:28  quick  done  50.5      114/114
+  2026-10-15 18:52  quick  done  50.6      114/114
   2026-10-15 13:43  one-stream  done  50.6      220/232
+  2026-10-15 12:43  quick  done  50.6      
 
 Served earlier, numbers in their READMEs only
 ---------------------------------------------

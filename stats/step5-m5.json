@@ -2,6 +2,142 @@
  "target": "step5-m5",
  "runs": [
   {
+   "run": "20261015-124330-quick",
+   "target": "step5-m5",
+   "model": "step5-preview",
+   "plan": "quick",
+   "started": "20261015-124330",
+   "finished": "20261015-124704",
+   "status": "done",
+   "identity": {
+    "engine_commit": "5ad7660c",
+    "binary_sha256": "88cb47ce8b148145e9af0750ef7d95594aaf3011653c1aa58714dce8509985af",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"step5-preview\", \"object\": \"model\", \"created\": 1792086238, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 38.7,
+      "per_stream": 38.7,
+      "ttft": 0.241
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.6,
+      "per_stream": 50.6,
+      "ttft": 0.268
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.6,
+      "per_stream": 40.6,
+      "ttft": 0.275
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.0,
+      "per_stream": 48.0,
+      "ttft": 0.23
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 39.0,
+      "per_stream": 39.0,
+      "ttft": 0.242
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.4,
+      "per_stream": 50.4,
+      "ttft": 0.267
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.4,
+      "per_stream": 40.4,
+      "ttft": 0.275
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.1,
+      "per_stream": 48.1,
+      "ttft": 0.229
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 441,
+      "cached": 0,
+      "tokens": 2271,
+      "rounds": 954,
+      "accepted": 1317,
+      "proposed": 1977,
+      "tokens_a_round": 2.381,
+      "drafts_a_round": 2.072,
+      "accept_rate": 0.666,
+      "ms_a_round": 53.53
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 14,
+      "prompt": 483,
+      "cached": 0,
+      "tokens": 2361,
+      "rounds": 1025,
+      "accepted": 1335,
+      "proposed": 2006,
+      "tokens_a_round": 2.303,
+      "drafts_a_round": 1.957,
+      "accept_rate": 0.665,
+      "ms_a_round": 51.81
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 58%\ntotal = 16384.00M  u"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 38.7/50.6/40.6/48.0 ttft 0.23-0.27s; engine: c=1 2.38 tokens a round 67% accepted, 53.5 ms a round"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 39.0/50.4/40.4/48.1 ttft 0.23-0.27s; engine: c=1 2.30 tokens a round 67% accepted, 51.8 ms a round"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "no report (exit 2): [\"python3 -m quality.suite: error: argument --only: invalid choice: 'soak' (choose from 'drafts', 'concurrent', 'behaviour', 'tools', 'json', 'ifeval', 'gsm8k', 'mgsm', 'mmlu', 'humaneval', 'repetition', 'long-context', 'vision', 'snapshot')\"]"
+    }
+   },
+   "model_name": "Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra"
+  },
+  {
    "run": "20261015-134330-one-stream",
    "target": "step5-m5",
    "model": "step5-preview",
@@ -181,6 +317,189 @@
     "memory-busy": {
      "ok": null,
      "summary": "mac: System-wide memory free percentage: 28%\ntotal = 2048.00M  us"
+    }
+   },
+   "model_name": "Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261015-185209-quick",
+   "target": "step5-m5",
+   "model": "step5-preview",
+   "plan": "quick",
+   "started": "20261015-185209",
+   "finished": "20261015-190653",
+   "status": "done",
+   "identity": {
+    "engine_commit": "4efab318",
+    "binary_sha256": "c3d32e437f59a2f4e0eafa7653e81f47552b918284903ca7b9f486ba3709a93b",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"step5-preview\", \"object\": \"model\", \"created\": 1792108367, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 39.2,
+      "per_stream": 39.2,
+      "ttft": 0.249
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.6,
+      "per_stream": 50.6,
+      "ttft": 0.275
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.7,
+      "per_stream": 40.7,
+      "ttft": 0.282
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.1,
+      "per_stream": 48.1,
+      "ttft": 0.236
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 39.1,
+      "per_stream": 39.1,
+      "ttft": 0.251
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.6,
+      "per_stream": 50.6,
+      "ttft": 0.276
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.6,
+      "per_stream": 40.6,
+      "ttft": 0.28
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.1,
+      "per_stream": 48.1,
+      "ttft": 0.236
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 441,
+      "cached": 0,
+      "tokens": 2271,
+      "rounds": 954,
+      "accepted": 1317,
+      "proposed": 1977,
+      "tokens_a_round": 2.381,
+      "drafts_a_round": 2.072,
+      "accept_rate": 0.666,
+      "ms_a_round": 53.33
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 5060,
+      "cached": 2048,
+      "tokens": 2287,
+      "rounds": 960,
+      "accepted": 1329,
+      "proposed": 2004,
+      "tokens_a_round": 2.382,
+      "drafts_a_round": 2.087,
+      "accept_rate": 0.663,
+      "ms_a_round": 53.42
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 27%\ntotal = 4096.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 39.2/50.6/40.7/48.1 ttft 0.24-0.28s; engine: c=1 2.38 tokens a round 67% accepted, 53.3 ms a round"
+    },
+    "structured": {
+     "ok": false,
+     "summary": "0/18 obey; a bad regex -> 400; failed json_object/greedy, json_object/sampled, json_object/thinking, json_schema/greedy, json_schema/sampled, json_schema/thinking, guided_json/greedy, guided_json/sampled, guided_json/thinking, regex/greedy, regex/sampled, regex/thinking, choice/greedy, choice/sampled, choice/thinking, grammar/greedy, grammar/sampled, grammar/thinking"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again == cold: True; cached 4514 of 4618; ttft resumed 0.349s, cold 3.255s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 39.1/50.6/40.6/48.1 ttft 0.24-0.28s; engine: c=1 2.38 tokens a round 66% accepted, 53.4 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
     }
    },
    "model_name": "Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP",
@@ -551,6 +870,197 @@
     "memory-busy": {
      "ok": null,
      "summary": "mac: System-wide memory free percentage: 27%\ntotal = 4096.00M  us"
+    }
+   },
+   "model_name": "Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261016-092314-pr903",
+   "target": "step5-m5",
+   "model": "step5-preview",
+   "plan": "pr903",
+   "started": "20261016-092314",
+   "finished": "20261016-093921",
+   "status": "done",
+   "identity": {
+    "engine_commit": "6a7672ab",
+    "binary_sha256": "70a1acbf1d0fdc5f65fffe76781456c5dca173eaac013aed23171f0f7360b7cf",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"step5-preview\", \"object\": \"model\", \"created\": 1792160637, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 39.0,
+      "per_stream": 39.0,
+      "ttft": 0.244
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.4,
+      "per_stream": 50.4,
+      "ttft": 0.277
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.5,
+      "per_stream": 40.5,
+      "ttft": 0.278
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.0,
+      "per_stream": 48.0,
+      "ttft": 0.235
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 39.0,
+      "per_stream": 39.0,
+      "ttft": 0.246
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.4,
+      "per_stream": 50.4,
+      "ttft": 0.274
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.5,
+      "per_stream": 40.5,
+      "ttft": 0.282
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.0,
+      "per_stream": 48.0,
+      "ttft": 0.235
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 441,
+      "cached": 0,
+      "tokens": 2271,
+      "rounds": 954,
+      "accepted": 1317,
+      "proposed": 1977,
+      "tokens_a_round": 2.381,
+      "drafts_a_round": 2.072,
+      "accept_rate": 0.666,
+      "ms_a_round": 53.54
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 5060,
+      "cached": 2048,
+      "tokens": 2287,
+      "rounds": 960,
+      "accepted": 1329,
+      "proposed": 2004,
+      "tokens_a_round": 2.382,
+      "drafts_a_round": 2.087,
+      "accept_rate": 0.663,
+      "ms_a_round": 53.6
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 26%\ntotal = 5120.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 39.0/50.4/40.5/48.0 ttft 0.23-0.28s; engine: c=1 2.38 tokens a round 67% accepted, 53.5 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey; a bad regex -> 400"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again == cold: True; cached 4514 of 4618; ttft resumed 0.349s, cold 3.214s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 39.0/50.4/40.5/48.0 ttft 0.24-0.28s; engine: c=1 2.38 tokens a round 66% accepted, 53.6 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "vision 12/12, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, json 30/30, soak 60/60"
     }
    },
    "model_name": "Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP",
