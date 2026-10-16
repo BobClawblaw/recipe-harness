@@ -144,6 +144,161 @@
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
    "engine": "TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port)",
    "description": "GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261016-213802-glm-streams",
+   "target": "glm53-exl3-gb10-port",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-streams",
+   "started": "20261016-213802",
+   "finished": "20261016-220806",
+   "status": "done",
+   "identity": {
+    "binary": "2b666cc74334abec"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 27.9,
+      "per_stream": 27.9,
+      "ttft": 0.198
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 38.0,
+      "per_stream": 38.0,
+      "ttft": 0.226
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 33.2,
+      "per_stream": 33.2,
+      "ttft": 0.235
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 30.6,
+      "per_stream": 30.6,
+      "ttft": 0.18
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 48.9,
+      "per_stream": 12.3,
+      "ttft": 0.809
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 66.0,
+      "per_stream": 16.7,
+      "ttft": 0.787
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 64.8,
+      "per_stream": 16.2,
+      "ttft": 0.856
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 63.7,
+      "per_stream": 16.1,
+      "ttft": 0.801
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 60.3,
+      "per_stream": 7.6,
+      "ttft": 1.59
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 75.9,
+      "per_stream": 9.5,
+      "ttft": 1.634
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 82.2,
+      "per_stream": 10.3,
+      "ttft": 1.731
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 76.3,
+      "per_stream": 9.4,
+      "ttft": 1.481
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 123.6,
+      "per_stream": 7.6,
+      "ttft": 17.198
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 155.5,
+      "per_stream": 9.6,
+      "ttft": 15.4
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 149.5,
+      "per_stream": 9.0,
+      "ttft": 8.497
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 145.0,
+      "per_stream": 9.1,
+      "ttft": 11.104
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 27.9/38.0/33.2/30.6 ttft 0.18-0.24s; c=4 48.9/66.0/64.8/63.7 ttft 0.79-0.86s; c=8 60.3/75.9/82.2/76.3 ttft 1.48-1.73s; c=16 123.6/155.5/149.5/145.0 ttft 8.50-17.20s"
+    },
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port)",
+   "description": "GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks"
   }
  ]
 }

@@ -1,0 +1,12 @@
+description = "Streams (about 10 minutes): the ruler at 1, 4, 8 and 16 streams, and the suite's concurrent and drafts checks (replies together equal alone)"
+restart = true
+
+[[checks]]
+type = "ruler"
+label = "streams"
+concurrency = [1, 4, 8, 16]
+
+[[checks]]
+type = "suite"
+name = "suite-together"
+args = "--only concurrent drafts"
