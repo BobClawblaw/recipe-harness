@@ -154,6 +154,7 @@ class Stats(unittest.TestCase):
             meta = {"target": "qwen38-int4mixed", "model": "m", "plan": "full", "started": "20261015-171328", "status": "done",
                     "identity": {"patch_sha": {"value": "186193c6", "exit": 0}},
                     "checks": [{"name": "ruler-fresh", "type": "ruler", "ok": None, "summary": "c=1 …"},
+                               {"name": "memory-idle", "type": "memory", "ok": None, "summary": "free 96%\ntotal = 4096M | used"},
                                {"name": "suite", "type": "suite", "ok": None, "summary": "tools 60/60"}]}
             (run / "meta.json").write_text(json.dumps(meta))
             (run / "ruler-fresh.summary.json").write_text(json.dumps({"metrics": {"cells": cells, "engine": {"16": {"requests": 196, "tokens_a_round": 3.2, "accept_rate": 0.77, "ms_a_round": 122.6}}}}))
@@ -170,10 +171,18 @@ class Stats(unittest.TestCase):
                 book = json.loads((stats.LEDGER / "qwen38-int4mixed.json").read_text())
                 self.assertEqual(len(book["runs"]), 1)
                 md = stats.markdown()
+                one = stats.target_markdown(book)
             finally:
                 stats.LEDGER = old
             self.assertIn("Overview: by model and hardware", md)
             self.assertIn("509.8 (31.9)", md)
             self.assertIn("tools 60/60", md)
-            pdf = stats.pdf(stats.text(md))
-            self.assertTrue(pdf.startswith(b"%PDF-1.4") and pdf.rstrip().endswith(b"%%EOF"))
+            # a summary's lines and pipes stay inside its cell
+            self.assertIn("| memory-idle | measured: free 96%; total = 4096M \\| used |", md)
+            self.assertIn("## 2026-10-15 17:13: run `20261015-171328-full`", one)
+            self.assertIn("509.8 (31.9)", one)
+            from harness import pdf as typeset
+            doc = typeset.render(md, "Served stats", "2026-10-15 17:13 UTC")
+            self.assertTrue(doc.startswith(b"%PDF-1.4") and doc.rstrip().endswith(b"%%EOF"))
+            self.assertIn(b"/BaseFont /Helvetica-Bold", doc)
+            self.assertIn(b"(Page 1 of ", doc)

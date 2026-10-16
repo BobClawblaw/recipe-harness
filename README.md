@@ -89,7 +89,9 @@ unwired: every round's work was the same, each round took longer.
 every ruler cell (total and per-stream tok/s, first token), the engine's rounds, suite scores and each check's result.
 Each target names its `model_name`, `hardware` and `engine`, so the reports group results by model and hardware.
 
-- Every `harness run` and `harness export` adds its run and renders `STATS.md`, `STATS.txt` and `STATS.pdf` again.
+- Every `harness run` and `harness export` adds its run and renders `STATS.md`, `STATS.txt` and `STATS.pdf` again,
+  and writes each ledger out readable as `stats/<target>.md`: every run, newest first, with all it measured.
+- `STATS.pdf` is typeset (`harness/pdf.py`, standard library only): an overview table, then a page or more a target.
 - `python3 -m harness stats` adds every finished run under `runs/` (or the folders you name) and renders.
 - The reports open with an overview (one row per model and hardware: one stream, the most streams measured, first
   token, the suite's headline scores), then each target's latest ruler, engine rounds, suite and checks, then its

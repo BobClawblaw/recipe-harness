@@ -71,7 +71,7 @@ def cmd_run(a) -> int:
         for spec in plan["checks"]:
             print(f"  {spec['type']:10s} {'' if applies(target, spec['type'], spec) else '(skipped: not served) '}{ {k: v for k, v in spec.items() if k != 'type'} }")
         return 0
-    run_dir = session.run(target, plan, a.plan, restart=False if a.no_restart else None)
+    run_dir = session.run(target, plan, Path(a.plan).stem, restart=False if a.no_restart else None)  # a plan by path: its name
     meta = json.loads((run_dir / "meta.json").read_text())
     _record(run_dir)
     print(tables(run_dir))
