@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-16 21:15 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-16 21:31 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -82,7 +82,7 @@ Engine rounds (ruler-after):
 
 ## GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `glm53-exl3-gb10-port`: GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261016-210300-glm-vision` (2026-10-16 21:03, plan glm-vision, done).
+Target `glm53-exl3-gb10-port`: GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261016-212421-glm-vision` (2026-10-16 21:24, plan glm-vision, done).
 
 Serving: binary `2b666cc74334abec`
 
@@ -90,13 +90,14 @@ Serving: binary `2b666cc74334abec`
 
 | check | passed |
 |---|---:|
-| vision | 4/6 |
-| vision-concurrent | 0/0 |
+| vision | 6/6 |
+| vision-concurrent | 16/16 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-16 21:24 | glm-vision | done |  |  |  | 22/22 |
 | 2026-10-16 21:03 | glm-vision | done |  |  |  | 4/6 |
 | 2026-10-16 18:10 | glm-quality | done | 38.2 |  |  |  |
 
