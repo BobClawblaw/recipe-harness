@@ -1,4 +1,4 @@
-"""python3 -m harness run|compare|export|scrub|tables|targets|plans|check"""
+"""python3 -m harness run|compare|export|leaderboard|scrub|tables|targets|plans|check|stats"""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import api, session
+from . import api, leaderboard, session
 from .compare import compare
 from .config import ROOT, ConfigError, load_plan, load_target
 from .export import export, tables
@@ -31,6 +31,9 @@ def main(argv=None) -> int:
     e.add_argument("run", type=Path)
     e.add_argument("recipe", type=Path)
     e.add_argument("name")
+    lb = sub.add_parser("leaderboard", help="the recipe down, tensorfold benchmark on its public checkpoint, the recipe up, the receipt published")
+    lb.add_argument("target")
+    lb.add_argument("--no-publish", action="store_true", help="keep the receipt local")
     t = sub.add_parser("tables", help="README-ready markdown tables of a run or an evidence folder")
     t.add_argument("run", type=Path)
     s = sub.add_parser("scrub", help="personal or machine details in a tree, a file, or a repo's staged diff")
@@ -118,10 +121,16 @@ def cmd_export(a) -> int:
     dest = export(a.run, a.recipe, a.name)
     hits = scan_tree(dest)
     print(f"exported to {dest}")
+    print("publish the recipe's leaderboard result too: python3 -m harness leaderboard <target>")
     if hits:
         print("scrub hits (fix before committing):\n" + "\n".join(hits))
     print(tables(dest))
     return 1 if hits else 0
+
+
+def cmd_leaderboard(a) -> int:
+    run_dir = leaderboard.run(load_target(a.target), publish_it=not a.no_publish)
+    return 0 if json.loads((run_dir / "meta.json").read_text())["status"] == "done" else 1
 
 
 def cmd_tables(a) -> int:
@@ -162,8 +171,8 @@ def cmd_check(a) -> int:
 
 
 COMMANDS = {
-    "run": cmd_run, "stats": cmd_stats, "compare": cmd_compare, "export": cmd_export, "tables": cmd_tables, "scrub": cmd_scrub,
-            "targets": cmd_targets, "plans": cmd_plans, "check": cmd_check}
+    "run": cmd_run, "stats": cmd_stats, "compare": cmd_compare, "export": cmd_export, "leaderboard": cmd_leaderboard,
+    "tables": cmd_tables, "scrub": cmd_scrub, "targets": cmd_targets, "plans": cmd_plans, "check": cmd_check}
 
 if __name__ == "__main__":
     sys.exit(main())

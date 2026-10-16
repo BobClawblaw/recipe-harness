@@ -56,3 +56,11 @@ capacity = false      # one stream at 262k
 max_concurrency = 1
 thinking = true       # on by default
 prompt_cache = false  # not measured on this engine yet
+
+# python3 -m harness leaderboard qwen38-27b-5090: the service down, community-v1 on the public checkpoint, the service
+# up, the receipt published to tensorfold.dev/benchmarks with the stored login (tensorfold benchmark login)
+[leaderboard]
+model = "TensorFold/Qwen3.8-27B-MLX-4bit"   # with z-lab/Qwen3.8-27B-DFlash2, both cached as Hugging Face snapshots
+binary = "$engine_src/zig-out/native/bin/tensorfold-native"
+free = "test $$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | head -1) -lt 1500"
+env = { TENSORFOLD_CUDA_KERNELS = "$kernels" }   # the service's captured glue kernels

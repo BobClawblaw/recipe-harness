@@ -3,3 +3,7 @@
 recipe_dir = "~/qwen38-27b-vision-rtx-5090"
 engine_src = "~/TensorFold"
 suite_dir = "~/qwen38-flashnext-int4mixed"
+kernels = "~/tensorfold-qwen38-27b-5090/kernels/sm120"   # the service's TENSORFOLD_CUDA_KERNELS
+
+[session]
+lock = "~/locks/rtx5090.lock"   # shared with every job on the card

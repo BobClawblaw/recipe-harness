@@ -68,6 +68,23 @@ off checks they don't serve in `[features]`. A greedy-only engine, for example, 
 - A run's `suite-thinking.summary.json` records exactly which arguments the suite ran with.
 - Every other suite score in a run is thinking off.
 
+## Leaderboard
+
+Every recipe we publish also goes on the TensorFold community board (tensorfold.dev/benchmarks):
+
+```bash
+tensorfold benchmark login --token-stdin < /secure/upload-token   # once a machine: the contributor token, kept by the CLI
+python3 -m harness leaderboard qwen38-27b-5090                      # the recipe down, community-v1, the recipe up, published
+python3 -m harness leaderboard qwen38-27b-5090 --no-publish         # the same, the receipt kept local
+```
+
+A target's `[leaderboard]` names the public checkpoint (`model`, cached as a Hugging Face snapshot: the board refuses
+local directories), the engine `binary`, extra `args`, `env` for the managed server, and `free`, a command that exits 0
+once `down` has released the devices. The run takes the target's lock, runs `down`, `tensorfold benchmark`, then `up`
+whatever happened, scrubs the receipt, and publishes it with `--yes`. The receipt, the benchmark's output and the
+board's answer (submission, status, public URL) stay in `runs/<target>/<stamp>-leaderboard/`. A scrub hit or an
+incomplete run publishes nothing. `TENSORFOLD_BENCHMARK_TOKEN` in the environment replaces the stored login for one run.
+
 ## Engine rounds
 
 A target whose `[commands]` has `server_log` (the server's log since `$since`, Unix seconds) gets the engine's own

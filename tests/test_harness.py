@@ -186,3 +186,17 @@ class Stats(unittest.TestCase):
             self.assertTrue(doc.startswith(b"%PDF-1.4") and doc.rstrip().endswith(b"%%EOF"))
             self.assertIn(b"/BaseFont /Helvetica-Bold", doc)
             self.assertIn(b"(Page 1 of ", doc)
+
+
+class LeaderboardTest(unittest.TestCase):
+    def test_publish_output_names_the_submission_and_its_url(self):
+        from harness.leaderboard import parse
+        out = "New submissions are community-reported and pending moderation.\nSubmission 6cbe0c3e-6e77: approved\nhttps://tensorfold.dev/benchmarks?result=6cbe0c3e-6e77\n"
+        self.assertEqual(parse(out), {"submission": "6cbe0c3e-6e77", "status": "approved", "url": "https://tensorfold.dev/benchmarks?result=6cbe0c3e-6e77"})
+        self.assertEqual(parse("error: token refused"), {"submission": None, "status": None, "url": None})
+
+    def test_a_target_without_a_leaderboard_section_is_refused(self):
+        from harness.config import ConfigError, Target
+        from harness.leaderboard import _settings
+        with self.assertRaises(ConfigError):
+            _settings(Target("x", {"url": "http://127.0.0.1:1"}))
