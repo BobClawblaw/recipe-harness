@@ -481,6 +481,346 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal"
+  },
+  {
+   "run": "20261016-003511-glm-gate",
+   "target": "glm53-m5",
+   "model": "GLM-5.3-Flash-MLX-4bit",
+   "plan": "glm-gate",
+   "started": "20261016-003511",
+   "finished": "20261016-005406",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c5304036",
+    "binary_sha256": "507c6fc3b1f9f5a521185d3da00ec3f555c39e20188ba8eefec2547581bb618d"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 78.0,
+      "per_stream": 78.0,
+      "ttft": 0.125
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 78.7,
+      "per_stream": 78.7,
+      "ttft": 0.141
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 77.9,
+      "per_stream": 77.9,
+      "ttft": 0.146
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 87.0,
+      "per_stream": 87.0,
+      "ttft": 0.113
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 57,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "gsm8k": {
+      "passed": 246,
+      "cases": 250
+     },
+     "mmlu": {
+      "passed": 290,
+      "cases": 342
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 78.0/78.7/77.9/87.0 ttft 0.11-0.15s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 57/60, json 30/30, vision 12/12, gsm8k 246/250, mmlu 290/342"
+    }
+   },
+   "model_name": "GLM-5.3-Flash, MLX 4-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+  },
+  {
+   "run": "20261016-080418-glm-gate-novision",
+   "target": "glm53-m5",
+   "model": "GLM-5.3-Flash-MLX-4bit",
+   "plan": "glm-gate-novision",
+   "started": "20261016-080418",
+   "finished": "20261016-082323",
+   "status": "done",
+   "identity": {
+    "engine_commit": "46a08c18",
+    "binary_sha256": "c040cfbfafa63174bdd6b668e3c23ebaf3afb26c2dcab9516a430790009c5390"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 77.7,
+      "per_stream": 77.7,
+      "ttft": 0.134
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 77.6,
+      "per_stream": 77.6,
+      "ttft": 0.151
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 77.8,
+      "per_stream": 77.8,
+      "ttft": 0.155
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 77.9,
+      "per_stream": 77.9,
+      "ttft": 0.104
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 57,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "gsm8k": {
+      "passed": 246,
+      "cases": 250
+     },
+     "mmlu": {
+      "passed": 292,
+      "cases": 342
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 77.7/77.6/77.8/77.9 ttft 0.10-0.16s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 57/60, json 30/30, gsm8k 246/250, mmlu 292/342"
+    }
+   },
+   "model_name": "GLM-5.3-Flash, MLX 4-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+  },
+  {
+   "run": "20261016-082326-glm-gate-novision",
+   "target": "glm53-m5",
+   "model": "GLM-5.3-Flash-MLX-4bit",
+   "plan": "glm-gate-novision",
+   "started": "20261016-082326",
+   "finished": "20261016-084219",
+   "status": "done",
+   "identity": {
+    "engine_commit": "e8b60549",
+    "binary_sha256": "d90e44c9818187ae4bc61d06312989cd796033b5dea6e0fc02164fe2730660fe"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 74.4,
+      "per_stream": 74.4,
+      "ttft": 0.147
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 78.3,
+      "per_stream": 78.3,
+      "ttft": 0.14
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 77.5,
+      "per_stream": 77.5,
+      "ttft": 0.145
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 86.5,
+      "per_stream": 86.5,
+      "ttft": 0.111
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 57,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "gsm8k": {
+      "passed": 246,
+      "cases": 250
+     },
+     "mmlu": {
+      "passed": 290,
+      "cases": 342
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 74.4/78.3/77.5/86.5 ttft 0.11-0.15s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 57/60, json 30/30, gsm8k 246/250, mmlu 290/342"
+    }
+   },
+   "model_name": "GLM-5.3-Flash, MLX 4-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
   }
  ]
 }
