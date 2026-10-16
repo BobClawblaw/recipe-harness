@@ -1,8 +1,8 @@
 # Gemma 4 12B oQ8e (unigilby/gemma-4-12B-it-oQ8e, oMLX oQ uniform 8-bit groups of 64) on one 256 GB M5 Ultra Mac,
 # TensorFold native Metal (branch gemma4-oq): Google's MTP assistant as the drafter, images (--vision), kept prompt
-# states. The server is a plain process
-# on this machine, its output stamped with Unix seconds for server_log. The quality suite and ruler are the qwen Spark
-# recipe's (main), from a local checkout (suite_dir). Machine-specific values go in gemma4-12b-m5.local.toml.
+# states. The server is a plain process on this machine, its output stamped with Unix seconds for server_log. The
+# quality suite and ruler are the qwen Spark recipe's (main), from a local checkout (suite_dir). Machine-specific values
+# go in gemma4-12b-oq8e-m5.local.toml.
 name = "gemma4-12b-oq8e-m5"
 description = "Gemma 4 12B oQ8e (8-bit, groups of 64), MTP assistant drafts, images, TensorFold native Metal on one M5 Ultra"
 url = "http://127.0.0.1:$port"
@@ -68,3 +68,11 @@ capacity = false      # 32k-token streams by default
 max_concurrency = 4
 thinking = true
 prompt_cache = true
+
+# python3 -m harness leaderboard gemma4-12b-oq8e-m5: the recipe down, community-v1 on the public checkpoint and
+# its drafter, the receipt published to tensorfold.dev/benchmarks with the stored login (tensorfold benchmark login)
+[leaderboard]
+model = "unigilby/gemma-4-12B-it-oQ8e"   # cached as a Hugging Face snapshot, with google/gemma-4-12B-it-assistant
+binary = "$engine_dir/zig-out/native/bin/tensorfold-native"
+args = "--drafter google/gemma-4-12B-it-assistant"
+free = "! pgrep -f 'tensorfold-native serve [^ ]*gemma-4-12B'"

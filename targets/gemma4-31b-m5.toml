@@ -67,3 +67,12 @@ capacity = false      # 32k-token streams by default
 max_concurrency = 4
 thinking = true
 prompt_cache = true
+
+# python3 -m harness leaderboard gemma4-31b-m5: the recipe down, community-v1 on the public checkpoint and
+# its drafter, the receipt published to tensorfold.dev/benchmarks with the stored login (tensorfold benchmark login)
+[leaderboard]
+# the repo's canonical (lowercase) ID, which the board checks; cached as a snapshot with z-lab/gemma-4-31B-it-DFlash
+model = "mlx-community/gemma-4-31b-it-4bit"
+binary = "$engine_dir/zig-out/native/bin/tensorfold-native"
+args = "--drafter z-lab/gemma-4-31B-it-DFlash"
+free = "! pgrep -f 'tensorfold-native serve [^ ]*gemma-4-31B'"
