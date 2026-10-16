@@ -1067,6 +1067,108 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261016-102144-pr903-final",
+   "target": "step5-m5",
+   "model": "step5-preview",
+   "plan": "pr903-final",
+   "started": "20261016-102144",
+   "finished": "20261016-102618",
+   "status": "done",
+   "identity": {
+    "engine_commit": "e2bb58db",
+    "binary_sha256": "61059a383f74fd363f17527526fdc7de028fe624d40e59e3238d20e4925bfef5",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"step5-preview\", \"object\": \"model\", \"created\": 1792164148, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 38.5,
+      "per_stream": 38.5,
+      "ttft": 0.254
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 50.4,
+      "per_stream": 50.4,
+      "ttft": 0.276
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 40.5,
+      "per_stream": 40.5,
+      "ttft": 0.28
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 47.9,
+      "per_stream": 47.9,
+      "ttft": 0.238
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 441,
+      "cached": 0,
+      "tokens": 2271,
+      "rounds": 954,
+      "accepted": 1317,
+      "proposed": 1977,
+      "tokens_a_round": 2.381,
+      "drafts_a_round": 2.072,
+      "accept_rate": 0.666,
+      "ms_a_round": 53.72
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 27%\ntotal = 4096.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 38.5/50.4/40.5/47.9 ttft 0.24-0.28s; engine: c=1 2.38 tokens a round 67% accepted, 53.7 ms a round"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again == cold: True; cached 4514 of 4618; ttft resumed 0.353s, cold 3.21s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "vision 12/12, drafts 12/12, concurrent 12/12"
+    }
+   },
+   "model_name": "Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra"
   }
  ]
 }

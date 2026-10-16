@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-10-16 14:41 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-16 15:28 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -17,7 +17,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   Qwen3.8-Flash-Next INT4-Mixed (AutoRound)  2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE  77/127/101/130  16: 302/510/391/519  0.03 / 0.44-0.55  tools 60/60, json 30/30, gsm8k 241/250, humaneval 157/164, ifeval 130/150  2026-10-15
   Qwen3.8-Flash-Next, 6-bit with vision  1x Apple M5 Ultra (256 GB unified), macOS  128/174/148/175  8: 272/330/292/339  0.16 / 0.76-0.84  tools 59/60, json 30/30  2026-10-12
   Qwen3.8-Flash-Next, MLX 6-bit  1x Apple M5 Ultra (256 GB unified), macOS  145/206/172/194  4: 566/816/673/854  0.09 / 1.63-3.07  gsm8k 242/250, ifeval 134/150  2026-10-11
-  Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP  1x Apple M5 Ultra (256 GB unified), macOS  39/50/40/48    0.23  json 30/30  2026-10-16
+  Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP  1x Apple M5 Ultra (256 GB unified), macOS  38/50/40/48    0.24    2026-10-16
 
 Gemma 4 31B, MLX 4-bit + DFlash on 1x Apple M5 Ultra (256 GB unified), macOS
 ----------------------------------------------------------------------------
@@ -483,31 +483,20 @@ history
 Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP on 1x Apple M5 Ultra (256 GB unified), macOS
 -------------------------------------------------------------------------------------------------
 
-Target step5-m5: Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as step5-preview. Latest: run 20261016-092314-pr903 (2026-10-16 09:23, plan pr903, done).
+Target step5-m5: Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as step5-preview. Latest: run 20261016-102144-pr903-final (2026-10-16 10:21, plan pr903-final, done).
 
-Serving: engine_commit 6a7672ab; binary_sha256 70a1acbf1d0fdc5f65fffe76781456c5dca173eaac013aed23171f0f7360b7cf; served_model {"object": "list", "data": [{"id": "step5-preview", "object": "model", "created": 17921606; chip Apple M5 Ultra; 274877906944
+Serving: engine_commit e2bb58db; binary_sha256 61059a383f74fd363f17527526fdc7de028fe624d40e59e3238d20e4925bfef5; served_model {"object": "list", "data": [{"id": "step5-preview", "object": "model", "created": 17921641; chip Apple M5 Ultra; 274877906944
 
 ruler-fresh
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  39.0 (39.0)  50.4 (50.4)  40.5 (40.5)  48.0 (48.0)  0.23-0.28 s
+  1  38.5 (38.5)  50.4 (50.4)  40.5 (40.5)  47.9 (47.9)  0.24-0.28 s
 
 Engine rounds (ruler-fresh):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  2.381  2.072  67%  53.54  12
-
-ruler-after
------------
-
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  39.0 (39.0)  50.4 (50.4)  40.5 (40.5)  48.0 (48.0)  0.23-0.28 s
-
-Engine rounds (ruler-after):
-
-  streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  2.382  2.087  66%  53.6  13
+  1  2.381  2.072  67%  53.72  12
 
 suite
 -----
@@ -516,28 +505,19 @@ suite
   vision  12/12
   drafts  12/12
   concurrent  12/12
-  streaming  4/4
-  multiturn  8/8
-  stop  3/3
-  thinking  10/10
-  copy  2/2
-  max-tokens  3/3
-  json  30/30
-  soak  60/60
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 26%; total = 5120.00M  us
-  structured  pass: 18/18 obey; a bad regex -> 400
-  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors
-  turns  pass: resumed == again == cold: True; cached 4514 of 4618; ttft resumed 0.349s, cold 3.214s
+  memory-idle  measured: mac: System-wide memory free percentage: 27%; total = 4096.00M  us
+  turns  pass: resumed == again == cold: True; cached 4514 of 4618; ttft resumed 0.353s, cold 3.21s
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-16 10:21  pr903-final  done  50.4      36/36
   2026-10-16 09:23  pr903  done  50.4      156/156
   2026-10-15 19:44  one-stream  done  50.9      220/232
   2026-10-15 19:28  quick  done  50.5      114/114

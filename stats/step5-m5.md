@@ -1,6 +1,39 @@
 # Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `step5-m5`: Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/step5-m5.json` (6 runs); aggregate tok/s, total (a stream).
+Target `step5-m5`: Step-5-Preview 2-bit (experts 2/128, rest 8/64, MTP, images), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/step5-m5.json` (7 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-16 10:21: run `20261016-102144-pr903-final`
+
+Plan pr903-final, done; served as `step5-preview`.
+
+Serving: engine_commit `e2bb58db`; binary_sha256 `61059a383f74fd363f17527526fdc7de028fe624d40e59e3238d20e4925bfef5`; served_model `{"object": "list", "data": [{"id": "step5-preview", "object": "model", "created": 17921641`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 38.5 (38.5) | 50.4 (50.4) | 40.5 (40.5) | 47.9 (47.9) | 0.24-0.28 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.381 | 2.072 | 67% | 53.72 | 12 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| vision | 12/12 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 27%; total = 4096.00M  us |
+| turns | pass: resumed == again == cold: True; cached 4514 of 4618; ttft resumed 0.353s, cold 3.21s |
 
 ## 2026-10-16 09:23: run `20261016-092314-pr903`
 
