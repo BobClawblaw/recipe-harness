@@ -1,0 +1,77 @@
+{
+ "target": "glm53-exl3-gb10-port",
+ "runs": [
+  {
+   "run": "20261016-181039-glm-quality",
+   "target": "glm53-exl3-gb10-port",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-quality",
+   "started": "20261016-181039",
+   "finished": "20261016-204720",
+   "status": "done",
+   "identity": {
+    "binary": "8c2034ce295aaf9c"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 27.8,
+      "per_stream": 27.8,
+      "ttft": 0.198
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 38.2,
+      "per_stream": 38.2,
+      "ttft": 0.228
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 33.2,
+      "per_stream": 33.2,
+      "ttft": 0.237
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 30.6,
+      "per_stream": 30.6,
+      "ttft": 0.181
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 22.6 GiB available"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 27.8/38.2/33.2/30.6 ttft 0.18-0.24s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "no report (exit 143): ['Terminated']"
+    },
+    "thinking": {
+     "ok": true,
+     "summary": "thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors"
+    },
+    "suite-thinking": {
+     "ok": false,
+     "summary": "no report (exit 143): ['Terminated']"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port)",
+   "description": "GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks"
+  }
+ ]
+}

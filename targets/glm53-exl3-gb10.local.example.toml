@@ -1,0 +1,5 @@
+# Copy to glm53-exl3-gb10.local.toml (git-ignored) and fill in.
+[vars]
+pair = "~/glm-zig/glm_pair.sh"
+suite_dir = "~/glm53-flash-exl3-native"
+binary = "~/glm-zig/bin/tensorfold-native-old"

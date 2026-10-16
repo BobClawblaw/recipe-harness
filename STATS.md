@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-16 15:28 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-16 20:50 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -8,6 +8,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 
 | model | hardware | one stream | most streams: total | first token (s) | suite | measured |
 |---|---|---:|---:|---:|---|---|
+| GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/38/33/31 |  | 0.18 |  | 2026-10-16 |
 | GLM-5.3-Flash, EXL3 4 bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 46/69/57/59 |  | 0.18 | tools 59/60, json 30/30, gsm8k 246/250, humaneval 159/164, ifeval 118/150 | 2026-10-14 |
 | GLM-5.3-Flash, MLX 4-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 74/78/78/86 |  | 0.11 | tools 57/60, json 30/30, gsm8k 246/250 | 2026-10-16 |
 | Gemma 4 31B, MLX 4-bit + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 87/158/157/130 |  | 0.08 |  | 2026-10-16 |
@@ -78,6 +79,31 @@ Engine rounds (ruler-after):
 | 2026-10-16 08:54 | quick | done | 157.9 |  |  | 114/114 |
 | 2026-10-16 06:28 | quick | done | 156.5 |  |  | 114/114 |
 | 2026-10-15 20:09 | quick | done | 153.8 |  |  | 114/114 |
+
+## GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
+
+Target `glm53-exl3-gb10-port`: GLM-5.3-Flash EXL3 4bpw, main's families/glm with PR 855's port, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm on 1.0.12 (PR 855's port); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261016-181039-glm-quality` (2026-10-16 18:10, plan glm-quality, done).
+
+Serving: binary `8c2034ce295aaf9c`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 27.8 (27.8) | 38.2 (38.2) | 33.2 (33.2) | 30.6 (30.6) | 0.18-0.24 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: head 22.6 GiB available |
+| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-16 18:10 | glm-quality | done | 38.2 |  |  |  |
 
 ## GLM-5.3-Flash, EXL3 4 bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
