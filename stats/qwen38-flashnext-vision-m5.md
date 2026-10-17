@@ -1,6 +1,70 @@
 # Qwen3.8-Flash-Next, 6-bit with vision on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/qwen38-flashnext-vision-m5.json` (10 runs); aggregate tok/s, total (a stream).
+Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/qwen38-flashnext-vision-m5.json` (13 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-17 09:38: run `20261017-093813-fn-grammar-speed`
+
+Plan fn-grammar-speed, done; served as `Qwen3.8-Flash-Next-MLX-6bit`.
+
+Serving: engine_commit `8e4ba6db`; binary_sha256 `d6b9a33d238bd53d86b916ff81f16024172f87a939fd1ae98b0f33e2b4dd340b`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| structured_speed | measured: json_schema c=1 off/on 193.5/206.3 (undrafted 91.8), c=2 total 253.1/262.8, plain beside plain/grammar 124.7/128.8 tok/s; json_object c=1 off/on 184.4/179.8 (undrafted 93.1), c=2 total 239.1/236.4, plain beside plain/grammar 113.8/123.4 tok/s |
+
+## 2026-10-17 08:04: run `20261017-080441-fn-speed`
+
+Plan fn-speed, done; served as `Qwen3.8-Flash-Next-MLX-6bit`.
+
+Serving: engine_commit `8e4ba6db`; binary_sha256 `d6b9a33d238bd53d86b916ff81f16024172f87a939fd1ae98b0f33e2b4dd340b`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 142.4 (142.4) | 206.1 (206.1) | 173.4 (173.4) | 211.5 (211.5) | 0.11-0.12 s |
+| 2 | 195.1 (97.6) | 259.7 (129.9) | 219.7 (109.9) | 276.6 (138.3) | 0.17-0.19 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey; a bad regex -> 400 |
+
+## 2026-10-17 08:02: run `20261017-080207-fn-speed`
+
+Plan fn-speed, done; served as `Qwen3.8-Flash-Next-MLX-6bit`.
+
+Serving: engine_commit `8e4ba6db`; binary_sha256 `d6b9a33d238bd53d86b916ff81f16024172f87a939fd1ae98b0f33e2b4dd340b`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 138.3 (138.3) | 204.3 (204.3) | 173.7 (173.7) | 207.1 (207.1) | 0.11-0.12 s |
+| 2 | 195.0 (97.5) | 263.0 (131.5) | 218.7 (109.3) | 276.0 (138.0) | 0.17-0.18 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey; a bad regex -> 400 |
 
 ## 2026-10-17 05:58: run `20261017-055855-fn-speed`
 
