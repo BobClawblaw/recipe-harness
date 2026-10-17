@@ -34,9 +34,12 @@ python3 -m harness check qwen38-int4mixed                        # is it healthy
 
 A run does these steps in order:
 
-1. Takes the target's lock, if it has one. The qwen pair's lock is shared with every GPU job on the two nodes.
+1. Takes the target's lock, if it has one. The qwen pair's lock is shared with every GPU job on the two nodes. Two
+   runs of one target never overlap either: each takes `runs/.locks/<target>.lock`.
 2. Runs `down`, then `up`, until `/health` and `/v1/models` answer. It retries `up_retries` times, waiting
-   `retry_wait` between tries.
+   `retry_wait` between tries. A start counts only when `up` exits 0. A URL still answering `down_wait` seconds
+   (60) after `down` belongs to a server the harness did not start (a launchd unit, another run): the run aborts
+   rather than measure it.
 3. Records the target's `[[identity]]` values. An entry with `expect` must match: for qwen, the image's patch label
    must equal the patch that `recipe.toml` pins. A mismatch aborts the run.
 4. Runs the plan's checks in order.
@@ -150,7 +153,7 @@ ignores and which overrides the committed file. The committed file holds:
 - `cwd`, where the commands run;
 - `[vars]`, the `$placeholders` the commands use;
 - `[commands]`: `up`, `down`, `status`, `diagnose`, `suite`, `ruler`;
-- `[session]`: `lock`, `up_retries`, `retry_wait`, `up_timeout`, `health_wait`, `leave_up`;
+- `[session]`: `lock`, `up_retries`, `retry_wait`, `up_timeout`, `health_wait`, `down_wait`, `leave_up`;
 - `[[identity]]` (`name`, `cmd`, optional `expect`) and `[[memory]]` (`name`, `cmd`);
 - `[features]`.
 

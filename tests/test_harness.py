@@ -201,3 +201,30 @@ class LeaderboardTest(unittest.TestCase):
         from harness.leaderboard import _settings
         with self.assertRaises(ConfigError):
             _settings(Target("x", {"url": "http://127.0.0.1:1"}))
+
+
+class BringUp(unittest.TestCase):
+    """A start counts only when the harness's own up succeeds and nothing else holds the URL."""
+
+    def target(self, up: str, down: str = "true"):
+        return config.Target("t", {"url": "http://127.0.0.1:1", "commands": {"up": up, "down": down},
+                                   "session": {"up_retries": 1, "health_wait": 1, "down_wait": 1}}, {})
+
+    def run_with(self, t, answers):
+        from unittest import mock
+        from harness import session
+        with mock.patch.object(session.api, "healthy", side_effect=answers), mock.patch.object(session.time, "sleep"):
+            session.bring_up(t)
+
+    def test_an_up_that_fails_is_a_failed_start_even_when_the_url_answers(self):
+        from harness.session import Abort
+        with self.assertRaises(Abort):  # down leaves nothing; up fails; another run's server then answers
+            self.run_with(self.target("exit 1"), [False, True, True, True])
+
+    def test_a_server_still_answering_after_down_aborts(self):
+        from harness.session import Abort
+        with self.assertRaisesRegex(Abort, "still answers after down"):
+            self.run_with(self.target("true"), lambda url: True)
+
+    def test_a_clean_start(self):
+        self.run_with(self.target("true"), [False, True])

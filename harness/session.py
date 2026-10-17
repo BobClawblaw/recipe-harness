@@ -60,7 +60,7 @@ def _unlock(fd) -> None:
 
 
 class Lock:
-    """An exclusive lock on the target's lock file (shared with every other GPU job on the machines), or nothing."""
+    """An exclusive lock on a lock file (the target's, shared with other GPU jobs, or its runs' own), or nothing."""
 
     def __init__(self, path: str | None):
         self.path = os.path.expanduser(path) if path else None
@@ -94,20 +94,34 @@ def wait_healthy(target: Target, seconds: float) -> bool:
     return False
 
 
+def wait_down(target: Target, seconds: float) -> bool:
+    """True once the URL stops answering (within ``seconds``)."""
+    end = time.time() + seconds
+    while api.healthy(target.url):
+        if time.time() >= end:
+            return False
+        time.sleep(2)
+    return True
+
+
 def bring_up(target: Target) -> None:
     """down, then up until healthy: ``up_retries`` tries, ``retry_wait`` seconds between (after a failed start)."""
+    # a server still answering after down is not the harness's (a launchd unit, another run): abort, never measure it;
+    # an up that exits nonzero failed, whatever the URL answers afterwards
     s, c = target.section("session"), target.section("commands")
     tries, wait = int(s.get("up_retries", 1)), float(s.get("retry_wait", 0))
     for i in range(1, tries + 1):
         if "down" in c:
             rc, out = sh(target, c["down"], timeout=s.get("down_timeout", 600))
             log(f"down (exit {rc}): {tail(out, 1)}")
+            if not wait_down(target, float(s.get("down_wait", 60))):
+                raise Abort(f"{target.url} still answers after down: a server the harness did not start holds it")
         if i > 1 and wait:
             log(f"waiting {wait:.0f}s before start {i}")
             time.sleep(wait)
         rc, out = sh(target, c["up"], timeout=s.get("up_timeout", 3600))
         log(f"up {i}/{tries} (exit {rc}): {tail(out, 2)}")
-        if wait_healthy(target, s.get("health_wait", 120)):
+        if rc == 0 and wait_healthy(target, s.get("health_wait", 120)):
             log(f"healthy: {target.url}")
             return
         if "diagnose" in c:
@@ -144,7 +158,7 @@ def run(target: Target, plan: dict, plan_name: str, out_root: Path | None = None
     write()
     restart = plan.get("restart", True) if restart is None else restart
     log(f"run {run_dir.name}: target {target.name}, plan {plan_name}, restart {restart}")
-    with Lock(target.section("session").get("lock")):
+    with Lock(target.section("session").get("lock")), Lock(str(ROOT / "runs" / ".locks" / f"{target.name}.lock")):
         try:
             if restart:
                 bring_up(target)
