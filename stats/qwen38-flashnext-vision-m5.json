@@ -1677,6 +1677,34 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261017-124409-fn-structured",
+   "target": "qwen38-flashnext-vision-m5",
+   "model": "Qwen3.8-Flash-Next-MLX-6bit",
+   "plan": "fn-structured",
+   "started": "20261017-124409",
+   "finished": "20261017-124503",
+   "status": "done",
+   "identity": {
+    "engine_commit": "8e4ba6db",
+    "binary_sha256": "d6b9a33d238bd53d86b916ff81f16024172f87a939fd1ae98b0f33e2b4dd340b",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Qwen3.8-Flash-Next-MLX-6bit\", \"object\": \"model\", \"created\": 1792259088, \"owned_by\": \"tensorfold\", \"context_length\": 262112, \"max_model_len\": 262112, \"reasoning\": {\"default_enabled\": false, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    }
+   },
+   "model_name": "Qwen3.8-Flash-Next, 6-bit with vision",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra"
   }
  ]
 }

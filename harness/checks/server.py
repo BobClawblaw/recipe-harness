@@ -34,15 +34,14 @@ def _save(run_dir: Path, name: str, data) -> None:
 
 
 def structured(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
-    """Each grammar kind greedy, sampled and with thinking: the reply obeys it; a grammar that cannot compile is a 400."""
+    """Each grammar kind greedy, sampled and with thinking: obeyed, drafted equal to undrafted; a bad grammar is a 400."""
     modes = spec.get("modes", ["greedy", "sampled", "thinking"])
     res, bad = {}, []
     for kind, prompt, extra, ok in STRUCTURED:
         for mode in modes:
-            r = api.chat(target.url, target.model, [{"role": "user", "content": prompt}],
-                         max_tokens=400 if mode == "thinking" else 160,
-                         chat_template_kwargs={"enable_thinking": mode == "thinking"}, **extra,
-                         **({"temperature": 0.8, "top_k": 20, "top_p": 0.95, "seed": 3} if mode == "sampled" else {"temperature": 0}))
+            body = {"max_tokens": 400 if mode == "thinking" else 160, "chat_template_kwargs": {"enable_thinking": mode == "thinking"},
+                    **extra, **({"temperature": 0.8, "top_k": 20, "top_p": 0.95, "seed": 3} if mode == "sampled" else {"temperature": 0})}
+            r = api.chat(target.url, target.model, [{"role": "user", "content": prompt}], **body)
             good = None
             if r["status"] == 200 and r["finish"] == "stop":
                 try:
@@ -51,14 +50,25 @@ def structured(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
                     good = False
             elif r["status"] != 200:
                 good = False
-            res[f"{kind}/{mode}"] = {"text": r.get("text", r.get("error")), "finish": r.get("finish"), "ok": good}
+            res[f"{kind}/{mode}"] = {"text": r.get("text", r.get("error")), "finish": r.get("finish"), "ok": good,
+                                     "status": r["status"], "usage": r.get("usage"), "seconds": r.get("s"), "prompt": prompt, "request": body}
             if good is False:
                 bad.append(f"{kind}/{mode}")
+            if mode != "thinking" and target.feature("drafts", True):  # the grammar's reply drafted equals it undrafted
+                p = api.chat(target.url, target.model, [{"role": "user", "content": prompt}], **body, draft=False)
+                res[f"{kind}/{mode}"].update(plain_text=p.get("text", p.get("error")), plain_seconds=p.get("s"), plain_usage=p.get("usage"))
+                if p.get("text") != r.get("text"):
+                    bad.append(f"{kind}/{mode} drafted != plain")
     r = api.chat(target.url, target.model, [{"role": "user", "content": "x"}], max_tokens=5, guided_regex="(unclosed")
     res["bad_regex_status"] = r["status"]
+    res["bad_regex_error"] = r.get("error")
     _save(run_dir, name, res)
     ok = not bad and r["status"] == 400
-    return {"ok": ok, "summary": f"{len(res) - 1 - len(bad)}/{len(res) - 1} obey; a bad regex -> {r['status']}"
+    cases = len(res) - 2
+    obey = cases - sum(" " not in b for b in bad)
+    pairs = sum("plain_text" in v for v in res.values() if isinstance(v, dict))
+    same = pairs - sum(b.endswith("drafted != plain") for b in bad)
+    return {"ok": ok, "summary": f"{obey}/{cases} obey" + (f", drafted == plain {same}/{pairs}" if pairs else "") + f"; a bad regex -> {r['status']}"
             + (f"; failed {', '.join(bad)}" if bad else ""), "metrics": {"failures": bad, "bad_regex_status": r["status"]}}
 
 

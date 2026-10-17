@@ -1,6 +1,18 @@
 # Qwen3.8-Flash-Next, 6-bit with vision on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/qwen38-flashnext-vision-m5.json` (17 runs); aggregate tok/s, total (a stream).
+Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/qwen38-flashnext-vision-m5.json` (18 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-17 12:44: run `20261017-124409-fn-structured`
+
+Plan fn-structured, done; served as `Qwen3.8-Flash-Next-MLX-6bit`.
+
+Serving: engine_commit `8e4ba6db`; binary_sha256 `d6b9a33d238bd53d86b916ff81f16024172f87a939fd1ae98b0f33e2b4dd340b`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
 
 ## 2026-10-17 12:09: run `20261017-120921-fn-speed`
 
