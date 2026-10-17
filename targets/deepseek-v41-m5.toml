@@ -30,7 +30,7 @@ ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --con
 
 [session]
 up_retries = 1
-up_timeout = 900                     # a cold start reads 191 GiB
+up_timeout = 900                     # a cold start reads ~200 GiB
 health_wait = 900
 leave_up = false
 
