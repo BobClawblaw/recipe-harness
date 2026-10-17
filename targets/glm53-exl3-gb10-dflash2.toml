@@ -1,0 +1,50 @@
+# GLM-5.3-Flash EXL3 4bpw (Mia-AiLab's checkpoint) on two DGX Sparks at TP=2, served from a native build (port).
+# The quality suite and ruler are the GLM EXL3 recipe's (github.com/BobClawblaw/glm53-flash-exl3-2x-dgx-sparks).
+# Images need the base model's chat template (the EXL3 checkpoint's is text-only); the launcher passes it.
+# Machine-specific values go in glm53-exl3-gb10-dflash2.local.toml (git-ignored; copy the .local.example.toml).
+name = "glm53-exl3-gb10-dflash2"
+description = "GLM-5.3-Flash EXL3 4bpw, families/glm with DFlash2 drafts (--drafter, 4-bit), TP=2 on two DGX Sparks"
+model_name = "GLM-5.3-Flash EXL3 4bpw"
+hardware = "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE"
+engine = "TensorFold native, CUDA: families/glm + DFlash2 (incoai/GLM-5.3-Flash-DFlash2, opt-in)"
+url = "http://127.0.0.1:$port"
+model = "GLM-5.3-Flash-EXL3"
+
+[vars]
+pair = "CHANGE-ME: the launcher (up|down|status <family>) on the head node"
+suite_dir = "CHANGE-ME: a checkout of the GLM EXL3 recipe (quality/ and bench/)"
+binary = "CHANGE-ME: the native build the launcher serves"
+port = "8890"
+drafter = "CHANGE-ME: the DFlash2 checkpoint folder (incoai/GLM-5.3-Flash-DFlash2) on every rank"
+
+[commands]
+up = "PAIR_EXTRA='--drafter $drafter' bash $pair up dev"
+down = "PAIR_EXTRA='--drafter $drafter' bash $pair down dev"
+status = "PAIR_EXTRA='--drafter $drafter' bash $pair status dev"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+lock = "~/.cache/tf-gpu-pair.lock"   # shared with every GPU job on the pair
+up_retries = 2
+retry_wait = 90
+up_timeout = 1800
+health_wait = 120
+leave_up = false
+
+[[identity]]
+name = "binary"
+cmd = "sha256sum $binary | cut -c1-16"
+
+[[memory]]
+name = "head"
+cmd = "free -b"
+
+[features]
+drafts = true
+structured = true
+sampling = true
+vision_urls = false
+capacity = false
+thinking = true
+prompt_cache = true
