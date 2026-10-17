@@ -53,6 +53,7 @@ aborted or a check failed.
 | `suite` | the recipe's quality suite (`commands.suite`, `$args` from the plan); its report goes in `<name>/` | fails when a check has no cases (errors) or drafts, concurrent or soak is not exact (soak: concurrent resumes of ~6k-token kept states, every reply equal to the same request alone) |
 | `ruler` | the recipe's ruler (`commands.ruler`, `concurrency = [...]`); label it `fresh`, then `after` other traffic, to catch long-session slowdowns. With `commands.server_log` it runs one level at a time and writes `<name>.engine.json` (engine rounds, below) | fails on a cell with no replies |
 | `structured` | json_object, json_schema, guided_json, regex, choice and grammar, each greedy, sampled and thinking; a grammar that cannot compile must be a 400 | every reply obeys and the bad regex gets a 400 |
+| `structured_speed` | decode speed, greedy, of two long JSON replies with the grammar off and on: one stream (and the grammar undrafted), two grammar streams at once, a plain stream beside a grammar stream against beside a plain one | measured; fails on an error or a grammar reply that is not JSON |
 | `sampling` | seeded sampled replies, repeated and undrafted | equal every time |
 | `turns` | a conversation that resumes its kept prompt; the third turn resumed, again, and cold | all three equal; reports cached tokens and first-token times |
 | `urls` | a public HTTPS image, a loopback address, plain HTTP | 200 with an answer, 400, 400 |

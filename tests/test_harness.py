@@ -80,6 +80,7 @@ class Targets(unittest.TestCase):
         self.assertFalse(applies(t, "sampling", {}))
         self.assertFalse(applies(t, "suite", {}))
         self.assertTrue(applies(t, "turns", {}))
+        self.assertTrue(applies(t, "structured_speed", {}))
 
     def test_unset_var_refused(self):
         t = config.Target("g", {"url": "http://h"}, {})

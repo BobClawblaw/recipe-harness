@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from .. import api
@@ -61,7 +62,59 @@ def structured(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
             + (f"; failed {', '.join(bad)}" if bad else ""), "metrics": {"failures": bad, "bad_regex_status": r["status"]}}
 
 
-SAMPLING_PROMPTS = ["Write a short poem about the sea.", "Give three creative names for a coffee shop.",
+TEAM = {"type": "array", "minItems": 12, "maxItems": 12, "items": PERSON}
+
+# long replies for decode speed: the same prompt with the grammar off and on
+GRAMMAR_SPEED = [
+    ("json_schema", "Invent twelve people as a JSON array; each has a name, an age and up to three hobbies.",
+     {"response_format": {"type": "json_schema", "json_schema": {"name": "team", "schema": TEAM}}}),
+    ("json_object", "Describe five European cities as one JSON object: for each city its country, population, a famous "
+                    "sight and a one-sentence history.", {"response_format": {"type": "json_object"}}),
+]
+
+
+def _decode(r: dict) -> float | None:
+    """Tokens a second after the first, from a streamed reply."""
+    n = (r.get("usage") or {}).get("completion_tokens") or 0
+    d = (r.get("s") or 0) - (r.get("ttft") or 0)
+    return round((n - 1) / d, 1) if r.get("status") == 200 and n > 1 and d > 0 else None
+
+
+def structured_speed(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
+    """Decode speed with the grammar off and on (greedy, thinking off): one stream; two grammar streams at once; and a
+    plain stream beside a grammar stream against beside a plain one. Measured; fails only on an error or a grammar
+    reply that is not JSON."""
+    kw = {"max_tokens": spec.get("max_tokens", 768), "temperature": 0, "chat_template_kwargs": {"enable_thinking": False}}
+    ask = lambda prompt, extra: api.stream(target.url, target.model, [{"role": "user", "content": prompt}], **kw, **extra)
+    pair = lambda a, b: list(ThreadPoolExecutor(2).map(lambda f: f(), [a, b]))
+    res, bad, parts = {}, [], []
+    for kind, prompt, extra in GRAMMAR_SPEED:
+        one = {"off": ask(prompt, {}), "on": ask(prompt, extra), "on_undrafted": ask(prompt, {**extra, "draft": False})}
+        two = {"off": pair(lambda: ask(prompt, {}), lambda: ask(prompt, {})),
+               "on": pair(lambda: ask(prompt, extra), lambda: ask(prompt, extra)),
+               "plain_beside_on": pair(lambda: ask(prompt, {}), lambda: ask(prompt, extra))[0]}
+        for r in (one["on"], one["on_undrafted"], *two["on"]):
+            try:
+                json.loads(r["text"])
+            except Exception:
+                bad.append(kind)
+        if any(r.get("status") != 200 for r in [*one.values(), *two["off"], *two["on"], two["plain_beside_on"]]):
+            bad.append(f"{kind}: errors")
+        m = {"c1_off": _decode(one["off"]), "c1_on": _decode(one["on"]), "c1_on_undrafted": _decode(one["on_undrafted"]),
+             "c2_off_total": round(sum(_decode(r) or 0 for r in two["off"]), 1),
+             "c2_on_total": round(sum(_decode(r) or 0 for r in two["on"]), 1),
+             "c2_plain_beside_plain": _decode(two["off"][0]), "c2_plain_beside_on": _decode(two["plain_beside_on"]),
+             "tokens_on": (one["on"].get("usage") or {}).get("completion_tokens")}
+        res[kind] = {"metrics": m, "one": one, "two": two}
+        parts.append(f"{kind} c=1 off/on {m['c1_off']}/{m['c1_on']} (undrafted {m['c1_on_undrafted']}), "
+                     f"c=2 total {m['c2_off_total']}/{m['c2_on_total']}, plain beside plain/grammar "
+                     f"{m['c2_plain_beside_plain']}/{m['c2_plain_beside_on']} tok/s")
+    _save(run_dir, name, res)
+    return {"ok": False if bad else None, "summary": "; ".join(parts) + (f"; failed {', '.join(sorted(set(bad)))}" if bad else ""),
+            "metrics": {k: v["metrics"] for k, v in res.items()}}
+
+
+SAMPLING_PROMPTS =["Write a short poem about the sea.", "Give three creative names for a coffee shop.",
                     "Explain recursion to a child in two sentences."]
 SAMPLING_RULES = [{"temperature": 0.8, "top_k": 20, "top_p": 0.95, "seed": 1}, {"temperature": 1.0, "top_p": 0.8, "min_p": 0.05, "seed": 2},
                   {"temperature": 0.7, "top_k": 5, "seed": 3}]

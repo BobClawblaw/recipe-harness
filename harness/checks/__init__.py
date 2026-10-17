@@ -12,6 +12,7 @@ REGISTRY = {
     "suite": recipe.suite,
     "ruler": recipe.ruler,
     "structured": server.structured,
+    "structured_speed": server.structured_speed,
     "sampling": server.sampling,
     "turns": server.turns,
     "urls": server.urls,
@@ -21,7 +22,7 @@ REGISTRY = {
 }
 
 # a check whose feature the target turns off is skipped (e.g. a greedy-only engine has no sampling)
-NEEDS = {"structured": "structured", "sampling": "sampling", "urls": "vision_urls", "capacity": "capacity",
+NEEDS = {"structured": "structured", "structured_speed": "structured", "sampling": "sampling", "urls": "vision_urls", "capacity": "capacity",
          "thinking": "thinking", "turns": "prompt_cache"}
 
 
