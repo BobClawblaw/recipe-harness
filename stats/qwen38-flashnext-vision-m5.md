@@ -1,6 +1,58 @@
 # Qwen3.8-Flash-Next, 6-bit with vision on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/qwen38-flashnext-vision-m5.json` (15 runs); aggregate tok/s, total (a stream).
+Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/qwen38-flashnext-vision-m5.json` (17 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-17 12:09: run `20261017-120921-fn-speed`
+
+Plan fn-speed, done; served as `Qwen3.8-Flash-Next-MLX-6bit`.
+
+Serving: engine_commit `394d2e35`; binary_sha256 `43a9c01ac3eee31998def08595f5e4fc6d29819d46799a8ac01b7cdffd72b668`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 142.4 (142.4) | 209.5 (209.5) | 173.2 (173.2) | 206.5 (206.5) | 0.11-0.13 s |
+| 2 | 197.6 (98.8) | 261.9 (130.9) | 221.5 (110.7) | 271.5 (135.8) | 0.17-0.19 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey; a bad regex -> 400 |
+
+## 2026-10-17 12:06: run `20261017-120630-fn-speed`
+
+Plan fn-speed, done; served as `Qwen3.8-Flash-Next-MLX-6bit`.
+
+Serving: engine_commit `8eb98182`; binary_sha256 `b4cb60f5421b2aa78f5e4ff308d1c20fe05d0c6c75b6a6f3266bf3df13bd1858`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 141.2 (141.2) | 209.8 (209.8) | 172.1 (172.1) | 207.7 (207.7) | 0.12-0.12 s |
+| 2 | 195.0 (97.5) | 262.1 (131.1) | 221.6 (110.8) | 281.9 (140.9) | 0.17-0.19 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey; a bad regex -> 400 |
 
 ## 2026-10-17 11:34: run `20261017-113452-fn-1m`
 

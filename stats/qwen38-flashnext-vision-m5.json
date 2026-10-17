@@ -1465,6 +1465,218 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261017-120630-fn-speed",
+   "target": "qwen38-flashnext-vision-m5",
+   "model": "Qwen3.8-Flash-Next-MLX-6bit",
+   "plan": "fn-speed",
+   "started": "20261017-120630",
+   "finished": "20261017-120849",
+   "status": "done",
+   "identity": {
+    "engine_commit": "8eb98182",
+    "binary_sha256": "b4cb60f5421b2aa78f5e4ff308d1c20fe05d0c6c75b6a6f3266bf3df13bd1858",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Qwen3.8-Flash-Next-MLX-6bit\", \"object\": \"model\", \"created\": 1792256826, \"owned_by\": \"tensorfold\", \"context_length\": 262112, \"max_model_len\": 262112, \"reasoning\": {\"default_enabled\": false, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 141.2,
+      "per_stream": 141.2,
+      "ttft": 0.117
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 209.8,
+      "per_stream": 209.8,
+      "ttft": 0.12
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 172.1,
+      "per_stream": 172.1,
+      "ttft": 0.123
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 207.7,
+      "per_stream": 207.7,
+      "ttft": 0.115
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 195.0,
+      "per_stream": 97.5,
+      "ttft": 0.175
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 262.1,
+      "per_stream": 131.1,
+      "ttft": 0.174
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 221.6,
+      "per_stream": 110.8,
+      "ttft": 0.191
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 281.9,
+      "per_stream": 140.9,
+      "ttft": 0.171
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 141.2/209.8/172.1/207.7 ttft 0.11-0.12s; c=2 195.0/262.1/221.6/281.9 ttft 0.17-0.19s"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey; a bad regex -> 400"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, concurrent 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-Flash-Next, 6-bit with vision",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261017-120921-fn-speed",
+   "target": "qwen38-flashnext-vision-m5",
+   "model": "Qwen3.8-Flash-Next-MLX-6bit",
+   "plan": "fn-speed",
+   "started": "20261017-120921",
+   "finished": "20261017-121141",
+   "status": "done",
+   "identity": {
+    "engine_commit": "394d2e35",
+    "binary_sha256": "43a9c01ac3eee31998def08595f5e4fc6d29819d46799a8ac01b7cdffd72b668",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Qwen3.8-Flash-Next-MLX-6bit\", \"object\": \"model\", \"created\": 1792256998, \"owned_by\": \"tensorfold\", \"context_length\": 262112, \"max_model_len\": 262112, \"reasoning\": {\"default_enabled\": false, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 142.4,
+      "per_stream": 142.4,
+      "ttft": 0.121
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 209.5,
+      "per_stream": 209.5,
+      "ttft": 0.12
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 173.2,
+      "per_stream": 173.2,
+      "ttft": 0.126
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 206.5,
+      "per_stream": 206.5,
+      "ttft": 0.113
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 197.6,
+      "per_stream": 98.8,
+      "ttft": 0.174
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 261.9,
+      "per_stream": 130.9,
+      "ttft": 0.173
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 221.5,
+      "per_stream": 110.7,
+      "ttft": 0.19
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 271.5,
+      "per_stream": 135.8,
+      "ttft": 0.171
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 142.4/209.5/173.2/206.5 ttft 0.11-0.13s; c=2 197.6/261.9/221.5/271.5 ttft 0.17-0.19s"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey; a bad regex -> 400"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, concurrent 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-Flash-Next, 6-bit with vision",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
