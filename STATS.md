@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-17 06:24 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-17 06:57 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -10,7 +10,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 |---|---|---:|---:|---:|---|---|
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 27/48/39/33 | 8: 78/115/98/110 | 0.18 / 1.49-1.83 |  | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/38/33/31 | 16: 124/156/150/145 | 0.18 / 8.50-17.20 |  | 2026-10-16 |
-| GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/39/34/31 | 16: 68/91/88/89 | 0.18 / 3.20-3.67 |  | 2026-10-17 |
+| GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/39/34/31 | 16: 86/101/100/102 | 0.18 / 3.23-3.72 |  | 2026-10-17 |
 | GLM-5.3-Flash, EXL3 4 bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 46/69/57/59 |  | 0.18 | tools 59/60, json 30/30, gsm8k 246/250, humaneval 159/164, ifeval 118/150 | 2026-10-14 |
 | GLM-5.3-Flash, MLX 4-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 74/78/78/86 |  | 0.11 | tools 57/60, json 30/30, gsm8k 246/250 | 2026-10-16 |
 | Gemma 4 12B, MLX 4-bit + MTP assistant | 1x Apple M5 Ultra (256 GB unified), macOS | 140/223/205/248 |  | 0.04 | tools 58/60, json 30/30, gsm8k 239/250 | 2026-10-16 |
@@ -246,18 +246,18 @@ Serving: binary `2b666cc74334abec`
 
 ## GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `glm53-exl3-gb10-port16`: GLM-5.3-Flash EXL3 4bpw, families/glm with 4096-row index rings, --parallel 16, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm + index rings (16 streams at 40960); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261017-055626-glm-streams` (2026-10-17 05:56, plan glm-streams, done).
+Target `glm53-exl3-gb10-port16`: GLM-5.3-Flash EXL3 4bpw, families/glm with 4096-row index rings, --parallel 16, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm + index rings (16 streams at 40960); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261017-062916-glm-streams` (2026-10-17 06:29, plan glm-streams, done).
 
-Serving: binary `44e0c91b7c5589f4`
+Serving: binary `142bc21ac97bc065`
 
 ### ruler-streams
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 28.3 (28.3) | 39.0 (39.0) | 34.0 (34.0) | 31.3 (31.3) | 0.18-0.23 s |
-| 4 | 52.5 (13.1) | 67.8 (16.8) | 66.6 (16.5) | 67.2 (16.8) | 0.65-0.79 s |
-| 8 | 66.6 (8.4) | 87.0 (10.9) | 83.9 (10.6) | 85.2 (10.5) | 1.39-1.65 s |
-| 16 | 68.3 (4.2) | 90.8 (5.6) | 88.3 (5.4) | 89.3 (5.5) | 3.20-3.67 s |
+| 1 | 28.0 (28.0) | 38.6 (38.6) | 33.5 (33.5) | 30.7 (30.7) | 0.18-0.23 s |
+| 4 | 51.3 (12.9) | 65.5 (16.3) | 65.7 (16.5) | 66.0 (16.5) | 0.67-0.81 s |
+| 8 | 64.3 (8.1) | 82.3 (10.3) | 83.2 (10.4) | 81.8 (10.2) | 1.41-1.68 s |
+| 16 | 86.4 (5.4) | 100.6 (6.3) | 100.2 (6.1) | 101.5 (6.2) | 3.23-3.72 s |
 
 ### suite-together
 
@@ -270,6 +270,7 @@ Serving: binary `44e0c91b7c5589f4`
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-17 06:29 | glm-streams | done | 38.6 | 100.6 | 3.23-3.72 s | 24/24 |
 | 2026-10-17 05:56 | glm-streams | done | 39.0 | 90.8 | 3.20-3.67 s | 24/24 |
 
 ## GLM-5.3-Flash, EXL3 4 bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
