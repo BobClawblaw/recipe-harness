@@ -6,7 +6,7 @@ name = "glm53-exl3-gb10-best"
 description = "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
 model_name = "GLM-5.3-Flash EXL3 4bpw"
 hardware = "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE"
-engine = "TensorFold native, CUDA: families/glm, packed linears (4/8), DFlash2, 16 streams"
+engine = "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts whole"
 url = "http://127.0.0.1:$port"
 model = "GLM-5.3-Flash-EXL3"
 
@@ -17,9 +17,9 @@ binary = "CHANGE-ME: the native build the launcher serves"
 port = "8890"
 
 [commands]
-up = "PAIR_CONTEXT=32768 bash $pair up best"
-down = "PAIR_CONTEXT=32768 bash $pair down best"
-status = "PAIR_CONTEXT=32768 bash $pair status best"
+up = "PAIR_BIN=best3 PAIR_ENV='NCCL_CUMEM_HOST_ENABLE=0 NCCL_CUMEM_ENABLE=0 TF_GLM_PROMPT_STEPS=0' bash $pair up best"
+down = "PAIR_BIN=best3 PAIR_ENV='NCCL_CUMEM_HOST_ENABLE=0 NCCL_CUMEM_ENABLE=0 TF_GLM_PROMPT_STEPS=0' bash $pair down best"
+status = "PAIR_BIN=best3 PAIR_ENV='NCCL_CUMEM_HOST_ENABLE=0 NCCL_CUMEM_ENABLE=0 TF_GLM_PROMPT_STEPS=0' bash $pair status best"
 suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
 ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
 
