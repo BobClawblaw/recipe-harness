@@ -930,6 +930,125 @@
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
    "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
    "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261017-165220-glm-quality",
+   "target": "glm53-exl3-gb10-best",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-quality",
+   "started": "20261017-165220",
+   "finished": "20261017-194452",
+   "status": "done",
+   "identity": {
+    "binary": "731512bfd7e524e8"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 41.7,
+      "per_stream": 41.7,
+      "ttft": 0.188
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 59.6,
+      "per_stream": 59.6,
+      "ttft": 0.212
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 56.6,
+      "per_stream": 56.6,
+      "ttft": 0.224
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 57.6,
+      "per_stream": 57.6,
+      "ttft": 0.167
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-thinking": {
+     "gsm8k": {
+      "passed": 248,
+      "cases": 250
+     },
+     "ifeval": {
+      "passed": 100,
+      "cases": 150
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 27.3 GiB available"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 41.7/59.6/56.6/57.6 ttft 0.17-0.22s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "no report (exit -15): ['math500          433/500     86.6%  (3086s)  L1 40/43 L2 85/90 L3 101/105 L4 107/128 L5 100/134, 16 without a boxed answer']"
+    },
+    "thinking": {
+     "ok": true,
+     "summary": "thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors"
+    },
+    "suite-thinking": {
+     "ok": null,
+     "summary": "gsm8k 248/250, ifeval 100/150"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
+   "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261017-195233-glm-ab-ifeval",
+   "target": "glm53-exl3-gb10-best",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-ab-ifeval",
+   "started": "20261017-195233",
+   "finished": "20261017-200855",
+   "status": "done",
+   "identity": {
+    "binary": "cf50867102a60c38"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "ifeval": {
+      "passed": 103,
+      "cases": 150
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     }
+    }
+   },
+   "checks": {
+    "suite": {
+     "ok": null,
+     "summary": "ifeval 103/150, json 30/30"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
+   "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
   }
  ]
 }

@@ -1,0 +1,6 @@
+description = "IFEval and JSON alone, thinking off (about 15 minutes): an A/B of one change's instruction following"
+restart = true
+
+[[checks]]
+type = "suite"
+args = "--only ifeval json"

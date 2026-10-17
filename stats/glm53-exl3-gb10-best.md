@@ -1,6 +1,45 @@
 # GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `glm53-exl3-gb10-best`: GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many). Rendered from `stats/glm53-exl3-gb10-best.json` (6 runs); aggregate tok/s, total (a stream).
+Target `glm53-exl3-gb10-best`: GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many). Rendered from `stats/glm53-exl3-gb10-best.json` (8 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-17 19:52: run `20261017-195233-glm-ab-ifeval`
+
+Plan glm-ab-ifeval, done; served as `GLM-5.3-Flash-EXL3`.
+
+Serving: binary `cf50867102a60c38`
+
+### suite
+
+| check | passed |
+|---|---:|
+| ifeval | 103/150 |
+| json | 30/30 |
+
+## 2026-10-17 16:52: run `20261017-165220-glm-quality`
+
+Plan glm-quality, done; served as `GLM-5.3-Flash-EXL3`.
+
+Serving: binary `731512bfd7e524e8`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 41.7 (41.7) | 59.6 (59.6) | 56.6 (56.6) | 57.6 (57.6) | 0.17-0.22 s |
+
+### suite-thinking
+
+| check | passed |
+|---|---:|
+| gsm8k | 248/250 |
+| ifeval | 100/150 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: head 27.3 GiB available |
+| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors |
 
 ## 2026-10-17 16:26: run `20261017-162600-glm-streams`
 
