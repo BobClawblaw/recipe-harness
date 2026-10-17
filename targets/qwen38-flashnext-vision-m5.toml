@@ -1,0 +1,76 @@
+# Qwen3.8-Flash-Next 6-bit MTP with images and video (TensorFold/Qwen3.8-Flash-Next-MLX-6bit-MTP) on one 256 GB M5 Ultra
+# Mac, served by the qwen38-flashnext-vision-m5-ultra recipe (`python3 -m mac up|down`): TensorFold native Metal, two
+# 262k streams, MTP drafts, an 8 GiB prompt cache. `engine_sha` and `engine_repo` pick the engine the recipe builds
+# (TENSORFOLD_SHA and TENSORFOLD_REPO override recipe.toml); `extra_env` its EXTRA_ENV. The quality suite and ruler are
+# the qwen Spark recipe's (main), from a local checkout (suite_dir). Machine-specific values go in
+# qwen38-flashnext-vision-m5.local.toml.
+name = "qwen38-flashnext-vision-m5"
+description = "Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra"
+url = "http://127.0.0.1:$port"
+model = "Qwen3.8-Flash-Next-MLX-6bit"
+model_name = "Qwen3.8-Flash-Next, 6-bit with vision"   # the report's model column
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout"
+recipe_dir = "CHANGE-ME: a checkout of qwen38-flashnext-vision-m5-ultra"
+tf_cache = "CHANGE-ME: the recipe's tf_cache (~/.cache/tensorfold-qwen38-vision)"
+engine_sha = "CHANGE-ME: the TensorFold commit the recipe builds"
+engine_repo = "CHANGE-ME: a repository holding it"
+extra_env = "FLASHNEXT_NO_LONE=1"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+port = "8888"
+
+[commands]
+up = "cd $recipe_dir && TENSORFOLD_SHA=$engine_sha TENSORFOLD_REPO=$engine_repo EXTRA_ENV='$extra_env' python3 -m mac up --no-download"
+down = "cd $recipe_dir && python3 -m mac down"
+status = "cd $recipe_dir && python3 -m mac status"
+diagnose = "tail -5 $tf_cache/server.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 900                     # a cold start reads 147 GiB
+health_wait = 900
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "echo $engine_sha | cut -c1-8"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $tf_cache/engine/$engine_sha/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+[features]
+drafts = true
+structured = true
+sampling = true
+vision_urls = false   # data URLs only
+capacity = false
+max_concurrency = 2
+thinking = true
+prompt_cache = true
+
+# community-v1 does not complete on this checkpoint: its code prompt (a raw completion, no template) samples the end token
+# first at seed 1235, temperature 1 (55 of 200 seeds; the 7808bee8 and 8a509ab5 engines alike), so nothing is published.
+[leaderboard]
+model = "TensorFold/Qwen3.8-Flash-Next-MLX-6bit-MTP"   # cached as a Hugging Face snapshot; MTP drafts are the checkpoint's own
+binary = "$tf_cache/engine/$engine_sha/zig-out/native/bin/tensorfold-native"
+free = "! pgrep -f 'tensorfold-native serve [^ ]*Flash-Next'"
+env = { FLASHNEXT_NO_LONE = "1" }   # the recipe's EXTRA_ENV

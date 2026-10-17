@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-17 07:48 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-17 11:04 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -20,7 +20,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision | 1x NVIDIA RTX 5090 (32 GB) | 150/150/150/150 |  | 0.03 | tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150 | 2026-10-15 |
 | Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 241/459/310/314 |  | 0.10 |  | 2026-10-16 |
 | Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
-| Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 128/174/148/175 | 8: 272/330/292/339 | 0.16 / 0.76-0.84 | tools 59/60, json 30/30 | 2026-10-12 |
+| Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/208/172/205 | 2: 196/263/232/268 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, MLX 6-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 145/206/172/194 | 4: 566/816/673/854 | 0.09 / 1.63-3.07 | gsm8k 242/250, ifeval 134/150 | 2026-10-11 |
 | Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP | 1x Apple M5 Ultra (256 GB unified), macOS | 38/50/40/48 |  | 0.24 |  | 2026-10-16 |
 
@@ -553,20 +553,39 @@ Target `qwen38-flashnext-mlx6bit-m5`: Qwen3.8-Flash-Next MLX 6-bit, TensorFold n
 
 ## Qwen3.8-Flash-Next, 6-bit with vision on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit with image input, TensorFold native on one M5 Ultra. Engine: TensorFold native, Metal; served as `Qwen3.8-Flash-Next-6bit`. Latest: run `evidence/2026-10-12-parallel8` (2026-10-12 00:00, plan published evidence, published).
+Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Qwen3.8-Flash-Next-MLX-6bit`. Latest: run `20261017-055855-fn-speed` (2026-10-17 05:58, plan fn-speed, done).
 
-### ruler
+Serving: engine_commit `8a509ab5`; binary_sha256 `61af7bb33cb65982710b0b19b7ddc434b94fd6bffcb556a858a17b53e74d64ff`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-fresh
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 127.7 (127.7) | 174.1 (174.1) | 147.8 (147.8) | 175.4 (175.4) | 0.16-0.17 s |
-| 4 | 210.2 (52.9) | 303.3 (76.3) | 249.2 (61.1) | 316.9 (77.8) | 0.37-0.40 s |
-| 8 | 271.5 (34.1) | 330.0 (40.8) | 292.5 (36.5) | 339.3 (41.7) | 0.76-0.84 s |
+| 1 | 141.8 (141.8) | 208.0 (208.0) | 171.5 (171.5) | 205.2 (205.2) | 0.11-0.12 s |
+| 2 | 196.0 (98.0) | 262.7 (131.4) | 231.6 (115.8) | 268.5 (134.2) | 0.17-0.19 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+
+### checks
+
+| check | result |
+|---|---|
+| structured | FAIL: 0/18 obey; a bad regex -> 400; failed json_object/greedy, json_object/sampled, json_object/thinking, json_schema/greedy, json_schema/sampled, json_schema/thinking, guided_json/greedy, guided_json/sampled, guided_json/thinking, regex/greedy, regex/sampled, regex/thinking, choice/greedy, choice/sampled, choice/thinking, grammar/greedy, grammar/sampled, grammar/thinking |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-17 05:58 | fn-speed | done | 208.0 |  |  | 24/24 |
+| 2026-10-17 01:00 | fn-speed | done | 202.8 |  |  | 24/24 |
+| 2026-10-17 00:57 | fn-speed | done | 207.3 |  |  | 24/24 |
+| 2026-10-16 19:29 | fn-speed | done | 201.8 |  |  | 24/24 |
+| 2026-10-16 19:26 | fn-speed | done | 207.3 |  |  | 24/24 |
 | 2026-10-12 00:00 | published evidence | published | 174.1 |  |  |  |
 | 2026-10-12 00:00 | published evidence | published | 202.7 |  |  |  |
 | 2026-10-12 00:00 | published evidence | published | 176.6 |  |  |  |
