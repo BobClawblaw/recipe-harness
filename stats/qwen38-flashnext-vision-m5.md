@@ -1,6 +1,60 @@
 # Qwen3.8-Flash-Next, 6-bit with vision on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/qwen38-flashnext-vision-m5.json` (13 runs); aggregate tok/s, total (a stream).
+Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit MTP with images and video, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/qwen38-flashnext-vision-m5.json` (15 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-17 11:34: run `20261017-113452-fn-1m`
+
+Plan fn-1m, done; served as `Qwen3.8-Flash-Next-MLX-6bit`.
+
+Serving: engine_commit `8eb98182`; binary_sha256 `b4cb60f5421b2aa78f5e4ff308d1c20fe05d0c6c75b6a6f3266bf3df13bd1858`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-1m
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 136.5 (136.5) | 197.4 (197.4) | 163.7 (163.7) | 215.7 (215.7) | 0.11-0.12 s |
+| 2 | 203.0 (101.5) | 255.0 (127.5) | 231.0 (115.5) | 266.1 (133.1) | 0.17-0.19 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey; a bad regex -> 400 |
+
+## 2026-10-17 11:31: run `20261017-113130-fn-media`
+
+Plan fn-media, done; served as `Qwen3.8-Flash-Next-MLX-6bit`.
+
+Serving: engine_commit `8eb98182`; binary_sha256 `b4cb60f5421b2aa78f5e4ff308d1c20fe05d0c6c75b6a6f3266bf3df13bd1858`; served_model `{"object": "list", "data": [{"id": "Qwen3.8-Flash-Next-MLX-6bit", "object": "model", "crea`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 141.5 (141.5) | 208.9 (208.9) | 175.8 (175.8) | 214.4 (214.4) | 0.11-0.12 s |
+| 2 | 194.4 (97.2) | 262.0 (131.0) | 218.7 (109.3) | 271.1 (135.6) | 0.17-0.19 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey; a bad regex -> 400 |
+| structured_speed | measured: json_schema c=1 off/on 199.2/203.2 (undrafted 93.9), c=2 total 258.9/265.1, plain beside plain/grammar 131.4/128.7 tok/s; json_object c=1 off/on 186.8/179.2 (undrafted 94.6), c=2 total 242.0/233.9, plain beside plain/grammar 123.4/119.4 tok/s |
+| urls | pass: public 200; loopback 400; http 400 |
 
 ## 2026-10-17 09:38: run `20261017-093813-fn-grammar-speed`
 
