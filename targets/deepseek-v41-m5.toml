@@ -1,0 +1,69 @@
+# DeepSeek-V4.1-Flash-1017 (2-bit experts, layers 10-29 at 3-bit, 8-bit dense) with images and DSpark drafts on one
+# 256 GB M5 Ultra Mac, served by the deepseek-v41-flash-mlx-m5-ultra recipe (`python3 -m mac up|down`): TensorFold
+# native Metal, the deepseek-v41 branch's engine. The ruler and suite are the qwen Spark recipe's, from a local
+# checkout (suite_dir). Machine-specific values go in deepseek-v41-m5.local.toml.
+name = "deepseek-v41-m5"
+description = "DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra"
+url = "http://127.0.0.1:$port"
+model = "DeepSeek-V4.1-Flash"
+model_name = "DeepSeek-V4.1-Flash-1017, 2/3-bit experts"
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout"
+recipe_dir = "CHANGE-ME: a checkout of deepseek-v41-flash-mlx-m5-ultra"
+tf_cache = "CHANGE-ME: the recipe's tf_cache (~/.cache/tensorfold-deepseek-v41)"
+engine_sha = "CHANGE-ME: the TensorFold commit the recipe builds"
+engine_dir = "CHANGE-ME: its worktree, $tf_cache/engine/<the sha's first 12>"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+port = "8890"
+
+[commands]
+up = "cd $recipe_dir && TENSORFOLD_SHA=$engine_sha PORT=$port python3 -m mac up"
+down = "cd $recipe_dir && python3 -m mac down"
+status = "cd $recipe_dir && python3 -m mac status"
+diagnose = "tail -5 $tf_cache/server.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 900                     # a cold start reads 191 GiB
+health_wait = 900
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "echo $engine_sha | cut -c1-8"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "checkpoint"
+cmd = "cd $recipe_dir && python3 -c \"import json,os,tomllib; s=tomllib.load(open('recipe.toml','rb'))['model']; print(json.load(open(os.path.expanduser(s['model_dir'])+'/config.json'))['source'])\""
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+[features]
+drafts = true
+structured = false    # no grammars on this family yet
+sampling = true
+vision_urls = false   # data URLs only
+capacity = false
+max_concurrency = 2   # streams take turns
+thinking = true
+prompt_cache = true

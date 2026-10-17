@@ -1,0 +1,23 @@
+description = "About 15 minutes, speed only (no quality suite): one and two streams fresh, a multi-turn chat's kept prompt reuse, the ruler again after"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ruler"
+label = "fresh"
+concurrency = [1, 2]
+
+[[checks]]
+type = "turns"
+
+[[checks]]
+type = "ruler"
+label = "after"
+concurrency = [1]
+
+[[checks]]
+type = "memory"
+name = "memory-busy"
