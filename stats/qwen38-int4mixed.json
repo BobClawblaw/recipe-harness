@@ -3554,6 +3554,208 @@
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
    "engine": "TensorFold native, CUDA",
    "description": "Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261017-072502-rebase",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "rebase",
+   "started": "20261017-072502",
+   "finished": "20261017-074749",
+   "status": "done",
+   "identity": {
+    "patch_sha": "47c78d3f99593702c9e8a0baa64ec32c937520930186c78549004f411cd5f731",
+    "image": "tf-qwen38-int4mixed:native-v1.0.12 sha256:276fe2ba4ed3e778ec6f55ffad1430897b9ff439aff8352b52bb801f618a4587",
+    "server_args": "--context 1048576 --no-thinking --parallel 16 --vision-urls --vision"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 78.0,
+      "per_stream": 78.0,
+      "ttft": 0.034
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 127.0,
+      "per_stream": 127.0,
+      "ttft": 0.041
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 102.1,
+      "per_stream": 102.1,
+      "ttft": 0.039
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 130.5,
+      "per_stream": 130.5,
+      "ttft": 0.034
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 304.2,
+      "per_stream": 18.9,
+      "ttft": 0.455
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 516.3,
+      "per_stream": 31.0,
+      "ttft": 0.463
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 391.6,
+      "per_stream": 24.0,
+      "ttft": 0.541
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 524.9,
+      "per_stream": 31.7,
+      "ttft": 0.448
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 456,
+      "cached": 296,
+      "tokens": 2607,
+      "rounds": 720,
+      "accepted": 1908,
+      "proposed": 2910,
+      "tokens_a_round": 3.621,
+      "drafts_a_round": 4.042,
+      "accept_rate": 0.656,
+      "ms_a_round": 33.09
+     },
+     "16": {
+      "requests": 193,
+      "prompt": 7170,
+      "cached": 2380,
+      "tokens": 41110,
+      "rounds": 12797,
+      "accepted": 28565,
+      "proposed": 37383,
+      "tokens_a_round": 3.212,
+      "drafts_a_round": 2.921,
+      "accept_rate": 0.764,
+      "ms_a_round": 121.71
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    },
+    "suite-guided": {
+     "json-guided": {
+      "passed": 30,
+      "cases": 30
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     }
+    },
+    "suite-thinking": {
+     "gsm8k": {
+      "passed": 234,
+      "cases": 250
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 22.6 GiB available; worker 25.3 GiB available"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 78.0/127.0/102.1/130.5 ttft 0.03-0.04s; c=16 304.2/516.3/391.6/524.9 ttft 0.45-0.54s; engine: c=1 3.62 tokens a round 66% accepted, 33.1 ms a round; c=16 3.21 tokens a round 76% accepted, 121.7 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey; a bad regex -> 400"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.105s, cold 0.035s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    },
+    "suite-guided": {
+     "ok": null,
+     "summary": "json-guided 30/30, tools 60/60"
+    },
+    "thinking": {
+     "ok": true,
+     "summary": "thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors"
+    },
+    "suite-thinking": {
+     "ok": null,
+     "summary": "gsm8k 234/250"
+    }
+   },
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks"
   }
  ]
 }

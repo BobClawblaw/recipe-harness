@@ -1,6 +1,63 @@
 # Qwen3.8-Flash-Next INT4-Mixed (AutoRound) on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA. Rendered from `stats/qwen38-int4mixed.json` (19 runs); aggregate tok/s, total (a stream).
+Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA. Rendered from `stats/qwen38-int4mixed.json` (20 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-17 07:25: run `20261017-072502-rebase`
+
+Plan rebase, done; served as `Qwen3.8-Flash-Next-INT4-Mixed`.
+
+Serving: patch_sha `47c78d3f99593702c9e8a0baa64ec32c937520930186c78549004f411cd5f731`; image `tf-qwen38-int4mixed:native-v1.0.12 sha256:276fe2ba4ed3e778ec6f55ffad1430897b9ff439aff8352b`; server_args `--context 1048576 --no-thinking --parallel 16 --vision-urls --vision`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 78.0 (78.0) | 127.0 (127.0) | 102.1 (102.1) | 130.5 (130.5) | 0.03-0.04 s |
+| 16 | 304.2 (18.9) | 516.3 (31.0) | 391.6 (24.0) | 524.9 (31.7) | 0.45-0.54 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 3.621 | 4.042 | 66% | 33.09 | 12 |
+| 16 | 3.212 | 2.921 | 76% | 121.71 | 193 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### suite-guided
+
+| check | passed |
+|---|---:|
+| json-guided | 30/30 |
+| tools | 60/60 |
+
+### suite-thinking
+
+| check | passed |
+|---|---:|
+| gsm8k | 234/250 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: head 22.6 GiB available; worker 25.3 GiB available |
+| structured | pass: 18/18 obey; a bad regex -> 400 |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.105s, cold 0.035s |
+| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors |
 
 ## 2026-10-15 17:13: run `20261015-171328-full`
 

@@ -1,0 +1,38 @@
+description = "A release rebase (about 45 minutes): one stream and 16 fresh, the serving checks, the suite's exactness and soak checks, structured output through the server's grammar, thinking on"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ruler"
+label = "fresh"
+concurrency = [1, 16]
+
+[[checks]]
+type = "structured"
+
+[[checks]]
+type = "sampling"
+
+[[checks]]
+type = "turns"
+
+[[checks]]
+type = "suite"
+args = "--only soak drafts concurrent behaviour"
+
+[[checks]]
+type = "suite"
+name = "suite-guided"
+args = "--only json tools --guided-json"
+
+[[checks]]
+type = "thinking"
+max_tokens = 8192
+
+[[checks]]
+type = "suite"
+name = "suite-thinking"
+args = "--only gsm8k --thinking"

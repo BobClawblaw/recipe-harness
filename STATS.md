@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-17 06:57 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-17 07:48 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -19,7 +19,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Gemma 4 31B, oQ8e (8-bit) + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 40/63/52/55 | 4: 110/173/142/180 | 0.10 / 0.24-0.27 |  | 2026-10-16 |
 | NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision | 1x NVIDIA RTX 5090 (32 GB) | 150/150/150/150 |  | 0.03 | tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150 | 2026-10-15 |
 | Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 241/459/310/314 |  | 0.10 |  | 2026-10-16 |
-| Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 77/127/101/130 | 16: 302/510/391/519 | 0.03 / 0.44-0.55 | tools 60/60, json 30/30, gsm8k 241/250, humaneval 157/164, ifeval 130/150 | 2026-10-15 |
+| Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 128/174/148/175 | 8: 272/330/292/339 | 0.16 / 0.76-0.84 | tools 59/60, json 30/30 | 2026-10-12 |
 | Qwen3.8-Flash-Next, MLX 6-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 145/206/172/194 | 4: 566/816/673/854 | 0.09 / 1.63-3.07 | gsm8k 242/250, ifeval 134/150 | 2026-10-11 |
 | Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP | 1x Apple M5 Ultra (256 GB unified), macOS | 38/50/40/48 |  | 0.24 |  | 2026-10-16 |
@@ -575,46 +575,29 @@ Target `qwen38-flashnext-vision-m5`: Qwen3.8-Flash-Next 6-bit with image input, 
 
 ## Qwen3.8-Flash-Next INT4-Mixed (AutoRound) on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as `Qwen3.8-Flash-Next-INT4-Mixed`. Latest: run `20261015-171328-full` (2026-10-15 17:13, plan full, done).
+Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as `Qwen3.8-Flash-Next-INT4-Mixed`. Latest: run `20261017-072502-rebase` (2026-10-17 07:25, plan rebase, done).
 
-Serving: patch_sha `186193c6a530d89ee6383c11a9e41f98bac95bb119959aa5901c65b0f93b21ea`; image `tf-qwen38-int4mixed:native-v1.0.11-3 sha256:7c5838987336819a3dcc51d8f9abcf169f80fbfe73222e`; server_args `--context 1048576 --no-thinking --parallel 16 --vision-urls --vision`
+Serving: patch_sha `47c78d3f99593702c9e8a0baa64ec32c937520930186c78549004f411cd5f731`; image `tf-qwen38-int4mixed:native-v1.0.12 sha256:276fe2ba4ed3e778ec6f55ffad1430897b9ff439aff8352b`; server_args `--context 1048576 --no-thinking --parallel 16 --vision-urls --vision`
 
 ### ruler-fresh
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 77.3 (77.3) | 127.0 (127.0) | 100.6 (100.6) | 129.6 (129.6) | 0.03-0.04 s |
-| 4 | 159.1 (39.8) | 253.9 (65.0) | 201.7 (49.8) | 268.4 (61.8) | 0.07-0.10 s |
-| 8 | 228.9 (28.8) | 385.2 (46.2) | 282.4 (35.8) | 423.1 (51.3) | 0.11-0.14 s |
-| 16 | 301.9 (18.8) | 509.8 (30.6) | 391.3 (24.0) | 519.2 (31.6) | 0.44-0.55 s |
+| 1 | 78.0 (78.0) | 127.0 (127.0) | 102.1 (102.1) | 130.5 (130.5) | 0.03-0.04 s |
+| 16 | 304.2 (18.9) | 516.3 (31.0) | 391.6 (24.0) | 524.9 (31.7) | 0.45-0.54 s |
 
 Engine rounds (ruler-fresh):
 
 | streams | tokens a round | drafts a round | accepted | ms a round | requests |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 3.621 | 4.042 | 66% | 33.33 | 12 |
-| 4 | 3.173 | 2.949 | 74% | 58.64 | 49 |
-| 8 | 3.09 | 2.653 | 80% | 76.26 | 100 |
-| 16 | 3.222 | 2.925 | 77% | 122.65 | 196 |
-
-### ruler-after
-
-| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 77.5 (77.5) | 125.9 (125.9) | 99.2 (99.2) | 129.7 (129.7) | 0.04-0.04 s |
-| 16 | 302.3 (18.8) | 509.5 (30.4) | 389.8 (23.8) | 520.4 (31.6) | 0.44-0.50 s |
-
-Engine rounds (ruler-after):
-
-| streams | tokens a round | drafts a round | accepted | ms a round | requests |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 3.567 | 4.016 | 65% | 33.01 | 13 |
-| 16 | 3.21 | 2.914 | 76% | 122.7 | 193 |
+| 1 | 3.621 | 4.042 | 66% | 33.09 | 12 |
+| 16 | 3.212 | 2.921 | 76% | 121.71 | 193 |
 
 ### suite
 
 | check | passed |
 |---|---:|
+| soak | 60/60 |
 | drafts | 12/12 |
 | concurrent | 12/12 |
 | streaming | 4/4 |
@@ -623,34 +606,35 @@ Engine rounds (ruler-after):
 | thinking | 10/10 |
 | copy | 2/2 |
 | max-tokens | 3/3 |
+
+### suite-guided
+
+| check | passed |
+|---|---:|
+| json-guided | 30/30 |
 | tools | 60/60 |
-| json | 30/30 |
-| ifeval | 130/150 |
-| gsm8k | 241/250 |
-| mgsm | 219/240 |
-| mmlu | 283/342 |
-| humaneval | 157/164 |
-| repetition | 8/8 |
-| long-context | 55/55 |
-| vision | 12/12 |
-| soak | 60/60 |
-| snapshot | 12/12 |
+
+### suite-thinking
+
+| check | passed |
+|---|---:|
+| gsm8k | 234/250 |
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: head 21.8 GiB available; worker 25.2 GiB available |
+| memory-idle | measured: head 22.6 GiB available; worker 25.3 GiB available |
 | structured | pass: 18/18 obey; a bad regex -> 400 |
 | sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
-| turns | pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.118s, cold 0.035s |
-| urls | pass: public 200; loopback 400; http 400 |
-| capacity | pass: 4/6 answered, 2 refused, 0 lost (no reply); a short request after: 200 |
+| turns | pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.105s, cold 0.035s |
+| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-17 07:25 | rebase | done | 127.0 | 516.3 | 0.45-0.54 s | 114/114 |
 | 2026-10-15 17:13 | full | done | 127.0 | 509.8 | 0.44-0.55 s | 1321/1437 |
 | 2026-10-15 00:00 | published evidence | published | 123.4 | 472.9 | 0.52-0.74 s | 1321/1437 |
 | 2026-10-15 00:00 | published evidence | published |  |  |  | 1321/1437 |
