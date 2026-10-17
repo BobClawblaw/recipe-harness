@@ -1,0 +1,41 @@
+{
+ "target": "glm53-exl3-gb10-packed",
+ "runs": [
+  {
+   "run": "20261017-195233-glm-ab-ifeval",
+   "target": "glm53-exl3-gb10-packed",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-ab-ifeval",
+   "started": "20261017-195233",
+   "finished": "20261017-200855",
+   "status": "done",
+   "identity": {
+    "binary": "cf50867102a60c38"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "ifeval": {
+      "passed": 103,
+      "cases": 150
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     }
+    }
+   },
+   "checks": {
+    "suite": {
+     "ok": null,
+     "summary": "ifeval 103/150, json 30/30"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts one at a time",
+   "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
+  }
+ ]
+}

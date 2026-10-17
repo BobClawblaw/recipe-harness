@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-17 20:09 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-17 20:10 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -10,6 +10,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 |---|---|---:|---:|---:|---|---|
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 42/60/57/58 |  | 0.17 | json 30/30, ifeval 103/150 | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 27/48/39/33 | 8: 78/115/98/110 | 0.18 / 1.49-1.83 |  | 2026-10-17 |
+| GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE |  |  |  | json 30/30, ifeval 103/150 | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/38/33/31 | 16: 124/156/150/145 | 0.18 / 8.50-17.20 |  | 2026-10-16 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/39/34/31 | 16: 86/101/100/102 | 0.18 / 3.23-3.72 |  | 2026-10-17 |
 | GLM-5.3-Flash, EXL3 4 bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 46/69/57/59 |  | 0.18 | tools 59/60, json 30/30, gsm8k 246/250, humaneval 159/164, ifeval 118/150 | 2026-10-14 |
@@ -239,6 +240,25 @@ Serving: binary `511e7e0521628504`
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
 | 2026-10-17 00:32 | glm-streams8 | done | 48.4 |  |  | 24/24 |
+
+## GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
+
+Target `glm53-exl3-gb10-packed`: GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts one at a time; served as `GLM-5.3-Flash-EXL3`. Latest: run `20261017-195233-glm-ab-ifeval` (2026-10-17 19:52, plan glm-ab-ifeval, done).
+
+Serving: binary `cf50867102a60c38`
+
+### suite
+
+| check | passed |
+|---|---:|
+| ifeval | 103/150 |
+| json | 30/30 |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-17 19:52 | glm-ab-ifeval | done |  |  |  | 133/180 |
 
 ## GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
