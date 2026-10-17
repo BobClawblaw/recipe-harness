@@ -2,7 +2,7 @@
 # The quality suite and ruler are the GLM EXL3 recipe's (github.com/BobClawblaw/glm53-flash-exl3-2x-dgx-sparks).
 # Images need the base model's chat template (the EXL3 checkpoint's is text-only); the launcher passes it.
 # Machine-specific values go in glm53-exl3-gb10-best.local.toml (git-ignored; copy the .local.example.toml).
-name = "glm53-exl3-gb10-best"
+name = "glm53-exl3-gb10-packed"
 description = "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
 model_name = "GLM-5.3-Flash EXL3 4bpw"
 hardware = "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE"
