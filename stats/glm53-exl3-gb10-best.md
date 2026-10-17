@@ -1,6 +1,72 @@
 # GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `glm53-exl3-gb10-best`: GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts whole. Rendered from `stats/glm53-exl3-gb10-best.json` (3 runs); aggregate tok/s, total (a stream).
+Target `glm53-exl3-gb10-best`: GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many). Rendered from `stats/glm53-exl3-gb10-best.json` (6 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-17 16:26: run `20261017-162600-glm-streams`
+
+Plan glm-streams, done; served as `GLM-5.3-Flash-EXL3`.
+
+Serving: binary `731512bfd7e524e8`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 41.6 (41.6) | 59.5 (59.5) | 56.4 (56.4) | 57.3 (57.3) | 0.17-0.22 s |
+| 4 | 71.8 (18.1) | 104.9 (26.2) | 95.1 (23.7) | 122.5 (29.8) | 0.57-0.75 s |
+| 8 | 88.2 (11.1) | 133.9 (16.5) | 126.5 (15.5) | 134.1 (16.3) | 0.79-1.01 s |
+| 16 | 108.5 (6.7) | 131.3 (7.9) | 142.4 (8.9) | 151.4 (9.2) | 1.27-1.66 s |
+
+### suite-together
+
+| check | passed |
+|---|---:|
+| concurrent | 12/12 |
+| drafts | 12/12 |
+
+## 2026-10-17 15:56: run `20261017-155657-glm-streams`
+
+Plan glm-streams, done; served as `GLM-5.3-Flash-EXL3`.
+
+Serving: binary `085c69e7709f359a`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 42.3 (42.3) | 67.7 (67.7) | 56.0 (56.0) | 47.8 (47.8) | 0.15-0.21 s |
+| 4 | 72.6 (18.2) | 107.7 (26.9) | 98.0 (24.7) | 100.5 (25.5) | 0.55-0.73 s |
+| 8 | 87.1 (10.9) | 124.4 (15.4) | 125.6 (15.5) | 146.9 (16.5) | 0.79-0.99 s |
+| 16 | 118.9 (7.4) | 132.8 (8.1) | 148.2 (9.2) | 154.0 (9.5) | 1.23-1.59 s |
+
+### suite-together
+
+| check | passed |
+|---|---:|
+| concurrent | 3/12 |
+| drafts | 12/12 |
+
+## 2026-10-17 15:28: run `20261017-152840-glm-streams`
+
+Plan glm-streams, done; served as `GLM-5.3-Flash-EXL3`.
+
+Serving: binary `2a8284861f5f7d44`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 42.3 (42.3) | 68.3 (68.3) | 57.0 (57.0) | 48.1 (48.1) | 0.16-0.21 s |
+| 4 | 72.5 (18.1) | 106.4 (26.6) | 94.9 (23.4) | 99.6 (25.0) | 0.57-0.73 s |
+| 8 | 90.2 (11.3) | 121.4 (15.2) | 117.8 (14.4) | 116.3 (14.4) | 1.20-1.53 s |
+| 16 | 112.0 (6.9) | 127.5 (7.7) | 127.2 (7.9) | 136.4 (8.5) | 2.63-3.30 s |
+
+### suite-together
+
+| check | passed |
+|---|---:|
+| concurrent | 12/12 |
+| drafts | 12/12 |
 
 ## 2026-10-17 14:38: run `20261017-143856-glm-streams`
 

@@ -153,7 +153,7 @@
    },
    "model_name": "GLM-5.3-Flash EXL3 4bpw",
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
-   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts whole",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
    "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
   },
   {
@@ -308,7 +308,7 @@
    },
    "model_name": "GLM-5.3-Flash EXL3 4bpw",
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
-   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts whole",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
    "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
   },
   {
@@ -463,7 +463,472 @@
    },
    "model_name": "GLM-5.3-Flash EXL3 4bpw",
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
-   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts whole",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
+   "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261017-152840-glm-streams",
+   "target": "glm53-exl3-gb10-best",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-streams",
+   "started": "20261017-152840",
+   "finished": "20261017-154919",
+   "status": "done",
+   "identity": {
+    "binary": "2a8284861f5f7d44"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 42.3,
+      "per_stream": 42.3,
+      "ttft": 0.174
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 68.3,
+      "per_stream": 68.3,
+      "ttft": 0.201
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 57.0,
+      "per_stream": 57.0,
+      "ttft": 0.212
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 48.1,
+      "per_stream": 48.1,
+      "ttft": 0.156
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 72.5,
+      "per_stream": 18.1,
+      "ttft": 0.606
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 106.4,
+      "per_stream": 26.6,
+      "ttft": 0.66
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 94.9,
+      "per_stream": 23.4,
+      "ttft": 0.73
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 99.6,
+      "per_stream": 25.0,
+      "ttft": 0.568
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 90.2,
+      "per_stream": 11.3,
+      "ttft": 1.267
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 121.4,
+      "per_stream": 15.2,
+      "ttft": 1.412
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 117.8,
+      "per_stream": 14.4,
+      "ttft": 1.533
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 116.3,
+      "per_stream": 14.4,
+      "ttft": 1.195
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 112.0,
+      "per_stream": 6.9,
+      "ttft": 2.759
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 127.5,
+      "per_stream": 7.7,
+      "ttft": 3.159
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 127.2,
+      "per_stream": 7.9,
+      "ttft": 3.3
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 136.4,
+      "per_stream": 8.5,
+      "ttft": 2.627
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 42.3/68.3/57.0/48.1 ttft 0.16-0.21s; c=4 72.5/106.4/94.9/99.6 ttft 0.57-0.73s; c=8 90.2/121.4/117.8/116.3 ttft 1.20-1.53s; c=16 112.0/127.5/127.2/136.4 ttft 2.63-3.30s"
+    },
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
+   "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261017-155657-glm-streams",
+   "target": "glm53-exl3-gb10-best",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-streams",
+   "started": "20261017-155657",
+   "finished": "20261017-161616",
+   "status": "done",
+   "identity": {
+    "binary": "085c69e7709f359a"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 42.3,
+      "per_stream": 42.3,
+      "ttft": 0.175
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 67.7,
+      "per_stream": 67.7,
+      "ttft": 0.202
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 56.0,
+      "per_stream": 56.0,
+      "ttft": 0.212
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 47.8,
+      "per_stream": 47.8,
+      "ttft": 0.155
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 72.6,
+      "per_stream": 18.2,
+      "ttft": 0.599
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 107.7,
+      "per_stream": 26.9,
+      "ttft": 0.683
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 98.0,
+      "per_stream": 24.7,
+      "ttft": 0.728
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 100.5,
+      "per_stream": 25.5,
+      "ttft": 0.551
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 87.1,
+      "per_stream": 10.9,
+      "ttft": 0.853
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 124.4,
+      "per_stream": 15.4,
+      "ttft": 0.951
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 125.6,
+      "per_stream": 15.5,
+      "ttft": 0.989
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 146.9,
+      "per_stream": 16.5,
+      "ttft": 0.793
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 118.9,
+      "per_stream": 7.4,
+      "ttft": 1.371
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 132.8,
+      "per_stream": 8.1,
+      "ttft": 1.558
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 148.2,
+      "per_stream": 9.2,
+      "ttft": 1.587
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 154.0,
+      "per_stream": 9.5,
+      "ttft": 1.228
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 3,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 42.3/67.7/56.0/47.8 ttft 0.15-0.21s; c=4 72.6/107.7/98.0/100.5 ttft 0.55-0.73s; c=8 87.1/124.4/125.6/146.9 ttft 0.79-0.99s; c=16 118.9/132.8/148.2/154.0 ttft 1.23-1.59s"
+    },
+    "suite-together": {
+     "ok": false,
+     "summary": "not exact: concurrent; concurrent 3/12, drafts 12/12"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
+   "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261017-162600-glm-streams",
+   "target": "glm53-exl3-gb10-best",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-streams",
+   "started": "20261017-162600",
+   "finished": "20261017-164547",
+   "status": "done",
+   "identity": {
+    "binary": "731512bfd7e524e8"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 41.6,
+      "per_stream": 41.6,
+      "ttft": 0.197
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 59.5,
+      "per_stream": 59.5,
+      "ttft": 0.212
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 56.4,
+      "per_stream": 56.4,
+      "ttft": 0.222
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 57.3,
+      "per_stream": 57.3,
+      "ttft": 0.166
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 71.8,
+      "per_stream": 18.1,
+      "ttft": 0.594
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 104.9,
+      "per_stream": 26.2,
+      "ttft": 0.677
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 95.1,
+      "per_stream": 23.7,
+      "ttft": 0.746
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 122.5,
+      "per_stream": 29.8,
+      "ttft": 0.566
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 88.2,
+      "per_stream": 11.1,
+      "ttft": 0.883
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 133.9,
+      "per_stream": 16.5,
+      "ttft": 0.966
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 126.5,
+      "per_stream": 15.5,
+      "ttft": 1.01
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 134.1,
+      "per_stream": 16.3,
+      "ttft": 0.792
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 108.5,
+      "per_stream": 6.7,
+      "ttft": 1.444
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 131.3,
+      "per_stream": 7.9,
+      "ttft": 1.661
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 142.4,
+      "per_stream": 8.9,
+      "ttft": 1.596
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 151.4,
+      "per_stream": 9.2,
+      "ttft": 1.266
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 41.6/59.5/56.4/57.3 ttft 0.17-0.22s; c=4 71.8/104.9/95.1/122.5 ttft 0.57-0.75s; c=8 88.2/133.9/126.5/134.1 ttft 0.79-1.01s; c=16 108.5/131.3/142.4/151.4 ttft 1.27-1.66s"
+    },
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm, packed linears (4/8, bf16 freed), DFlash2, 16 streams, prompts together (prefill_many)",
    "description": "GLM-5.3-Flash EXL3 4bpw, families/glm with 4-bit dense / 8-bit head, DFlash2 and 16 streams (PRs 855+979+984 and packing), TP=2 on two DGX Sparks"
   }
  ]
