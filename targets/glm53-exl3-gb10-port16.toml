@@ -3,10 +3,10 @@
 # Images need the base model's chat template (the EXL3 checkpoint's is text-only); the launcher passes it.
 # Machine-specific values go in glm53-exl3-gb10-port16.local.toml (git-ignored; copy the .local.example.toml).
 name = "glm53-exl3-gb10-port16"
-description = "GLM-5.3-Flash EXL3 4bpw, families/glm with 16 streams a shared pass (--parallel 16), TP=2 on two DGX Sparks"
+description = "GLM-5.3-Flash EXL3 4bpw, families/glm with 4096-row index rings, --parallel 16, TP=2 on two DGX Sparks"
 model_name = "GLM-5.3-Flash EXL3 4bpw"
 hardware = "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE"
-engine = "TensorFold native, CUDA: families/glm, 16 shared streams (PR 855 follow-up)"
+engine = "TensorFold native, CUDA: families/glm + index rings (16 streams at 40960)"
 url = "http://127.0.0.1:$port"
 model = "GLM-5.3-Flash-EXL3"
 
