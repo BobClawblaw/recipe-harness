@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-17 23:24 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-18 02:33 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -8,6 +8,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 
 | model | hardware | one stream | most streams: total | first token (s) | suite | measured |
 |---|---|---:|---:|---:|---|---|
+| DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 53/98/61/69 | 4: 106/158/111/176 | 0.20 / 0.75-1.00 |  | 2026-10-18 |
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 55/101/63/71 | 4: 104/156/109/173 | 0.19 / 0.41-0.64 |  | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 42/60/57/58 |  | 0.17 | json 30/30, ifeval 103/150 | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 27/48/39/33 | 8: 78/115/98/110 | 0.18 / 1.49-1.83 |  | 2026-10-17 |
@@ -26,6 +27,32 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, MLX 6-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 145/206/172/194 | 4: 566/816/673/854 | 0.09 / 1.63-3.07 | gsm8k 242/250, ifeval 134/150 | 2026-10-11 |
 | Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP | 1x Apple M5 Ultra (256 GB unified), macOS | 38/50/40/48 |  | 0.24 |  | 2026-10-16 |
+
+## DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
+
+Target `dsv41-1017-gb10-native`: DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw on native TensorFold (main + the deepseek_v41 CUDA family, PRs 667-727), TP=2 on two DGX Sparks, 4 slots, pool 900K. Engine: TensorFold native (Zig, CUDA): main 9ccf4727 + deepseek_v41 series, kit serving profile, DSpark drafts, images as placeholder; served as `DeepSeek-V4.1-Flash-TF`. Latest: run `20261018-020350-dsv41-speed` (2026-10-18 02:03, plan dsv41-speed, done).
+
+Serving: image `00b298dda4527ad6`; pack `778baeaf9fbcd351`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 53.3 (53.3) | 98.1 (98.1) | 61.0 (61.0) | 69.3 (69.3) | 0.20-0.28 s |
+| 2 | 78.4 (39.2) | 121.8 (60.9) | 82.5 (41.3) | 139.0 (69.5) | 0.30-0.42 s |
+| 4 | 105.7 (26.2) | 158.5 (39.4) | 110.6 (26.5) | 176.4 (41.4) | 0.75-1.00 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: head 6.3 GiB available |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-18 02:03 | dsv41-speed | done | 98.1 |  |  |  |
 
 ## DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 

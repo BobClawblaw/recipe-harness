@@ -117,6 +117,32 @@
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
    "engine": "TensorFold 0.6.0 (Python) + jayleaton's DeepSeek-V4.1 patches, recipe defaults (replay prefill, DSpark drafts)",
    "description": "DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw, jayleaton's DeepSeek-V4.1 recipe (Python, TensorFold 0.6.0 + patches), TP=2 on two DGX Sparks, 4 slots"
+  },
+  {
+   "run": "20261017-234713-dsv41-quality",
+   "target": "dsv41-1017-gb10",
+   "model": "DeepSeek-V4.1-Flash-TF",
+   "plan": "dsv41-quality",
+   "started": "20261017-234713",
+   "finished": null,
+   "status": "running",
+   "identity": {
+    "image": "eb2f599de2fb618a",
+    "pack": "778baeaf9fbcd351"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 7.9 GiB available"
+    }
+   },
+   "model_name": "DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold 0.6.0 (Python) + jayleaton's DeepSeek-V4.1 patches, recipe defaults (replay prefill, DSpark drafts)",
+   "description": "DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw, jayleaton's DeepSeek-V4.1 recipe (Python, TensorFold 0.6.0 + patches), TP=2 on two DGX Sparks, 4 slots"
   }
  ]
 }

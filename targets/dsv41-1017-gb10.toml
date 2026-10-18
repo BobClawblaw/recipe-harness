@@ -12,6 +12,7 @@ model = "DeepSeek-V4.1-Flash-TF"
 [vars]
 recipe = "CHANGE-ME: a checkout of jayleaton/deepseek-v41-tensorfold-spark with config/prod.env"
 suite_dir = "CHANGE-ME: a checkout of the GLM EXL3 recipe (bench/ruler.py)"
+pack = "CHANGE-ME: the head's copy of the EXL3 pack (HEAD_MODEL)"
 port = "8000"
 
 [commands]
@@ -35,7 +36,7 @@ cmd = "docker image inspect dsv41-tensorfold:060 --format '{{.Id}}' | cut -c8-23
 
 [[identity]]
 name = "pack"
-cmd = "sha256sum $recipe/../models/DeepSeek-V4.1-Flash-1017-EXL3-2.9bpw/model.safetensors.index.json | cut -c1-16"
+cmd = "sha256sum $pack/model.safetensors.index.json | cut -c1-16"
 
 [[memory]]
 name = "head"
