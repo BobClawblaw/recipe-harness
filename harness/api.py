@@ -48,10 +48,10 @@ def chat(base: str, model: str, messages: list, timeout: float = 600, **extra) -
 
 
 def stream(base: str, model: str, messages: list, timeout: float = 600, **extra) -> dict:
-    """One streamed completion: text, time to the first content token, usage (with include_usage)."""
+    """One streamed completion: text, time to the first content token (and to the first token of any kind), usage."""
     body = {"model": model, "messages": messages, "stream": True, "stream_options": {"include_usage": True}, **extra}
     req = urllib.request.Request(f"{base}/v1/chat/completions", json.dumps(body).encode(), {"Content-Type": "application/json"})
-    t0, first, text, usage = time.time(), None, "", {}
+    t0, first, first_any, text, usage = time.time(), None, None, "", {}
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             for line in r:
@@ -62,7 +62,10 @@ def stream(base: str, model: str, messages: list, timeout: float = 600, **extra)
                 if d.get("usage"):
                     usage = d["usage"]
                 for c in d.get("choices", []):
-                    piece = (c.get("delta") or {}).get("content")
+                    delta = c.get("delta") or {}
+                    if first_any is None and (delta.get("content") or delta.get("reasoning_content")):
+                        first_any = time.time() - t0
+                    piece = delta.get("content")
                     if piece:
                         first = first if first is not None else time.time() - t0
                         text += piece
@@ -70,5 +73,6 @@ def stream(base: str, model: str, messages: list, timeout: float = 600, **extra)
         return {"status": e.code, "error": e.read().decode(errors="replace")[:2000]}
     except Exception as e:
         return {"status": -1, "error": repr(e)[:500]}
-    return {"status": 200, "text": text, "ttft": round(first, 3) if first is not None else None, "usage": usage,
+    return {"status": 200, "text": text, "ttft": round(first, 3) if first is not None else None,
+            "ttft_any": round(first_any, 3) if first_any is not None else None, "usage": usage,
             "s": round(time.time() - t0, 3)}

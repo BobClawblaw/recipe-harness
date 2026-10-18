@@ -1,0 +1,21 @@
+description = "Cold prompt speed (about 30 minutes): one prompt each at 2k, 8k, 32k and 128k tokens, thinking off then on, fresh server"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "prefill"
+label = "off"
+tokens = [2048, 8192, 32768, 131072]
+
+[[checks]]
+type = "prefill"
+label = "thinking"
+thinking = true
+tokens = [2048, 8192, 32768, 131072]
+
+[[checks]]
+type = "memory"
+name = "memory-busy"

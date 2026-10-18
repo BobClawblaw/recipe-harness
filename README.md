@@ -59,6 +59,7 @@ aborted or a check failed.
 | `structured_speed` | decode speed, greedy, of two long JSON replies with the grammar off and on: one stream (and the grammar undrafted), two grammar streams at once, a plain stream beside a grammar stream against beside a plain one | measured; fails on an error or a grammar reply that is not JSON |
 | `sampling` | seeded sampled replies, repeated and undrafted | equal every time |
 | `turns` | a conversation that resumes its kept prompt; the third turn resumed, again, and cold | all three equal; reports cached tokens and first-token times |
+| `prefill` | one cold prompt at each size in `tokens` (default 2k, 8k, 32k, 128k), words no other prompt starts with; `thinking = true` sends thinking on and times the first reasoning token | measured: prompt tokens over time to the first token; fails on an error or more than `cached_ok` (64) cached tokens |
 | `urls` | a public HTTPS image, a loopback address, plain HTTP | 200 with an answer, 400, 400 |
 | `capacity` | N long prompts at once (`streams`, `tokens`), then a short request | the short request succeeds and no request is lost without a reply |
 | `thinking` | the harness's word problems with `enable_thinking: true` | answers right, reasoning in `reasoning_content`, no `<think>` leaks |

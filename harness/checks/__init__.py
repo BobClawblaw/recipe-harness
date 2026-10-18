@@ -15,6 +15,7 @@ REGISTRY = {
     "structured_speed": server.structured_speed,
     "sampling": server.sampling,
     "turns": server.turns,
+    "prefill": server.prefill,
     "urls": server.urls,
     "capacity": capacity.run,
     "thinking": thinking.run,

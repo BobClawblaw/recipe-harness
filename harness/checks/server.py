@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import random
 import re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -176,6 +177,30 @@ def turns(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
             "summary": f"resumed == again == cold: {same}; cached {cached.get('turn3')} of {(res['turn3'].get('usage') or {}).get('prompt_tokens')}; "
                        f"ttft resumed {t.get('turn3')}s, cold {t.get('turn3_cold')}s" + (f"; errors in {errs}" if errs else ""),
             "metrics": {"cached": cached, "ttft": t, "equal": same}}
+
+
+def prefill(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
+    """One cold prompt at each size in `tokens`: words no other prompt starts with, timed to the first token (with
+    `thinking`, the first reasoning token)."""
+    words = "river stone cloud lantern harbor meadow copper violet signal garden orbit candle marble forest thunder".split()
+    thinking = bool(spec.get("thinking"))
+    kw = {"max_tokens": 8, "temperature": 0, "chat_template_kwargs": {"enable_thinking": thinking}}
+    res = {}
+    for n in spec.get("tokens", [2048, 8192, 32768, 131072]):
+        rng = random.Random(f"{run_dir.name}-{name}-{n}")
+        text = f"Document {rng.getrandbits(64):016x}. " + " ".join(rng.choice(words) for _ in range(n))  # a token a word
+        r = api.stream(target.url, target.model, [{"role": "user", "content": text + "\n\nSummarize in one sentence."}],
+                       timeout=spec.get("timeout", 3600), **kw)
+        u = r.get("usage") or {}
+        prompt, cached = u.get("prompt_tokens"), (u.get("prompt_tokens_details") or {}).get("cached_tokens")
+        first = r.get("ttft_any") if thinking else r.get("ttft")
+        res[str(n)] = {"status": r.get("status"), "prompt_tokens": prompt, "cached_tokens": cached, "ttft": first,
+                       "tok_s": round(prompt / first, 1) if prompt and first else None, "error": (r.get("error") or "")[:300]}
+    _save(run_dir, name, res)
+    # the chat template's shared opening may come from the prompt cache; more than that is not a cold prompt
+    bad = [k for k, v in res.items() if v["status"] != 200 or v["tok_s"] is None or (v["cached_tokens"] or 0) > spec.get("cached_ok", 64)]
+    cells = ", ".join(f"{v['prompt_tokens']} tokens {v['tok_s']} tok/s ({v['ttft']} s)" for v in res.values() if v["tok_s"])
+    return {"ok": False if bad else None, "summary": cells + (f"; not cold or failed: {bad}" if bad else ""), "metrics": res}
 
 
 def urls(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
