@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-18 03:27 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-18 10:26 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -9,6 +9,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | model | hardware | one stream | most streams: total | first token (s) | suite | measured |
 |---|---|---:|---:|---:|---|---|
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 55/100/62/71 | 4: 106/162/112/179 | 0.19 / 0.73-0.99 |  | 2026-10-18 |
+| DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 55/104/63/71 | 8: 135/203/144/203 | 0.19 / 1.35-1.84 |  | 2026-10-18 |
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 53/98/61/69 | 4: 106/158/111/176 | 0.20 / 0.75-1.00 |  | 2026-10-18 |
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 55/101/63/71 | 4: 104/156/109/173 | 0.19 / 0.41-0.64 |  | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 42/60/57/58 |  | 0.17 | json 30/30, ifeval 103/150 | 2026-10-17 |
@@ -54,6 +55,33 @@ Serving: image `7b3d42e0e5865d34`; pack `778baeaf9fbcd351`
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
 | 2026-10-18 03:24 | dsv41-speed | done | 100.4 |  |  |  |
+
+## DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
+
+Target `dsv41-1017-gb10-native-vision8`: DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw on native TensorFold (main + the kit engine), native images and video, TP=2 on two DGX Sparks, 8 slots, pool 400K, prefill-dip reserve 2 GiB. Engine: TensorFold native (Zig, CUDA): main 9ccf4727 + the DeepSeek-V4.1 kit engine, vision tower, video as frames, DSpark drafts, 8 slots; served as `DeepSeek-V4.1-Flash-TF`. Latest: run `20261018-092218-dsv41-speed8` (2026-10-18 09:22, plan dsv41-speed8, done).
+
+Serving: image `7b3d42e0e5865d34`; pack `778baeaf9fbcd351`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 55.4 (55.4) | 103.5 (103.5) | 62.7 (62.7) | 70.9 (70.9) | 0.19-0.26 s |
+| 2 | 81.5 (40.7) | 126.2 (63.1) | 89.4 (44.7) | 142.7 (71.4) | 0.30-0.48 s |
+| 4 | 108.8 (26.8) | 163.8 (40.3) | 113.7 (28.4) | 180.4 (44.4) | 0.71-0.85 s |
+| 8 | 134.8 (16.7) | 202.7 (25.4) | 143.6 (17.4) | 203.3 (24.8) | 1.35-1.84 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: head 6.3 GiB available |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-18 09:22 | dsv41-speed8 | done | 103.5 |  |  |  |
 
 ## DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 

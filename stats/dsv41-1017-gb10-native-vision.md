@@ -1,6 +1,18 @@
 # DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `dsv41-1017-gb10-native-vision`: DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw on native TensorFold (main + jayleaton's kit engine 9131e10a ported onto it), native images and video, TP=2 on two DGX Sparks, 4 slots, pool 200K. Engine: TensorFold native (Zig, CUDA): main 9ccf4727 + the DeepSeek-V4.1 kit engine, vision tower (TF_DSV41_IMAGES=native), video as sampled frames, DSpark drafts. Rendered from `stats/dsv41-1017-gb10-native-vision.json` (1 runs); aggregate tok/s, total (a stream).
+Target `dsv41-1017-gb10-native-vision`: DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw on native TensorFold (main + jayleaton's kit engine 9131e10a ported onto it), native images and video, TP=2 on two DGX Sparks, 4 slots, pool 200K. Engine: TensorFold native (Zig, CUDA): main 9ccf4727 + the DeepSeek-V4.1 kit engine, vision tower (TF_DSV41_IMAGES=native), video as sampled frames, DSpark drafts. Rendered from `stats/dsv41-1017-gb10-native-vision.json` (2 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-18 08:14: run `20261018-081452-dsv41-quality`
+
+Plan dsv41-quality, running; served as `DeepSeek-V4.1-Flash-TF`.
+
+Serving: image `7b3d42e0e5865d34`; pack `778baeaf9fbcd351`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: head 7.1 GiB available |
 
 ## 2026-10-18 03:24: run `20261018-032401-dsv41-speed`
 

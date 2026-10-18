@@ -117,6 +117,32 @@
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
    "engine": "TensorFold native (Zig, CUDA): main 9ccf4727 + the DeepSeek-V4.1 kit engine, vision tower (TF_DSV41_IMAGES=native), video as sampled frames, DSpark drafts",
    "description": "DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw on native TensorFold (main + jayleaton's kit engine 9131e10a ported onto it), native images and video, TP=2 on two DGX Sparks, 4 slots, pool 200K"
+  },
+  {
+   "run": "20261018-081452-dsv41-quality",
+   "target": "dsv41-1017-gb10-native-vision",
+   "model": "DeepSeek-V4.1-Flash-TF",
+   "plan": "dsv41-quality",
+   "started": "20261018-081452",
+   "finished": null,
+   "status": "running",
+   "identity": {
+    "image": "7b3d42e0e5865d34",
+    "pack": "778baeaf9fbcd351"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 7.1 GiB available"
+    }
+   },
+   "model_name": "DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native (Zig, CUDA): main 9ccf4727 + the DeepSeek-V4.1 kit engine, vision tower (TF_DSV41_IMAGES=native), video as sampled frames, DSpark drafts",
+   "description": "DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw on native TensorFold (main + jayleaton's kit engine 9131e10a ported onto it), native images and video, TP=2 on two DGX Sparks, 4 slots, pool 200K"
   }
  ]
 }
