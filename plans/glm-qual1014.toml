@@ -1,0 +1,17 @@
+description = "#1014 qualification (about 40 minutes): the ruler at 1 stream over all 16 prompts a phase, at 8 and 16 streams, and the suite's concurrent and drafts checks"
+restart = true
+
+[[checks]]
+type = "ruler"
+label = "c1-16"
+concurrency = [1]
+args = "--waves 16 --runs 1"
+
+[[checks]]
+type = "ruler"
+label = "streams"
+concurrency = [8, 16]
+
+[[checks]]
+type = "suite"
+args = "--only concurrent drafts"

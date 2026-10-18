@@ -1,0 +1,315 @@
+{
+ "target": "glm53-exl3-gb10-many",
+ "runs": [
+  {
+   "run": "20261018-134056-glm-qual1014",
+   "target": "glm53-exl3-gb10-many",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-qual1014",
+   "started": "20261018-134056",
+   "finished": "20261018-140307",
+   "status": "done",
+   "identity": {
+    "binary": "07ab411ad6bef70e"
+   },
+   "rulers": {
+    "ruler-c1-16": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 42.5,
+      "per_stream": 42.4,
+      "ttft": 0.19
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 67.8,
+      "per_stream": 68.3,
+      "ttft": 0.199
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 56.2,
+      "per_stream": 55.7,
+      "ttft": 0.226
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 56.0,
+      "per_stream": 53.7,
+      "ttft": 0.17
+     }
+    ],
+    "ruler-streams": [
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 92.8,
+      "per_stream": 11.7,
+      "ttft": 0.937
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 132.9,
+      "per_stream": 16.1,
+      "ttft": 0.998
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 125.3,
+      "per_stream": 15.6,
+      "ttft": 1.061
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 144.5,
+      "per_stream": 17.1,
+      "ttft": 0.834
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 118.0,
+      "per_stream": 7.3,
+      "ttft": 1.437
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 134.1,
+      "per_stream": 8.1,
+      "ttft": 1.565
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 146.4,
+      "per_stream": 9.2,
+      "ttft": 1.672
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 158.9,
+      "per_stream": 9.6,
+      "ttft": 1.346
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-c1-16": {
+     "ok": null,
+     "summary": "c=1 42.5/67.8/56.2/56.0 ttft 0.17-0.23s"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=8 92.8/132.9/125.3/144.5 ttft 0.83-1.06s; c=16 118.0/134.1/146.4/158.9 ttft 1.35-1.67s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm (many)",
+   "description": "#1014 merged onto TensorFold main 76aafcf2: batched prompts (prefill_many) with DFlash2's feed and the hold fix, GLM-5.3-Flash EXL3 4bpw, TP=2"
+  },
+  {
+   "run": "20261018-142953-glm-quality",
+   "target": "glm53-exl3-gb10-many",
+   "model": "GLM-5.3-Flash-EXL3",
+   "plan": "glm-quality",
+   "started": "20261018-142953",
+   "finished": "20261018-183609",
+   "status": "done",
+   "identity": {
+    "binary": "07ab411ad6bef70e"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 42.2,
+      "per_stream": 42.2,
+      "ttft": 0.185
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 60.1,
+      "per_stream": 60.1,
+      "ttft": 0.212
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 57.2,
+      "per_stream": 57.2,
+      "ttft": 0.222
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 57.7,
+      "per_stream": 57.7,
+      "ttft": 0.169
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 1,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 58,
+      "cases": 60
+     },
+     "json": {
+      "passed": 27,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 100,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 223,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 293,
+      "cases": 342
+     },
+     "math500": {
+      "passed": 433,
+      "cases": 500
+     },
+     "gpqa": {
+      "passed": 125,
+      "cases": 198
+     },
+     "humaneval": {
+      "passed": 151,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 7,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 0,
+      "cases": 0
+     },
+     "vision": {
+      "passed": 6,
+      "cases": 6
+     },
+     "chartqa": {
+      "passed": 151,
+      "cases": 200
+     },
+     "docvqa": {
+      "passed": 63,
+      "cases": 200
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "vision-concurrent": {
+      "passed": 16,
+      "cases": 16
+     }
+    },
+    "suite-thinking": {
+     "gsm8k": {
+      "passed": 248,
+      "cases": 250
+     },
+     "ifeval": {
+      "passed": 100,
+      "cases": 150
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 28.4 GiB available"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 42.2/60.1/57.2/57.7 ttft 0.17-0.22s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "no cases (errors) in long-context; drafts 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 1/2, max-tokens 3/3, tools 58/60, json 27/30, ifeval 100/150, gsm8k 241/250, mgsm 223/240, mmlu 293/342, math500 433/500, gpqa 125/198, humaneval 151/164, repetition 7/8, long-context 0/0, vision 6/6, chartqa 151/200, docvqa 63/200, concurrent 12/12, vision-concurrent 16/16"
+    },
+    "thinking": {
+     "ok": true,
+     "summary": "thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors"
+    },
+    "suite-thinking": {
+     "ok": null,
+     "summary": "gsm8k 248/250, ifeval 100/150"
+    }
+   },
+   "model_name": "GLM-5.3-Flash EXL3 4bpw",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA: families/glm (many)",
+   "description": "#1014 merged onto TensorFold main 76aafcf2: batched prompts (prefill_many) with DFlash2's feed and the hold fix, GLM-5.3-Flash EXL3 4bpw, TP=2"
+  }
+ ]
+}

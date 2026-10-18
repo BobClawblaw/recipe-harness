@@ -1,0 +1,50 @@
+# GLM-5.3-Flash EXL3 4bpw (Mia-AiLab's checkpoint) on two DGX Sparks at TP=2, served from a native build (port).
+# The quality suite and ruler are the GLM EXL3 recipe's (github.com/BobClawblaw/glm53-flash-exl3-2x-dgx-sparks).
+# Images need the base model's chat template (the EXL3 checkpoint's is text-only); the launcher passes it.
+# Machine-specific values go in glm53-exl3-gb10-best.local.toml (git-ignored; copy the .local.example.toml).
+name = "glm53-exl3-gb10-many-mtp"
+description = "#1014 merged onto TensorFold main 76aafcf2, MTP head only (no --drafter), GLM-5.3-Flash EXL3 4bpw, TP=2"
+model_name = "GLM-5.3-Flash EXL3 4bpw"
+hardware = "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE"
+engine = "TensorFold native, CUDA: families/glm (many-mtp)"
+url = "http://127.0.0.1:$port"
+model = "GLM-5.3-Flash-EXL3"
+
+[vars]
+fresh = "CHANGE-ME: a script that reboots the worker, then runs the launcher's up (pair_up_fresh.sh)"
+pair = "CHANGE-ME: the launcher (up|down|status <family>) on the head node"
+suite_dir = "CHANGE-ME: a checkout of the GLM EXL3 recipe (quality/ and bench/)"
+binary = "CHANGE-ME: the native build the launcher serves"
+port = "8890"
+
+[commands]
+up = "PAIR_NODRAFT=1 PAIR_BIN=many-main bash $fresh"
+down = "PAIR_NODRAFT=1 PAIR_BIN=many-main bash $pair down best"
+status = "PAIR_NODRAFT=1 PAIR_BIN=many-main bash $pair status best"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+lock = "~/.cache/tf-gpu-pair.lock"   # shared with every GPU job on the pair
+up_retries = 2
+retry_wait = 90
+up_timeout = 1800
+health_wait = 120
+leave_up = false
+
+[[identity]]
+name = "binary"
+cmd = "sha256sum $binary | cut -c1-16"
+
+[[memory]]
+name = "head"
+cmd = "free -b"
+
+[features]
+drafts = true
+structured = true
+sampling = true
+vision_urls = false
+capacity = false
+thinking = true
+prompt_cache = true
