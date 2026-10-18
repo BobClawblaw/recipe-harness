@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-18 20:05 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-18 21:49 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -15,8 +15,8 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 42/60/57/58 |  | 0.17 | json 30/30, ifeval 103/150 | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 27/48/39/33 | 8: 78/115/98/110 | 0.18 / 1.49-1.83 |  | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | -/-/-/- | 16: 107/120/119/130 |  / 2.69-3.38 |  | 2026-10-18 |
-| GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | -/-/-/- | 16: 107/119/133/139 |  / 1.28-1.58 |  | 2026-10-18 |
-| GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 42/60/57/58 |  | 0.17 | tools 58/60, json 27/30, gsm8k 241/250, humaneval 151/164, ifeval 100/150 | 2026-10-18 |
+| GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | -/-/-/- | 16: 106/120/131/138 |  / 1.32-1.62 |  | 2026-10-18 |
+| GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | -/-/-/- | 16: 117/134/148/159 |  / 1.34-1.66 |  | 2026-10-18 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE |  |  |  | json 30/30, ifeval 103/150 | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/38/33/31 | 16: 124/156/150/145 | 0.18 / 8.50-17.20 |  | 2026-10-16 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/39/34/31 | 16: 86/101/100/102 | 0.18 / 3.23-3.72 |  | 2026-10-17 |
@@ -387,22 +387,22 @@ Serving: binary `e2169dae62202aec`
 
 ## GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `glm53-exl3-gb10-many-mtp`: #1014 merged onto TensorFold main 76aafcf2, MTP head only (no --drafter), GLM-5.3-Flash EXL3 4bpw, TP=2. Engine: TensorFold native, CUDA: families/glm (many-mtp); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261018-140413-glm-qual1014` (2026-10-18 14:04, plan glm-qual1014, done).
+Target `glm53-exl3-gb10-many-mtp`: #1014 merged onto TensorFold main 76aafcf2, MTP head only (no --drafter), GLM-5.3-Flash EXL3 4bpw, TP=2. Engine: TensorFold native, CUDA: families/glm (many-mtp); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261018-205115-glm-qual1014` (2026-10-18 20:51, plan glm-qual1014, done).
 
-Serving: binary `07ab411ad6bef70e`
+Serving: binary `4f1a478269c0e4fa`
 
 ### ruler-c1-16
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 42.6 (42.3) | 52.8 (52.8) | 50.3 (50.1) | 49.0 (49.0) | 0.17-0.22 s |
+| 1 | 42.1 (41.9) | 52.5 (52.2) | 50.2 (49.9) | 49.0 (49.2) | 0.17-0.22 s |
 
 ### ruler-streams
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 8 | 74.7 (9.3) | 95.8 (11.9) | 102.3 (12.8) | 106.8 (13.3) | 0.82-1.02 s |
-| 16 | 106.7 (6.7) | 118.6 (7.2) | 133.1 (8.3) | 138.6 (8.5) | 1.28-1.58 s |
+| 8 | 74.8 (9.3) | 95.5 (11.9) | 100.9 (12.6) | 106.0 (13.2) | 0.84-1.05 s |
+| 16 | 105.9 (6.6) | 119.7 (7.3) | 131.4 (8.3) | 138.3 (8.5) | 1.32-1.62 s |
 
 ### suite
 
@@ -415,66 +415,40 @@ Serving: binary `07ab411ad6bef70e`
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-18 20:51 | glm-qual1014 | done |  | 119.7 | 1.32-1.62 s | 24/24 |
 | 2026-10-18 14:04 | glm-qual1014 | done |  | 118.6 | 1.28-1.58 s | 24/24 |
 
 ## GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `glm53-exl3-gb10-many`: #1014 merged onto TensorFold main 76aafcf2: batched prompts (prefill_many) with DFlash2's feed and the hold fix, GLM-5.3-Flash EXL3 4bpw, TP=2. Engine: TensorFold native, CUDA: families/glm (many); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261018-142953-glm-quality` (2026-10-18 14:29, plan glm-quality, done).
+Target `glm53-exl3-gb10-many`: #1014 merged onto TensorFold main 76aafcf2: batched prompts (prefill_many) with DFlash2's feed and the hold fix, GLM-5.3-Flash EXL3 4bpw, TP=2. Engine: TensorFold native, CUDA: families/glm (many); served as `GLM-5.3-Flash-EXL3`. Latest: run `20261018-202804-glm-qual1014` (2026-10-18 20:28, plan glm-qual1014, done).
 
-Serving: binary `07ab411ad6bef70e`
+Serving: binary `4f1a478269c0e4fa`
 
-### ruler-fresh
+### ruler-c1-16
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 42.2 (42.2) | 60.1 (60.1) | 57.2 (57.2) | 57.7 (57.7) | 0.17-0.22 s |
+| 1 | 42.5 (42.6) | 67.6 (68.2) | 56.1 (55.9) | 55.8 (53.2) | 0.17-0.23 s |
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 8 | 92.4 (11.6) | 131.0 (16.2) | 125.4 (15.6) | 147.8 (17.1) | 0.82-1.03 s |
+| 16 | 117.4 (7.3) | 134.1 (8.1) | 147.9 (9.3) | 158.6 (9.7) | 1.34-1.66 s |
 
 ### suite
 
 | check | passed |
 |---|---:|
-| drafts | 12/12 |
-| streaming | 4/4 |
-| multiturn | 8/8 |
-| stop | 3/3 |
-| thinking | 10/10 |
-| copy | 1/2 |
-| max-tokens | 3/3 |
-| tools | 58/60 |
-| json | 27/30 |
-| ifeval | 100/150 |
-| gsm8k | 241/250 |
-| mgsm | 223/240 |
-| mmlu | 293/342 |
-| math500 | 433/500 |
-| gpqa | 125/198 |
-| humaneval | 151/164 |
-| repetition | 7/8 |
-| long-context | 0/0 |
-| vision | 6/6 |
-| chartqa | 151/200 |
-| docvqa | 63/200 |
 | concurrent | 12/12 |
-| vision-concurrent | 16/16 |
-
-### suite-thinking
-
-| check | passed |
-|---|---:|
-| gsm8k | 248/250 |
-| ifeval | 100/150 |
-
-### checks
-
-| check | result |
-|---|---|
-| memory-idle | measured: head 28.4 GiB available |
-| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors |
+| drafts | 12/12 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-18 20:28 | glm-qual1014 | done |  | 134.1 | 1.34-1.66 s | 24/24 |
 | 2026-10-18 14:29 | glm-quality | done | 60.1 |  |  | 1947/2418 |
 | 2026-10-18 13:40 | glm-qual1014 | done |  | 134.1 | 1.35-1.67 s | 24/24 |
 

@@ -1,6 +1,32 @@
 # GLM-5.3-Flash EXL3 4bpw on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `glm53-exl3-gb10-many`: #1014 merged onto TensorFold main 76aafcf2: batched prompts (prefill_many) with DFlash2's feed and the hold fix, GLM-5.3-Flash EXL3 4bpw, TP=2. Engine: TensorFold native, CUDA: families/glm (many). Rendered from `stats/glm53-exl3-gb10-many.json` (2 runs); aggregate tok/s, total (a stream).
+Target `glm53-exl3-gb10-many`: #1014 merged onto TensorFold main 76aafcf2: batched prompts (prefill_many) with DFlash2's feed and the hold fix, GLM-5.3-Flash EXL3 4bpw, TP=2. Engine: TensorFold native, CUDA: families/glm (many). Rendered from `stats/glm53-exl3-gb10-many.json` (3 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-18 20:28: run `20261018-202804-glm-qual1014`
+
+Plan glm-qual1014, done; served as `GLM-5.3-Flash-EXL3`.
+
+Serving: binary `4f1a478269c0e4fa`
+
+### ruler-c1-16
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 42.5 (42.6) | 67.6 (68.2) | 56.1 (55.9) | 55.8 (53.2) | 0.17-0.23 s |
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 8 | 92.4 (11.6) | 131.0 (16.2) | 125.4 (15.6) | 147.8 (17.1) | 0.82-1.03 s |
+| 16 | 117.4 (7.3) | 134.1 (8.1) | 147.9 (9.3) | 158.6 (9.7) | 1.34-1.66 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| concurrent | 12/12 |
+| drafts | 12/12 |
 
 ## 2026-10-18 14:29: run `20261018-142953-glm-quality`
 
