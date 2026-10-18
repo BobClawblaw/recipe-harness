@@ -1,6 +1,33 @@
 # DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/deepseek-v41-m5.json` (2 runs); aggregate tok/s, total (a stream).
+Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/deepseek-v41-m5.json` (3 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-17 19:33: run `20261017-193300-speed`
+
+Plan speed, done; served as `DeepSeek-V4.1-Flash`.
+
+Serving: engine_commit `fcf9e0b4`; binary_sha256 `8f57204baa1917419a5c85097de13f44ac705891557b2dc95aed1e9d59b6cfa3`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash", "object": "model", "created": 17`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 70.6 (70.6) | 96.3 (96.3) | 76.1 (76.1) | 91.6 (91.6) | 0.13-0.19 s |
+| 2 | 76.6 (38.3) | 94.7 (47.3) | 77.0 (38.5) | 117.6 (58.8) | 0.20-0.30 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 73.1 (73.1) | 96.5 (96.5) | 77.5 (77.5) | 98.6 (98.6) | 0.13-0.19 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 16%; total = 5120.00M  us |
+| turns | pass: resumed == again == cold: True; cached 4541 of 4561; ttft resumed 0.17s, cold 1.714s |
+| memory-busy | measured: mac: System-wide memory free percentage: 17%; total = 5120.00M  us |
 
 ## 2026-10-17 17:54: run `20261017-175442-speed`
 
