@@ -1,0 +1,15 @@
+description = "Quality with thinking on (several hours), on the server as it is, with its thinking reserve: the harness's thinking problems, then the suite's checks that take thinking (gsm8k, math500, gpqa), two requests queued at a time"
+restart = false
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "thinking"
+max_tokens = 8192
+
+[[checks]]
+type = "suite"
+name = "suite-thinking"
+args = "--only gsm8k math500 gpqa --thinking --workers 2"

@@ -64,7 +64,7 @@ structured = false    # no grammars on this family yet
 sampling = true
 vision_urls = true    # public HTTPS image URLs too: the recipe's vision_urls (local.toml), checked by `urls`
 capacity = false
-max_concurrency = 2   # streams take turns
+max_concurrency = 4   # four streams: their windows share forwards (engine c4c69219 on)
 thinking = true
 prompt_cache = true
 
