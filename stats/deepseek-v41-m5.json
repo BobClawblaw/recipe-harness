@@ -830,6 +830,116 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261018-202801-dsv41-quality",
+   "target": "deepseek-v41-m5",
+   "model": "DeepSeek-V4.1-Flash",
+   "plan": "dsv41-quality",
+   "started": "20261018-202801",
+   "finished": "20261018-224544",
+   "status": "done",
+   "identity": {
+    "engine_commit": "269f2447",
+    "binary_sha256": "072334f3cd20bb0bba0c16dceb1a9d92dd5d90b1ce26e3d4f0e4d33ddeb8f70c",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"DeepSeek-V4.1-Flash\", \"object\": \"model\", \"created\": 1792373281, \"owned_by\": \"tensorfold\", \"context_length\": 1048576, \"max_model_len\": 1048576, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"max\", \"high\", \"medium\", \"low\", \"minimal\", \"none\"]}}]}",
+    "checkpoint": "{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3', 'dense_bits': 8, 'block_dense_bits': 4}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 58,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 129,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 247,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 217,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 307,
+      "cases": 342
+     },
+     "math500": {
+      "passed": 457,
+      "cases": 500
+     }
+    },
+    "suite-thinking": {
+     "gsm8k": {
+      "passed": 237,
+      "cases": 250
+     },
+     "ifeval": {
+      "passed": 129,
+      "cases": 150
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 95%\ntotal = 4096.00M  us"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 58/60, json 30/30, ifeval 129/150, gsm8k 247/250, mgsm 217/240, mmlu 307/342, math500 457/500"
+    },
+    "thinking": {
+     "ok": true,
+     "summary": "thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors"
+    },
+    "suite-thinking": {
+     "ok": null,
+     "summary": "gsm8k 237/250, ifeval 129/150"
+    }
+   },
+   "model_name": "DeepSeek-V4.1-Flash-1017, 2/3-bit experts",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
