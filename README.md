@@ -102,6 +102,15 @@ DeepSeek-V4.1-Flash on one M5 Ultra (target `deepseek-v41-m5`), regraded from th
 same value in another form (`9a+11` for `11+9a`, `11(1+\sqrt5)` for `11\sqrt5+11`) plus four replies with no
 boxed answer. Thinking off's are mostly wrong values (56 for 28, 29 for 203) plus 11 with no boxed answer.
 
+**GSM8K (`quality/gsm8k.py`) grades the last number, so formatting does not decide it.** The same DeepSeek runs
+scored 247/250 with thinking off and 243/250 with it on. All four extra misses with thinking on, asked again, are
+real: the reasoning read ambiguous wording differently from the gold answer:
+- "two times older" read as 1 + 2 x 1;
+- "when does he start earning" answered with the break-even year, not the year after;
+- two others answered a differently set-up question.
+
+There a lower thinking-on score is the model's, not the grader's.
+
 **Scores before and after 2026-10-19 are not comparable:** compare MATH-500 only between runs graded by the same
 suite commit. Runs from 2026-10-19 on record it: `identity.suite_commit` in `meta.json`, for every target with a
 `suite_dir` (`-dirty` when its checkout had changes).
