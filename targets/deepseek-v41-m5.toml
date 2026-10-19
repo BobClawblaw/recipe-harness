@@ -67,3 +67,14 @@ capacity = false
 max_concurrency = 2   # streams take turns
 thinking = true
 prompt_cache = true
+
+# community-v1 does not complete on this checkpoint yet: its code prompt (a raw 14-token completion, no template) samples the
+# end token early at temperature 1 (seeds 1235-1237 stopped at 50, 34 and 196 of 256 tokens on 6a4d7be7), so nothing is
+# published; code at temperature 0 and chat at both temperatures complete (dry run 20261018-185854).
+# python3 -m harness leaderboard deepseek-v41-m5: community-v1 on the public checkpoint (its DSpark head is its own drafter),
+# the receipt published to tensorfold.dev/benchmarks with the stored login. The launchd server on 8888 restarts after a
+# kill (KeepAlive): boot it out first, so no second copy of the model loads beside the benchmark's.
+[leaderboard]
+model = "BobClawblaw/DeepSeek-V4.1-Flash-1017-TensorFold-e2e3-p4-h8"   # cached as a Hugging Face snapshot
+binary = "$engine_dir/zig-out/native/bin/tensorfold-native"
+free = "! pgrep -f 'tensorfold-native [s]erve'"
