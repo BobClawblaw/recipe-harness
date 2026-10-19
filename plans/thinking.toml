@@ -1,11 +1,11 @@
-description = "Thinking on: the harness's word problems with enable_thinking, and the recipe suite's checks that honour --thinking (the qwen suite: gsm8k only)"
+description = "Thinking on, a 48k reasoning budget (49,152 tokens, then 1,024 for the answer): the harness's word problems and the suite's gsm8k; the server needs --thinking-budget 49152 and --max-tokens 50176 or more"
 restart = false
 
 [[checks]]
 type = "thinking"
-max_tokens = 8192
+max_tokens = 50176  # 49,152 of reasoning, then the answer
 
 [[checks]]
 type = "suite"
 name = "suite-thinking"
-args = "--only gsm8k --thinking"
+args = "--only gsm8k --thinking --reasoning-budget 49152"

@@ -50,8 +50,9 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     reasoned = sum(r["reasoning_chars"] > 0 for r in res)
     leaks = sum(r["leak"] for r in res)
     errors = sum(r["status"] != 200 for r in res)
+    cut = sum(r["finish"] == "length" for r in res)  # stopped by max_tokens: the reasoning budget was too small
     (run_dir / f"{name}.json").write_text(json.dumps(res, indent=1))
     n = len(res)
-    return {"ok": errors == 0 and leaks == 0 and reasoned == n and right == n,
-            "summary": f"thinking on: {right}/{n} right, {reasoned}/{n} with reasoning_content, {leaks} leaks, {errors} errors",
-            "metrics": {"right": right, "n": n, "reasoned": reasoned, "leaks": leaks, "errors": errors}}
+    return {"ok": errors == 0 and leaks == 0 and cut == 0 and reasoned == n and right == n,
+            "summary": f"thinking on: {right}/{n} right, {reasoned}/{n} with reasoning_content, {leaks} leaks, {errors} errors, {cut} cut at {budget} tokens",
+            "metrics": {"right": right, "n": n, "reasoned": reasoned, "leaks": leaks, "errors": errors, "cut": cut, "max_tokens": budget}}

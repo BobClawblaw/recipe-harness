@@ -37,18 +37,28 @@ EXACT = ("drafts", "concurrent", "soak")
 
 
 def suite_verdict(report: Path, args: str = "") -> dict:
-    scores, broken = {}, []
+    scores, broken, cut = {}, [], []
     for r in suite_results(report):
         scores[r["name"]] = {"passed": r.get("passed"), "cases": r.get("cases"), "score": r.get("score")}
         if not r.get("cases"):
             broken.append(r["name"])
+        # replies stopped by max_tokens (with thinking on, the reasoning counts) are not answers: the score is void
+        truncated = (r.get("details") or {}).get("truncated", 0)
+        if truncated:
+            scores[r["name"]]["truncated"] = truncated
+            cut.append(f"{r['name']} {truncated}")
+    if "--thinking" in args.split() and any(r.get("name") == "gsm8k" and "truncated" not in (r.get("details") or {})
+                                           for r in suite_results(report)):
+        cut.append("gsm8k (the suite records no truncations: update it)")
     summary = ", ".join(f"{k} {v['passed']}/{v['cases']}" for k, v in scores.items())
     if broken:
         summary = f"no cases (errors) in {', '.join(broken)}; " + summary
     exact = [k for k in EXACT if k in scores and scores[k]["passed"] != scores[k]["cases"]]
     if exact:
         summary = f"not exact: {', '.join(exact)}; " + summary
-    ok = False if broken or exact else None
+    if cut:
+        summary = f"cut at max_tokens: {', '.join(cut)}; " + summary
+    ok = False if broken or exact or cut else None
     return {"ok": ok, "summary": summary, "metrics": {"scores": scores, "thinking_args": args}}
 
 

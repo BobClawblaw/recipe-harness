@@ -72,6 +72,10 @@ off checks they don't serve in `[features]`. A greedy-only engine, for example, 
 - The `thinking` plan runs the harness's own thinking-on problems, plus the suite with `--only gsm8k --thinking`.
 - A run's `suite-thinking.summary.json` records exactly which arguments the suite ran with.
 - Every other suite score in a run is thinking off.
+- The `thinking` plan gives a 48k reasoning budget: 49,152 tokens of reasoning, then 1,024 for the answer (`max_tokens`
+  50176, the suite's `--reasoning-budget 49152`). Serve it with `--thinking-budget 49152` and `--max-tokens 50176` or more.
+- A reply stopped by `max_tokens` is not an answer: the `thinking` check fails on any, and a suite check fails when its
+  report counts truncated replies (or, with `--thinking`, records no count at all: a suite older than the fix).
 
 ### Reading quality scores: the graders' limits
 
