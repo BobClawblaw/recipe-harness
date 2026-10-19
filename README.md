@@ -73,6 +73,39 @@ off checks they don't serve in `[features]`. A greedy-only engine, for example, 
 - A run's `suite-thinking.summary.json` records exactly which arguments the suite ran with.
 - Every other suite score in a run is thinking off.
 
+### Reading quality scores: the graders' limits
+
+Read a suite score as what its grader accepted, not as what the model got right. Before saying one mode or build
+scores lower, compare the misses themselves (each check's `<name>.json` under `details.misses`).
+
+**MATH-500 (the GLM recipe's `quality/math500.py`): fixed on 2026-10-19.** Until then its `normalise` rejected
+correct answers written in some forms:
+- **Units:** it stripped `\text{...}` but dropped only a few unit words, so `2000 \text{ calories}` missed.
+- **Separators:** `58{,}500` was not 58500.
+- **Matrices:** its `("\\ ", "")` replacement deleted half of a matrix row break `\\ `, so a gold matrix written
+  with spaces matched no answer.
+- **Lists and letters:** `\{3,5,7\}` set braces, a bare list in another order (`-2, 1` for `1,-2`), and `C` for
+  `\text{(C)}` all missed.
+
+The fixed grader accepts these; tuples and intervals in brackets keep their order. It also keeps every miss with its
+answer, where it used to keep only the first 40, so a run can be regraded when the rules change again.
+
+**Why it mattered:** reasoning replies write units and LaTeX more often, so the old grader understated thinking on.
+DeepSeek-V4.1-Flash on one M5 Ultra (target `deepseek-v41-m5`), regraded from the misses each run kept:
+
+| Run | Mode | Old grader | Fixed grader |
+|---|---|---|---|
+| `20261018-202801-dsv41-quality` | Thinking off | 457/500 | at least 465/500 |
+| `20261019-034805-dsv41-thinking` | Thinking on | 451/500 | at least 469/500 |
+
+"At least" because those runs kept only 40 misses each. What is still marked wrong with thinking on is mostly the
+same value in another form (`9a+11` for `11+9a`, `11(1+\sqrt5)` for `11\sqrt5+11`) plus four replies with no
+boxed answer. Thinking off's are mostly wrong values (56 for 28, 29 for 203) plus 11 with no boxed answer.
+
+**Scores before and after 2026-10-19 are not comparable:** compare MATH-500 only between runs graded by the same
+suite commit. Runs from 2026-10-19 on record it: `identity.suite_commit` in `meta.json`, for every target with a
+`suite_dir` (`-dirty` when its checkout had changes).
+
 ## Leaderboard
 
 Every recipe we publish also goes on the TensorFold community board (tensorfold.dev/benchmarks):

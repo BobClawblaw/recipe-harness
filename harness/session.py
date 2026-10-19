@@ -144,6 +144,11 @@ def identity(target: Target) -> dict:
                 raise Abort(f"identity {item['name']}: serving {got!r}, expected {rec['expected']!r}")
         out[item["name"]] = rec
         log(f"identity {item['name']}: {got[:120]}")
+    if "suite_dir" in target.vars and "suite_commit" not in out:
+        # the quality suite's checkout: its graders change, and scores compare only under the same one
+        rc, got = sh(target, "git -C $suite_dir describe --always --dirty --abbrev=12", timeout=60)
+        out["suite_commit"] = {"value": got.strip(), "exit": rc}
+        log(f"identity suite_commit: {got.strip()[:120]}")
     return out
 
 
