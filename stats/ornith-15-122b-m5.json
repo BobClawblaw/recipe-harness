@@ -1,0 +1,125 @@
+{
+ "target": "ornith-15-122b-m5",
+ "runs": [
+  {
+   "run": "20261020-111724-mlx-speed",
+   "target": "ornith-15-122b-m5",
+   "model": "Ornith-1.5-122B",
+   "plan": "mlx-speed",
+   "started": "20261020-111724",
+   "finished": "20261020-112002",
+   "status": "done",
+   "identity": {
+    "stack": "vllm-mlx 0.6.0, mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4",
+    "served_model": "{\"object\":\"list\",\"data\":[{\"id\":\"Ornith-1.5-122B\",\"object\":\"model\",\"created\":1792513044,\"owned_by\":\"vllm-mlx\"}]}",
+    "checkpoint": "{'dir': 'Ornith-1.5-122B-MLX-4bit', 'bits': 4, 'group_size': 64, 'mode': 'affine', 'revision': '346ec829'}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 66.2,
+      "per_stream": 66.2,
+      "ttft": 0.093
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 66.6,
+      "per_stream": 66.6,
+      "ttft": 0.102
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 66.4,
+      "per_stream": 66.4,
+      "ttft": 0.106
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 66.6,
+      "per_stream": 66.6,
+      "ttft": 0.081
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 113.4,
+      "per_stream": 56.7,
+      "ttft": 0.163
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 113.2,
+      "per_stream": 56.6,
+      "ttft": 0.174
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 113.2,
+      "per_stream": 56.6,
+      "ttft": 0.191
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 114.0,
+      "per_stream": 57.0,
+      "ttft": 0.141
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 175.9,
+      "per_stream": 44.0,
+      "ttft": 0.298
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 178.1,
+      "per_stream": 44.9,
+      "ttft": 0.318
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 177.6,
+      "per_stream": 44.1,
+      "ttft": 0.355
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 180.4,
+      "per_stream": 44.9,
+      "ttft": 0.254
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 95%\ntotal = 7168.00M  us"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 66.2/66.6/66.4/66.6 ttft 0.08-0.11s; c=2 113.4/113.2/113.2/114.0 ttft 0.14-0.19s; c=4 175.9/178.1/177.6/180.4 ttft 0.25-0.35s"
+    }
+   },
+   "model_name": "Ornith-1.5-122B, 4-bit MLX affine (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "vllm-mlx 0.6.0 (mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4)",
+   "description": "Ornith-1.5-122B, 4-bit MLX affine with images, vllm-mlx on one M5 Ultra"
+  }
+ ]
+}

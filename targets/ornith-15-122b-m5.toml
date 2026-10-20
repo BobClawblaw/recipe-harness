@@ -1,0 +1,62 @@
+# Ornith-1.5-122B (a Qwen3.5-MoE 122B-A10B with a vision tower) converted to 4-bit MLX affine (groups of 64), served by
+# the ornith-15-122b-mlx-m5-ultra recipe (`python3 -m mac up|down`): vllm-mlx on mlx-vlm and mlx-lm, continuous
+# batching, a prefix cache, on one 256 GB M5 Ultra Mac. The ruler and suite are the qwen Spark recipe's, from a local
+# checkout (suite_dir). Machine-specific values go in ornith-15-122b-m5.local.toml.
+name = "ornith-15-122b-m5"
+description = "Ornith-1.5-122B, 4-bit MLX affine with images, vllm-mlx on one M5 Ultra"
+url = "http://127.0.0.1:$port"
+model = "Ornith-1.5-122B"
+model_name = "Ornith-1.5-122B, 4-bit MLX affine (g64)"
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "vllm-mlx 0.6.0 (mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4)"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout"
+recipe_dir = "CHANGE-ME: a checkout of ornith-15-122b-mlx-m5-ultra"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+port = "8891"
+
+[commands]
+up = "cd $recipe_dir && PORT=$port python3 -m mac up"
+down = "cd $recipe_dir && python3 -m mac down"
+status = "cd $recipe_dir && python3 -m mac status"
+diagnose = "cd $recipe_dir && python3 -m mac logs -n 5"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 600
+health_wait = 600
+leave_up = false
+
+[[identity]]
+name = "stack"
+cmd = "cd $recipe_dir && .venv/bin/python -c \"import importlib.metadata as m; print(', '.join(f'{p} {m.version(p)}' for p in ('vllm-mlx','mlx-vlm','mlx-lm','mlx')))\""
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "checkpoint"
+cmd = "cd $recipe_dir && python3 -c \"import json,os,tomllib; s=tomllib.load(open('recipe.toml','rb')); l=tomllib.load(open('local.toml','rb')) if os.path.exists('local.toml') else {}; d=os.path.expanduser((l.get('model') or {}).get('model_dir', s['model']['model_dir'])); c=json.load(open(d+'/config.json')); q=c['quantization']; print({'dir': os.path.basename(d), 'bits': q['bits'], 'group_size': q['group_size'], 'mode': q['mode'], 'revision': s['model']['source_revision'][:8]})\""
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+[features]
+drafts = false        # the MTP drafter is off: its greedy replies differ from plain ones through vllm-mlx (the recipe's PLAN.md)
+structured = true
+sampling = true
+vision_urls = false
+capacity = false
+max_concurrency = 4
+thinking = true
+prompt_cache = true

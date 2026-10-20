@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-20 15:55 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-20 16:21 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -28,6 +28,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Gemma 4 31B, MLX 4-bit + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 87/158/157/130 |  | 0.08 |  | 2026-10-16 |
 | Gemma 4 31B, oQ8e (8-bit) + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 40/63/52/55 | 4: 110/173/142/180 | 0.10 / 0.24-0.27 |  | 2026-10-16 |
 | NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision | 1x NVIDIA RTX 5090 (32 GB) | 150/150/150/150 |  | 0.03 | tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150 | 2026-10-15 |
+| Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
 | Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 241/459/310/314 |  | 0.10 |  | 2026-10-16 |
 | Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
@@ -779,6 +780,32 @@ Engine rounds (ruler-after):
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
 | 2026-10-15 17:56 | full | done | 149.6 |  |  | 1272/1437 |
+
+## Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
+
+Target `ornith-15-122b-m5`: Ornith-1.5-122B, 4-bit MLX affine with images, vllm-mlx on one M5 Ultra. Engine: vllm-mlx 0.6.0 (mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4); served as `Ornith-1.5-122B`. Latest: run `20261020-111724-mlx-speed` (2026-10-20 11:17, plan mlx-speed, done).
+
+Serving: stack `vllm-mlx 0.6.0, mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4`; served_model `{"object":"list","data":[{"id":"Ornith-1.5-122B","object":"model","created":1792513044,"ow`; checkpoint `{'dir': 'Ornith-1.5-122B-MLX-4bit', 'bits': 4, 'group_size': 64, 'mode': 'affine', 'revisi`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 66.2 (66.2) | 66.6 (66.6) | 66.4 (66.4) | 66.6 (66.6) | 0.08-0.11 s |
+| 2 | 113.4 (56.7) | 113.2 (56.6) | 113.2 (56.6) | 114.0 (57.0) | 0.14-0.19 s |
+| 4 | 175.9 (44.0) | 178.1 (44.9) | 177.6 (44.1) | 180.4 (44.9) | 0.25-0.35 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 95%; total = 7168.00M  us |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-20 11:17 | mlx-speed | done | 66.6 |  |  |  |
 
 ## Qwen3.8-27B, MLX 4-bit + DFlash2 on 1x NVIDIA RTX 5090 (32 GB)
 
