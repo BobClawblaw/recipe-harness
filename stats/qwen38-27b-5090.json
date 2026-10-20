@@ -878,6 +878,38 @@
    "hardware": "1x NVIDIA RTX 5090 (32 GB)",
    "engine": "TensorFold native, CUDA",
    "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261020-234445-structured",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "structured",
+   "started": "20261020-234445",
+   "finished": "20261020-234500",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "6f7277d",
+    "engine_commit": "2bd805a4",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792539885, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792539885, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
   }
  ]
 }

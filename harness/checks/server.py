@@ -73,6 +73,108 @@ def structured(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
             + (f"; failed {', '.join(bad)}" if bad else ""), "metrics": {"failures": bad, "bad_regex_status": r["status"]}}
 
 
+def probe_structured(target: Target) -> str:
+    """One small json_schema request, for a run that skips structured checks: what the server says to it right now."""
+    r = api.chat(target.url, target.model, [{"role": "user", "content": "Invent a person."}], max_tokens=160, temperature=0,
+                 chat_template_kwargs={"enable_thinking": False},
+                 response_format={"type": "json_schema", "json_schema": {"name": "p", "schema": PERSON}})
+    if r["status"] != 200:
+        return f"the server refuses json_schema ({r['status']}: {str(r.get('error'))[:160]})"
+    try:
+        good = set(json.loads(r["text"])) == {"name", "age", "hobbies"}
+    except ValueError:
+        good = False
+    return "the server now obeys json_schema: turn features.structured on" if good else "the server answers json_schema but does not obey it"
+
+
+CABINS = ("economy", "business", "first")
+FLIGHT = {"type": "object", "additionalProperties": False,
+          "properties": {"from": {"type": "string"}, "to": {"type": "string"}, "cabin": {"type": "string", "enum": list(CABINS)},
+                         "passengers": {"type": "array", "minItems": 1, "items": {
+                             "type": "object", "additionalProperties": False,
+                             "properties": {"name": {"type": "string"}, "age": {"type": "integer"}}, "required": ["name", "age"]}}},
+          "required": ["from", "to", "cabin", "passengers"]}
+TOOLS = [{"type": "function", "function": {"name": "book_flight", "description": "Book a flight.", "strict": True, "parameters": FLIGHT}},
+         {"type": "function", "function": {"name": "get_weather", "description": "The weather in a city.",
+                                           "parameters": {"type": "object", "properties": {"city": {"type": "string"}}, "required": ["city"]}}}]
+TOOL_PROMPT = "Book business class from Oslo to Rome for me (Ana, 31) and my son Leo, 6. Also, what's the weather in Rome?"
+NAMED = {"type": "function", "function": {"name": "book_flight"}}
+
+# (case, tool_choice, thinking, streamed): auto needs no grammar; required and a named function do (a grammar engine
+# refuses them without one, as TensorFold does without lib/libtfgrammar)
+TOOL_CASES = [
+    ("auto", "auto", False, False),
+    ("required", "required", False, False),
+    ("named", NAMED, False, False),
+    ("named/thinking", NAMED, True, False),
+    ("named/stream", NAMED, False, True),
+]
+
+
+def _call_ok(call: dict) -> str | None:
+    """None when a call's arguments are the prompt's booking or weather question in its tool's schema, else why not."""
+    name = call.get("function", {}).get("name")
+    try:
+        a = json.loads(call["function"]["arguments"])
+    except (KeyError, TypeError, ValueError):
+        return f"{name}: arguments are not JSON"
+    if name == "get_weather":
+        return None if isinstance(a, dict) and isinstance(a.get("city"), str) else f"get_weather: bad arguments {a}"
+    if name != "book_flight":
+        return f"unknown tool {name!r}"
+    if not isinstance(a, dict):
+        return f"book_flight: arguments are not an object {a}"
+    people = a.get("passengers")
+    if (set(a) != set(FLIGHT["required"]) or a["cabin"] not in CABINS or not isinstance(people, list) or not people
+            or any(not isinstance(p, dict) or set(p) != {"name", "age"} or type(p["age"]) is not int for p in people)):
+        return f"book_flight: arguments outside the schema {a}"
+    if a["cabin"] != "business" or sorted(p["age"] for p in people) != [6, 31]:
+        return f"book_flight: not the prompt's booking {a}"
+    return None
+
+
+def tools(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
+    """Tool calls against a strict nested schema: auto, required, a named function (thinking, streamed); each is a 200 that
+    finishes on tool_calls with arguments in the schema; a named call drafted equals it undrafted. Forced calls need a
+    grammar, so a target without structured output runs only auto and says so."""
+    forced = target.feature("structured")
+    res, bad, skipped = {}, [], []
+    for case, choice, think, streamed in TOOL_CASES:
+        if choice != "auto" and not forced:
+            skipped.append(case)
+            continue
+        body = {"max_tokens": 3000 if think else 600, "temperature": 0, "tools": TOOLS, "tool_choice": choice,
+                "chat_template_kwargs": {"enable_thinking": think}}
+        msgs = [{"role": "user", "content": TOOL_PROMPT}]
+        r = (api.stream if streamed else api.chat)(target.url, target.model, msgs, **body)
+        calls = r.get("tool_calls") or []
+        why = None
+        if r["status"] != 200:
+            why = f"{r['status']} {str(r.get('error'))[:200]}"
+        elif r.get("finish") != "tool_calls":
+            why = f"finish {r.get('finish')}"
+        elif not calls or (choice == NAMED and [c["function"]["name"] for c in calls] != ["book_flight"]):
+            why = f"calls {[c.get('function', {}).get('name') for c in calls]}"
+        else:
+            why = next((w for w in map(_call_ok, calls) if w), None)
+        res[case] = {"ok": why is None, "why": why, "status": r["status"], "finish": r.get("finish"), "tool_calls": calls,
+                     "text": r.get("text", r.get("error")), "usage": r.get("usage"), "seconds": r.get("s"), "request": body}
+        if why:
+            bad.append(f"{case} ({why})")
+        if case == "named" and not why and target.feature("drafts", True):
+            p = api.chat(target.url, target.model, msgs, **body, draft=False)
+            plain = [c["function"] for c in p.get("tool_calls") or []]
+            res[case]["plain_tool_calls"] = p.get("tool_calls")
+            if plain != [c["function"] for c in calls]:
+                bad.append(f"{case} drafted != plain")
+    _save(run_dir, name, res)
+    good = sum(v["ok"] for v in res.values())
+    summary = f"{good}/{len(res)} tool cases right" + (f"; failed {'; '.join(bad)}" if bad else "")
+    if skipped:
+        summary += f"; not tested (features.structured = false): {', '.join(skipped)}"
+    return {"ok": not bad, "summary": summary, "metrics": {"failures": bad, "skipped": skipped}}
+
+
 TEAM = {"type": "array", "minItems": 12, "maxItems": 12, "items": PERSON}
 
 # long replies for decode speed: the same prompt with the grammar off and on

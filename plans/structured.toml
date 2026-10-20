@@ -1,5 +1,8 @@
-description = "About a minute: structured output through the server's grammar (json_object, json_schema, required tools), no restart"
+description = "About two minutes: structured output through the server's grammar (json_object, json_schema, regex, choice, grammar) and tool calls (auto, required, named, thinking, streamed), no restart"
 restart = false
 
 [[checks]]
 type = "structured"
+
+[[checks]]
+type = "tools"

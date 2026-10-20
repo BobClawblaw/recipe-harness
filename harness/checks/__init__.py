@@ -13,6 +13,7 @@ REGISTRY = {
     "ruler": recipe.ruler,
     "structured": server.structured,
     "structured_speed": server.structured_speed,
+    "tools": server.tools,
     "sampling": server.sampling,
     "turns": server.turns,
     "prefill": server.prefill,
@@ -24,7 +25,17 @@ REGISTRY = {
 
 # a check whose feature the target turns off is skipped (e.g. a greedy-only engine has no sampling)
 NEEDS = {"structured": "structured", "structured_speed": "structured", "sampling": "sampling", "urls": "vision_urls", "capacity": "capacity",
-         "thinking": "thinking", "turns": "prompt_cache"}
+         "thinking": "thinking", "turns": "prompt_cache", "tools": "tools"}
+
+
+def skip_reason(target: Target, kind: str) -> str:
+    """Why applies() turned a check off; a structured check's skip also asks the server, so a stale flag shows."""
+    if kind in NEEDS and not target.feature(NEEDS[kind]):
+        why = f"features.{NEEDS[kind]} = false"
+        if NEEDS[kind] == "structured":
+            why += f"; {server.probe_structured(target)}"
+        return why
+    return "the target does not serve it"
 
 
 def applies(target: Target, kind: str, spec: dict) -> bool:

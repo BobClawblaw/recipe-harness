@@ -48,10 +48,11 @@ def chat(base: str, model: str, messages: list, timeout: float = 600, **extra) -
 
 
 def stream(base: str, model: str, messages: list, timeout: float = 600, **extra) -> dict:
-    """One streamed completion: text, time to the first content token (and to the first token of any kind), usage."""
+    """One streamed completion: text, time to the first content token (and to the first token of any kind), usage,
+    finish, and tool calls joined from their deltas."""
     body = {"model": model, "messages": messages, "stream": True, "stream_options": {"include_usage": True}, **extra}
     req = urllib.request.Request(f"{base}/v1/chat/completions", json.dumps(body).encode(), {"Content-Type": "application/json"})
-    t0, first, first_any, text, usage = time.time(), None, None, "", {}
+    t0, first, first_any, text, usage, finish, calls = time.time(), None, None, "", {}, None, {}
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             for line in r:
@@ -69,10 +70,17 @@ def stream(base: str, model: str, messages: list, timeout: float = 600, **extra)
                     if piece:
                         first = first if first is not None else time.time() - t0
                         text += piece
+                    for tc in delta.get("tool_calls") or []:
+                        call = calls.setdefault(tc.get("index", 0), {"type": "function", "function": {"name": "", "arguments": ""}})
+                        call["id"] = tc.get("id") or call.get("id")
+                        f = tc.get("function") or {}
+                        call["function"]["name"] += f.get("name") or ""
+                        call["function"]["arguments"] += f.get("arguments") or ""
+                    finish = c.get("finish_reason") or finish
     except urllib.error.HTTPError as e:
         return {"status": e.code, "error": e.read().decode(errors="replace")[:2000]}
     except Exception as e:
         return {"status": -1, "error": repr(e)[:500]}
     return {"status": 200, "text": text, "ttft": round(first, 3) if first is not None else None,
             "ttft_any": round(first_any, 3) if first_any is not None else None, "usage": usage,
-            "s": round(time.time() - t0, 3)}
+            "s": round(time.time() - t0, 3), "finish": finish, "tool_calls": [calls[i] for i in sorted(calls)] or None}

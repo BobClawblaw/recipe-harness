@@ -56,6 +56,7 @@ aborted or a check failed.
 | `suite` | the recipe's quality suite (`commands.suite`, `$args` from the plan); its report goes in `<name>/` | fails when a check has no cases (errors) or drafts, concurrent or soak is not exact (soak: concurrent resumes of ~6k-token kept states, every reply equal to the same request alone) |
 | `ruler` | the recipe's ruler (`commands.ruler`, `concurrency = [...]`); label it `fresh`, then `after` other traffic, to catch long-session slowdowns. With `commands.server_log` it runs one level at a time and writes `<name>.engine.json` (engine rounds, below) | fails on a cell with no replies |
 | `structured` | json_object, json_schema, guided_json, regex, choice and grammar, each greedy, sampled and thinking (greedy and sampled again with `"draft": false` on a drafting target); a grammar that cannot compile must be a 400. `structured.json` keeps each case's request, reply, usage and seconds | every reply obeys, drafted equals undrafted, and the bad regex gets a 400 |
+| `tools` | tool calls against a strict nested schema (book a flight) plus a plain one (the weather), greedy: `tool_choice` auto, required and a named function, the named one again with thinking and streamed (and with `"draft": false` on a drafting target). Required and named calls need a grammar, so on a target with `structured = false` only auto runs and the summary names the rest. `tools.json` keeps each case's request, calls and reason | every case is a 200 that finishes on `tool_calls`, every call's arguments fit its schema and the prompt, drafted equals undrafted |
 | `structured_speed` | decode speed, greedy, of two long JSON replies with the grammar off and on: one stream (and the grammar undrafted), two grammar streams at once, a plain stream beside a grammar stream against beside a plain one | measured; fails on an error or a grammar reply that is not JSON |
 | `sampling` | seeded sampled replies, repeated and undrafted | equal every time |
 | `turns` | a conversation that resumes its kept prompt; the third turn resumed, again, and cold | all three equal; reports cached tokens and first-token times |
@@ -66,7 +67,11 @@ aborted or a check failed.
 | `memory` | the target's `[[memory]]` commands (`free -b` read as GiB available) | measured |
 
 Each check writes `<name>.json` (its data) and `<name>.summary.json` (`ok`, a one-line summary, metrics). Targets turn
-off checks they don't serve in `[features]`. A greedy-only engine, for example, skips `sampling`.
+off checks they don't serve in `[features]`. A greedy-only engine, for example, skips `sampling`. A skip is logged
+with its flag, and a skipped structured check still sends one small json_schema request and logs the answer, so a flag
+left off after the engine gained grammars shows ("the server now obeys json_schema: turn features.structured on").
+A flag set off because an engine refused a feature has to be turned back on when the engine changes. On 2026-10-20
+`structured = false` hid a 5090 deploy whose engine had lost its grammar library; only the auto tool calls still worked.
 
 **Thinking on.** The qwen suite honours `--thinking` for GSM8K only and sends thinking off everywhere else.
 - The `thinking` plan runs the harness's own thinking-on problems, plus the suite with `--only gsm8k --thinking`.

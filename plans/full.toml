@@ -17,6 +17,9 @@ type = "suite"
 type = "structured"
 
 [[checks]]
+type = "tools"
+
+[[checks]]
 type = "sampling"
 
 [[checks]]

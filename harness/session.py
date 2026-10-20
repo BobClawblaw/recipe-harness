@@ -175,8 +175,9 @@ def run(target: Target, plan: dict, plan_name: str, out_root: Path | None = None
                 kind = spec["type"]
                 name = spec.get("name", kind + (f"-{spec['label']}" if "label" in spec else ""))
                 if not checks.applies(target, kind, spec):
-                    log(f"skip {name}: the target does not serve it")
-                    meta["checks"].append({"name": name, "skipped": True})
+                    why = checks.skip_reason(target, kind)
+                    log(f"skip {name}: {why}")
+                    meta["checks"].append({"name": name, "skipped": True, "why": why})
                     continue
                 log(f"check {name}")
                 t0 = time.time()
