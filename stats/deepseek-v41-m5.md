@@ -1,6 +1,37 @@
 # DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/deepseek-v41-m5.json` (21 runs); aggregate tok/s, total (a stream).
+Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/deepseek-v41-m5.json` (22 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-20 09:28: run `20261020-092851-dsv41-quality-off`
+
+Plan dsv41-quality-off, done; served as `DeepSeek-V4.1-Flash`.
+
+Serving: engine_commit `8557236a`; binary_sha256 `bc0e5d67944f9a1d9f043d1489af4be990646e3ae512e277d0f4772d67cdd572`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-Abliterated", "object": "model", "`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+| tools | 58/60 |
+| json | 30/30 |
+| ifeval | 132/150 |
+| gsm8k | 245/250 |
+| mgsm | 219/240 |
+| mmlu | 303/342 |
+| math500 | 459/500 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 93%; total = 3072.00M  us |
 
 ## 2026-10-20 09:19: run `20261020-091934-dsv41-speed`
 
