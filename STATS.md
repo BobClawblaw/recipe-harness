@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-20 21:27 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-20 21:47 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -30,7 +30,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Gemma 4 31B, oQ8e (8-bit) + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 40/63/52/55 | 4: 110/173/142/180 | 0.10 / 0.24-0.27 |  | 2026-10-16 |
 | NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision | 1x NVIDIA RTX 5090 (32 GB) | 150/150/150/150 |  | 0.03 | tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150 | 2026-10-15 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
-| Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 96/96/96/96 | 4: 233/233/234/241 | 0.05 / 0.12-0.17 | gsm8k 244/250 | 2026-10-20 |
+| Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 95/96/95/96 | 16: 404/415/415/438 | 0.05 / 0.42-0.56 |  | 2026-10-20 |
 | Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 241/459/310/314 |  | 0.10 |  | 2026-10-16 |
 | Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
@@ -840,26 +840,32 @@ Serving: stack `vllm-mlx 0.6.0, mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4`; serve
 
 ## Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Ornith-1.5-122B`. Latest: run `20261020-161950-thinking` (2026-10-20 16:19, plan thinking, done).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Ornith-1.5-122B`. Latest: run `20261020-163959-glm-streams` (2026-10-20 16:39, plan glm-streams, done).
 
-Serving: engine_commit `30e5dcb4`; binary_sha256 `3e7504db19242321a95555a39a18a51e368405092dbe724d89537d5c14091376`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179253`; chip `Apple M5 Ultra; 274877906944`; suite_commit `291734b3cf5a`
+Serving: engine_commit `30e5dcb4`; binary_sha256 `0fb4b69774aebdf3db411bc9865bab9ae80c80817085baf0c1dadd8eef5dc5e3`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179253`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
 
-### suite-thinking
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 95.3 (95.3) | 95.5 (95.5) | 95.4 (95.4) | 95.5 (95.5) | 0.05-0.07 s |
+| 4 | 227.1 (56.8) | 232.7 (58.1) | 233.5 (58.4) | 240.2 (60.0) | 0.12-0.17 s |
+| 8 | 315.0 (39.4) | 322.5 (40.2) | 327.2 (40.6) | 338.6 (42.5) | 0.22-0.30 s |
+| 16 | 404.5 (25.3) | 415.0 (26.0) | 414.9 (26.0) | 437.5 (27.5) | 0.42-0.56 s |
+
+### suite-together
 
 | check | passed |
 |---|---:|
-| gsm8k | 244/250 |
-
-### checks
-
-| check | result |
-|---|---|
-| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors, 0 cut at 50176 tokens |
+| concurrent | 12/12 |
+| drafts | 12/12 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-20 16:39 | glm-streams | done | 95.5 | 415.0 | 0.42-0.56 s | 24/24 |
+| 2026-10-20 16:34 | glm-streams | done | 157.1 | 410.5 | 0.44-0.59 s | 24/24 |
 | 2026-10-20 16:19 | thinking | done |  |  |  | 244/250 |
 | 2026-10-20 15:25 | mlx-speed | done | 95.6 |  |  |  |
 | 2026-10-20 15:23 | mlx-speed | done | 157.0 |  |  |  |
