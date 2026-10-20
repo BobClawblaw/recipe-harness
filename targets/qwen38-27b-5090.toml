@@ -49,7 +49,7 @@ cmd = "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader"
 
 [features]
 drafts = true
-structured = false    # not measured on this engine yet
+structured = true     # lib/libtfgrammar.so beside bin/ (zig build grammar); the engine refuses without it
 sampling = true
 vision_urls = false   # data URLs only (the unit does not pass --vision-urls)
 capacity = false      # one stream at 262k
