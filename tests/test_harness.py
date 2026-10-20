@@ -196,6 +196,15 @@ class LeaderboardTest(unittest.TestCase):
         self.assertEqual(parse(out), {"submission": "6cbe0c3e-6e77", "status": "approved", "url": "https://tensorfold.dev/benchmarks?result=6cbe0c3e-6e77"})
         self.assertEqual(parse("error: token refused"), {"submission": None, "status": None, "url": None})
 
+    def test_the_board_decides_the_suite(self):
+        from harness.leaderboard import suite_args
+        from harness.session import Abort
+        self.assertEqual(suite_args(["community-v1"], "community-v1", ["community-v1"]), [])
+        self.assertEqual(suite_args(["community-v1"], "community-v2", ["community-v1", "community-v2"]), ["--suite", "community-v1"])
+        self.assertEqual(suite_args(["community-v2", "community-v1"], "community-v2", ["community-v1", "community-v2"]), [])
+        with self.assertRaises(Abort):
+            suite_args(["community-v1"], "community-v2", ["community-v2"])
+
     def test_a_target_without_a_leaderboard_section_is_refused(self):
         from harness.config import ConfigError, Target
         from harness.leaderboard import _settings

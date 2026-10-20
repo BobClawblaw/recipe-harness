@@ -1,5 +1,6 @@
-"""The TensorFold leaderboard: the recipe down, `tensorfold benchmark` (community-v1) on its public checkpoint, the recipe
-back up, the receipt scrubbed, then published with the stored contributor login."""
+"""The TensorFold leaderboard: the recipe down, `tensorfold benchmark` on its public checkpoint in the suite the board
+accepts (its /suites listing decides), the recipe back up, the receipt scrubbed, then published with the stored
+contributor login."""
 
 from __future__ import annotations
 
@@ -8,6 +9,7 @@ import os
 import re
 import subprocess
 import time
+import urllib.request
 from pathlib import Path
 
 from . import api
@@ -18,6 +20,7 @@ from .session import Abort, Lock, bring_up, sh, tail
 
 URL = re.compile(r"https://\S+/benchmarks\?result=[0-9a-f-]+")
 SUBMISSION = re.compile(r"Submission (\S+): (\w+)")
+BOARD = "https://tensorfold.dev/api/benchmarks/v1"
 
 
 def _settings(target: Target) -> dict:
@@ -48,12 +51,40 @@ def _wait_free(target: Target, b: dict) -> None:
     raise Abort(f"{target.name}: the devices were not free {b.get('free_wait', 120)}s after down")
 
 
-def benchmark(target: Target, out: Path) -> tuple[int, str]:
-    """Stop the recipe, run the community-v1 suite with the target's engine, and start the recipe again whatever happens."""
+def board_suites(b: dict) -> list[str]:
+    """The suites the board accepts, as its /suites lists them ([leaderboard] upload_url, else tensorfold.dev)."""
+    req = urllib.request.Request(f"{b.get('upload_url', BOARD).rstrip('/')}/suites", headers={"User-Agent": "recipe-harness"})
+    with urllib.request.urlopen(req, timeout=30) as r:  # the board refuses urllib's own agent
+        return [s["id"] for s in json.loads(r.read())["suites"]]
+
+
+def binary_suites(target: Target, b: dict) -> tuple[str, list[str]]:
+    """The suite the engine runs by default (`benchmark suites`), and the ones `--suite` can choose (its help)."""
+    binary = os.path.expanduser(target.expand(b["binary"]))
+    env = _env(target, b)
+    default = json.loads(subprocess.run([binary, "benchmark", "suites"], env=env, capture_output=True, text=True, timeout=60).stdout)["id"]
+    helptext = subprocess.run([binary, "benchmark", "--help"], env=env, capture_output=True, text=True, timeout=60).stdout
+    lines = " ".join(l for l in helptext.splitlines() if l.strip().startswith("--suite "))
+    return default, sorted(set(re.findall(r"community-v\d+", lines)) | {default})
+
+
+def suite_args(accepted: list[str], default: str, runs: list[str]) -> list[str]:
+    """The flags that run the board's suite: none when it takes the engine's default, else --suite with the first suite
+    the board lists that the engine runs. The board is authoritative: with no suite in common, nothing runs."""
+    if default in accepted:
+        return []
+    for s in accepted:
+        if s in runs:
+            return ["--suite", s]
+    raise Abort(f"the board accepts {', '.join(accepted) or 'no suite'}; this engine runs {', '.join(runs)}")
+
+
+def benchmark(target: Target, out: Path, suite: list[str] = ()) -> tuple[int, str]:
+    """Stop the recipe, run the board's suite with the target's engine, and start the recipe again whatever happens."""
     b = _settings(target)
     c = target.section("commands")
     binary = os.path.expanduser(target.expand(b["binary"]))
-    cmd = [binary, "benchmark", target.expand(b["model"]), "--output", str(out)] + target.expand(b.get("args", "")).split()
+    cmd = [binary, "benchmark", target.expand(b["model"]), "--output", str(out)] + list(suite) + target.expand(b.get("args", "")).split()
     if "down" in c:
         rc, o = sh(target, c["down"], timeout=target.section("session").get("down_timeout", 600))
         log(f"down (exit {rc}): {tail(o, 1)}")
@@ -96,8 +127,14 @@ def run(target: Target, publish_it: bool = True) -> Path:
     write = lambda: (run_dir / "meta.json").write_text(json.dumps(meta, indent=1))
     write()
     try:
+        b = _settings(target)
+        accepted = board_suites(b)
+        default, runs = binary_suites(target, b)
+        suite = suite_args(accepted, default, runs)
+        meta["suite"] = suite[1] if suite else default
+        log(f"the board accepts {', '.join(accepted)}; running {meta['suite']}")
         with Lock(target.section("session").get("lock")):
-            rc, out = benchmark(target, receipt)
+            rc, out = benchmark(target, receipt, suite)
         (run_dir / "benchmark.log").write_text(out)
         log(tail(out, 8))
         meta["benchmark_exit"] = rc

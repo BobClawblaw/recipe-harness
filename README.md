@@ -125,13 +125,15 @@ Every recipe we publish also goes on the TensorFold community board (tensorfold.
 
 ```bash
 tensorfold benchmark login --token-stdin < /secure/upload-token   # once a machine: the contributor token, kept by the CLI
-python3 -m harness leaderboard qwen38-27b-5090                      # the recipe down, community-v1, the recipe up, published
+python3 -m harness leaderboard qwen38-27b-5090                      # the recipe down, the board's suite, the recipe up, published
 python3 -m harness leaderboard qwen38-27b-5090 --no-publish         # the same, the receipt kept local
 ```
 
 A target's `[leaderboard]` names the public checkpoint (`model`, cached as a Hugging Face snapshot: the board refuses
 local directories), the engine `binary`, extra `args`, `env` for the managed server, and `free`, a command that exits 0
-once `down` has released the devices. The run takes the target's lock, runs `down`, `tensorfold benchmark`, then `up`
+once `down` has released the devices. The board decides the suite: the run reads its `/suites` listing (`upload_url`
+in `[leaderboard]`, else tensorfold.dev) and, when the engine's default suite is not listed, passes `--suite` with one
+it is; an engine with no suite in common is refused before `down`. The run takes the target's lock, runs `down`, `tensorfold benchmark`, then `up`
 whatever happened, scrubs the receipt, and publishes it with `--yes`. The receipt, the benchmark's output and the
 board's answer (submission, status, public URL) stay in `runs/<target>/<stamp>-leaderboard/`. A scrub hit or an
 incomplete run publishes nothing. `TENSORFOLD_BENCHMARK_TOKEN` in the environment replaces the stored login for one run.
