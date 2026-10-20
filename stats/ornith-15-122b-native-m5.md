@@ -1,6 +1,50 @@
 # Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (18 runs); aggregate tok/s, total (a stream).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (20 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-20 16:39: run `20261020-163959-glm-streams`
+
+Plan glm-streams, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `30e5dcb4`; binary_sha256 `0fb4b69774aebdf3db411bc9865bab9ae80c80817085baf0c1dadd8eef5dc5e3`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179253`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 95.3 (95.3) | 95.5 (95.5) | 95.4 (95.4) | 95.5 (95.5) | 0.05-0.07 s |
+| 4 | 227.1 (56.8) | 232.7 (58.1) | 233.5 (58.4) | 240.2 (60.0) | 0.12-0.17 s |
+| 8 | 315.0 (39.4) | 322.5 (40.2) | 327.2 (40.6) | 338.6 (42.5) | 0.22-0.30 s |
+| 16 | 404.5 (25.3) | 415.0 (26.0) | 414.9 (26.0) | 437.5 (27.5) | 0.42-0.56 s |
+
+### suite-together
+
+| check | passed |
+|---|---:|
+| concurrent | 12/12 |
+| drafts | 12/12 |
+
+## 2026-10-20 16:34: run `20261020-163412-glm-streams`
+
+Plan glm-streams, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `30e5dcb4`; binary_sha256 `0fb4b69774aebdf3db411bc9865bab9ae80c80817085baf0c1dadd8eef5dc5e3`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179253`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.8 (93.8) | 157.1 (157.1) | 132.6 (132.6) | 149.5 (149.5) | 0.05-0.07 s |
+| 4 | 239.4 (58.6) | 326.0 (81.4) | 282.6 (70.2) | 391.0 (102.7) | 0.13-0.18 s |
+| 8 | 231.8 (28.9) | 357.8 (44.3) | 302.7 (38.0) | 385.1 (46.3) | 0.24-0.32 s |
+| 16 | 355.6 (21.2) | 410.5 (23.2) | 373.1 (21.9) | 422.1 (23.6) | 0.44-0.59 s |
+
+### suite-together
+
+| check | passed |
+|---|---:|
+| concurrent | 12/12 |
+| drafts | 12/12 |
 
 ## 2026-10-20 16:19: run `20261020-161950-thinking`
 
