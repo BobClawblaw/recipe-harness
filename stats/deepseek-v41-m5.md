@@ -1,6 +1,41 @@
 # DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/deepseek-v41-m5.json` (19 runs); aggregate tok/s, total (a stream).
+Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/deepseek-v41-m5.json` (21 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-20 09:19: run `20261020-091934-dsv41-speed`
+
+Plan dsv41-speed, done; served as `DeepSeek-V4.1-Flash`.
+
+Serving: engine_commit `8557236a`; binary_sha256 `bc0e5d67944f9a1d9f043d1489af4be990646e3ae512e277d0f4772d67cdd572`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-Abliterated", "object": "model", "`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 70.7 (70.7) | 104.9 (104.9) | 87.6 (87.6) | 103.8 (103.8) | 0.10-0.14 s |
+| 2 | 96.6 (48.3) | 111.6 (55.8) | 106.9 (53.4) | 150.4 (75.2) | 0.21-0.29 s |
+| 4 | 126.8 (31.2) | 138.5 (34.5) | 132.5 (32.9) | 146.4 (38.2) | 0.43-0.58 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 14%; total = 3072.00M  us |
+
+## 2026-10-20 09:14: run `20261020-091454-prefill`
+
+Plan prefill, done; served as `DeepSeek-V4.1-Flash`.
+
+Serving: engine_commit `8557236a`; binary_sha256 `bc0e5d67944f9a1d9f043d1489af4be990646e3ae512e277d0f4772d67cdd572`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-Abliterated", "object": "model", "`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 13%; total = 3072.00M  us |
+| prefill-off | measured: 2071 tokens 1221.8 tok/s (1.695 s), 8215 tokens 1451.4 tok/s (5.66 s), 32793 tokens 1422.1 tok/s (23.059 s), 131098 tokens 1379.6 tok/s (95.029 s) |
+| prefill-thinking | measured: 2096 tokens 1366.4 tok/s (1.534 s), 8243 tokens 1444.9 tok/s (5.705 s), 32817 tokens 1423.6 tok/s (23.052 s), 131120 tokens 1377.6 tok/s (95.177 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 14%; total = 3072.00M  us |
 
 ## 2026-10-20 08:25: run `20261020-082555-dsv41-speed`
 

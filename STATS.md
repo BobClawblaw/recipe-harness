@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-20 13:30 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-20 14:24 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -12,7 +12,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 55/104/63/71 | 8: 135/203/144/203 | 0.19 / 1.35-1.84 |  | 2026-10-18 |
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 53/98/61/69 | 4: 106/158/111/176 | 0.20 / 0.75-1.00 |  | 2026-10-18 |
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 55/101/63/71 | 4: 104/156/109/173 | 0.19 / 0.41-0.64 |  | 2026-10-17 |
-| DeepSeek-V4.1-Flash-1017, 2/3-bit experts | 1x Apple M5 Ultra (256 GB unified), macOS | 69/88/82/94 | 4: 107/119/116/122 | 0.10 / 0.43-0.57 | tools 57/60, json 30/30, gsm8k 246/250, ifeval 130/150 | 2026-10-20 |
+| DeepSeek-V4.1-Flash-1017, 2/3-bit experts | 1x Apple M5 Ultra (256 GB unified), macOS | 71/105/88/104 | 4: 127/138/132/146 | 0.10 / 0.43-0.58 | tools 57/60, json 30/30, gsm8k 246/250, ifeval 130/150 | 2026-10-20 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 42/60/57/58 |  | 0.17 | json 30/30, ifeval 103/150 | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 27/48/39/33 | 8: 78/115/98/110 | 0.18 / 1.49-1.83 |  | 2026-10-17 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | -/-/-/- | 16: 107/120/119/130 |  / 2.69-3.38 |  | 2026-10-18 |
@@ -36,28 +36,29 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 
 ## DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `DeepSeek-V4.1-Flash`. Latest: run `20261020-082555-dsv41-speed` (2026-10-20 08:25, plan dsv41-speed, done).
+Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `DeepSeek-V4.1-Flash`. Latest: run `20261020-091934-dsv41-speed` (2026-10-20 09:19, plan dsv41-speed, done).
 
-Serving: engine_commit `c14c1848`; binary_sha256 `19323a0e5e1ca28cc8018a99af405b4f4725a1f36f25a2b08512c181e3c65127`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-Abliterated", "object": "model", "`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+Serving: engine_commit `8557236a`; binary_sha256 `bc0e5d67944f9a1d9f043d1489af4be990646e3ae512e277d0f4772d67cdd572`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-Abliterated", "object": "model", "`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
 
 ### ruler-streams
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 68.8 (68.8) | 87.7 (87.7) | 82.1 (82.1) | 94.5 (94.5) | 0.10-0.14 s |
-| 2 | 87.2 (43.6) | 105.0 (52.5) | 97.7 (48.8) | 116.5 (58.3) | 0.21-0.28 s |
-| 4 | 107.1 (26.0) | 119.3 (29.9) | 115.5 (28.4) | 122.1 (30.1) | 0.43-0.57 s |
+| 1 | 70.7 (70.7) | 104.9 (104.9) | 87.6 (87.6) | 103.8 (103.8) | 0.10-0.14 s |
+| 2 | 96.6 (48.3) | 111.6 (55.8) | 106.9 (53.4) | 150.4 (75.2) | 0.21-0.29 s |
+| 4 | 126.8 (31.2) | 138.5 (34.5) | 132.5 (32.9) | 146.4 (38.2) | 0.43-0.58 s |
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: mac: System-wide memory free percentage: 13%; total = 4096.00M  us |
+| memory-idle | measured: mac: System-wide memory free percentage: 14%; total = 3072.00M  us |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-20 09:19 | dsv41-speed | done | 104.9 |  |  |  |
 | 2026-10-20 08:25 | dsv41-speed | done | 87.7 |  |  |  |
 | 2026-10-20 06:19 | dsv41-speed | done | 86.4 |  |  |  |
 | 2026-10-20 04:35 | dsv41-quality-off | done |  |  |  | 1490/1614 |
