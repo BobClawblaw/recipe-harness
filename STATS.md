@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-20 19:21 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-20 20:36 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -30,7 +30,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Gemma 4 31B, oQ8e (8-bit) + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 40/63/52/55 | 4: 110/173/142/180 | 0.10 / 0.24-0.27 |  | 2026-10-16 |
 | NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision | 1x NVIDIA RTX 5090 (32 GB) | 150/150/150/150 |  | 0.03 | tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150 | 2026-10-15 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
-| Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 96/95/95/96 | 4: 234/240/253/242 | 0.05 / 0.12-0.17 |  | 2026-10-20 |
+| Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 96/96/96/96 | 4: 233/233/234/241 | 0.05 / 0.12-0.17 | tools 55/60, json 30/30, gsm8k 245/250, ifeval 120/150 | 2026-10-20 |
 | Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 241/459/310/314 |  | 0.10 |  | 2026-10-16 |
 | Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
@@ -840,28 +840,31 @@ Serving: stack `vllm-mlx 0.6.0, mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4`; serve
 
 ## Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Ornith-1.5-122B`. Latest: run `20261020-141648-mlx-speed` (2026-10-20 14:16, plan mlx-speed, done).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Ornith-1.5-122B`. Latest: run `20261020-152513-mlx-speed` (2026-10-20 15:25, plan mlx-speed, done).
 
-Serving: engine_commit `0d37dcb2`; binary_sha256 `3e7504db19242321a95555a39a18a51e368405092dbe724d89537d5c14091376`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179252`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+Serving: engine_commit `30e5dcb4`; binary_sha256 `3e7504db19242321a95555a39a18a51e368405092dbe724d89537d5c14091376`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179252`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
 
 ### ruler-streams
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 95.6 (95.6) | 95.4 (95.4) | 95.1 (95.1) | 95.5 (95.5) | 0.05-0.07 s |
-| 2 | 152.9 (76.5) | 159.9 (79.9) | 167.7 (83.8) | 156.4 (78.2) | 0.07-0.10 s |
-| 4 | 234.0 (58.4) | 240.1 (59.9) | 253.3 (64.7) | 241.6 (60.4) | 0.12-0.17 s |
+| 1 | 95.7 (95.7) | 95.6 (95.6) | 95.7 (95.7) | 95.6 (95.6) | 0.05-0.07 s |
+| 2 | 152.7 (76.4) | 154.7 (77.3) | 154.9 (77.5) | 156.5 (78.3) | 0.08-0.10 s |
+| 4 | 232.9 (58.2) | 233.4 (58.4) | 234.1 (58.6) | 240.9 (60.2) | 0.12-0.17 s |
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: mac: System-wide memory free percentage: 66%; total = 5120.00M  us |
+| memory-idle | measured: mac: System-wide memory free percentage: 66%; total = 4096.00M  us |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-20 15:25 | mlx-speed | done | 95.6 |  |  |  |
+| 2026-10-20 15:23 | mlx-speed | done | 157.0 |  |  |  |
+| 2026-10-20 14:53 | dsv41-quality-off | done |  |  |  | 1444/1614 |
 | 2026-10-20 14:16 | mlx-speed | done | 95.4 |  |  |  |
 | 2026-10-20 14:15 | mlx-speed | done | 314.3 |  |  |  |
 | 2026-10-20 14:01 | mlx-speed | done | 85.0 |  |  |  |
