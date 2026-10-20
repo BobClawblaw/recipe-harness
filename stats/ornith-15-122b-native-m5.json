@@ -1714,6 +1714,46 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261020-161950-thinking",
+   "target": "ornith-15-122b-native-m5",
+   "model": "Ornith-1.5-122B",
+   "plan": "thinking",
+   "started": "20261020-161950",
+   "finished": "20261020-162416",
+   "status": "done",
+   "identity": {
+    "engine_commit": "30e5dcb4",
+    "binary_sha256": "3e7504db19242321a95555a39a18a51e368405092dbe724d89537d5c14091376",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Ornith-1.5-122B\", \"object\": \"model\", \"created\": 1792531190, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": false}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-thinking": {
+     "gsm8k": {
+      "passed": 244,
+      "cases": 250
+     }
+    }
+   },
+   "checks": {
+    "thinking": {
+     "ok": true,
+     "summary": "thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors, 0 cut at 50176 tokens"
+    },
+    "suite-thinking": {
+     "ok": null,
+     "summary": "gsm8k 244/250"
+    }
+   },
+   "model_name": "Ornith-1.5-122B, 4-bit MLX affine (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
