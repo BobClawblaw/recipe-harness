@@ -840,6 +840,246 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261020-140007-mlx-speed",
+   "target": "ornith-15-122b-native-m5",
+   "model": "Ornith-1.5-122B",
+   "plan": "mlx-speed",
+   "started": "20261020-140007",
+   "finished": "20261020-140135",
+   "status": "done",
+   "identity": {
+    "engine_commit": "e077860c",
+    "binary_sha256": "5866da0e156bce5092010f65f97137b222ed3653bd4e2a8cd98dd9572ee499c2",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Ornith-1.5-122B\", \"object\": \"model\", \"created\": 1792522807, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": false}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 85.5,
+      "per_stream": 85.5,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 316.2,
+      "per_stream": 316.2,
+      "ttft": 0.062
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 158.2,
+      "per_stream": 158.2,
+      "ttft": 0.065
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 177.4,
+      "per_stream": 177.4,
+      "ttft": 0.048
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 154.2,
+      "per_stream": 77.1,
+      "ttft": 0.091
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 272.2,
+      "per_stream": 136.1,
+      "ttft": 0.094
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 239.2,
+      "per_stream": 119.6,
+      "ttft": 0.106
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 267.0,
+      "per_stream": 133.5,
+      "ttft": 0.078
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 205.0,
+      "per_stream": 50.8,
+      "ttft": 0.147
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 366.7,
+      "per_stream": 82.1,
+      "ttft": 0.152
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 379.7,
+      "per_stream": 86.6,
+      "ttft": 0.17
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 382.1,
+      "per_stream": 93.1,
+      "ttft": 0.127
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 65%\ntotal = 5120.00M  us"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 85.5/316.2/158.2/177.4 ttft 0.05-0.07s; c=2 154.2/272.2/239.2/267.0 ttft 0.08-0.11s; c=4 205.0/366.7/379.7/382.1 ttft 0.13-0.17s"
+    }
+   },
+   "model_name": "Ornith-1.5-122B, 4-bit MLX affine (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261020-140142-mlx-speed",
+   "target": "ornith-15-122b-native-m5",
+   "model": "Ornith-1.5-122B",
+   "plan": "mlx-speed",
+   "started": "20261020-140142",
+   "finished": "20261020-140352",
+   "status": "done",
+   "identity": {
+    "engine_commit": "e077860c",
+    "binary_sha256": "5866da0e156bce5092010f65f97137b222ed3653bd4e2a8cd98dd9572ee499c2",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Ornith-1.5-122B\", \"object\": \"model\", \"created\": 1792522902, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": false}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 85.2,
+      "per_stream": 85.2,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 85.0,
+      "per_stream": 85.0,
+      "ttft": 0.063
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 85.2,
+      "per_stream": 85.2,
+      "ttft": 0.066
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 85.2,
+      "per_stream": 85.2,
+      "ttft": 0.049
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 139.1,
+      "per_stream": 69.6,
+      "ttft": 0.084
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 145.1,
+      "per_stream": 72.6,
+      "ttft": 0.089
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 151.7,
+      "per_stream": 75.8,
+      "ttft": 0.098
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 141.9,
+      "per_stream": 71.0,
+      "ttft": 0.072
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 218.1,
+      "per_stream": 54.4,
+      "ttft": 0.138
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 223.1,
+      "per_stream": 55.9,
+      "ttft": 0.144
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 237.5,
+      "per_stream": 60.9,
+      "ttft": 0.164
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 226.9,
+      "per_stream": 56.8,
+      "ttft": 0.12
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 66%\ntotal = 5120.00M  us"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 85.2/85.0/85.2/85.2 ttft 0.05-0.07s; c=2 139.1/145.1/151.7/141.9 ttft 0.07-0.10s; c=4 218.1/223.1/237.5/226.9 ttft 0.12-0.16s"
+    }
+   },
+   "model_name": "Ornith-1.5-122B, 4-bit MLX affine (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
