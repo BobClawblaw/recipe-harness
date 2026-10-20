@@ -1,0 +1,77 @@
+# DeepSeek-V4.1-Flash-1017 at EXL3 2.9 bpw, abliterated (Mia-AiLab's EAQ pack + drowzeys' Keys overlay,
+# stock dtypes), on two DGX Sparks at TP=2, served by this recipe's own start.sh/stop.sh (TensorFold native Zig
+# engine, EXL3 TP=2 kit, 1M window, 4 slots, thinking default on). The ruler is the GLM EXL3 recipe's (any OpenAI
+# endpoint). Machine paths go in the .local.toml.
+name = "dsv41-1017-ablit"
+description = "DeepSeek-V4.1-Flash-1017 EXL3 2.9 bpw abliterated, TensorFold native (Zig) TP=2 on two DGX Sparks, 4 slots, 1M window"
+model_name = "DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw abliterated"
+hardware = "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE"
+engine = "TensorFold native (Zig, CUDA) + EXL3 TP=2 kit, recipe defaults (replay prefill, DSpark drafts, thinking on)"
+url = "http://127.0.0.1:$port"
+model = "DeepSeek-V4.1-Flash-1017"
+cwd = "$recipe"
+
+[vars]
+recipe = "CHANGE-ME: this recipe's checkout (start.sh, stop.sh, scripts/local.sh)"
+suite_dir = "CHANGE-ME: a checkout of the GLM EXL3 recipe (bench/ruler.py, quality/suite.py)"
+pack = "CHANGE-ME: the head's prepared checkpoint folder (model.safetensors.index.json)"
+worker = "CHANGE-ME: the worker's ssh login (user@address)"
+port = "8000"
+container = "dsv41-1017-exl3-tf"
+
+[commands]
+up = "./start.sh"
+down = "./stop.sh"
+status = "docker ps --filter name=$container"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+
+[session]
+lock = "~/.cache/tf-gpu-pair.lock"
+up_retries = 1
+retry_wait = 90
+up_timeout = 1800
+health_wait = 120
+down_wait = 90
+leave_up = true
+
+[[identity]]
+name = "image"
+cmd = "docker inspect -f '{{.Image}}' $container | cut -c8-19"
+
+[[identity]]
+name = "patches"
+cmd = "docker inspect -f '{{index .Config.Labels \"tf.patches\"}}' $container"
+expect = "docker inspect -f '{{.Config.Image}}' $container | sed 's/.*tp2-//'"
+
+[[identity]]
+name = "ablit"
+cmd = "basename $$(dirname $pack) | sed 's/.*-ablit-//'"
+expect = "bash -c 'source scripts/local.sh 2>/dev/null; source scripts/config.sh >/dev/null 2>&1; echo $${ABLIT_REVISION:0:8}'"
+
+[[identity]]
+name = "served"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "pack"
+cmd = "sha256sum $pack/model.safetensors.index.json | cut -c1-16"
+
+[[memory]]
+name = "head"
+cmd = "free -b"
+
+[[memory]]
+name = "worker"
+cmd = "ssh $worker free -b"
+
+[features]
+drafts = true
+# the TensorFold native engine answers 400 "structured output (response_format and the guided_* fields) is not
+# supported by this engine yet", so structured checks are off, not failed
+structured = false
+sampling = true
+vision_urls = false
+capacity = false
+thinking = true
+prompt_cache = true
