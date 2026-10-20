@@ -1,0 +1,63 @@
+# Ornith-1.5-122B (a Qwen3.5-MoE 122B-A10B with a vision tower), 4-bit MLX affine (groups of 64), served by TensorFold's
+# native Metal engine (the qwen27 family's routed path) on one 256 GB M5 Ultra Mac, from the
+# ornith-15-122b-mlx-m5-ultra recipe (`python3 -m mac up|down`). The ruler and suite are the qwen Spark recipe's, from a
+# local checkout (suite_dir). Machine-specific values go in ornith-15-122b-native-m5.local.toml.
+name = "ornith-15-122b-native-m5"
+description = "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
+url = "http://127.0.0.1:$port"
+model = "Ornith-1.5-122B"
+model_name = "Ornith-1.5-122B, 4-bit MLX affine (g64)"
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout"
+recipe_dir = "CHANGE-ME: a checkout of ornith-15-122b-mlx-m5-ultra"
+engine_sha = "CHANGE-ME: the TensorFold commit the recipe builds"
+engine_dir = "CHANGE-ME: the worktree that built the served binary"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+port = "8891"
+drafter_dir = "CHANGE-ME: the incoai/Ornith-1.5-122B-DFlash2 snapshot directory"
+
+[commands]
+up = "cd $recipe_dir && TENSORFOLD_SHA=$engine_sha PORT=$port python3 -m mac up"
+down = "cd $recipe_dir && python3 -m mac down"
+status = "cd $recipe_dir && python3 -m mac status"
+diagnose = "cd $recipe_dir && python3 -m mac logs -n 5"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 600
+health_wait = 600
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "echo $engine_sha | cut -c1-8"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+# python3 -m harness leaderboard ornith-15-122b-native-m5: the board's suite on the public 4-bit checkpoint with the
+# DFlash2 drafter, the receipt published with the stored login; the recipe's server is brought down first.
+[leaderboard]
+model = "BobClawblaw/Ornith-1.5-122B-MLX-4bit"   # cached as a Hugging Face snapshot
+binary = "$engine_dir/zig-out/native/bin/tensorfold-native"
+free = "! pgrep -f 'tensorfold-native [s]erve'"
+args = "--drafter $drafter_dir"
