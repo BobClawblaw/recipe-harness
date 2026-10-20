@@ -1,0 +1,10 @@
+description = "Quality with thinking off (about 1.5 hours), on the server as it is: the suite's parts the GLM quality runs completed (drafts, behaviour, tools, json, ifeval, gsm8k, mgsm, mmlu, math500)"
+restart = false
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "suite"
+args = "--only drafts behaviour tools json ifeval gsm8k mgsm mmlu math500"
