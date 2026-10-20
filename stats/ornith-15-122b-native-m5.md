@@ -1,6 +1,46 @@
 # Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (9 runs); aggregate tok/s, total (a stream).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (11 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-20 14:16: run `20261020-141648-mlx-speed`
+
+Plan mlx-speed, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `0d37dcb2`; binary_sha256 `3e7504db19242321a95555a39a18a51e368405092dbe724d89537d5c14091376`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179252`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 95.6 (95.6) | 95.4 (95.4) | 95.1 (95.1) | 95.5 (95.5) | 0.05-0.07 s |
+| 2 | 152.9 (76.5) | 159.9 (79.9) | 167.7 (83.8) | 156.4 (78.2) | 0.07-0.10 s |
+| 4 | 234.0 (58.4) | 240.1 (59.9) | 253.3 (64.7) | 241.6 (60.4) | 0.12-0.17 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 66%; total = 5120.00M  us |
+
+## 2026-10-20 14:15: run `20261020-141514-mlx-speed`
+
+Plan mlx-speed, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `0d37dcb2`; binary_sha256 `3e7504db19242321a95555a39a18a51e368405092dbe724d89537d5c14091376`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179252`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 89.7 (89.7) | 314.3 (314.3) | 151.1 (151.1) | 177.6 (177.6) | 0.05-0.07 s |
+| 2 | 169.9 (84.9) | 285.0 (142.5) | 246.4 (123.2) | 282.2 (141.1) | 0.08-0.10 s |
+| 4 | 204.5 (51.0) | 357.4 (82.8) | 361.4 (85.0) | 389.7 (91.5) | 0.13-0.17 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 66%; total = 5120.00M  us |
 
 ## 2026-10-20 14:01: run `20261020-140142-mlx-speed`
 
