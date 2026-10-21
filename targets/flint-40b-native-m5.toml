@@ -26,9 +26,9 @@ prompt_cache_gib = "8"
 
 [commands]
 up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c 'FLINT_LOAD_LIMIT_GB=$load_limit_gb $engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --prompt-cache-gib $prompt_cache_gib --temperature 1.0 --top-p 0.95 --top-k 20 --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
-# only this target's server: other sessions serve other models from the same binary
-down = "pkill -f 'tensorfold-native serve [^ ]*flint-int4' ; sleep 3"
-status = "pgrep -fl 'tensorfold-native serve [^ ]*flint-int4'"
+# only this target's server on its port: the same checkpoint may be served elsewhere on this Mac (another port)
+down = "pkill -f 'tensorfold-native serve [^ ]*flint-int4 .*--port $port( |$$)' ; sleep 3"
+status = "pgrep -fl 'tensorfold-native serve [^ ]*flint-int4 .*--port $port( |$$)'"
 diagnose = "tail -5 $log_dir/$model.log"
 server_log = "awk -v s=$since '$$1 >= s' $log_dir/$model.log"
 suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"

@@ -1,6 +1,87 @@
 # Recursive Flint 40B-A2.5B, MLX INT4 (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (7 runs); aggregate tok/s, total (a stream).
+Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (10 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-21 18:23: run `20261021-182348-structured`
+
+Plan structured, done; served as `flint`.
+
+Serving: engine_commit `8b23061a`; binary_sha256 `bbc90c8eaeb9f9c6f75ff0edff13bdb659b193fdc51380a2c0ae27f0fdd49926`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792625028, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+
+## 2026-10-21 18:22: run `20261021-182231-mlx-speed`
+
+Plan mlx-speed, done; served as `flint`.
+
+Serving: engine_commit `8b23061a`; binary_sha256 `bbc90c8eaeb9f9c6f75ff0edff13bdb659b193fdc51380a2c0ae27f0fdd49926`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792624951, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 180.8 (180.8) | 177.0 (177.0) | 192.8 (192.8) | 204.7 (204.7) | 0.03-0.04 s |
+| 2 | 260.5 (130.3) | 257.2 (128.6) | 278.5 (139.3) | 277.0 (138.5) | 0.04-0.07 s |
+| 4 | 356.4 (89.1) | 348.8 (87.4) | 365.4 (91.2) | 363.6 (88.1) | 0.07-0.11 s |
+
+Engine rounds (ruler-streams):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.092 | 0.141 | 62% | 5.79 | 13 |
+| 2 | 1.086 | 0.16 | 51% | 8.1 | 26 |
+| 4 | 1.068 | 0.145 | 44% | 12.01 | 50 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 78%; total = 3072.00M  us |
+
+## 2026-10-21 18:21: run `20261021-182114-speed`
+
+Plan speed, done; served as `flint`.
+
+Serving: engine_commit `8b23061a`; binary_sha256 `bbc90c8eaeb9f9c6f75ff0edff13bdb659b193fdc51380a2c0ae27f0fdd49926`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792624882, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 182.3 (182.3) | 176.2 (176.2) | 192.0 (192.0) | 203.8 (203.8) | 0.03-0.04 s |
+| 2 | 257.9 (129.0) | 254.4 (127.2) | 276.2 (138.1) | 274.3 (137.1) | 0.04-0.07 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.085 | 0.133 | 60% | 5.75 | 12 |
+| 2 | 1.083 | 0.157 | 50% | 8.15 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 183.1 (183.1) | 176.8 (176.8) | 192.8 (192.8) | 204.4 (204.4) | 0.03-0.04 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.084 | 0.137 | 58% | 5.73 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 78%; total = 3072.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.066s, cold 0.726s |
+| memory-busy | measured: mac: System-wide memory free percentage: 78%; total = 3072.00M  us |
 
 ## 2026-10-21 17:56: run `20261021-175627-structured`
 
