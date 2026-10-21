@@ -257,7 +257,12 @@ def sampling(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
 
 
 def turns(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
-    """A conversation whose turns resume a kept prompt: the resumed turn equals the same turn sent cold."""
+    """A conversation whose turns resume a kept prompt: the resumed turn equals the same turn sent cold.
+
+    Cold is the same conversation after a restart when the run may restart the server (the same tokens, nothing kept);
+    otherwise the system prompt gains a trailing space to miss the kept prefix, which compares only where the template
+    and tokenizer leave the prompt's token count unchanged (Flint's keep the space as a token: a different prompt).
+    """
     system = "You are a careful assistant. " + " ".join(f"Rule {i}: answer plainly and keep facts straight about topic {i}."
                                                          for i in range(spec.get("rules", 300)))
     kw = {"max_tokens": 48, "temperature": 0, "chat_template_kwargs": {"enable_thinking": False}}
@@ -269,16 +274,31 @@ def turns(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     conv3 = conv2 + [{"role": "assistant", "content": res["turn2"].get("text", "")}, {"role": "user", "content": "And the shortest?"}]
     res["turn3"] = ask(conv3)
     res["turn3_again"] = ask(conv3)
-    res["turn3_cold"] = ask([{"role": "system", "content": system + " "}] + conv3[1:])
+    restarted = bool(spec.get("restart")) and "up" in target.section("commands")
+    if restarted:
+        from ..session import bring_up  # the session imports the checks
+
+        bring_up(target)
+        res["turn3_cold"] = ask(conv3)
+    else:
+        res["turn3_cold"] = ask([{"role": "system", "content": system + " "}] + conv3[1:])
     _save(run_dir, name, res)
     errs = [k for k, v in res.items() if v.get("status") != 200]
     cached = {k: ((v.get("usage") or {}).get("prompt_tokens_details") or {}).get("cached_tokens") for k, v in res.items()}
-    same = res["turn3"].get("text") == res["turn3_again"].get("text") == res["turn3_cold"].get("text")
+    prompt = {k: (v.get("usage") or {}).get("prompt_tokens") for k, v in res.items()}
+    again = res["turn3"].get("text") == res["turn3_again"].get("text")
+    # a cold turn that still found kept tokens, or a padded prompt of another length, is not the same request cold
+    comparable = prompt["turn3_cold"] == prompt["turn3"] and (not restarted or not cached.get("turn3_cold"))
+    cold = res["turn3"].get("text") == res["turn3_cold"].get("text") if comparable else None
+    how = "after a restart" if restarted else "padded"
+    verdict = (f"cold ({how}): {cold}" if comparable else
+               f"cold ({how}) not compared: {prompt['turn3_cold']} prompt tokens (cached {cached.get('turn3_cold')}) against {prompt['turn3']}")
     t = {k: v.get("ttft") for k, v in res.items()}
-    return {"ok": not errs and same,
-            "summary": f"resumed == again == cold: {same}; cached {cached.get('turn3')} of {(res['turn3'].get('usage') or {}).get('prompt_tokens')}; "
+    ok = False if errs or not again or cold is False else (True if cold else None)
+    return {"ok": ok,
+            "summary": f"resumed == again: {again}; {verdict}; cached {cached.get('turn3')} of {prompt['turn3']}; "
                        f"ttft resumed {t.get('turn3')}s, cold {t.get('turn3_cold')}s" + (f"; errors in {errs}" if errs else ""),
-            "metrics": {"cached": cached, "ttft": t, "equal": same}}
+            "metrics": {"cached": cached, "ttft": t, "equal": again and cold is not False, "again": again, "cold": cold, "cold_restarted": restarted}}
 
 
 def prefill(target: Target, spec: dict, run_dir: Path, name: str) -> dict:

@@ -181,7 +181,8 @@ def run(target: Target, plan: dict, plan_name: str, out_root: Path | None = None
                     continue
                 log(f"check {name}")
                 t0 = time.time()
-                res = checks.run(kind, target, spec, run_dir, name)
+                # restart: whether a check may bring the server down and up itself (turns' cold reply)
+                res = checks.run(kind, target, {**spec, "restart": restart}, run_dir, name)
                 res.update(name=name, type=kind, seconds=round(time.time() - t0, 1))
                 if not api.healthy(target.url):
                     (run_dir / f"{name}.json").unlink(missing_ok=True)
