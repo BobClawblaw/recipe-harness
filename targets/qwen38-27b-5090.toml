@@ -55,7 +55,7 @@ vision_urls = false   # data URLs only (the unit does not pass --vision-urls)
 capacity = false      # one stream at 262k
 max_concurrency = 1
 thinking = true       # on by default
-prompt_cache = false  # not measured on this engine yet
+prompt_cache = true   # kept prompt states in host memory (PROMPT_CACHE_GIB)
 
 # python3 -m harness leaderboard qwen38-27b-5090: the service down, community-v1 on the public checkpoint, the service
 # up, the receipt published to tensorfold.dev/benchmarks with the stored login (tensorfold benchmark login)

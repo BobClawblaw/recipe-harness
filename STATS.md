@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-21 07:23 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-21 17:25 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -32,11 +32,16 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 94/174/127/155 | 4: 233/329/280/386 | 0.05 / 0.13-0.17 |  | 2026-10-21 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64), YaRN x4 to 1M context | 1x Apple M5 Ultra (256 GB unified), macOS | 95/95/95/95 | 4: 382/381/380/380 | 0.05 / 3.09-4.17 | gsm8k 247/250 | 2026-10-20 |
-| Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 239/457/308/312 |  | 0.10 |  | 2026-10-19 |
+| Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 254/486/327/307 |  | 0.10 |  | 2026-10-21 |
 | Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, MLX 6-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 145/206/172/194 | 4: 566/816/673/854 | 0.09 / 1.63-3.07 | gsm8k 242/250, ifeval 134/150 | 2026-10-11 |
 | Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP | 1x Apple M5 Ultra (256 GB unified), macOS | 38/50/40/48 |  | 0.24 |  | 2026-10-16 |
+| qwen38-27b | ? | 150/230/168/185 |  | 0.10 |  | 2026-10-16 |
+| qwen38-27b | ? | 211/398/268/250 |  | 0.10 |  | 2026-10-16 |
+| qwen38-27b | ? | 150/229/167/185 |  | 0.10 |  | 2026-10-16 |
+| qwen38-27b | ? | 236/437/293/288 |  | 0.10 | gsm8k 222/250 | 2026-10-19 |
+| qwen38-27b | ? | 210/397/266/259 |  | 0.10 |  | 2026-10-19 |
 
 ## DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 
@@ -812,6 +817,9 @@ Engine rounds (ruler-after):
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
 | 2026-10-15 17:56 | full | done | 149.6 |  |  | 1272/1437 |
+| 2026-10-15 17:33 | full | running | 149.8 |  |  |  |
+| 2026-10-15 17:22 | quick | done | 149.8 |  |  | 54/114 |
+| 2026-10-15 17:13 | quick | done | 149.6 |  |  | 51/114 |
 
 ## Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
@@ -909,28 +917,192 @@ Serving: engine_commit `5ec491c8`; binary_sha256 `a3737c2d0060755f43a9fe9c09b90f
 | 2026-10-20 21:37 | mlx-speed | done | 95.3 |  |  |  |
 | 2026-10-20 21:34 | mlx-speed | done | 193.7 |  |  |  |
 
-## Qwen3.8-27B, MLX 4-bit + DFlash2 on 1x NVIDIA RTX 5090 (32 GB)
+## qwen38-27b on q27-base886
 
-Target `qwen38-27b-5090`: Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision). Engine: TensorFold native, CUDA; served as `qwen38-27b`. Latest: run `20261019-223054-full` (2026-10-19 22:30, plan full, running).
+Target `q27-base886`: . Engine: ?; served as `qwen38-27b`. Latest: run `20261016-222607-speed` (2026-10-16 22:26, plan speed, done).
 
-Serving: recipe_commit `6f7277d`; engine_commit `bfcc84ab`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792449074,`
+Serving: q27-base886 `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792189591,`
 
 ### ruler-fresh
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 239.4 (239.4) | 456.9 (456.9) | 307.5 (307.5) | 312.5 (312.5) | 0.10-0.10 s |
+| 1 | 150.0 (150.0) | 229.6 (229.6) | 167.6 (167.6) | 184.6 (184.6) | 0.10-0.10 s |
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: gpu: 20958 MiB, 32607 MiB |
+| memory-idle | measured: q27-base886: 24906 MiB, 32607 MiB |
+| memory-busy | measured: q27-base886: 24906 MiB, 32607 MiB |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-16 22:26 | speed | done | 229.6 |  |  |  |
+
+## qwen38-27b on q27-stack
+
+Target `q27-stack`: . Engine: ?; served as `qwen38-27b`. Latest: run `20261016-234937-speed` (2026-10-16 23:49, plan speed, done).
+
+Serving: q27-stack `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792194590,`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 210.8 (210.8) | 397.9 (397.9) | 268.4 (268.4) | 250.4 (250.4) | 0.10-0.10 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: q27-stack: 24912 MiB, 32607 MiB |
+| memory-busy | measured: q27-stack: 24912 MiB, 32607 MiB |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-16 23:49 | speed | done | 397.9 |  |  |  |
+| 2026-10-16 23:04 | speed | done | 343.2 |  |  |  |
+| 2026-10-16 22:37 | speed | done | 334.8 |  |  |  |
+| 2026-10-16 22:26 | speed | done | 290.2 |  |  |  |
+
+## qwen38-27b on qwen38-27b-5090-q35line
+
+Target `qwen38-27b-5090-q35line`: . Engine: ?; served as `qwen38-27b`. Latest: run `20261016-212230-speed` (2026-10-16 21:22, plan speed, done).
+
+Serving: engine_commit `3d763bde`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792185803,`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 149.9 (149.9) | 229.4 (229.4) | 167.4 (167.4) | 184.6 (184.6) | 0.10-0.10 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 26486 MiB, 32607 MiB |
+| memory-busy | measured: gpu: 26486 MiB, 32607 MiB |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-16 21:22 | speed | done | 229.4 |  |  |  |
+
+## qwen38-27b on qwen38-27b-5090-q35speed
+
+Target `qwen38-27b-5090-q35speed`: . Engine: ?; served as `qwen38-27b`. Latest: run `20261019-222616-thinking` (2026-10-19 22:26, plan thinking, done).
+
+Serving: recipe_commit `6f7277d`; engine_commit `29eb2574`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792448776,`
+
+### suite-thinking
+
+| check | passed |
+|---|---:|
+| gsm8k | 222/250 |
+
+### checks
+
+| check | result |
+|---|---|
+| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-19 22:26 | thinking | done |  |  |  | 222/250 |
+| 2026-10-19 21:44 | full | done | 436.8 |  |  | 1137/1273 |
+| 2026-10-19 18:52 | speed | done | 450.8 |  |  |  |
+
+## qwen38-27b on qwen38-27b-5090-v111
+
+Target `qwen38-27b-5090-v111`: . Engine: ?; served as `qwen38-27b`. Latest: run `20261019-141223-full` (2026-10-19 14:12, plan full, running).
+
+Serving: recipe_commit `6f7277d`; engine_commit `b10231b9`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792419740,`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 210.2 (210.2) | 396.6 (396.6) | 265.7 (265.7) | 258.8 (258.8) | 0.10-0.10 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 26904 MiB, 32607 MiB |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-19 14:12 | full | running | 396.6 |  |  |  |
+
+## Qwen3.8-27B, MLX 4-bit + DFlash2 on 1x NVIDIA RTX 5090 (32 GB)
+
+Target `qwen38-27b-5090`: Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision). Engine: TensorFold native, CUDA; served as `qwen38-27b`. Latest: run `20261021-162541-quick` (2026-10-21 16:25, plan quick, done).
+
+Serving: recipe_commit `5f9f0ad`; engine_commit `50c05658`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792599959,`; suite_commit `291734b3cf5a`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 254.5 (254.5) | 486.0 (486.0) | 327.4 (327.4) | 306.6 (306.6) | 0.10-0.10 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 250.9 (250.9) | 483.9 (483.9) | 326.1 (326.1) | 305.6 (305.6) | 0.10-0.10 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 7/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 28054 MiB, 32607 MiB |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again == cold: True; cached 4096 of 5613; ttft resumed 0.431s, cold 0.433s |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-21 16:25 | quick | done | 486.0 |  |  | 113/114 |
+| 2026-10-21 08:44 | soak-ab | done | 474.6 |  |  | 60/60 |
+| 2026-10-21 08:37 | bisect-mgsm | done | 474.5 |  |  | 214/240 |
+| 2026-10-21 08:35 | bisect-soak | done | 440.6 |  |  | 60/60 |
+| 2026-10-21 08:34 | bisect-concurrent | done | 475.6 |  |  | 12/12 |
+| 2026-10-21 08:21 | bisect-long-context | done | 473.9 |  |  | 55/55 |
+| 2026-10-21 08:20 | ruler-restart | done | 476.1 |  |  |  |
+| 2026-10-21 08:19 | ruler1 | done | 373.2 |  |  |  |
+| 2026-10-21 08:19 | ruler1 | done | 373.7 |  |  |  |
+| 2026-10-21 08:18 | humaneval | done |  |  |  | 151/164 |
+| 2026-10-21 08:16 | humaneval | done |  |  |  |  |
+| 2026-10-21 07:35 | full | done | 478.1 |  |  | 1137/1273 |
 | 2026-10-19 22:30 | full | running | 456.9 |  |  |  |
 | 2026-10-19 18:53 | speed | done | 458.0 |  |  |  |
 | 2026-10-16 21:24 | speed | done | 459.2 |  |  |  |
