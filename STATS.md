@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-21 22:27 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-21 22:57 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -36,7 +36,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, MLX 6-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 145/206/172/194 | 4: 566/816/673/854 | 0.09 / 1.63-3.07 | gsm8k 242/250, ifeval 134/150 | 2026-10-11 |
-| Recursive Flint 40B-A2.5B, MLX INT4 (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 136/133/143/133 | 2: 183/179/193/178 | 0.03 / 0.04-0.07 |  | 2026-10-21 |
+| Recursive Flint 40B-A2.5B, MLX INT4 (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 172/166/179/189 | 4: 352/344/360/358 | 0.02 / 0.06-0.10 |  | 2026-10-21 |
 | Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP | 1x Apple M5 Ultra (256 GB unified), macOS | 38/50/40/48 |  | 0.24 |  | 2026-10-16 |
 | qwen38-27b | ? | 150/230/168/185 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 211/398/268/250 |  | 0.10 |  | 2026-10-16 |
@@ -229,48 +229,38 @@ Serving: image `eb2f599de2fb618a`; pack `778baeaf9fbcd351`
 
 ## Recursive Flint 40B-A2.5B, MLX INT4 (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `flint`. Latest: run `20261021-172342-speed` (2026-10-21 17:23, plan speed, done).
+Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `flint`. Latest: run `20261021-175508-mlx-speed` (2026-10-21 17:55, plan mlx-speed, done).
 
-Serving: engine_commit `8491096c`; binary_sha256 `7bbe2fa3fe4bb1708e023c2a0ee586a933558ca3f32273fcdfa811bb7d53a4b7`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792621430, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+Serving: engine_commit `8a815d78`; binary_sha256 `78f6466bdb6196e496cd9108f5addde5d1f93dc31a53c2c5d2b629594f064c7b`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792623309, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
 
-### ruler-fresh
-
-| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 136.4 (136.4) | 132.7 (132.7) | 142.6 (142.6) | 132.9 (132.9) | 0.03-0.05 s |
-| 2 | 182.8 (91.4) | 179.1 (89.5) | 193.3 (96.7) | 178.1 (89.1) | 0.04-0.07 s |
-
-Engine rounds (ruler-fresh):
-
-| streams | tokens a round | drafts a round | accepted | ms a round | requests |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 1.048 | 0.092 | 48% | 7.7 | 12 |
-| 2 | 1.051 | 0.116 | 41% | 11.47 | 25 |
-
-### ruler-after
+### ruler-streams
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 135.7 (135.7) | 131.8 (131.8) | 142.5 (142.5) | 132.2 (132.2) | 0.03-0.05 s |
+| 1 | 171.5 (171.5) | 166.2 (166.2) | 178.6 (178.6) | 189.0 (189.0) | 0.02-0.04 s |
+| 2 | 258.8 (129.4) | 256.0 (128.0) | 276.3 (138.2) | 274.4 (137.2) | 0.04-0.06 s |
+| 4 | 351.6 (87.9) | 344.3 (86.1) | 360.3 (90.0) | 358.5 (87.4) | 0.06-0.10 s |
 
-Engine rounds (ruler-after):
+Engine rounds (ruler-streams):
 
 | streams | tokens a round | drafts a round | accepted | ms a round | requests |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 1.048 | 0.096 | 46% | 7.73 | 13 |
+| 1 | 1.092 | 0.167 | 52% | 6.19 | 12 |
+| 2 | 1.083 | 0.16 | 49% | 8.13 | 25 |
+| 4 | 1.068 | 0.145 | 44% | 12.16 | 50 |
 
 ### checks
 
 | check | result |
 |---|---|
 | memory-idle | measured: mac: System-wide memory free percentage: 87%; total = 3072.00M  us |
-| turns | pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.073s, cold 0.912s |
-| memory-busy | measured: mac: System-wide memory free percentage: 87%; total = 3072.00M  us |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-21 17:55 | mlx-speed | done | 166.2 |  |  |  |
+| 2026-10-21 17:53 | speed | done | 164.9 |  |  |  |
 | 2026-10-21 17:23 | speed | done | 132.7 |  |  |  |
 | 2026-10-21 17:06 | mlx-speed | done | 131.3 |  |  |  |
 
