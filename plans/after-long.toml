@@ -1,0 +1,19 @@
+description = "About 10 minutes: one stream fresh, one greedy 512-token reply on a cold 245k-token prompt, one stream again (a long prompt must not slow the short replies after it)"
+restart = true
+
+[[checks]]
+type = "ruler"
+label = "fresh"
+concurrency = [1]
+
+[[checks]]
+type = "prefill"
+label = "245k"
+tokens = [230000]  # about 245k tokens: the words are not all one token
+max_tokens = 512
+ask = "Write a long story, at least 600 words, about a town whose places carry these words as names."
+
+[[checks]]
+type = "ruler"
+label = "after-long"
+concurrency = [1]

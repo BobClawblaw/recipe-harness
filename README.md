@@ -60,7 +60,7 @@ aborted or a check failed.
 | `structured_speed` | decode speed, greedy, of two long JSON replies with the grammar off and on: one stream (and the grammar undrafted), two grammar streams at once, a plain stream beside a grammar stream against beside a plain one | measured; fails on an error or a grammar reply that is not JSON |
 | `sampling` | seeded sampled replies, repeated and undrafted | equal every time |
 | `turns` | a conversation that resumes its kept prompt; the third turn resumed, again, and cold | all three equal; reports cached tokens and first-token times |
-| `prefill` | one cold prompt at each size in `tokens` (default 2k, 8k, 32k, 128k), words no other prompt starts with; `thinking = true` sends thinking on and times the first reasoning token | measured: prompt tokens over time to the first token; fails on an error or more than `cached_ok` (64) cached tokens |
+| `prefill` | one cold prompt at each size in `tokens` (default 2k, 8k, 32k, 128k), words no other prompt starts with; `thinking = true` sends thinking on and times the first reasoning token; `max_tokens` (8) and `ask` set the reply | measured: prompt tokens over time to the first token; fails on an error or more than `cached_ok` (64) cached tokens |
 | `urls` | a public HTTPS image, a loopback address, plain HTTP | 200 with an answer, 400, 400 |
 | `capacity` | N long prompts at once (`streams`, `tokens`), then a short request | the short request succeeds and no request is lost without a reply |
 | `thinking` | the harness's word problems with `enable_thinking: true` | answers right, reasoning in `reasoning_content`, no `<think>` leaks |
@@ -340,5 +340,6 @@ and the check's options).
 |---|---|---|
 | `quick` | yes | one stream fresh, the serving checks, one stream after them, then the suite's soak, drafts, concurrent and behaviour checks (the recipe's AGENTS.md requires soak before an engine change ships) |
 | `one-stream` | yes | one stream fresh, sampling, the suite's checks one stream serves (drafts, behaviour, tools, json, gsm8k and ifeval at 50), one stream again |
+| `after-long` | yes | one stream fresh, one greedy 512-token reply on a cold 245k-token prompt, one stream again (a long prompt must leave the short replies after it as fast) |
 | `full` | yes | ruler at 1/4/8/16 streams, the whole suite, the serving checks, ruler at 1 and 16 after them, capacity |
 | `thinking` | no | thinking-on word problems, and the suite's GSM8K with `--thinking` |

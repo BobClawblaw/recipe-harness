@@ -303,15 +303,16 @@ def turns(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
 
 def prefill(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     """One cold prompt at each size in `tokens`: words no other prompt starts with, timed to the first token (with
-    `thinking`, the first reasoning token)."""
+    `thinking`, the first reasoning token). `max_tokens` (8) and `ask` (a
+    one-sentence summary) set the reply, so a long one can be decoded after the prompt."""
     words = "river stone cloud lantern harbor meadow copper violet signal garden orbit candle marble forest thunder".split()
     thinking = bool(spec.get("thinking"))
-    kw = {"max_tokens": 8, "temperature": 0, "chat_template_kwargs": {"enable_thinking": thinking}}
+    kw = {"max_tokens": spec.get("max_tokens", 8), "temperature": 0, "chat_template_kwargs": {"enable_thinking": thinking}}
     res = {}
     for n in spec.get("tokens", [2048, 8192, 32768, 131072]):
         rng = random.Random(f"{run_dir.name}-{name}-{n}")
         text = f"Document {rng.getrandbits(64):016x}. " + " ".join(rng.choice(words) for _ in range(n))  # a token a word
-        r = api.stream(target.url, target.model, [{"role": "user", "content": text + "\n\nSummarize in one sentence."}],
+        r = api.stream(target.url, target.model, [{"role": "user", "content": text + "\n\n" + spec.get("ask", "Summarize in one sentence.")}],
                        timeout=spec.get("timeout", 3600), **kw)
         u = r.get("usage") or {}
         prompt, cached = u.get("prompt_tokens"), (u.get("prompt_tokens_details") or {}).get("cached_tokens")
