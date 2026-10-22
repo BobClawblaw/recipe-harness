@@ -1,6 +1,102 @@
 # Recursive Flint 40B-A2.5B, MLX INT4 (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (10 runs); aggregate tok/s, total (a stream).
+Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (14 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-21 19:18: run `20261021-191844-structured`
+
+Plan structured, done; served as `flint`.
+
+Serving: engine_commit `22a56a19`; binary_sha256 `95d4941a3b0e99db43ed8c305e745b0363a0d040c543e9561b84aa01f9daddc7`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792628324, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+
+## 2026-10-21 19:17: run `20261021-191727-mlx-speed`
+
+Plan mlx-speed, done; served as `flint`.
+
+Serving: engine_commit `22a56a19`; binary_sha256 `95d4941a3b0e99db43ed8c305e745b0363a0d040c543e9561b84aa01f9daddc7`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792628247, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 183.1 (183.1) | 177.0 (177.0) | 192.9 (192.9) | 204.4 (204.4) | 0.03-0.04 s |
+| 2 | 259.2 (129.6) | 256.1 (128.1) | 277.3 (138.6) | 277.8 (138.9) | 0.04-0.07 s |
+| 4 | 354.5 (88.6) | 347.5 (86.7) | 364.0 (91.0) | 360.8 (88.6) | 0.07-0.11 s |
+
+Engine rounds (ruler-streams):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.085 | 0.133 | 60% | 5.73 | 13 |
+| 2 | 1.083 | 0.157 | 50% | 8.09 | 25 |
+| 4 | 1.068 | 0.145 | 44% | 12.04 | 50 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 70%; total = 3072.00M  us |
+
+## 2026-10-21 19:15: run `20261021-191546-prefill`
+
+Plan prefill, done; served as `flint`.
+
+Serving: engine_commit `22a56a19`; binary_sha256 `95d4941a3b0e99db43ed8c305e745b0363a0d040c543e9561b84aa01f9daddc7`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792628154, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 73%; total = 3072.00M  us |
+| prefill-off | measured: 2068 tokens 6503.1 tok/s (0.318 s), 8215 tokens 7039.4 tok/s (1.167 s), 32791 tokens 5887.1 tok/s (5.57 s), 131094 tokens 3360.0 tok/s (39.016 s) |
+| prefill-thinking | measured: 2068 tokens 6714.3 tok/s (0.308 s), 8214 tokens 7032.5 tok/s (1.168 s), 32787 tokens 5894.8 tok/s (5.562 s), 131092 tokens 3353.5 tok/s (39.091 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 69%; total = 3072.00M  us |
+
+## 2026-10-21 19:14: run `20261021-191428-speed`
+
+Plan speed, done; served as `flint`.
+
+Serving: engine_commit `22a56a19`; binary_sha256 `95d4941a3b0e99db43ed8c305e745b0363a0d040c543e9561b84aa01f9daddc7`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1792628077, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 183.9 (183.9) | 177.6 (177.6) | 193.6 (193.6) | 205.2 (205.2) | 0.03-0.04 s |
+| 2 | 259.0 (129.5) | 255.8 (127.9) | 277.4 (138.7) | 275.1 (137.6) | 0.04-0.07 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.085 | 0.133 | 60% | 5.71 | 12 |
+| 2 | 1.086 | 0.16 | 51% | 8.14 | 26 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 184.1 (184.1) | 177.9 (177.9) | 193.9 (193.9) | 205.5 (205.5) | 0.03-0.04 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.084 | 0.137 | 58% | 5.7 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 73%; total = 3072.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.068s, cold 0.726s |
+| memory-busy | measured: mac: System-wide memory free percentage: 72%; total = 3072.00M  us |
 
 ## 2026-10-21 18:23: run `20261021-182348-structured`
 

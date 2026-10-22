@@ -23,6 +23,7 @@ context = "262144"
 parallel = "4"
 load_limit_gb = "48"                 # FLINT_LOAD_LIMIT_GB: weights, scratch and caches; the rest of the Mac stays free
 prompt_cache_gib = "8"
+suite_dir_engine = "CHANGE-ME: the engine commit plus a benchmark --suite community-v1 commit, built (leaderboard only)"
 
 [commands]
 up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c 'FLINT_LOAD_LIMIT_GB=$load_limit_gb $engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --prompt-cache-gib $prompt_cache_gib --temperature 1.0 --top-p 0.95 --top-k 20 --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
@@ -59,3 +60,11 @@ cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
 [[memory]]
 name = "mac"
 cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+# python3 -m harness leaderboard flint-40b-native-m5: the board's suite on Recursive's public INT4 checkpoint, the
+# receipt published with the stored login; only this target's server is brought down (the model may be served elsewhere).
+[leaderboard]
+model = "RecursiveSI/flint-int4"   # cached as a Hugging Face snapshot
+binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"   # this engine plus the board's community-v1 suite
+free = "! pgrep -f 'tensorfold-native serve [^ ]*flint-int4 .*--port $port( |$$)'"
+env = { FLINT_LOAD_LIMIT_GB = "$load_limit_gb" }
