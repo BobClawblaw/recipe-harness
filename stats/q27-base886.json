@@ -1,0 +1,65 @@
+{
+ "target": "q27-base886",
+ "runs": [
+  {
+   "run": "20261016-222607-speed",
+   "target": "q27-base886",
+   "model": "qwen38-27b",
+   "plan": "speed",
+   "started": "20261016-222607",
+   "finished": "20261016-222647",
+   "status": "done",
+   "identity": {
+    "q27-base886": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792189591, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792189591, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 150.0,
+      "per_stream": 150.0,
+      "ttft": 0.104
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 229.6,
+      "per_stream": 229.6,
+      "ttft": 0.104
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 167.6,
+      "per_stream": 167.6,
+      "ttft": 0.105
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 184.6,
+      "per_stream": 184.6,
+      "ttft": 0.103
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "q27-base886: 24906 MiB, 32607 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 150.0/229.6/167.6/184.6 ttft 0.10-0.10s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "q27-base886: 24906 MiB, 32607 MiB"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,284 @@
+{
+ "target": "qwen38-27b-5090-q35speed",
+ "runs": [
+  {
+   "run": "20261019-185213-speed",
+   "target": "qwen38-27b-5090-q35speed",
+   "model": "qwen38-27b",
+   "plan": "speed",
+   "started": "20261019-185213",
+   "finished": "20261019-185316",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "6f7277d",
+    "engine_commit": "12fa9d63",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792435986, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792435986, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 243.3,
+      "per_stream": 243.3,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 450.8,
+      "per_stream": 450.8,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 293.6,
+      "per_stream": 293.6,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 283.5,
+      "per_stream": 283.5,
+      "ttft": 0.098
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 26892 MiB, 32607 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 243.3/450.8/293.6/283.5 ttft 0.10-0.10s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "gpu: 26896 MiB, 32607 MiB"
+    }
+   }
+  },
+  {
+   "run": "20261019-214404-full",
+   "target": "qwen38-27b-5090-q35speed",
+   "model": "qwen38-27b",
+   "plan": "full",
+   "started": "20261019-214404",
+   "finished": "20261019-222615",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "6f7277d",
+    "engine_commit": "29eb2574",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792446292, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792446292, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 235.8,
+      "per_stream": 235.8,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 436.8,
+      "per_stream": 436.8,
+      "ttft": 0.099
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 292.7,
+      "per_stream": 292.7,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 288.5,
+      "per_stream": 288.5,
+      "ttft": 0.099
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 238.0,
+      "per_stream": 238.0,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 423.6,
+      "per_stream": 423.6,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 291.4,
+      "per_stream": 291.4,
+      "ttft": 0.1
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 287.1,
+      "per_stream": 287.1,
+      "ttft": 0.1
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 7,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 59,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 126,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 238,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 214,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 270,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 0,
+      "cases": 0
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 28058 MiB, 32607 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 235.8/436.8/292.7/288.5 ttft 0.10-0.10s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "no cases (errors) in humaneval; drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 7/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 59/60, json 30/30, ifeval 126/150, gsm8k 238/250, mgsm 214/240, mmlu 270/342, humaneval 0/0, repetition 8/8, long-context 55/55, vision 12/12, soak 60/60, snapshot 12/12"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 238.0/423.6/291.4/287.1 ttft 0.10-0.10s"
+    }
+   }
+  },
+  {
+   "run": "20261019-222616-thinking",
+   "target": "qwen38-27b-5090-q35speed",
+   "model": "qwen38-27b",
+   "plan": "thinking",
+   "started": "20261019-222616",
+   "finished": "20261019-223051",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "6f7277d",
+    "engine_commit": "29eb2574",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792448776, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792448776, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-thinking": {
+     "gsm8k": {
+      "passed": 222,
+      "cases": 250
+     }
+    }
+   },
+   "checks": {
+    "thinking": {
+     "ok": true,
+     "summary": "thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors"
+    },
+    "suite-thinking": {
+     "ok": null,
+     "summary": "gsm8k 222/250"
+    }
+   }
+  }
+ ]
+}

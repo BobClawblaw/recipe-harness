@@ -1,0 +1,245 @@
+{
+ "target": "q27-stack",
+ "runs": [
+  {
+   "run": "20261016-222650-speed",
+   "target": "q27-stack",
+   "model": "qwen38-27b",
+   "plan": "speed",
+   "started": "20261016-222650",
+   "finished": "20261016-222721",
+   "status": "done",
+   "identity": {
+    "q27-stack": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792189628, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792189628, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 189.4,
+      "per_stream": 189.4,
+      "ttft": 0.102
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 290.2,
+      "per_stream": 290.2,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 219.9,
+      "per_stream": 219.9,
+      "ttft": 0.104
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 228.1,
+      "per_stream": 228.1,
+      "ttft": 0.102
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "q27-stack: 24906 MiB, 32607 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 189.4/290.2/219.9/228.1 ttft 0.10-0.10s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "q27-stack: 24906 MiB, 32607 MiB"
+    }
+   }
+  },
+  {
+   "run": "20261016-223720-speed",
+   "target": "q27-stack",
+   "model": "qwen38-27b",
+   "plan": "speed",
+   "started": "20261016-223720",
+   "finished": "20261016-223745",
+   "status": "done",
+   "identity": {
+    "q27-stack": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792190254, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792190254, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 209.9,
+      "per_stream": 209.9,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 334.8,
+      "per_stream": 334.8,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 256.5,
+      "per_stream": 256.5,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 246.8,
+      "per_stream": 246.8,
+      "ttft": 0.102
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "q27-stack: 24906 MiB, 32607 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 209.9/334.8/256.5/246.8 ttft 0.10-0.10s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "q27-stack: 24906 MiB, 32607 MiB"
+    }
+   }
+  },
+  {
+   "run": "20261016-230410-speed",
+   "target": "q27-stack",
+   "model": "qwen38-27b",
+   "plan": "speed",
+   "started": "20261016-230410",
+   "finished": "20261016-230434",
+   "status": "done",
+   "identity": {
+    "q27-stack": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792191863, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792191863, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 215.3,
+      "per_stream": 215.3,
+      "ttft": 0.102
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 343.2,
+      "per_stream": 343.2,
+      "ttft": 0.102
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 262.8,
+      "per_stream": 262.8,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 252.7,
+      "per_stream": 252.7,
+      "ttft": 0.101
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "q27-stack: 24906 MiB, 32607 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 215.3/343.2/262.8/252.7 ttft 0.10-0.10s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "q27-stack: 24906 MiB, 32607 MiB"
+    }
+   }
+  },
+  {
+   "run": "20261016-234937-speed",
+   "target": "q27-stack",
+   "model": "qwen38-27b",
+   "plan": "speed",
+   "started": "20261016-234937",
+   "finished": "20261016-235002",
+   "status": "done",
+   "identity": {
+    "q27-stack": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792194590, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}, {\"id\": \"qwen38-nvfp4\", \"object\": \"model\", \"created\": 1792194590, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 210.8,
+      "per_stream": 210.8,
+      "ttft": 0.102
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 397.9,
+      "per_stream": 397.9,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 268.4,
+      "per_stream": 268.4,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 250.4,
+      "per_stream": 250.4,
+      "ttft": 0.101
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "q27-stack: 24912 MiB, 32607 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 210.8/397.9/268.4/250.4 ttft 0.10-0.10s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "q27-stack: 24912 MiB, 32607 MiB"
+    }
+   }
+  }
+ ]
+}
