@@ -19,6 +19,7 @@ engine_dir = "CHANGE-ME: the worktree that built the served binary"
 suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
 port = "8891"
 drafter_dir = "CHANGE-ME: the incoai/Ornith-1.5-122B-DFlash2 snapshot directory"
+suite_dir_engine = "CHANGE-ME: the engine commit plus a benchmark --suite community-v1 commit, built (leaderboard only)"
 
 [commands]
 up = "cd $recipe_dir && TENSORFOLD_SHA=$engine_sha PORT=$port python3 -m mac up"
@@ -58,6 +59,6 @@ cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
 # DFlash2 drafter, the receipt published with the stored login; the recipe's server is brought down first.
 [leaderboard]
 model = "BobClawblaw/Ornith-1.5-122B-MLX-4bit"   # cached as a Hugging Face snapshot
-binary = "$engine_dir/zig-out/native/bin/tensorfold-native"
+binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"   # the engine plus the board's community-v1 suite
 free = "! pgrep -f 'tensorfold-native [s]erve'"
 args = "--drafter $drafter_dir"
