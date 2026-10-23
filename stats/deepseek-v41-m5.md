@@ -1,6 +1,51 @@
 # DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/deepseek-v41-m5.json` (22 runs); aggregate tok/s, total (a stream).
+Target `deepseek-v41-m5`: DeepSeek-V4.1-Flash-1017, 2/3-bit experts with images and DSpark drafts, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/deepseek-v41-m5.json` (25 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-22 20:54: run `20261022-205404-prefill`
+
+Plan prefill, done; served as `DeepSeek-V4.1-Flash`.
+
+Serving: engine_commit `04c41884`; binary_sha256 `d168ad46c49d3399086124241fffac282fa42bc33b9887f7ebf064885279312a`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-Abliterated", "object": "model", "`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 14%; total = 1024.00M  us |
+| prefill-off | measured: 2071 tokens 759.2 tok/s (2.728 s), 8217 tokens 1718.3 tok/s (4.782 s), 32790 tokens 1805.7 tok/s (18.159 s), 131096 tokens 1771.5 tok/s (74.001 s) |
+| prefill-thinking | measured: 2097 tokens 1598.3 tok/s (1.312 s), 8240 tokens 1837.2 tok/s (4.485 s), 32818 tokens 1826.3 tok/s (17.97 s), 131121 tokens 1771.8 tok/s (74.003 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 13%; total = 1024.00M  us |
+
+## 2026-10-22 20:14: run `20261022-201421-prefill`
+
+Plan prefill, done; served as `DeepSeek-V4.1-Flash`.
+
+Serving: engine_commit `4f0c5e5e`; binary_sha256 `6893f3c733ffa8e6da1df1a20701f50d5bfeeef60c97e2719e602c161bf3efb3`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-Abliterated", "object": "model", "`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 15%; total = 1024.00M  us |
+| prefill-off | measured: 2070 tokens 1337.2 tok/s (1.548 s), 8213 tokens 1641.6 tok/s (5.003 s), 32790 tokens 1654.0 tok/s (19.825 s), 131096 tokens 1608.3 tok/s (81.511 s) |
+| prefill-thinking | measured: 2098 tokens 1521.4 tok/s (1.379 s), 8241 tokens 1653.5 tok/s (4.984 s), 32816 tokens 1653.5 tok/s (19.846 s), 131120 tokens 1607.7 tok/s (81.558 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 13%; total = 1024.00M  us |
+
+## 2026-10-22 16:27: run `20261022-162728-prefill`
+
+Plan prefill, done; served as `DeepSeek-V4.1-Flash`.
+
+Serving: engine_commit `845ccbd8`; binary_sha256 `0c6672f44a4f280a761f33beab442257df19ad82302f4e937cf843d01ee3fe52`; served_model `{"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-Abliterated", "object": "model", "`; checkpoint `{'repo': 'deepseek-ai/DeepSeek-V4.1-Flash-1017', 'expert_bits': 2, 'layer_bits': '10-29:3'`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 14%; total = 2048.00M  us |
+| prefill-off | measured: 2072 tokens 1334.2 tok/s (1.553 s), 8213 tokens 1613.6 tok/s (5.09 s), 32792 tokens 1580.6 tok/s (20.746 s), 131094 tokens 1524.7 tok/s (85.981 s) |
+| prefill-thinking | measured: 2095 tokens 1503.9 tok/s (1.393 s), 8241 tokens 1588.2 tok/s (5.189 s), 32816 tokens 1569.3 tok/s (20.911 s), 131118 tokens 1519.3 tok/s (86.299 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 13%; total = 2048.00M  us |
 
 ## 2026-10-20 09:28: run `20261020-092851-dsv41-quality-off`
 
