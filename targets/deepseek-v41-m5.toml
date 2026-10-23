@@ -18,6 +18,7 @@ tf_cache = "CHANGE-ME: the recipe's tf_cache (~/.cache/tensorfold-deepseek-v41)"
 engine_sha = "CHANGE-ME: the TensorFold commit the recipe builds"
 engine_dir = "CHANGE-ME: its worktree, $tf_cache/engine/<the sha's first 12>"
 suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+suite_dir_engine = "CHANGE-ME: the engine commit plus a benchmark --suite community-v1 commit, built (leaderboard only)"
 port = "8890"
 
 [commands]
@@ -76,5 +77,5 @@ prompt_cache = true
 # kill (KeepAlive): boot it out first, so no second copy of the model loads beside the benchmark's.
 [leaderboard]
 model = "BobClawblaw/DeepSeek-V4.1-Flash-1017-TensorFold-e2e3-p4-h8"   # cached as a Hugging Face snapshot
-binary = "$engine_dir/zig-out/native/bin/tensorfold-native"
+binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"   # the engine plus the board's community-v1 suite
 free = "! pgrep -f 'tensorfold-native [s]erve'"
