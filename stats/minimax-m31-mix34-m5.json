@@ -1063,6 +1063,431 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261024-132010-quick",
+   "target": "minimax-m31-mix34-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "quick",
+   "started": "20261024-132010",
+   "finished": "20261024-133746",
+   "status": "done",
+   "identity": {
+    "engine_commit": "90deb57b7",
+    "binary_sha256": "79d22c1783a96bb722855d436f9c712224390890efce564122ee0ac666caea65",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1792866090, \"owned_by\": \"tensorfold\", \"context_length\": 64000, \"max_model_len\": 64000, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 41.6,
+      "per_stream": 41.6,
+      "ttft": 0.322
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 66.1,
+      "per_stream": 66.1,
+      "ttft": 0.336
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 47.2,
+      "per_stream": 47.2,
+      "ttft": 0.34
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 56.4,
+      "per_stream": 56.4,
+      "ttft": 0.318
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 41.6,
+      "per_stream": 41.6,
+      "ttft": 0.32
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 65.0,
+      "per_stream": 65.0,
+      "ttft": 0.334
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 48.0,
+      "per_stream": 48.0,
+      "ttft": 0.337
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 56.1,
+      "per_stream": 56.1,
+      "ttft": 0.316
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 2598,
+      "cached": 0,
+      "tokens": 2718,
+      "rounds": 1101,
+      "accepted": 1615,
+      "proposed": 2316,
+      "tokens_a_round": 2.469,
+      "drafts_a_round": 2.104,
+      "accept_rate": 0.697,
+      "ms_a_round": 46.75
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 7424,
+      "cached": 0,
+      "tokens": 2766,
+      "rounds": 1140,
+      "accepted": 1621,
+      "proposed": 2396,
+      "tokens_a_round": 2.426,
+      "drafts_a_round": 2.102,
+      "accept_rate": 0.676,
+      "ms_a_round": 46.07
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 15%\ntotal = 3072.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 41.6/66.1/47.2/56.4 ttft 0.32-0.34s; engine: c=1 2.47 tokens a round 70% accepted, 46.8 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4685 of 4826; ttft resumed 0.312s, cold 6.069s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 41.6/65.0/48.0/56.1 ttft 0.32-0.34s; engine: c=1 2.43 tokens a round 68% accepted, 46.1 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261024-140604-quick",
+   "target": "minimax-m31-mix34-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "quick",
+   "started": "20261024-140604",
+   "finished": "20261024-142415",
+   "status": "done",
+   "identity": {
+    "engine_commit": "ec0c099de",
+    "binary_sha256": "e3074abc85c644cd302a184a831347fe84922daf5959a36aed4f5bf6904f8706",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1792868864, \"owned_by\": \"tensorfold\", \"context_length\": 65536, \"max_model_len\": 65536, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 41.6,
+      "per_stream": 41.6,
+      "ttft": 0.318
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 65.1,
+      "per_stream": 65.1,
+      "ttft": 0.331
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 46.0,
+      "per_stream": 46.0,
+      "ttft": 0.335
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 56.3,
+      "per_stream": 56.3,
+      "ttft": 0.314
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 41.7,
+      "per_stream": 41.7,
+      "ttft": 0.317
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 65.1,
+      "per_stream": 65.1,
+      "ttft": 0.331
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 47.2,
+      "per_stream": 47.2,
+      "ttft": 0.334
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 56.3,
+      "per_stream": 56.3,
+      "ttft": 0.314
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 2598,
+      "cached": 0,
+      "tokens": 2718,
+      "rounds": 1127,
+      "accepted": 1589,
+      "proposed": 2307,
+      "tokens_a_round": 2.412,
+      "drafts_a_round": 2.047,
+      "accept_rate": 0.689,
+      "ms_a_round": 46.16
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 7424,
+      "cached": 0,
+      "tokens": 2766,
+      "rounds": 1146,
+      "accepted": 1615,
+      "proposed": 2387,
+      "tokens_a_round": 2.414,
+      "drafts_a_round": 2.083,
+      "accept_rate": 0.677,
+      "ms_a_round": 45.93
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 95%\ntotal = 3072.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 41.6/65.1/46.0/56.3 ttft 0.31-0.33s; engine: c=1 2.41 tokens a round 69% accepted, 46.2 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4685 of 4826; ttft resumed 0.307s, cold 6.041s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 41.7/65.1/47.2/56.3 ttft 0.31-0.33s; engine: c=1 2.41 tokens a round 68% accepted, 45.9 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261024-143234-prefill-64k",
+   "target": "minimax-m31-mix34-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "prefill-64k",
+   "started": "20261024-143234",
+   "finished": "20261024-143647",
+   "status": "done",
+   "identity": {
+    "engine_commit": "60305dd4f",
+    "binary_sha256": "14da99e1e085aa1791982158160ffb9882085a8b66528cea5623183fcd022021",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1792870449, \"owned_by\": \"tensorfold\", \"context_length\": 65536, \"max_model_len\": 65536, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 95%\ntotal = 3072.00M  us"
+    },
+    "prefill-off": {
+     "ok": null,
+     "summary": "2261 tokens 571.2 tok/s (3.958 s), 8403 tokens 1392.6 tok/s (6.034 s), 32980 tokens 1391.7 tok/s (23.697 s), 61651 tokens 1363.8 tok/s (45.204 s)"
+    },
+    "prefill-thinking": {
+     "ok": null,
+     "summary": "2258 tokens 1272.8 tok/s (1.774 s), 8404 tokens 1381.1 tok/s (6.085 s), 32978 tokens 1389.8 tok/s (23.729 s), 61650 tokens 1345.7 tok/s (45.812 s)"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 14%\ntotal = 3072.00M  us"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
