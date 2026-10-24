@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import ssl
 import subprocess
 import time
 import urllib.request
@@ -54,7 +55,10 @@ def _wait_free(target: Target, b: dict) -> None:
 def board_suites(b: dict) -> list[str]:
     """The suites the board accepts, as its /suites lists them ([leaderboard] upload_url, else tensorfold.dev)."""
     req = urllib.request.Request(f"{b.get('upload_url', BOARD).rstrip('/')}/suites", headers={"User-Agent": "recipe-harness"})
-    with urllib.request.urlopen(req, timeout=30) as r:  # the board refuses urllib's own agent
+    # python.org's macOS Python ships no CA store: the system's bundle, unless SSL_CERT_FILE names one
+    system = "/etc/ssl/cert.pem"
+    ctx = ssl.create_default_context(cafile=None if os.environ.get("SSL_CERT_FILE") or not os.path.exists(system) else system)
+    with urllib.request.urlopen(req, timeout=30, context=ctx) as r:  # the board refuses urllib's own agent
         return [s["id"] for s in json.loads(r.read())["suites"]]
 
 
