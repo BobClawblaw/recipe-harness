@@ -1,0 +1,455 @@
+{
+ "target": "spark-x26-4b-4090",
+ "runs": [
+  {
+   "run": "20261025-040049-full",
+   "target": "spark-x26-4b-4090",
+   "model": "spark",
+   "plan": "full",
+   "started": "20261025-040049",
+   "finished": "20261025-041846",
+   "status": "done",
+   "identity": {
+    "engine_commit": "e7834f2c",
+    "binary_sha256": "978f64996b777498553acd0672b167a0730b20c0b46635ac0ceb88ede4ed0b7f",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"spark\", \"object\": \"model\", \"created\": 1792918863, \"owned_by\": \"tensorfold\", \"context_length\": 32768, \"max_model_len\": 32768, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"high\", \"low\", \"none\"]}}]}",
+    "gpu": "NVIDIA GeForce RTX 4090, 616.56",
+    "suite_commit": "e91d8816c7e8"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 146.0,
+      "per_stream": 146.0,
+      "ttft": 0.049
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 144.2,
+      "per_stream": 144.2,
+      "ttft": 0.045
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 147.5,
+      "per_stream": 147.5,
+      "ttft": 0.045
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 146.4,
+      "per_stream": 146.4,
+      "ttft": 0.054
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 548.6,
+      "per_stream": 137.2,
+      "ttft": 0.072
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 547.7,
+      "per_stream": 136.8,
+      "ttft": 0.073
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 548.5,
+      "per_stream": 137.3,
+      "ttft": 0.072
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 551.2,
+      "per_stream": 137.9,
+      "ttft": 0.072
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 145.8,
+      "per_stream": 145.8,
+      "ttft": 0.056
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 144.0,
+      "per_stream": 144.0,
+      "ttft": 0.049
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 147.0,
+      "per_stream": 147.0,
+      "ttft": 0.054
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 146.2,
+      "per_stream": 146.2,
+      "ttft": 0.047
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 53,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 117,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 232,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 175,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 257,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 0,
+      "cases": 0
+     },
+     "repetition": {
+      "passed": 7,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 0,
+      "cases": 0
+     },
+     "vision": {
+      "passed": 0,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 10674 MiB, 24564 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 146.0/144.2/147.5/146.4 ttft 0.04-0.05s; c=4 548.6/547.7/548.5/551.2 ttft 0.07-0.07s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "no cases (errors) in humaneval, long-context; drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 53/60, json 30/30, ifeval 117/150, gsm8k 232/250, mgsm 175/240, mmlu 257/342, humaneval 0/0, repetition 7/8, long-context 0/0, vision 0/12, soak 60/60, snapshot 12/12"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "1/1 tool cases right; not tested (features.structured = false): required, named, named/thinking, named/stream"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5568 of 5630; ttft resumed 0.1s, cold 1.021s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 145.8/144.0/147.0/146.2 ttft 0.05-0.06s"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x NVIDIA RTX 4090 (24 GB), Windows",
+   "engine": "TensorFold native, CUDA",
+   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native CUDA (spark2_5) on one RTX 4090, Windows (32768-token window, 4 streams)"
+  },
+  {
+   "run": "20261025-041904-full",
+   "target": "spark-x26-4b-4090",
+   "model": "spark",
+   "plan": "full",
+   "started": "20261025-041904",
+   "finished": "20261025-043706",
+   "status": "done",
+   "identity": {
+    "engine_commit": "9d352b66",
+    "binary_sha256": "978f64996b777498553acd0672b167a0730b20c0b46635ac0ceb88ede4ed0b7f",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"spark\", \"object\": \"model\", \"created\": 1792919956, \"owned_by\": \"tensorfold\", \"context_length\": 32768, \"max_model_len\": 32768, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"high\", \"low\", \"none\"]}}]}",
+    "gpu": "NVIDIA GeForce RTX 4090, 616.56",
+    "suite_commit": "e91d8816c7e8"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 145.9,
+      "per_stream": 145.9,
+      "ttft": 0.03
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 144.0,
+      "per_stream": 144.0,
+      "ttft": 0.054
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 147.3,
+      "per_stream": 147.3,
+      "ttft": 0.052
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 146.3,
+      "per_stream": 146.3,
+      "ttft": 0.046
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 547.6,
+      "per_stream": 137.0,
+      "ttft": 0.072
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 547.0,
+      "per_stream": 136.8,
+      "ttft": 0.073
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 551.8,
+      "per_stream": 137.5,
+      "ttft": 0.073
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 550.1,
+      "per_stream": 137.6,
+      "ttft": 0.073
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 145.5,
+      "per_stream": 145.5,
+      "ttft": 0.051
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 143.8,
+      "per_stream": 143.8,
+      "ttft": 0.045
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 147.2,
+      "per_stream": 147.2,
+      "ttft": 0.044
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 146.1,
+      "per_stream": 146.1,
+      "ttft": 0.053
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 53,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 117,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 232,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 175,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 257,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 0,
+      "cases": 0
+     },
+     "repetition": {
+      "passed": 7,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 16,
+      "cases": 16
+     },
+     "vision": {
+      "passed": 0,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 10674 MiB, 24564 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 145.9/144.0/147.3/146.3 ttft 0.03-0.05s; c=4 547.6/547.0/551.8/550.1 ttft 0.07-0.07s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "no cases (errors) in humaneval; drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 53/60, json 30/30, ifeval 117/150, gsm8k 232/250, mgsm 175/240, mmlu 257/342, humaneval 0/0, repetition 7/8, long-context 16/16, vision 0/12, soak 60/60, snapshot 12/12"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "1/1 tool cases right; not tested (features.structured = false): required, named, named/thinking, named/stream"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5568 of 5630; ttft resumed 0.383s, cold 0.885s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 145.5/143.8/147.2/146.1 ttft 0.04-0.05s"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x NVIDIA RTX 4090 (24 GB), Windows",
+   "engine": "TensorFold native, CUDA",
+   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native CUDA (spark2_5) on one RTX 4090, Windows (32768-token window, 4 streams)"
+  }
+ ]
+}

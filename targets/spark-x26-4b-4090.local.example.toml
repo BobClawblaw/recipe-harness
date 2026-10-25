@@ -1,0 +1,7 @@
+# Copy to spark-x26-4b-4090.local.toml (git-ignored) and fill in.
+[vars]
+harness_dir = "C:/src/recipe-harness"
+engine_dir = "C:/src/TensorFold"
+model_dir = "C:/models/Spark-X2.6-4B-mlx-8bit"
+suite_dir = "C:/src/recipe-suite"
+log_dir = "C:/src/quality/harness"
