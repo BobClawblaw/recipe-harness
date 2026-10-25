@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-25 09:37 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-25 12:35 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -29,7 +29,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Gemma 4 31B, MLX 4-bit + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 87/158/157/130 |  | 0.08 |  | 2026-10-16 |
 | Gemma 4 31B, oQ8e (8-bit) + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 40/63/52/55 | 4: 110/173/142/180 | 0.10 / 0.24-0.27 |  | 2026-10-16 |
 | MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context | 1x Apple M5 Ultra (256 GB unified), macOS | 44/59/50/51 |  | 0.31 | tools 56/60, json 30/30, gsm8k 244/250, ifeval 89/150 | 2026-10-24 |
-| MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34) | 1x Apple M5 Ultra (256 GB unified), macOS | 43/59/50/56 |  | 0.31 |  | 2026-10-24 |
+| MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34) | 1x Apple M5 Ultra (256 GB unified), macOS | 43/59/50/56 |  | 0.31 | tools 57/60, json 30/30, gsm8k 242/250, ifeval 87/150 | 2026-10-24 |
 | NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision | 1x NVIDIA RTX 5090 (32 GB) | 150/150/150/150 |  | 0.03 | tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150 | 2026-10-15 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 94/174/127/155 | 4: 233/329/280/386 | 0.05 / 0.13-0.17 |  | 2026-10-21 |
@@ -844,63 +844,40 @@ Serving: engine_commit `e6b3b3bd0`; binary_sha256 `5b078b780af71ddf5fc7d92ff4011
 
 ## MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `minimax-m31-mix34-m5`: MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `MiniMax-M3.1-Flash`. Latest: run `20261024-190149-quick` (2026-10-24 19:01, plan quick, done).
+Target `minimax-m31-mix34-m5`: MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `MiniMax-M3.1-Flash`. Latest: run `20261025-014954-dsv41-quality-off` (2026-10-25 01:49, plan dsv41-quality-off, done).
 
-Serving: engine_commit `057d59d53`; binary_sha256 `cbb06a790f3a8981b71a622655c5bf186fde6394fee0c81b1fd969baa9a31ced`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
-
-### ruler-fresh
-
-| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 42.8 (42.8) | 59.2 (59.2) | 50.3 (50.3) | 55.8 (55.8) | 0.31-0.33 s |
-
-Engine rounds (ruler-fresh):
-
-| streams | tokens a round | drafts a round | accepted | ms a round | requests |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 2.35 | 1.93 | 70% | 45.18 | 12 |
-
-### ruler-after
-
-| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 42.6 (42.6) | 58.8 (58.8) | 48.5 (48.5) | 56.0 (56.0) | 0.32-0.33 s |
-
-Engine rounds (ruler-after):
-
-| streams | tokens a round | drafts a round | accepted | ms a round | requests |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 2.347 | 2.007 | 67% | 45.61 | 13 |
+Serving: engine_commit `e6b3b3bd0`; binary_sha256 `5b078b780af71ddf5fc7d92ff40119f5c835f8aecccef199d36c0b22775a86aa`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
 
 ### suite
 
 | check | passed |
 |---|---:|
-| soak | 60/60 |
 | drafts | 12/12 |
-| concurrent | 12/12 |
 | streaming | 4/4 |
 | multiturn | 8/8 |
 | stop | 3/3 |
 | thinking | 10/10 |
 | copy | 2/2 |
 | max-tokens | 3/3 |
+| tools | 57/60 |
+| json | 30/30 |
+| ifeval | 87/150 |
+| gsm8k | 242/250 |
+| mgsm | 203/240 |
+| mmlu | 283/342 |
+| math500 | 445/500 |
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: mac: System-wide memory free percentage: 16%; total = 5120.00M  us |
-| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
-| tools | pass: 5/5 tool cases right |
-| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
-| turns | pass: resumed == again: True; cold (after a restart): True; cached 4685 of 4826; ttft resumed 0.298s, cold 5.567s |
-| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
+| memory-idle | measured: mac: System-wide memory free percentage: 95%; total = 3072.00M  us |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-25 01:49 | dsv41-quality-off | done |  |  |  | 1389/1614 |
 | 2026-10-24 19:01 | quick | done | 59.2 |  |  | 114/114 |
 | 2026-10-24 18:55 | speed | done | 58.5 |  |  |  |
 | 2026-10-24 16:21 | quick | done | 65.1 |  |  | 114/114 |

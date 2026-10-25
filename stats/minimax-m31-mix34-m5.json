@@ -2091,6 +2091,98 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261025-014954-dsv41-quality-off",
+   "target": "minimax-m31-mix34-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "dsv41-quality-off",
+   "started": "20261025-014954",
+   "finished": "20261025-043937",
+   "status": "done",
+   "identity": {
+    "engine_commit": "e6b3b3bd0",
+    "binary_sha256": "5b078b780af71ddf5fc7d92ff40119f5c835f8aecccef199d36c0b22775a86aa",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1792910994, \"owned_by\": \"tensorfold\", \"context_length\": 32768, \"max_model_len\": 32768, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 57,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 87,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 242,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 203,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "math500": {
+      "passed": 445,
+      "cases": 500
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 95%\ntotal = 3072.00M  us"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "drafts 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 57/60, json 30/30, ifeval 87/150, gsm8k 242/250, mgsm 203/240, mmlu 283/342, math500 445/500"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
