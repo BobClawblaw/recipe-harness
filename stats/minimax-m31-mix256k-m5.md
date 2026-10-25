@@ -1,6 +1,37 @@
 # MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `minimax-m31-mix256k-m5`: MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-mix256k-m5.json` (19 runs); aggregate tok/s, total (a stream).
+Target `minimax-m31-mix256k-m5`: MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-mix256k-m5.json` (20 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-24 20:24: run `20261024-202437-dsv41-quality-off`
+
+Plan dsv41-quality-off, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `e6b3b3bd0`; binary_sha256 `5b078b780af71ddf5fc7d92ff40119f5c835f8aecccef199d36c0b22775a86aa`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+| tools | 56/60 |
+| json | 30/30 |
+| ifeval | 89/150 |
+| gsm8k | 244/250 |
+| mgsm | 197/240 |
+| mmlu | 280/342 |
+| math500 | 450/500 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 23%; total = 4096.00M  us |
 
 ## 2026-10-24 19:30: run `20261024-193050-quick`
 
