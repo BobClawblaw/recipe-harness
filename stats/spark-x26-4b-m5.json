@@ -184,10 +184,10 @@
      "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
     }
    },
-   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "model_name": "Spark-X2.6-4B, bf16",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+   "description": "Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
   },
   {
    "run": "20261025-150048-speed",
@@ -362,10 +362,10 @@
      "summary": "mac: System-wide memory free percentage: 92%\ntotal = 4096.00M  us"
     }
    },
-   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "model_name": "Spark-X2.6-4B, bf16",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+   "description": "Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
   },
   {
    "run": "20261025-150200-prefill",
@@ -403,10 +403,10 @@
      "summary": "mac: System-wide memory free percentage: 88%\ntotal = 3072.00M  us"
     }
    },
-   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "model_name": "Spark-X2.6-4B, bf16",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+   "description": "Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
   },
   {
    "run": "20261025-153648-quick",
@@ -591,10 +591,10 @@
      "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
     }
    },
-   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "model_name": "Spark-X2.6-4B, bf16",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+   "description": "Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
   },
   {
    "run": "20261025-154128-speed",
@@ -769,10 +769,10 @@
      "summary": "mac: System-wide memory free percentage: 92%\ntotal = 3072.00M  us"
     }
    },
-   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "model_name": "Spark-X2.6-4B, bf16",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+   "description": "Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
   },
   {
    "run": "20261025-154240-prefill",
@@ -810,10 +810,10 @@
      "summary": "mac: System-wide memory free percentage: 88%\ntotal = 3072.00M  us"
     }
    },
-   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "model_name": "Spark-X2.6-4B, bf16",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+   "description": "Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
   },
   {
    "run": "20261025-161656-quick",
@@ -1377,6 +1377,194 @@
     "ruler-streams": {
      "ok": null,
      "summary": "c=1 105.1/105.3/105.2/105.2 ttft 0.05-0.07s; c=2 187.1/177.4/188.3/186.7 ttft 0.08-0.10s; c=4 321.5/296.2/325.5/318.0 ttft 0.13-0.17s; engine: c=1 1.00 tokens a round, 9.6 ms a round; c=2 1.01 tokens a round 15% accepted, 10.9 ms a round; c=4 1.01 tokens a round 12% accepted, 12.8 ms a round"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+  },
+  {
+   "run": "20261025-172137-quick",
+   "target": "spark-x26-4b-m5",
+   "model": "spark",
+   "plan": "quick",
+   "started": "20261025-172137",
+   "finished": "20261025-172715",
+   "status": "done",
+   "identity": {
+    "engine_commit": "cc840195e",
+    "binary_sha256": "5a20c6f0cb2289384f0deda99840d9acc01d10766beea0cfb1d1de78e938be46",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"spark\", \"object\": \"model\", \"created\": 1792966905, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"high\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 106.0,
+      "per_stream": 106.0,
+      "ttft": 0.052
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 106.1,
+      "per_stream": 106.1,
+      "ttft": 0.054
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 106.1,
+      "per_stream": 106.1,
+      "ttft": 0.056
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 106.0,
+      "per_stream": 106.0,
+      "ttft": 0.07
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 105.7,
+      "per_stream": 105.7,
+      "ttft": 0.054
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 105.7,
+      "per_stream": 105.7,
+      "ttft": 0.054
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 105.5,
+      "per_stream": 105.5,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 105.3,
+      "per_stream": 105.3,
+      "ttft": 0.07
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 501,
+      "cached": 0,
+      "tokens": 2652,
+      "rounds": 2640,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 9.47
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 6125,
+      "cached": 0,
+      "tokens": 2700,
+      "rounds": 2687,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 9.52
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 7,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 90%\ntotal = 3072.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 106.0/106.1/106.1/106.0 ttft 0.05-0.07s; engine: c=1 1.00 tokens a round, 9.5 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5499 of 5624; ttft resumed 0.066s, cold 0.59s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 105.7/105.7/105.5/105.3 ttft 0.05-0.07s; engine: c=1 1.00 tokens a round, 9.5 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 7/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
     }
    },
    "model_name": "Spark-X2.6-4B, bf16",

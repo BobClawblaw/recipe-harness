@@ -1,6 +1,60 @@
 # Spark-X2.6-4B, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `spark-x26-4b-m5`: Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal. Rendered from `stats/spark-x26-4b-m5.json` (10 runs); aggregate tok/s, total (a stream).
+Target `spark-x26-4b-m5`: Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal. Rendered from `stats/spark-x26-4b-m5.json` (11 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-25 17:21: run `20261025-172137-quick`
+
+Plan quick, done; served as `spark`.
+
+Serving: engine_commit `cc840195e`; binary_sha256 `5a20c6f0cb2289384f0deda99840d9acc01d10766beea0cfb1d1de78e938be46`; served_model `{"object": "list", "data": [{"id": "spark", "object": "model", "created": 1792966905, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 106.0 (106.0) | 106.1 (106.1) | 106.1 (106.1) | 106.0 (106.0) | 0.05-0.07 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 9.47 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 105.7 (105.7) | 105.7 (105.7) | 105.5 (105.5) | 105.3 (105.3) | 0.05-0.07 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 9.52 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 7/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 90%; total = 3072.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5499 of 5624; ttft resumed 0.066s, cold 0.59s |
 
 ## 2026-10-25 17:04: run `20261025-170422-mlx-speed`
 
