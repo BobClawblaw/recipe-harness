@@ -1,5 +1,5 @@
 # MiniMaxAI/MiniMax-M3.1-Flash (428B-A23B MoE, block-sparse attention with the lightning indexer, a vision tower),
-# experts 4-bit (g128) on 26 layers and 3-bit (g64) on the rest, attention 8-bit, served by TensorFold's native Metal engine (the minimax_m3 family: int8 key/value cache by default, images,
+# experts 4-bit (g128) on 26 layers and 3-bit (g64) on the rest, attention 8-bit, served by TensorFold's native Metal engine (the minimax_m3 family: exact bf16 key/value cache, images,
 # incoai's DFlash2 drafter) on one 256 GB M5 Ultra Mac. The server is a plain process, its output stamped with Unix
 # seconds for server_log. The quality suite and ruler are the qwen Spark recipe's, from a local checkout (suite_dir).
 # Machine-specific values go in minimax-m31-mix34-m5.local.toml.
@@ -19,7 +19,7 @@ model_dir = "CHANGE-ME: BobClawblaw/MiniMax-M3.1-Flash-MLX-mix34, its files as p
 suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
 log_dir = "CHANGE-ME: a folder for the server's log"
 port = "8897"
-context = "65536"
+context = "32768"
 parallel = "2"
 load_limit_gb = "226"                # MINIMAX_LOAD_LIMIT_GB: weights, scratch and caches (the default 75% holds no caches)
 prompt_cache_gib = "4"
