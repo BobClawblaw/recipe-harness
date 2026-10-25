@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-25 22:50 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-25 23:24 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -39,6 +39,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, MLX 6-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 145/206/172/194 | 4: 566/816/673/854 | 0.09 / 1.63-3.07 | gsm8k 242/250, ifeval 134/150 | 2026-10-11 |
 | Recursive Flint 40B-A2.5B, MLX INT4 (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 184/178/194/205 |  | 0.03 |  | 2026-10-25 |
+| Spark-X2.6-4B, MLX 8-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 167/167/167/167 | 4: 368/355/370/364 | 0.03 / 0.09-0.13 |  | 2026-10-25 |
 | Spark-X2.6-4B, MLX 8-bit | 1x NVIDIA RTX 4090 (24 GB), Windows | 146/144/147/146 | 4: 548/547/552/550 | 0.03 / 0.07-0.07 | tools 53/60, json 30/30, gsm8k 232/250, humaneval 0/0, ifeval 117/150 | 2026-10-25 |
 | Spark-X2.6-4B, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 106/106/106/106 |  | 0.05 |  | 2026-10-25 |
 | Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP | 1x Apple M5 Ultra (256 GB unified), macOS | 38/50/40/48 |  | 0.24 |  | 2026-10-16 |
@@ -1510,6 +1511,42 @@ Serving: engine_commit `9d352b66`; binary_sha256 `978f64996b777498553acd0672b167
 |---|---|---|---:|---:|---:|---|
 | 2026-10-25 04:19 | full | done | 144.0 |  |  | 1013/1234 |
 | 2026-10-25 04:00 | full | done | 144.2 |  |  | 997/1218 |
+
+## Spark-X2.6-4B, MLX 8-bit on 1x Apple M5 Ultra (256 GB unified), macOS
+
+Target `spark-x26-4b-8bit-m5`: Spark-X2.6-4B MLX affine 8-bit (a lossy conversion of the release), TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal; served as `spark`. Latest: run `20261025-180037-mlx-speed` (2026-10-25 18:00, plan mlx-speed, done).
+
+Serving: engine_commit `cc840195e`; binary_sha256 `5a20c6f0cb2289384f0deda99840d9acc01d10766beea0cfb1d1de78e938be46`; served_model `{"object": "list", "data": [{"id": "spark", "object": "model", "created": 1792969237, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 167.1 (167.1) | 167.0 (167.0) | 166.9 (166.9) | 167.1 (167.1) | 0.03-0.05 s |
+| 2 | 267.6 (133.8) | 260.8 (130.4) | 272.0 (136.0) | 265.4 (132.7) | 0.05-0.08 s |
+| 4 | 368.3 (92.1) | 354.6 (88.6) | 369.6 (93.3) | 364.3 (90.5) | 0.09-0.13 s |
+
+Engine rounds (ruler-streams):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 6.02 | 12 |
+| 2 | 1.01 | 0.034 | 15% | 7.58 | 25 |
+| 4 | 1.008 | 0.021 | 15% | 11.06 | 50 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 93%; total = 3072.00M  us |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-25 18:00 | mlx-speed | done | 167.0 |  |  |  |
+| 2026-10-25 17:57 | speed | done | 166.6 |  |  |  |
+| 2026-10-25 17:54 | quick | done | 167.7 |  |  | 114/114 |
 
 ## Spark-X2.6-4B, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
