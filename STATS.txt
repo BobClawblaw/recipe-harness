@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-10-25 13:34 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-25 22:06 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -41,6 +41,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   Qwen3.8-Flash-Next, MLX 6-bit  1x Apple M5 Ultra (256 GB unified), macOS  145/206/172/194  4: 566/816/673/854  0.09 / 1.63-3.07  gsm8k 242/250, ifeval 134/150  2026-10-11
   Recursive Flint 40B-A2.5B, MLX INT4 (g64)  1x Apple M5 Ultra (256 GB unified), macOS  184/178/194/205    0.03    2026-10-25
   Spark-X2.6-4B, MLX 8-bit  1x NVIDIA RTX 4090 (24 GB), Windows  146/144/147/146  4: 548/547/552/550  0.03 / 0.07-0.07  tools 53/60, json 30/30, gsm8k 232/250, humaneval 0/0, ifeval 117/150  2026-10-25
+  Spark-X2.6-4B, bf16  1x Apple M5 Ultra (256 GB unified), macOS  105/105/105/105  4: 322/296/326/318  0.05 / 0.13-0.17    2026-10-25
   Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP  1x Apple M5 Ultra (256 GB unified), macOS  38/50/40/48    0.24    2026-10-16
   qwen38-27b  ?  150/230/168/185    0.10    2026-10-16
   qwen38-27b  ?  211/398/268/250    0.10    2026-10-16
@@ -1536,6 +1537,46 @@ history
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
   2026-10-25 04:19  full  done  144.0      1013/1234
   2026-10-25 04:00  full  done  144.2      997/1218
+
+Spark-X2.6-4B, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
+----------------------------------------------------------------
+
+Target spark-x26-4b-m5: Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal; served as spark. Latest: run 20261025-170422-mlx-speed (2026-10-25 17:04, plan mlx-speed, done).
+
+Serving: engine_commit 11f15133e; binary_sha256 3ffa026b390096dad439f4fdd1e7ae54aaf9c825fcd009a5ac9c495a4d521f9f; served_model {"object": "list", "data": [{"id": "spark", "object": "model", "created": 1792965862, "own; chip Apple M5 Ultra; 274877906944; suite_commit 277c842a1481
+
+ruler-streams
+-------------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  105.1 (105.1)  105.3 (105.3)  105.2 (105.2)  105.2 (105.2)  0.05-0.07 s
+  2  187.1 (93.5)  177.4 (88.7)  188.3 (94.2)  186.7 (93.4)  0.08-0.10 s
+  4  321.5 (80.1)  296.2 (74.6)  325.5 (80.9)  318.0 (78.6)  0.13-0.17 s
+
+Engine rounds (ruler-streams):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.005  0.0    9.55  12
+  2  1.009  0.032  15%  10.92  25
+  4  1.008  0.024  12%  12.82  50
+
+checks
+------
+
+  check  result
+  memory-idle  measured: mac: System-wide memory free percentage: 90%; total = 3072.00M  us
+
+history
+-------
+
+  run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-25 17:04  mlx-speed  done  105.3      
+  2026-10-25 16:22  speed  done  106.0      
+  2026-10-25 16:16  quick  done  106.1      113/114
+  2026-10-25 15:41  speed  done  165.9      
+  2026-10-25 15:36  quick  done  166.5      114/114
+  2026-10-25 15:00  speed  done  165.9      
+  2026-10-25 14:55  quick  done  166.8      114/114
 
 Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP on 1x Apple M5 Ultra (256 GB unified), macOS
 -------------------------------------------------------------------------------------------------
