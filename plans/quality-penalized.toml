@@ -1,0 +1,16 @@
+description = "Thinking-off quality (about 40 minutes) with the Qwen3.8 model card's thinking-off sampling and its presence_penalty 1.5: temperature 0.7, top_p 0.8, top_k 20, seed 42"
+restart = true
+
+[[checks]]
+type = "ruler"
+label = "fresh"
+concurrency = [1]
+
+[[checks]]
+type = "suite"
+args = "--extra-body '{\"temperature\": 0.7, \"top_p\": 0.8, \"top_k\": 20, \"presence_penalty\": 1.5, \"seed\": 42}'"
+
+[[checks]]
+type = "ruler"
+label = "after"
+concurrency = [1]

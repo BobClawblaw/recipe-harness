@@ -1,0 +1,15 @@
+description = "Thinking-off quality (about 40 minutes): the ruler, the whole suite greedy, the ruler again"
+restart = true
+
+[[checks]]
+type = "ruler"
+label = "fresh"
+concurrency = [1]
+
+[[checks]]
+type = "suite"
+
+[[checks]]
+type = "ruler"
+label = "after"
+concurrency = [1]
