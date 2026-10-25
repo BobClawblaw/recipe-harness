@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-25 23:48 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-26 01:40 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -34,7 +34,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 93/172/123/156 |  | 0.05 |  | 2026-10-25 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64), YaRN x4 to 1M context | 1x Apple M5 Ultra (256 GB unified), macOS | 95/95/95/95 | 4: 382/381/380/380 | 0.05 / 3.09-4.17 | gsm8k 247/250 | 2026-10-20 |
-| Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 257/497/326/312 |  | 0.05 | humaneval 152/164 | 2026-10-22 |
+| Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 279/539/353/338 |  | 0.06 | humaneval 154/164 | 2026-10-26 |
 | Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, MLX 6-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 145/206/172/194 | 4: 566/816/673/854 | 0.09 / 1.63-3.07 | gsm8k 242/250, ifeval 134/150 | 2026-10-11 |
@@ -1269,20 +1269,39 @@ Serving: recipe_commit `6f7277d`; engine_commit `b10231b9`; served_model `{"obje
 
 ## Qwen3.8-27B, MLX 4-bit + DFlash2 on 1x NVIDIA RTX 5090 (32 GB)
 
-Target `qwen38-27b-5090`: Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision). Engine: TensorFold native, CUDA; served as `qwen38-27b`. Latest: run `20261022-115029-humaneval-fresh` (2026-10-22 11:50, plan humaneval-fresh, done).
+Target `qwen38-27b-5090`: Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision). Engine: TensorFold native, CUDA; served as `qwen38-27b`. Latest: run `20261026-012948-humaneval-penalized` (2026-10-26 01:29, plan humaneval-penalized, done).
 
-Serving: recipe_commit `0356cea`; engine_commit `18d93451`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792669840,`; suite_commit `291734b3cf5a`
+Serving: recipe_commit `2147ce9`; engine_commit `91a882950`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1792978201,`; suite_commit `49a346d8899c`
 
 ### suite-humaneval
 
 | check | passed |
 |---|---:|
-| humaneval | 152/164 |
+| humaneval | 154/164 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-26 01:29 | humaneval-penalized | done |  |  |  | 154/164 |
+| 2026-10-26 01:28 | humaneval-sampled | done |  |  |  | 153/164 |
+| 2026-10-26 01:26 | humaneval-off | done |  |  |  | 152/164 |
+| 2026-10-26 00:54 | after-long | done | 538.9 |  |  |  |
+| 2026-10-26 00:06 | quality-penalized | done | 539.1 |  |  | 1127/1273 |
+| 2026-10-25 23:24 | quality-sampled | done | 537.7 |  |  | 1142/1273 |
+| 2026-10-25 22:42 | quality-off | done | 538.0 |  |  | 1143/1273 |
+| 2026-10-25 20:16 | streams | done | 537.6 |  |  | 24/24 |
+| 2026-10-25 20:14 | streams | done | 537.5 |  |  | 24/24 |
+| 2026-10-25 20:13 | together | done |  |  |  | 18/24 |
+| 2026-10-25 20:11 | together | done |  |  |  | 24/24 |
+| 2026-10-25 20:10 | together | done |  |  |  | 24/24 |
+| 2026-10-25 20:09 | together | done |  |  |  | 24/24 |
+| 2026-10-25 20:09 | together | done |  |  |  | 20/24 |
+| 2026-10-25 20:08 | together | done |  |  |  | 24/24 |
+| 2026-10-25 20:05 | streams | done | 538.6 |  |  | 18/24 |
+| 2026-10-25 20:04 | streams | done | 538.4 |  |  | 19/24 |
+| 2026-10-25 20:03 | streams | done | 539.2 |  |  | 18/24 |
+| 2026-10-25 19:53 | quick | done | 538.1 |  |  | 113/114 |
 | 2026-10-22 11:50 | humaneval-fresh | done |  |  |  | 152/164 |
 | 2026-10-22 11:12 | quality-off | done | 497.1 |  |  | 1143/1273 |
 | 2026-10-22 11:10 | after-long | done | 496.1 |  |  |  |

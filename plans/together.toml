@@ -1,0 +1,7 @@
+description = "Together equals alone (about 2 minutes): the suite's concurrent and drafts checks only, fresh server"
+restart = true
+
+[[checks]]
+type = "suite"
+name = "suite-together"
+args = "--only concurrent drafts"

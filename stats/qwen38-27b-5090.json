@@ -3829,6 +3829,1716 @@
    "hardware": "1x NVIDIA RTX 5090 (32 GB)",
    "engine": "TensorFold native, CUDA",
    "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-195304-quick",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "quick",
+   "started": "20261025-195304",
+   "finished": "20261025-195752",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792958068, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 278.3,
+      "per_stream": 278.3,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 538.1,
+      "per_stream": 538.1,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.6,
+      "per_stream": 352.6,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 337.3,
+      "per_stream": 337.3,
+      "ttft": 0.057
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 278.4,
+      "per_stream": 278.4,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 538.3,
+      "per_stream": 538.3,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.5,
+      "per_stream": 352.5,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 337.3,
+      "per_stream": 337.3,
+      "ttft": 0.057
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 7,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 27988 MiB, 32607 MiB"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 278.3/538.1/352.6/337.3 ttft 0.06-0.06s"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4096 of 5613; ttft resumed 0.303s, cold 1.12s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 278.4/538.3/352.5/337.3 ttft 0.06-0.06s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 7/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-200357-streams",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "streams",
+   "started": "20261025-200357",
+   "finished": "20261025-200453",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792958650, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 279.6,
+      "per_stream": 279.6,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 539.2,
+      "per_stream": 539.2,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 354.0,
+      "per_stream": 354.0,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 338.7,
+      "per_stream": 338.7,
+      "ttft": 0.056
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 6,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 30932 MiB, 32607 MiB"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 279.6/539.2/354.0/338.7 ttft 0.06-0.06s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "gpu: 30538 MiB, 32607 MiB"
+    },
+    "suite-together": {
+     "ok": false,
+     "summary": "not exact: concurrent; concurrent 6/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-200453-streams",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "streams",
+   "started": "20261025-200453",
+   "finished": "20261025-200547",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792958705, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 278.7,
+      "per_stream": 278.7,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 538.4,
+      "per_stream": 538.4,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.7,
+      "per_stream": 352.7,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 337.6,
+      "per_stream": 337.6,
+      "ttft": 0.057
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 7,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 30914 MiB, 32607 MiB"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 278.7/538.4/352.7/337.6 ttft 0.06-0.06s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "gpu: 30518 MiB, 32607 MiB"
+    },
+    "suite-together": {
+     "ok": false,
+     "summary": "not exact: concurrent; concurrent 7/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-200547-streams",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "streams",
+   "started": "20261025-200547",
+   "finished": "20261025-200641",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792958759, \"owned_by\": \"tensorfold\", \"context_length\": 65536, \"max_model_len\": 65536, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 274.5,
+      "per_stream": 274.5,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 538.6,
+      "per_stream": 538.6,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.4,
+      "per_stream": 352.4,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 336.8,
+      "per_stream": 336.8,
+      "ttft": 0.057
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 6,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 30878 MiB, 32607 MiB"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 274.5/538.6/352.4/336.8 ttft 0.06-0.06s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "gpu: 30482 MiB, 32607 MiB"
+    },
+    "suite-together": {
+     "ok": false,
+     "summary": "not exact: concurrent; concurrent 6/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-200804-together",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "together",
+   "started": "20261025-200804",
+   "finished": "20261025-200900",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792958906, \"owned_by\": \"tensorfold\", \"context_length\": 16384, \"max_model_len\": 16384, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-200900-together",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "together",
+   "started": "20261025-200900",
+   "finished": "20261025-200945",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792958951, \"owned_by\": \"tensorfold\", \"context_length\": 16384, \"max_model_len\": 16384, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 8,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-together": {
+     "ok": false,
+     "summary": "not exact: concurrent; concurrent 8/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-200945-together",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "together",
+   "started": "20261025-200945",
+   "finished": "20261025-201041",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792959006, \"owned_by\": \"tensorfold\", \"context_length\": 16384, \"max_model_len\": 16384, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-201041-together",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "together",
+   "started": "20261025-201041",
+   "finished": "20261025-201128",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792959052, \"owned_by\": \"tensorfold\", \"context_length\": 16384, \"max_model_len\": 16384, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-201128-together",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "together",
+   "started": "20261025-201128",
+   "finished": "20261025-201216",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792959100, \"owned_by\": \"tensorfold\", \"context_length\": 16384, \"max_model_len\": 16384, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-201328-together",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "together",
+   "started": "20261025-201328",
+   "finished": "20261025-201415",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792959220, \"owned_by\": \"tensorfold\", \"context_length\": 16384, \"max_model_len\": 16384, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 6,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-together": {
+     "ok": false,
+     "summary": "not exact: concurrent; concurrent 6/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-201418-streams",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "streams",
+   "started": "20261025-201418",
+   "finished": "20261025-201627",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792959283, \"owned_by\": \"tensorfold\", \"context_length\": 32768, \"max_model_len\": 32768, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 278.2,
+      "per_stream": 278.2,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 537.5,
+      "per_stream": 537.5,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.5,
+      "per_stream": 352.5,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 337.6,
+      "per_stream": 337.6,
+      "ttft": 0.057
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 448.8,
+      "per_stream": 224.4,
+      "ttft": 0.087
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 741.8,
+      "per_stream": 370.9,
+      "ttft": 0.088
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 506.1,
+      "per_stream": 253.1,
+      "ttft": 0.089
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 779.2,
+      "per_stream": 389.6,
+      "ttft": 0.086
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 572.9,
+      "per_stream": 141.6,
+      "ttft": 0.146
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 966.4,
+      "per_stream": 242.5,
+      "ttft": 0.147
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 661.8,
+      "per_stream": 164.7,
+      "ttft": 0.149
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 983.0,
+      "per_stream": 252.8,
+      "ttft": 0.145
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 1109.3,
+      "per_stream": 136.6,
+      "ttft": 1.032
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 2030.1,
+      "per_stream": 242.1,
+      "ttft": 0.707
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 1278.7,
+      "per_stream": 157.6,
+      "ttft": 0.632
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 1668.9,
+      "per_stream": 203.4,
+      "ttft": 0.578
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 25760 MiB, 32607 MiB"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 278.2/537.5/352.5/337.6 ttft 0.06-0.06s; c=2 448.8/741.8/506.1/779.2 ttft 0.09-0.09s; c=4 572.9/966.4/661.8/983.0 ttft 0.15-0.15s; c=8 1109.3/2030.1/1278.7/1668.9 ttft 0.58-1.03s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "gpu: 25102 MiB, 32607 MiB"
+    },
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-201628-streams",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "streams",
+   "started": "20261025-201628",
+   "finished": "20261025-201830",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792959410, \"owned_by\": \"tensorfold\", \"context_length\": 8192, \"max_model_len\": 8192, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "291734b3cf5a"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 274.6,
+      "per_stream": 274.6,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 537.6,
+      "per_stream": 537.6,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.1,
+      "per_stream": 352.1,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 337.0,
+      "per_stream": 337.0,
+      "ttft": 0.057
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 448.1,
+      "per_stream": 224.0,
+      "ttft": 0.087
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 739.0,
+      "per_stream": 369.5,
+      "ttft": 0.087
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 507.0,
+      "per_stream": 253.5,
+      "ttft": 0.089
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 777.8,
+      "per_stream": 388.9,
+      "ttft": 0.086
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 573.2,
+      "per_stream": 141.6,
+      "ttft": 0.145
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 970.6,
+      "per_stream": 239.7,
+      "ttft": 0.147
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 662.0,
+      "per_stream": 166.9,
+      "ttft": 0.149
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 991.0,
+      "per_stream": 240.7,
+      "ttft": 0.145
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 719.3,
+      "per_stream": 89.5,
+      "ttft": 0.264
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 1170.3,
+      "per_stream": 147.2,
+      "ttft": 0.264
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 778.6,
+      "per_stream": 96.8,
+      "ttft": 0.269
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 1042.0,
+      "per_stream": 118.4,
+      "ttft": 0.263
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 25694 MiB, 32607 MiB"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 274.6/537.6/352.1/337.0 ttft 0.06-0.06s; c=2 448.1/739.0/507.0/777.8 ttft 0.09-0.09s; c=4 573.2/970.6/662.0/991.0 ttft 0.15-0.15s; c=8 719.3/1170.3/778.6/1042.0 ttft 0.26-0.27s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "gpu: 25062 MiB, 32607 MiB"
+    },
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-224232-quality-off",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "quality-off",
+   "started": "20261025-224232",
+   "finished": "20261025-232444",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792968579, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 279.1,
+      "per_stream": 279.1,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 538.0,
+      "per_stream": 538.0,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 353.0,
+      "per_stream": 353.0,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 337.9,
+      "per_stream": 337.9,
+      "ttft": 0.057
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 277.9,
+      "per_stream": 277.9,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 537.5,
+      "per_stream": 537.5,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.4,
+      "per_stream": 352.4,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 336.5,
+      "per_stream": 336.5,
+      "ttft": 0.057
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 7,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 58,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 129,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 215,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 270,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 0,
+      "cases": 0
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 279.1/538.0/353.0/337.9 ttft 0.06-0.06s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "cut at max_tokens: gsm8k 8; no cases (errors) in humaneval; drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 7/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 58/60, json 30/30, ifeval 129/150, gsm8k 241/250, mgsm 215/240, mmlu 270/342, humaneval 0/0, repetition 8/8, long-context 55/55, vision 12/12, soak 60/60, snapshot 12/12"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 277.9/537.5/352.4/336.5 ttft 0.06-0.06s"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261025-232444-quality-sampled",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "quality-sampled",
+   "started": "20261025-232444",
+   "finished": "20261026-000635",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "91a882950",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792971032, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 278.5,
+      "per_stream": 278.5,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 537.7,
+      "per_stream": 537.7,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.8,
+      "per_stream": 352.8,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 337.5,
+      "per_stream": 337.5,
+      "ttft": 0.057
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 277.7,
+      "per_stream": 277.7,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 537.4,
+      "per_stream": 537.4,
+      "ttft": 0.059
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.3,
+      "per_stream": 352.3,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 336.9,
+      "per_stream": 336.9,
+      "ttft": 0.057
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 1,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 7,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 57,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 128,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 242,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 212,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 276,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 0,
+      "cases": 0
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 278.5/537.7/352.8/337.5 ttft 0.06-0.06s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "cut at max_tokens: gsm8k 6; no cases (errors) in humaneval; drafts 12/12, concurrent 12/12, streaming 1/4, multiturn 7/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 57/60, json 30/30, ifeval 128/150, gsm8k 242/250, mgsm 212/240, mmlu 276/342, humaneval 0/0, repetition 8/8, long-context 55/55, vision 12/12, soak 60/60, snapshot 12/12"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 277.7/537.4/352.3/336.9 ttft 0.06-0.06s"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261026-000635-quality-penalized",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "quality-penalized",
+   "started": "20261026-000635",
+   "finished": "20261026-004959",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "91a882950",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792973541, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 278.9,
+      "per_stream": 278.9,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 539.1,
+      "per_stream": 539.1,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 353.2,
+      "per_stream": 353.2,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 337.7,
+      "per_stream": 337.7,
+      "ttft": 0.057
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 277.9,
+      "per_stream": 277.9,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 537.8,
+      "per_stream": 537.8,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.2,
+      "per_stream": 352.2,
+      "ttft": 0.059
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 336.9,
+      "per_stream": 336.9,
+      "ttft": 0.057
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 0,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 7,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 57,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 126,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 242,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 210,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 266,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 0,
+      "cases": 0
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 278.9/539.1/353.2/337.7 ttft 0.06-0.06s"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "cut at max_tokens: gsm8k 10; no cases (errors) in humaneval; drafts 12/12, concurrent 12/12, streaming 0/4, multiturn 7/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3, tools 57/60, json 30/30, ifeval 126/150, gsm8k 242/250, mgsm 210/240, mmlu 266/342, humaneval 0/0, repetition 8/8, long-context 55/55, vision 12/12, soak 60/60, snapshot 12/12"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 277.9/537.8/352.2/336.9 ttft 0.06-0.06s"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261026-005404-after-long",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "after-long",
+   "started": "20261026-005404",
+   "finished": "20261026-012728",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792977903, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 278.6,
+      "per_stream": 278.6,
+      "ttft": 0.057
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 538.9,
+      "per_stream": 538.9,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.8,
+      "per_stream": 352.8,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 338.0,
+      "per_stream": 338.0,
+      "ttft": 0.057
+     }
+    ],
+    "ruler-after-long": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 277.9,
+      "per_stream": 277.9,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 537.5,
+      "per_stream": 537.5,
+      "ttft": 0.058
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 352.6,
+      "per_stream": 352.6,
+      "ttft": 0.059
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 336.4,
+      "per_stream": 336.4,
+      "ttft": 0.057
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 278.6/538.9/352.8/338.0 ttft 0.06-0.06s"
+    },
+    "prefill-245k": {
+     "ok": null,
+     "summary": "245304 tokens 1969.1 tok/s (124.576 s)"
+    },
+    "ruler-after-long": {
+     "ok": null,
+     "summary": "c=1 277.9/537.5/352.6/336.4 ttft 0.06-0.06s"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261026-012654-humaneval-off",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "humaneval-off",
+   "started": "20261026-012654",
+   "finished": "20261026-012835",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "84e0d5603",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792978061, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-humaneval": {
+     "humaneval": {
+      "passed": 152,
+      "cases": 164
+     }
+    }
+   },
+   "checks": {
+    "suite-humaneval": {
+     "ok": null,
+     "summary": "humaneval 152/164"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261026-012836-humaneval-sampled",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "humaneval-sampled",
+   "started": "20261026-012836",
+   "finished": "20261026-012948",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "91a882950",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792978128, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-humaneval": {
+     "humaneval": {
+      "passed": 153,
+      "cases": 164
+     }
+    }
+   },
+   "checks": {
+    "suite-humaneval": {
+     "ok": null,
+     "summary": "humaneval 153/164"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
+  },
+  {
+   "run": "20261026-012948-humaneval-penalized",
+   "target": "qwen38-27b-5090",
+   "model": "qwen38-27b",
+   "plan": "humaneval-penalized",
+   "started": "20261026-012948",
+   "finished": "20261026-013058",
+   "status": "done",
+   "identity": {
+    "recipe_commit": "2147ce9",
+    "engine_commit": "91a882950",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen38-27b\", \"object\": \"model\", \"created\": 1792978201, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-humaneval": {
+     "humaneval": {
+      "passed": 154,
+      "cases": 164
+     }
+    }
+   },
+   "checks": {
+    "suite-humaneval": {
+     "ok": null,
+     "summary": "humaneval 154/164"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, one stream, vision)"
   }
  ]
 }

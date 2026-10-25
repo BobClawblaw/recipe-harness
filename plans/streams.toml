@@ -1,0 +1,20 @@
+description = "Streams (about 10 minutes): the ruler at 1, 2, 4 and 8 streams, memory under load, and the suite's concurrent and drafts checks (replies together equal alone)"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ruler"
+label = "streams"
+concurrency = [1, 2, 4, 8]
+
+[[checks]]
+type = "memory"
+name = "memory-busy"
+
+[[checks]]
+type = "suite"
+name = "suite-together"
+args = "--only concurrent drafts"
