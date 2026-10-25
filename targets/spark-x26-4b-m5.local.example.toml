@@ -1,0 +1,6 @@
+[vars]
+harness_dir = "/path/to/recipe-harness"
+engine_dir = "/path/to/TensorFold worktree with the spark2_5 Metal family"
+model_dir = "/path/to/Spark-X2.6-4B"
+suite_dir = "/path/to/glm53-flash-exl3-2x-dgx-sparks"
+log_dir = "/path/to/logs"
