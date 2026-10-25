@@ -22,6 +22,7 @@ context = "262144"
 parallel = "4"
 load_limit_gb = "64"                 # SPARK_LOAD_LIMIT_GB: 7.7 GiB of weights, scratch and caches; the rest of the Mac stays free
 prompt_cache_gib = "8"
+suite_dir_engine = "CHANGE-ME: the engine commit plus a benchmark --suite community-v1 commit, built (leaderboard only)"
 
 [commands]
 up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c 'SPARK_LOAD_LIMIT_GB=$load_limit_gb $engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --prompt-cache-gib $prompt_cache_gib --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
@@ -68,3 +69,11 @@ capacity = false
 max_concurrency = 4
 thinking = true
 prompt_cache = true
+
+# python3 -m harness leaderboard spark-x26-4b-m5: the board's suite on XHToken's public bf16 release (the same files this
+# target serves), the receipt published with the stored login; only this target's server is brought down.
+[leaderboard]
+model = "XHToken/Spark-X2.6-4B"   # cached as a Hugging Face snapshot (revision 66e3ae7b)
+binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"   # this engine plus the board's community-v1 suite
+free = "! pgrep -f 'tensorfold-native serve [^ ]*Spark-X2.6-4B[^ ]* .*--port $port( |$$)'"
+env = { SPARK_LOAD_LIMIT_GB = "$load_limit_gb" }
