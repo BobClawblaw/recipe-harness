@@ -1,0 +1,9 @@
+description = "An A/B of two of quick's checks (tools, turns) on the server the target brings up (about 3 minutes)"
+
+[[checks]]
+type = "tools"
+name = "tools"
+
+[[checks]]
+type = "turns"
+name = "turns"
