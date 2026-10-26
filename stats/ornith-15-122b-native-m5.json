@@ -4638,6 +4638,167 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261026-111607-quick",
+   "target": "ornith-15-122b-native-m5",
+   "model": "Ornith-1.5-122B",
+   "plan": "quick",
+   "started": "20261026-111607",
+   "finished": "20261026-112051",
+   "status": "done",
+   "identity": {
+    "engine_commit": "aa472b6d",
+    "binary_sha256": "8eb45a8cf11ea8e120af8fdd8e48bdd2ce973545026bbef778de57916cec7522",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Ornith-1.5-122B\", \"object\": \"model\", \"created\": 1793031367, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 93.5,
+      "per_stream": 93.5,
+      "ttft": 0.063
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 157.0,
+      "per_stream": 157.0,
+      "ttft": 0.066
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 132.8,
+      "per_stream": 132.8,
+      "ttft": 0.07
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 149.2,
+      "per_stream": 149.2,
+      "ttft": 0.054
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 93.7,
+      "per_stream": 93.7,
+      "ttft": 0.06
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 157.1,
+      "per_stream": 157.1,
+      "ttft": 0.064
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 132.5,
+      "per_stream": 132.5,
+      "ttft": 0.068
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 149.2,
+      "per_stream": 149.2,
+      "ttft": 0.052
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 59%\ntotal = 4096.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 93.5/157.0/132.8/149.2 ttft 0.05-0.07s"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": false,
+     "summary": "4/5 tool cases right; failed named/thinking (calls ['book_flight', 'book_flight'])"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (padded): True; cached 5624 of 5643; ttft resumed 0.068s, cold 0.059s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 93.7/157.1/132.5/149.2 ttft 0.05-0.07s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "Ornith-1.5-122B, 4-bit MLX affine (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
