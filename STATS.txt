@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-10-26 06:47 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-26 08:43 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -32,8 +32,9 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context  1x Apple M5 Ultra (256 GB unified), macOS  43/59/49/53    0.31    2026-10-25
   MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34)  1x Apple M5 Ultra (256 GB unified), macOS  43/59/50/56    0.31  tools 57/60, json 30/30, gsm8k 242/250, ifeval 87/150  2026-10-24
   NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision  1x NVIDIA RTX 5090 (32 GB)  150/150/150/150    0.03  tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150  2026-10-15
+  Nanbeige4.3-33B, bf16  1x Apple M5 Ultra (256 GB unified), macOS  16/16/16/16    0.23    2026-10-26
   Ornith-1.5-122B, 4-bit MLX affine (g64)  1x Apple M5 Ultra (256 GB unified), macOS  66/67/66/67  4: 176/178/178/180  0.08 / 0.25-0.35    2026-10-20
-  Ornith-1.5-122B, 4-bit MLX affine (g64)  1x Apple M5 Ultra (256 GB unified), macOS  93/172/123/155  4: 348/606/452/652  0.05 / 0.73-1.48    2026-10-25
+  Ornith-1.5-122B, 4-bit MLX affine (g64)  1x Apple M5 Ultra (256 GB unified), macOS  93/171/122/155  4: 215/346/278/361  0.05 / 0.13-0.16  gsm8k 245/250  2026-10-26
   Ornith-1.5-122B, 4-bit MLX affine (g64), YaRN x4 to 1M context  1x Apple M5 Ultra (256 GB unified), macOS  78/161/106/111  4: 447/774/555/871  0.06 / 1.58-3.32  gsm8k 247/250  2026-10-26
   Qwen3.8-27B, MLX 4-bit + DFlash2  1x NVIDIA RTX 5090 (32 GB)  279/539/353/338    0.06  humaneval 154/164  2026-10-26
   Qwen3.8-Flash-Next INT4-Mixed (AutoRound)  2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE  78/127/102/130  16: 304/516/392/525  0.03 / 0.45-0.54    2026-10-17
@@ -961,6 +962,51 @@ history
   2026-10-23 20:52  speed  done  65.9      
   2026-10-23 20:28  speed  aborted: minimax-m31-mix34-m5 never came up after 1 starts  64.3      
 
+Nanbeige4.3-33B, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
+------------------------------------------------------------------
+
+Target nanbeige43-33b-m5: Nanbeige4.3-33B bf16 as released, TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams). Engine: TensorFold native, Metal; served as nanbeige. Latest: run 20261026-020710-quick (2026-10-26 02:07, plan quick, aborted: the server died during suite; its result is discarded).
+
+Serving: engine_commit e38574b0f; binary_sha256 9a1329719d3273bfe23de3f5494bcfd369af8beb1d12bc5c2aafec20d849226a; served_model {"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1792998438, "; chip Apple M5 Ultra; 274877906944; suite_commit 277c842a1481
+
+ruler-fresh
+-----------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  16.4 (16.4)  16.3 (16.3)  16.3 (16.3)  16.4 (16.4)  0.23-0.26 s
+
+Engine rounds (ruler-fresh):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.005  0.017  0%  61.48  12
+
+ruler-after
+-----------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  16.4 (16.4)  16.3 (16.3)  16.4 (16.4)  16.4 (16.4)  0.23-0.26 s
+
+Engine rounds (ruler-after):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.007  0.022  10%  61.59  13
+
+checks
+------
+
+  check  result
+  memory-idle  measured: mac: System-wide memory free percentage: 31%; total = 3072.00M  us
+  structured  pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400
+  tools  pass: 5/5 tool cases right
+  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.355s, cold 4.376s
+
+history
+-------
+
+  run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-26 02:07  quick  aborted: the server died during suite; its result is discarded  16.3      
+
 NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision on 1x NVIDIA RTX 5090 (32 GB)
 -------------------------------------------------------------------------------------------------------------------
 
@@ -1064,28 +1110,31 @@ history
 Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 ------------------------------------------------------------------------------------
 
-Target ornith-15-122b-native-m5: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as Ornith-1.5-122B. Latest: run 20261025-223735-mlx-speed (2026-10-25 22:37, plan mlx-speed, done).
+Target ornith-15-122b-native-m5: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as Ornith-1.5-122B. Latest: run 20261026-033758-thinking (2026-10-26 03:37, plan thinking, done).
 
-Serving: engine_commit 1429b56b; binary_sha256 64f5d54183672d8cc018bfb29f8be83b0da65c0e7b9293d9e6dd70203ff87cd5; served_model {"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179298; chip Apple M5 Ultra; 274877906944; suite_commit 277c842a1481
+Serving: engine_commit 1429b56b; binary_sha256 64f5d54183672d8cc018bfb29f8be83b0da65c0e7b9293d9e6dd70203ff87cd5; served_model {"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179300; chip Apple M5 Ultra; 274877906944; suite_commit 291734b3cf5a
 
-ruler-streams
--------------
+suite-thinking
+--------------
 
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  93.2 (93.2)  172.1 (172.1)  122.8 (122.8)  155.2 (155.2)  0.05-0.06 s
-  2  184.3 (92.1)  289.8 (144.9)  226.1 (113.1)  311.2 (155.6)  0.08-0.10 s
-  4  347.7 (86.0)  605.6 (159.9)  451.6 (109.6)  652.1 (173.4)  0.73-1.48 s
+  check  passed
+  gsm8k  245/250
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 43%; total = 3072.00M  us
+  thinking  pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors, 0 cut at 50176 tokens
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-26 03:37  thinking  done        245/250
+  2026-10-26 03:08  dsv41-quality-off  done        1427/1614
+  2026-10-26 03:02  mlx-speed  done  171.3      
+  2026-10-26 02:57  quick  done  171.0      114/114
+  2026-10-26 02:54  quick  running  169.9      
   2026-10-25 22:37  mlx-speed  done  172.1      
   2026-10-25 22:32  quick  done  171.6      114/114
   2026-10-25 21:43  mlx-speed  done  171.9      
