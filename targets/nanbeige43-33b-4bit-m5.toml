@@ -1,0 +1,71 @@
+# Nanbeige4.3-33B (Nanbeige, model_type llama), its MLX affine 4bit conversion (tools/zig/llama_convert.py), on one 256 GB M5 Ultra Mac, TensorFold native Metal
+# with the llama family (github.com/BobClawblaw/TensorFold branch nanbeige43): the server is a plain
+# process, its output stamped with Unix seconds for server_log. The quality suite and ruler are the qwen Spark recipe's,
+# from a local checkout (suite_dir). Machine-specific values go in nanbeige43-33b-m5.local.toml (git-ignored).
+name = "nanbeige43-33b-4bit-m5"
+description = "Nanbeige4.3-33B MLX affine 4bit (llama_convert.py), TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams)"
+model_name = "Nanbeige4.3-33B, affine 4bit"   # the report's model column
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
+url = "http://127.0.0.1:$port"
+model = "nanbeige"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout (up runs python3 -m harness.detach from it)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (zig-out/native/bin/tensorfold-native)"
+model_dir = "CHANGE-ME: the 4bit conversion (python3 -m mac convert) of the release"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+log_dir = "CHANGE-ME: a folder for the server's log"
+port = "8896"
+context = "131072"
+parallel = "2"
+load_limit_gb = "150"                # LLAMA_LOAD_LIMIT_GB: 62 GiB of weights, scratch and caches; the rest of the Mac stays free
+prompt_cache_gib = "8"
+suite_dir_engine = "CHANGE-ME: the engine commit plus a benchmark --suite community-v1 commit, built (leaderboard only)"
+
+[commands]
+up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c 'LLAMA_LOAD_LIMIT_GB=$load_limit_gb $engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --prompt-cache-gib $prompt_cache_gib --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
+# only this target's server on its port
+down = "pkill -f 'tensorfold-native serve [^ ]*Nanbeige4.3-33B[^ ]* .*--port $port( |$$)' ; sleep 3"
+status = "pgrep -fl 'tensorfold-native serve [^ ]*Nanbeige4.3-33B[^ ]* .*--port $port( |$$)'"
+diagnose = "tail -5 $log_dir/$model.log"
+server_log = "awk -v s=$since '$$1 >= s' $log_dir/$model.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 120
+health_wait = 900                    # maps 62 GiB of shards, then warms a prompt chunk
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+[features]
+drafts = true         # copy drafts from the lane core (no draft head)
+structured = true     # libtfgrammar beside the binary
+sampling = true
+vision_urls = false   # a text model
+capacity = false
+max_concurrency = 2
+thinking = true
+prompt_cache = true
