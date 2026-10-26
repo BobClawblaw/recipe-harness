@@ -1,0 +1,67 @@
+# MiniMaxAI/MiniMax-M3.1-Flash (428B-A23B MoE, block-sparse attention with the lightning indexer, a vision tower) on two
+# DGX Sparks at TP=2: the release's NVFP4 experts on 15 MoE layers and a 3-bit refit of the other 42, its MXFP8
+# projections as released, its DSpark drafter, served by TensorFold's native CUDA engine (the minimax_m3 family's CUDA
+# backend). Recipe: github.com/BobClawblaw/minimax-m31-flash-nvfp4-2x-dgx-sparks. The quality suite and ruler are the
+# qwen Spark recipe's, as the Mac MiniMax targets measured with. Machine-specific values go in the .local.toml.
+name = "minimax-m31-nvfp4mix-gb10x2"
+description = "MiniMax-M3.1-Flash, NVFP4 x 15 layers + 3-bit, DSpark drafts, 32k x 2 streams, TensorFold native CUDA, TP=2 on two DGX Sparks"
+url = "http://127.0.0.1:$port"
+model = "MiniMax-M3.1-Flash"
+model_name = "MiniMax-M3.1-Flash, NVFP4 (15 MoE layers) + 3-bit refit, 32k context"
+hardware = "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE"
+engine = "TensorFold native, CUDA"
+cwd = "$recipe_dir"
+
+[vars]
+recipe_dir = "CHANGE-ME: the recipe checkout on the head node"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+worker = "CHANGE-ME: ssh login of the worker node"
+run_dir = "CHANGE-ME: the recipe's run folder (build_dir/run)"
+port = "8897"
+
+[commands]
+up = "python3 -m spark up"
+down = "python3 -m spark down"
+status = "python3 -m spark status"
+diagnose = "grep -E 'error' $run_dir/rank0.log | tail -3; ssh $worker grep -E 'error' $run_dir/rank1.log | tail -3"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+server_log = "awk -v s=$since '$$1 >= s' $run_dir/rank0.log"
+
+[session]
+lock = "~/.cache/tf-gpu-pair.lock"   # shared with every GPU job on the pair
+up_retries = 2                       # a start can fail at NCCL's first registration on the worker
+retry_wait = 90
+up_timeout = 1200
+health_wait = 300
+leave_up = true
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD; git -C $engine_dir status --short | wc -l"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "sha256sum $run_dir/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "checkpoint_mix"
+cmd = "python3 -c \"import json,sys; d=json.load(open(sys.argv[1]+'/config.json'))['nvfp4_mix']; print(d['nvfp4_layers'])\" $$(python3 -c 'import sys; sys.path.insert(0,\".\"); from spark.config import load; print(load().model)')"
+
+[[identity]]
+name = "server_args"
+# the engine's variables and serve flags only (no paths, addresses or ports)
+cmd = "pgrep -af '[t]ensorfold-native serve' | head -1 | grep -oE -- '(TF_[A-Z_]+|NCCL_(SOCKET|IB|MAX|DEBUG)[A-Z_]*|TENSORFOLD_MEMORY[A-Z_]*)=[^ ]+|--[a-z-]+( [^ |-][^ |]*)?' | grep -vE -- '^--(host|port)' | tr '\\n' ' '"
+
+[[memory]]
+name = "head"
+cmd = "free -b"
+
+[[memory]]
+name = "worker"
+cmd = "ssh $worker free -b"
+
+[features]
+drafts = true
+structured = true

@@ -1,0 +1,11 @@
+description = "MATH-500 alone with thinking off, on the server as it is (start it first): MiniMax-M3.1-Flash at two streams needs more than the suite check's default 4 hours"
+restart = false
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "suite"
+args = "--only math500"
+timeout = 36000
