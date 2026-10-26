@@ -1,0 +1,46 @@
+{
+ "target": "nanbeige43-33b-256k-m5",
+ "runs": [
+  {
+   "run": "20261026-043526-prefill",
+   "target": "nanbeige43-33b-256k-m5",
+   "model": "nanbeige",
+   "plan": "prefill",
+   "started": "20261026-043526",
+   "finished": "20261026-044446",
+   "status": "done",
+   "identity": {
+    "engine_commit": "490b6b9a5",
+    "binary_sha256": "f2a9ddfd933ba5b60c5921180b31faeca58b8ac826e09b78911e49d0ef7342a0",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"nanbeige\", \"object\": \"model\", \"created\": 1793007335, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 33%\ntotal = 5120.00M  us"
+    },
+    "prefill-off": {
+     "ok": null,
+     "summary": "2110 tokens 1250.0 tok/s (1.688 s), 8255 tokens 1277.9 tok/s (6.46 s), 32831 tokens 1053.6 tok/s (31.162 s), 131132 tokens 562.6 tok/s (233.095 s)"
+    },
+    "prefill-thinking": {
+     "ok": null,
+     "summary": "2103 tokens 1229.8 tok/s (1.71 s), 8250 tokens 1298.6 tok/s (6.353 s), 32826 tokens 1029.8 tok/s (31.875 s), 131128 tokens 557.7 tok/s (235.108 s)"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 19%\ntotal = 5120.00M  us"
+    }
+   },
+   "model_name": "Nanbeige4.3-33B, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Nanbeige4.3-33B bf16 as released, TensorFold native Metal (llama) on one M5 Ultra (262144-token window, 1 stream: the long-window setting)"
+  }
+ ]
+}
