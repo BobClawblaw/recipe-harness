@@ -1,0 +1,7 @@
+description = "Together equals alone (about 2 minutes): the suite's concurrent check only (no drafts check: for engines without a drafter), fresh server"
+restart = true
+
+[[checks]]
+type = "suite"
+name = "suite-exact"
+args = "--only concurrent"

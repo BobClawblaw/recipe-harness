@@ -1,0 +1,47 @@
+# Spark-X2.6-4B (XHToken/Spark-X2.6-4B @66e3ae7b, converted to MLX affine 8-bit by TensorFold's tools/zig/spark25_convert.py)
+# on TensorFold native CUDA, plain main, one RTX 5090: the family's first sm_120 measurements (upstream measured a GB10
+# and an RTX 4090). The server runs by hand on :30001 while production is stopped; machine paths in the .local.toml.
+name = "spark-x26-4b-5090"
+description = "Spark-X2.6-4B MLX 8-bit, TensorFold native CUDA (main), one RTX 5090, 32k window, 4 streams, no drafter"
+model_name = "Spark-X2.6-4B, MLX 8-bit"
+hardware = "1x NVIDIA RTX 5090 (32 GB)"
+engine = "TensorFold native, CUDA (main)"
+url = "http://127.0.0.1:$port"
+model = "spark"
+cwd = "$work_dir"
+
+[vars]
+work_dir = "CHANGE-ME: the folder with start.sh/stop.sh/status.sh"
+engine_src = "CHANGE-ME: the TensorFold checkout the served binary was built from"
+model_dir = "CHANGE-ME: the converted 8-bit checkpoint"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+port = "30001"
+
+[commands]
+up = "$work_dir/start.sh"
+down = "$work_dir/stop.sh"
+status = "$work_dir/status.sh"
+diagnose = "tail -5 $work_dir/serve.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 600
+health_wait = 300
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_src rev-parse --short HEAD"
+
+[[identity]]
+name = "model"
+cmd = "sha256sum $model_dir/config.json | cut -c1-16"
+
+[features]
+drafts = false
+structured = false
+vision_urls = false
+capacity = false
+max_concurrency = 4

@@ -1,0 +1,354 @@
+{
+ "target": "spark-x26-4b-5090",
+ "runs": [
+  {
+   "run": "20261026-044251-speed",
+   "target": "spark-x26-4b-5090",
+   "model": "spark",
+   "plan": "speed",
+   "started": "20261026-044251",
+   "finished": "20261026-044554",
+   "status": "done",
+   "identity": {
+    "engine_commit": "31a864f13",
+    "model": "ca74508b40984452",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 199.3,
+      "per_stream": 199.3,
+      "ttft": 0.025
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 191.2,
+      "per_stream": 191.2,
+      "ttft": 0.027
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 206.7,
+      "per_stream": 206.7,
+      "ttft": 0.025
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 204.1,
+      "per_stream": 204.1,
+      "ttft": 0.025
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 383.4,
+      "per_stream": 191.7,
+      "ttft": 0.037
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 384.2,
+      "per_stream": 192.1,
+      "ttft": 0.038
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 387.2,
+      "per_stream": 193.6,
+      "ttft": 0.038
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 390.0,
+      "per_stream": 195.0,
+      "ttft": 0.037
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 199.3,
+      "per_stream": 199.3,
+      "ttft": 0.025
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 197.8,
+      "per_stream": 197.8,
+      "ttft": 0.025
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 197.2,
+      "per_stream": 197.2,
+      "ttft": 0.03
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 200.3,
+      "per_stream": 200.3,
+      "ttft": 0.028
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 199.3/191.2/206.7/204.1 ttft 0.03-0.03s; c=2 383.4/384.2/387.2/390.0 ttft 0.04-0.04s"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5568 of 5630; ttft resumed 0.063s, cold 0.533s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 199.3/197.8/197.2/200.3 ttft 0.03-0.03s"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA (main)",
+   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native CUDA (main), one RTX 5090, 32k window, 4 streams, no drafter"
+  },
+  {
+   "run": "20261026-044554-exact",
+   "target": "spark-x26-4b-5090",
+   "model": "spark",
+   "plan": "exact",
+   "started": "20261026-044554",
+   "finished": "20261026-044613",
+   "status": "done",
+   "identity": {
+    "engine_commit": "31a864f13",
+    "model": "ca74508b40984452",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-exact": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-exact": {
+     "ok": null,
+     "summary": "concurrent 12/12"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA (main)",
+   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native CUDA (main), one RTX 5090, 32k window, 4 streams, no drafter"
+  },
+  {
+   "run": "20261026-044613-prefill-32k",
+   "target": "spark-x26-4b-5090",
+   "model": "spark",
+   "plan": "prefill-32k",
+   "started": "20261026-044613",
+   "finished": "20261026-044628",
+   "status": "done",
+   "identity": {
+    "engine_commit": "31a864f13",
+    "model": "ca74508b40984452",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "prefill-off": {
+     "ok": null,
+     "summary": "2369 tokens 10211.2 tok/s (0.232 s), 9301 tokens 11412.3 tok/s (0.815 s), 27832 tokens 10154.0 tok/s (2.741 s)"
+    },
+    "prefill-thinking": {
+     "ok": null,
+     "summary": "2433 tokens 9971.3 tok/s (0.244 s), 9348 tokens 11276.2 tok/s (0.829 s), 27906 tokens 10155.0 tok/s (2.748 s)"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA (main)",
+   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native CUDA (main), one RTX 5090, 32k window, 4 streams, no drafter"
+  },
+  {
+   "run": "20261026-044629-streams",
+   "target": "spark-x26-4b-5090",
+   "model": "spark",
+   "plan": "streams",
+   "started": "20261026-044629",
+   "finished": "20261026-044754",
+   "status": "done",
+   "identity": {
+    "engine_commit": "31a864f13",
+    "model": "ca74508b40984452",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 199.1,
+      "per_stream": 199.1,
+      "ttft": 0.025
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 190.9,
+      "per_stream": 190.9,
+      "ttft": 0.03
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 202.7,
+      "per_stream": 202.7,
+      "ttft": 0.026
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 203.7,
+      "per_stream": 203.7,
+      "ttft": 0.026
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 375.0,
+      "per_stream": 187.5,
+      "ttft": 0.039
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 376.5,
+      "per_stream": 188.2,
+      "ttft": 0.038
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 376.0,
+      "per_stream": 188.0,
+      "ttft": 0.039
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 389.1,
+      "per_stream": 194.5,
+      "ttft": 0.038
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 716.4,
+      "per_stream": 178.9,
+      "ttft": 0.064
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 708.9,
+      "per_stream": 178.9,
+      "ttft": 0.063
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 725.8,
+      "per_stream": 182.7,
+      "ttft": 0.063
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 728.9,
+      "per_stream": 182.2,
+      "ttft": 0.062
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 199.1/190.9/202.7/203.7 ttft 0.03-0.03s; c=2 375.0/376.5/376.0/389.1 ttft 0.04-0.04s; c=4 716.4/708.9/725.8/728.9 ttft 0.06-0.06s"
+    },
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA (main)",
+   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native CUDA (main), one RTX 5090, 32k window, 4 streams, no drafter"
+  },
+  {
+   "run": "20261026-045310-prefill-32k",
+   "target": "spark-x26-4b-5090",
+   "model": "spark",
+   "plan": "prefill-32k",
+   "started": "20261026-045310",
+   "finished": "20261026-045527",
+   "status": "done",
+   "identity": {
+    "engine_commit": "31a864f13",
+    "model": "ca74508b40984452",
+    "suite_commit": "49a346d8899c"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "prefill-off": {
+     "ok": false,
+     "summary": "2381 tokens 10218.9 tok/s (0.233 s), 9391 tokens 11480.4 tok/s (0.818 s), 18512 tokens 10863.8 tok/s (1.704 s); not cold or failed: ['30720']"
+    },
+    "prefill-thinking": {
+     "ok": false,
+     "summary": "2394 tokens 10230.8 tok/s (0.234 s), 9350 tokens 11486.5 tok/s (0.814 s), 18687 tokens 10953.7 tok/s (1.706 s); not cold or failed: ['30720']"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB)",
+   "engine": "TensorFold native, CUDA (main)",
+   "description": "Spark-X2.6-4B MLX 8-bit, TensorFold native CUDA (main), one RTX 5090, 32k window, 4 streams, no drafter"
+  }
+ ]
+}
