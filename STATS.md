@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-26 18:14 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-26 18:20 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -37,7 +37,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Nanbeige4.3-33B, affine 8bit | 1x Apple M5 Ultra (256 GB unified), macOS | 29/28/29/29 | 2: 54/52/53/54 | 0.13 / 0.19-0.23 |  | 2026-10-26 |
 | Nanbeige4.3-33B, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 16/16/16/16 |  | 0.23 |  | 2026-10-26 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
-| Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 94/158/133/150 | 4: 234/318/286/370 | 0.05 / 0.13-0.17 | gsm8k 244/250 | 2026-10-26 |
+| Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 94/158/133/150 | 4: 234/318/286/370 | 0.05 / 0.13-0.17 |  | 2026-10-26 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64), YaRN x4 to 1M context | 1x Apple M5 Ultra (256 GB unified), macOS | 78/161/106/111 | 4: 447/774/555/871 | 0.06 / 1.58-3.32 | gsm8k 247/250 | 2026-10-26 |
 | Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 279/539/353/338 |  | 0.06 | humaneval 154/164 | 2026-10-26 |
 | Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
@@ -1308,26 +1308,22 @@ Serving: stack `vllm-mlx 0.6.0, mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4`; serve
 
 ## Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Ornith-1.5-122B`. Latest: run `20261026-130938-thinking` (2026-10-26 13:09, plan thinking, done).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Ornith-1.5-122B`. Latest: run `20261026-131919-glm-vision` (2026-10-26 13:19, plan glm-vision, done).
 
-Serving: engine_commit `6e841053`; binary_sha256 `fce62b559adc7b4d1edf158767240f3e6f76fcf2681d5c308aa9f6ce8d659d3f`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179303`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481-dirty`
+Serving: engine_commit `6e841053`; binary_sha256 `fce62b559adc7b4d1edf158767240f3e6f76fcf2681d5c308aa9f6ce8d659d3f`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179303`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
 
-### suite-thinking
+### suite-vision
 
 | check | passed |
 |---|---:|
-| gsm8k | 244/250 |
-
-### checks
-
-| check | result |
-|---|---|
-| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors, 0 cut at 50176 tokens |
+| vision | 4/4 |
+| vision-concurrent | 16/16 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-26 13:19 | glm-vision | done |  |  |  | 20/20 |
 | 2026-10-26 13:09 | thinking | done |  |  |  | 244/250 |
 | 2026-10-26 12:53 | mlx-speed | done | 157.5 |  |  |  |
 | 2026-10-26 12:48 | quick | done | 157.4 |  |  | 114/114 |
