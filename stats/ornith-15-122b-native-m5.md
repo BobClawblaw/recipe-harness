@@ -1,6 +1,197 @@
 # Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (24 runs); aggregate tok/s, total (a stream).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (32 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-25 22:37: run `20261025-223735-mlx-speed`
+
+Plan mlx-speed, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `1429b56b`; binary_sha256 `64f5d54183672d8cc018bfb29f8be83b0da65c0e7b9293d9e6dd70203ff87cd5`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179298`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.2 (93.2) | 172.1 (172.1) | 122.8 (122.8) | 155.2 (155.2) | 0.05-0.06 s |
+| 2 | 184.3 (92.1) | 289.8 (144.9) | 226.1 (113.1) | 311.2 (155.6) | 0.08-0.10 s |
+| 4 | 347.7 (86.0) | 605.6 (159.9) | 451.6 (109.6) | 652.1 (173.4) | 0.73-1.48 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 43%; total = 3072.00M  us |
+
+## 2026-10-25 22:32: run `20261025-223222-quick`
+
+Plan quick, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `1429b56b`; binary_sha256 `64f5d54183672d8cc018bfb29f8be83b0da65c0e7b9293d9e6dd70203ff87cd5`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179298`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.1 (93.1) | 171.6 (171.6) | 122.5 (122.5) | 155.2 (155.2) | 0.05-0.06 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.1 (93.1) | 171.7 (171.7) | 122.5 (122.5) | 155.2 (155.2) | 0.05-0.06 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 58%; total = 3072.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | FAIL: 4/5 tool cases right; failed named/thinking (finish length) |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | FAIL: resumed == again: True; cold (after a restart): False; cached 5624 of 5643; ttft resumed 0.065s, cold 2.126s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
+
+## 2026-10-25 22:28: run `20261025-222829-prefill`
+
+Plan prefill, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `1429b56b`; binary_sha256 `64f5d54183672d8cc018bfb29f8be83b0da65c0e7b9293d9e6dd70203ff87cd5`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179298`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 58%; total = 3072.00M  us |
+| prefill-off | measured: 2199 tokens 3210.2 tok/s (0.685 s), 8766 tokens 3188.8 tok/s (2.749 s), 34975 tokens 2676.2 tok/s (13.069 s), 139884 tokens 1508.4 tok/s (92.734 s) |
+| prefill-thinking | measured: 2214 tokens 2753.7 tok/s (0.804 s), 8757 tokens 3132.0 tok/s (2.796 s), 34975 tokens 2662.3 tok/s (13.137 s), 139952 tokens 1501.5 tok/s (93.211 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 47%; total = 3072.00M  us |
+
+## 2026-10-25 21:46: run `20261025-214639-prefill`
+
+Plan prefill, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `f1097d68`; binary_sha256 `5756373d85256437f8c78b0043648b6b801baf4ea208e4c20b63e525ae8cf511`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179298`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 51%; total = 3072.00M  us |
+| prefill-off | measured: 2241 tokens 2441.2 tok/s (0.918 s), 8794 tokens 2504.7 tok/s (3.511 s), 35003 tokens 2170.6 tok/s (16.126 s), 139802 tokens 1340.8 tok/s (104.267 s) |
+| prefill-thinking | measured: 2247 tokens 2213.8 tok/s (1.015 s), 8791 tokens 2479.8 tok/s (3.545 s), 35020 tokens 2163.7 tok/s (16.185 s), 139764 tokens 1340.3 tok/s (104.281 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 49%; total = 3072.00M  us |
+
+## 2026-10-25 21:43: run `20261025-214343-mlx-speed`
+
+Plan mlx-speed, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `b2bdb481`; binary_sha256 `77d056a5892a8f6648953256cb2b81eccdd3f2eac93f3d352d382b114776174f`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179298`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.2 (93.2) | 171.9 (171.9) | 122.6 (122.6) | 155.4 (155.4) | 0.05-0.07 s |
+| 2 | 184.9 (92.5) | 287.6 (143.8) | 228.3 (114.2) | 311.6 (155.8) | 0.08-0.10 s |
+| 4 | 344.4 (86.2) | 586.4 (147.1) | 453.7 (111.8) | 642.4 (160.3) | 0.74-1.48 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 31%; total = 3072.00M  us |
+
+## 2026-10-25 21:38: run `20261025-213830-quick`
+
+Plan quick, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `b2bdb481`; binary_sha256 `77d056a5892a8f6648953256cb2b81eccdd3f2eac93f3d352d382b114776174f`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179298`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.0 (93.0) | 171.4 (171.4) | 122.3 (122.3) | 154.9 (154.9) | 0.05-0.07 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.2 (93.2) | 171.8 (171.8) | 122.7 (122.7) | 155.3 (155.3) | 0.05-0.07 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 48%; total = 3072.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | FAIL: 4/5 tool cases right; failed named/thinking (finish length) |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | FAIL: resumed == again: True; cold (after a restart): False; cached 5624 of 5643; ttft resumed 0.069s, cold 2.118s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
+
+## 2026-10-25 21:34: run `20261025-213438-prefill`
+
+Plan prefill, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `b2bdb481`; binary_sha256 `77d056a5892a8f6648953256cb2b81eccdd3f2eac93f3d352d382b114776174f`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179298`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 48%; total = 3072.00M  us |
+| prefill-off | measured: 2224 tokens 3150.1 tok/s (0.706 s), 8779 tokens 3191.2 tok/s (2.751 s), 35078 tokens 2692.3 tok/s (13.029 s), 139782 tokens 1515.4 tok/s (92.24 s) |
+| prefill-thinking | measured: 2212 tokens 2466.0 tok/s (0.897 s), 8771 tokens 3133.6 tok/s (2.799 s), 34926 tokens 2678.6 tok/s (13.039 s), 139852 tokens 1506.1 tok/s (92.855 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 45%; total = 3072.00M  us |
+
+## 2026-10-25 18:54: run `20261025-185408-mlx-speed`
+
+Plan mlx-speed, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `f1097d68`; binary_sha256 `5756373d85256437f8c78b0043648b6b801baf4ea208e4c20b63e525ae8cf511`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179297`; chip `Apple M5 Ultra; 274877906944`; suite_commit `277c842a1481`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.2 (93.2) | 171.8 (171.8) | 122.7 (122.7) | 155.3 (155.3) | 0.05-0.07 s |
+| 2 | 178.3 (89.2) | 301.1 (150.5) | 223.5 (111.7) | 318.9 (159.4) | 0.08-0.10 s |
+| 4 | 343.0 (85.5) | 658.0 (172.9) | 454.9 (110.6) | 649.0 (163.1) | 0.70-1.53 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 51%; total = 3072.00M  us |
 
 ## 2026-10-25 18:46: run `20261025-184622-ab-tools-turns`
 
