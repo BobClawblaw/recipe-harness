@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-26 18:20 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-26 18:28 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -1308,7 +1308,7 @@ Serving: stack `vllm-mlx 0.6.0, mlx-vlm 0.7.9, mlx-lm 0.31.3, mlx 0.32.4`; serve
 
 ## Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Ornith-1.5-122B`. Latest: run `20261026-131919-glm-vision` (2026-10-26 13:19, plan glm-vision, done).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `Ornith-1.5-122B`. Latest: run `20261026-132723-glm-vision` (2026-10-26 13:27, plan glm-vision, done).
 
 Serving: engine_commit `6e841053`; binary_sha256 `fce62b559adc7b4d1edf158767240f3e6f76fcf2681d5c308aa9f6ce8d659d3f`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179303`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
 
@@ -1316,13 +1316,14 @@ Serving: engine_commit `6e841053`; binary_sha256 `fce62b559adc7b4d1edf158767240f
 
 | check | passed |
 |---|---:|
-| vision | 4/4 |
-| vision-concurrent | 16/16 |
+| vision | 4/6 |
+| vision-concurrent | 0/0 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-26 13:27 | glm-vision | done |  |  |  | 4/6 |
 | 2026-10-26 13:19 | glm-vision | done |  |  |  | 20/20 |
 | 2026-10-26 13:09 | thinking | done |  |  |  | 244/250 |
 | 2026-10-26 12:53 | mlx-speed | done | 157.5 |  |  |  |

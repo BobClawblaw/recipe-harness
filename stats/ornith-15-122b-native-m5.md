@@ -1,6 +1,19 @@
 # Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (56 runs); aggregate tok/s, total (a stream).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (57 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-26 13:27: run `20261026-132723-glm-vision`
+
+Plan glm-vision, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `6e841053`; binary_sha256 `fce62b559adc7b4d1edf158767240f3e6f76fcf2681d5c308aa9f6ce8d659d3f`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179303`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 4/6 |
+| vision-concurrent | 0/0 |
 
 ## 2026-10-26 13:19: run `20261026-131919-glm-vision`
 
