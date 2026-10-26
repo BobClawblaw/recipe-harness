@@ -58,7 +58,7 @@ cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
 # python3 -m harness leaderboard ornith-15-122b-native-m5: the board's suite on the public 4-bit checkpoint with the
 # DFlash2 drafter, the receipt published with the stored login; the recipe's server is brought down first.
 [leaderboard]
-model = "BobClawblaw/Ornith-1.5-122B-MLX-4bit"   # cached as a Hugging Face snapshot
+model = "ornith-ai/Ornith-1.5-122B-MLX-4bit"   # the publisher's own 4-bit checkpoint, cached as a Hugging Face snapshot (revision 06a57aba)
 binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"   # the engine plus the board's community-v1 suite
 free = "! pgrep -f 'tensorfold-native [s]erve'"
 args = "--drafter $drafter_dir"
