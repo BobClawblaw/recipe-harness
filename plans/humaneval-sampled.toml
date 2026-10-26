@@ -1,0 +1,7 @@
+description = "HumanEval alone (about 5 minutes) sampled, after a restart; the sandbox is python:3.12-slim through docker on PATH"
+restart = true
+
+[[checks]]
+type = "suite"
+name = "suite-humaneval"
+args = "--only humaneval --sandbox-image python:3.12-slim --extra-body '{\"temperature\": 0.7, \"top_p\": 0.8, \"top_k\": 20, \"seed\": 42}'"

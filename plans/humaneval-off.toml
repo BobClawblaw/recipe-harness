@@ -1,0 +1,7 @@
+description = "HumanEval alone (about 5 minutes) off, after a restart; the sandbox is python:3.12-slim through docker on PATH"
+restart = true
+
+[[checks]]
+type = "suite"
+name = "suite-humaneval"
+args = "--only humaneval --sandbox-image python:3.12-slim "
