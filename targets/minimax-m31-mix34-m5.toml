@@ -68,3 +68,4 @@ model = "BobClawblaw/MiniMax-M3.1-Flash-MLX-mix34"   # cached as a Hugging Face 
 binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"   # this engine plus the board's community-v1 suite
 free = "! pgrep -f 'tensorfold-native [s]erve'"
 env = { MINIMAX_LOAD_LIMIT_GB = "$load_limit_gb" }
+args = "--context $context"   # the board at the served 32k window
