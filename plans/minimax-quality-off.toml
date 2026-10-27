@@ -1,0 +1,11 @@
+description = "Quality with thinking off on the server as it is (start it first): drafts, behaviour, tools, json, ifeval, gsm8k, mgsm, mmlu (about 2.5 hours on MiniMax-M3.1-Flash at two streams, less at three); MATH-500 alone is plans/minimax-math500"
+restart = false
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "suite"
+args = "--only drafts behaviour tools json ifeval gsm8k mgsm mmlu"
+timeout = 21600

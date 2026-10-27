@@ -21,7 +21,7 @@ run_dir = "CHANGE-ME: the recipe's run folder (build_dir/run)"
 port = "8897"
 
 [commands]
-up = "python3 -m spark up"
+up = "DENSE_FP4=0 python3 -m spark up"   # the projections and head as released (local.toml's model_dir)
 down = "python3 -m spark down"
 status = "python3 -m spark status"
 diagnose = "grep -E 'error' $run_dir/rank0.log | tail -3; ssh $worker grep -E 'error' $run_dir/rank1.log | tail -3"

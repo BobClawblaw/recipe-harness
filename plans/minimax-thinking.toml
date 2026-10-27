@@ -1,0 +1,11 @@
+description = "Thinking on within a 32k window, a 28k reasoning budget (28,672 tokens, then 1,024 for the answer): the harness's word problems and the suite's gsm8k, three requests at a time; the server needs --thinking-budget 28672 and --max-tokens 29696 or more (MiniMax-M3.1-Flash on two Sparks: THINKING_BUDGET=28672)"
+restart = false
+
+[[checks]]
+type = "thinking"
+max_tokens = 29696  # 28,672 of reasoning, then the answer
+
+[[checks]]
+type = "suite"
+name = "suite-thinking"
+args = "--only gsm8k --thinking --reasoning-budget 28672 --workers 3"  # the server holds the same budget (--thinking-budget 28672)

@@ -932,6 +932,568 @@
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
    "engine": "TensorFold native, CUDA",
    "description": "MiniMax-M3.1-Flash, NVFP4 x 15 layers + 3-bit, DSpark drafts, 32k x 2 streams, TensorFold native CUDA, TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261026-132213-quick",
+   "target": "minimax-m31-nvfp4mix-gb10x2",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "quick",
+   "started": "20261026-132213",
+   "finished": "20261026-141633",
+   "status": "done",
+   "identity": {
+    "engine_commit": "1d559dd44\n5",
+    "binary_sha256": "bafbdcc852a5a0c5d6eeed3a73da0762941e9eab95202b840acdb2dbf82451df",
+    "checkpoint_mix": "[20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 49, 52, 57, 59]",
+    "server_args": "TF_MINIMAX_RANK=0 TF_MINIMAX_WORLD=2 NCCL_SOCKET_IFNAME=enp1s0f1np1 NCCL_IB_HCA=rocep1s0f1,roceP2p1s0f1 NCCL_MAX_NCHANNELS=16 NCCL_DEBUG=WARN TENSORFOLD_MEMORY_RESERVE_GIB=3 --name MiniMax-M3.1-Flash --context 32768 --parallel 2 --max-tokens 32768 --prompt-cache-gib 3 --no-update-check --no-thinking --vision --vision-image-tokens 4096",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 22.8,
+      "per_stream": 22.8,
+      "ttft": 0.484
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 40.7,
+      "per_stream": 40.7,
+      "ttft": 0.504
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 24.9,
+      "per_stream": 24.9,
+      "ttft": 0.505
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 32.4,
+      "per_stream": 32.4,
+      "ttft": 0.474
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 23.2,
+      "per_stream": 23.2,
+      "ttft": 0.475
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 40.2,
+      "per_stream": 40.2,
+      "ttft": 0.5
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 24.3,
+      "per_stream": 24.3,
+      "ttft": 0.506
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 32.2,
+      "per_stream": 32.2,
+      "ttft": 0.475
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 2598,
+      "cached": 0,
+      "tokens": 2814,
+      "rounds": 1039,
+      "accepted": 1766,
+      "proposed": 3637,
+      "tokens_a_round": 2.708,
+      "drafts_a_round": 3.5,
+      "accept_rate": 0.486,
+      "ms_a_round": 89.72
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 7424,
+      "cached": 0,
+      "tokens": 2862,
+      "rounds": 1052,
+      "accepted": 1800,
+      "proposed": 3800,
+      "tokens_a_round": 2.721,
+      "drafts_a_round": 3.612,
+      "accept_rate": 0.474,
+      "ms_a_round": 90.79
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 8.5 GiB available; worker 8.3 GiB available"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 22.8/40.7/24.9/32.4 ttft 0.47-0.50s; engine: c=1 2.71 tokens a round 49% accepted, 89.7 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4096 of 4826; ttft resumed 0.994s, cold 5.223s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 23.2/40.2/24.3/32.2 ttft 0.47-0.51s; engine: c=1 2.72 tokens a round 47% accepted, 90.8 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, NVFP4 (15 MoE layers) + 3-bit refit, 32k context",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA",
+   "description": "MiniMax-M3.1-Flash, NVFP4 x 15 layers + 3-bit, DSpark drafts, 32k x 2 streams, TensorFold native CUDA, TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261026-221139-speed",
+   "target": "minimax-m31-nvfp4mix-gb10x2",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "speed",
+   "started": "20261026-221139",
+   "finished": "20261026-222738",
+   "status": "done",
+   "identity": {
+    "engine_commit": "1d559dd44\n13",
+    "binary_sha256": "67ab85c6e9ba163e87cbdb0dabdcd7e7eda1213453b2536165eab57525306a24",
+    "checkpoint_mix": "[20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 49, 52, 57, 59]",
+    "server_args": "TF_MINIMAX_RANK=0 TF_MINIMAX_WORLD=2 NCCL_SOCKET_IFNAME=enp1s0f1np1 NCCL_IB_HCA=rocep1s0f1,roceP2p1s0f1 NCCL_MAX_NCHANNELS=16 NCCL_DEBUG=WARN TENSORFOLD_MEMORY_RESERVE_GIB=3 --name MiniMax-M3.1-Flash --context 32768 --parallel 2 --max-tokens 32768 --prompt-cache-gib 3 --no-update-check --no-thinking --vision --vision-image-tokens 4096",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 23.5,
+      "per_stream": 23.5,
+      "ttft": 0.482
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 40.9,
+      "per_stream": 40.9,
+      "ttft": 0.506
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 24.8,
+      "per_stream": 24.8,
+      "ttft": 0.502
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 32.4,
+      "per_stream": 32.4,
+      "ttft": 0.472
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 33.1,
+      "per_stream": 16.5,
+      "ttft": 0.888
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 50.5,
+      "per_stream": 25.2,
+      "ttft": 0.864
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 34.8,
+      "per_stream": 17.4,
+      "ttft": 0.878
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 56.1,
+      "per_stream": 28.1,
+      "ttft": 0.83
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 23.4,
+      "per_stream": 23.4,
+      "ttft": 0.485
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 41.0,
+      "per_stream": 41.0,
+      "ttft": 0.501
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 24.7,
+      "per_stream": 24.7,
+      "ttft": 0.502
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 32.2,
+      "per_stream": 32.2,
+      "ttft": 0.475
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 2598,
+      "cached": 0,
+      "tokens": 2814,
+      "rounds": 1037,
+      "accepted": 1768,
+      "proposed": 3640,
+      "tokens_a_round": 2.714,
+      "drafts_a_round": 3.51,
+      "accept_rate": 0.486,
+      "ms_a_round": 89.22
+     },
+     "2": {
+      "requests": 25,
+      "prompt": 5387,
+      "cached": 0,
+      "tokens": 5588,
+      "rounds": 2304,
+      "accepted": 3262,
+      "proposed": 5360,
+      "tokens_a_round": 2.425,
+      "drafts_a_round": 2.326,
+      "accept_rate": 0.609,
+      "ms_a_round": 111.17
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 7424,
+      "cached": 0,
+      "tokens": 2862,
+      "rounds": 1037,
+      "accepted": 1815,
+      "proposed": 3862,
+      "tokens_a_round": 2.76,
+      "drafts_a_round": 3.724,
+      "accept_rate": 0.47,
+      "ms_a_round": 91.06
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 8.5 GiB available; worker 7.7 GiB available"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 23.5/40.9/24.8/32.4 ttft 0.47-0.51s; c=2 33.1/50.5/34.8/56.1 ttft 0.83-0.89s; engine: c=1 2.71 tokens a round 49% accepted, 89.2 ms a round; c=2 2.42 tokens a round 61% accepted, 111.2 ms a round"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4096 of 4826; ttft resumed 0.986s, cold 5.106s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 23.4/41.0/24.7/32.2 ttft 0.47-0.50s; engine: c=1 2.76 tokens a round 47% accepted, 91.1 ms a round"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "head 7.7 GiB available; worker 7.8 GiB available"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, NVFP4 (15 MoE layers) + 3-bit refit, 32k context",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA",
+   "description": "MiniMax-M3.1-Flash, NVFP4 x 15 layers + 3-bit, DSpark drafts, 32k x 2 streams, TensorFold native CUDA, TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "20261026-222738-quick",
+   "target": "minimax-m31-nvfp4mix-gb10x2",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "quick",
+   "started": "20261026-222738",
+   "finished": "20261026-230522",
+   "status": "done",
+   "identity": {
+    "engine_commit": "1d559dd44\n13",
+    "binary_sha256": "67ab85c6e9ba163e87cbdb0dabdcd7e7eda1213453b2536165eab57525306a24",
+    "checkpoint_mix": "[20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 49, 52, 57, 59]",
+    "server_args": "TF_MINIMAX_RANK=0 TF_MINIMAX_WORLD=2 NCCL_SOCKET_IFNAME=enp1s0f1np1 NCCL_IB_HCA=rocep1s0f1,roceP2p1s0f1 NCCL_MAX_NCHANNELS=16 NCCL_DEBUG=WARN TENSORFOLD_MEMORY_RESERVE_GIB=3 --name MiniMax-M3.1-Flash --context 32768 --parallel 2 --max-tokens 32768 --prompt-cache-gib 3 --no-update-check --no-thinking --vision --vision-image-tokens 4096",
+    "suite_commit": "277c842a1481"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 23.0,
+      "per_stream": 23.0,
+      "ttft": 0.482
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 40.6,
+      "per_stream": 40.6,
+      "ttft": 0.497
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 24.7,
+      "per_stream": 24.7,
+      "ttft": 0.507
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 32.2,
+      "per_stream": 32.2,
+      "ttft": 0.472
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 22.1,
+      "per_stream": 22.1,
+      "ttft": 0.476
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 39.5,
+      "per_stream": 39.5,
+      "ttft": 0.509
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 24.7,
+      "per_stream": 24.7,
+      "ttft": 0.513
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 31.5,
+      "per_stream": 31.5,
+      "ttft": 0.473
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 2598,
+      "cached": 0,
+      "tokens": 2814,
+      "rounds": 1043,
+      "accepted": 1762,
+      "proposed": 3678,
+      "tokens_a_round": 2.698,
+      "drafts_a_round": 3.526,
+      "accept_rate": 0.479,
+      "ms_a_round": 89.45
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 7424,
+      "cached": 0,
+      "tokens": 2862,
+      "rounds": 1055,
+      "accepted": 1797,
+      "proposed": 3978,
+      "tokens_a_round": 2.713,
+      "drafts_a_round": 3.771,
+      "accept_rate": 0.452,
+      "ms_a_round": 92.14
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "head 8.2 GiB available; worker 7.9 GiB available"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 23.0/40.6/24.7/32.2 ttft 0.47-0.51s; engine: c=1 2.70 tokens a round 48% accepted, 89.5 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4096 of 4826; ttft resumed 0.993s, cold 5.132s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 22.1/39.5/24.7/31.5 ttft 0.47-0.51s; engine: c=1 2.71 tokens a round 45% accepted, 92.1 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, NVFP4 (15 MoE layers) + 3-bit refit, 32k context",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA",
+   "description": "MiniMax-M3.1-Flash, NVFP4 x 15 layers + 3-bit, DSpark drafts, 32k x 2 streams, TensorFold native CUDA, TP=2 on two DGX Sparks"
   }
  ]
 }
