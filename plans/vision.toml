@@ -1,0 +1,7 @@
+description = "Images only (a few minutes): the suite's vision check, for suites without vision-concurrent"
+restart = true
+
+[[checks]]
+type = "suite"
+name = "suite-vision"
+args = "--only vision"
