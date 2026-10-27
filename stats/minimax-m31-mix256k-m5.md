@@ -1,6 +1,244 @@
 # MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `minimax-m31-mix256k-m5`: MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-mix256k-m5.json` (21 runs); aggregate tok/s, total (a stream).
+Target `minimax-m31-mix256k-m5`: MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-mix256k-m5.json` (31 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-27 06:07: run `20261027-060717-prefill-32k`
+
+Plan prefill-32k, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `cb35b7c28`; binary_sha256 `1cd3d3c900e7441653b99c2a764fa6c6f66de3a710c08d4ceeefa41ce948026a`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 22%; total = 6144.00M  us |
+| prefill-off | measured: 2261 tokens 1345.0 tok/s (1.681 s), 8403 tokens 1478.1 tok/s (5.685 s), 16598 tokens 1485.8 tok/s (11.171 s), 30929 tokens 1483.8 tok/s (20.844 s) |
+| prefill-thinking | measured: 2256 tokens 1321.6 tok/s (1.707 s), 8405 tokens 1464.0 tok/s (5.741 s), 16595 tokens 1477.2 tok/s (11.234 s), 30934 tokens 1478.8 tok/s (20.918 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 18%; total = 6144.00M  us |
+
+## 2026-10-27 06:06: run `20261027-060618-glm-vision`
+
+Plan glm-vision, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `cb35b7c28`; binary_sha256 `1cd3d3c900e7441653b99c2a764fa6c6f66de3a710c08d4ceeefa41ce948026a`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 0/0 |
+
+## 2026-10-27 05:40: run `20261027-054004-quick`
+
+Plan quick, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `cb35b7c28`; binary_sha256 `1cd3d3c900e7441653b99c2a764fa6c6f66de3a710c08d4ceeefa41ce948026a`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 44.0 (44.0) | 55.8 (55.8) | 47.8 (47.8) | 50.9 (50.9) | 0.31-0.95 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.3 | 2.004 | 65% | 46.34 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 42.4 (42.4) | 52.5 (52.5) | 47.5 (47.5) | 51.2 (51.2) | 0.32-0.34 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.358 | 2.096 | 65% | 48.72 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 95%; total = 5120.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4685 of 4793; ttft resumed 0.271s, cold 3.599s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
+
+## 2026-10-26 23:32: run `20261026-233227-dsv41-quality-off`
+
+Plan dsv41-quality-off, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `95c1c7f54`; binary_sha256 `06824c640e1e8d3daa86270737eefb192275f55b89f0d5db11357db7611af45d`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+| tools | 55/60 |
+| json | 30/30 |
+| ifeval | 88/150 |
+| gsm8k | 246/250 |
+| mgsm | 202/240 |
+| mmlu | 280/342 |
+| math500 | 459/500 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 22%; total = 5120.00M  us |
+
+## 2026-10-26 23:31: run `20261026-233118-glm-vision`
+
+Plan glm-vision, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `95c1c7f54`; binary_sha256 `06824c640e1e8d3daa86270737eefb192275f55b89f0d5db11357db7611af45d`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 0/0 |
+
+## 2026-10-26 23:29: run `20261026-232946-glm-vision`
+
+Plan glm-vision, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `c1ace3229`; binary_sha256 `58f6249fbda9b31d997d680b1905f3daa0a71c0493b0cfa8556ca9e3f265c017`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 0/0 |
+
+## 2026-10-26 23:25: run `20261026-232548-prefill-32k`
+
+Plan prefill-32k, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `ff32c95bc`; binary_sha256 `98816afa0edb751af330c1e4afdfb18141a59dd5a02645b9f24f79bd9d8d480b`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 22%; total = 5120.00M  us |
+| prefill-off | measured: 2259 tokens 1351.1 tok/s (1.672 s), 8403 tokens 1469.3 tok/s (5.719 s), 16598 tokens 1463.7 tok/s (11.34 s), 30931 tokens 1465.1 tok/s (21.112 s) |
+| prefill-thinking | measured: 2257 tokens 1300.1 tok/s (1.736 s), 8402 tokens 1446.6 tok/s (5.808 s), 16596 tokens 1458.0 tok/s (11.383 s), 30930 tokens 1466.4 tok/s (21.092 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 18%; total = 4096.00M  us |
+
+## 2026-10-26 23:21: run `20261026-232108-prefill-32k`
+
+Plan prefill-32k, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `95c1c7f54`; binary_sha256 `06824c640e1e8d3daa86270737eefb192275f55b89f0d5db11357db7611af45d`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 95%; total = 4096.00M  us |
+| prefill-off | measured: 2261 tokens 546.1 tok/s (4.14 s), 8403 tokens 1440.8 tok/s (5.832 s), 16594 tokens 1462.9 tok/s (11.343 s), 30932 tokens 1463.8 tok/s (21.132 s) |
+| prefill-thinking | measured: 2260 tokens 1303.3 tok/s (1.734 s), 8401 tokens 1453.5 tok/s (5.78 s), 16593 tokens 1469.1 tok/s (11.295 s), 30933 tokens 1453.6 tok/s (21.281 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 18%; total = 4096.00M  us |
+
+## 2026-10-26 23:19: run `20261026-231949-glm-vision`
+
+Plan glm-vision, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `95c1c7f54`; binary_sha256 `06824c640e1e8d3daa86270737eefb192275f55b89f0d5db11357db7611af45d`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 0/0 |
+
+## 2026-10-26 23:03: run `20261026-230337-quick`
+
+Plan quick, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `1eea6d112`; binary_sha256 `957da70acaa233148b386077e1b57ad700cbc66f9f96e1b44fe4dab3f08bd5b3`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 44.1 (44.1) | 58.5 (58.5) | 48.1 (48.1) | 52.2 (52.2) | 0.31-0.33 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.325 | 2.01 | 66% | 45.86 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 43.9 (43.9) | 58.1 (58.1) | 49.8 (49.8) | 52.3 (52.3) | 0.31-0.33 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.352 | 2.069 | 65% | 46.1 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 95%; total = 4096.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4685 of 4793; ttft resumed 0.272s, cold 5.68s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
 
 ## 2026-10-25 08:05: run `20261025-080537-quick`
 
