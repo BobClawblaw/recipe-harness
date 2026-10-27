@@ -3756,6 +3756,193 @@
    "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
    "engine": "TensorFold native, CUDA",
    "description": "Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks"
+  },
+  {
+   "run": "evidence/2026-10-27-native-v1.1.6",
+   "target": "qwen38-int4mixed",
+   "model": "Qwen3.8-Flash-Next-INT4-Mixed",
+   "plan": "published evidence",
+   "started": "20261027-0000",
+   "status": "published",
+   "source": "github.com/BobClawblaw/qwen38-flashnext-int4mixed-2x-dgx-sparks/evidence/2026-10-27-native-v1.1.6",
+   "identity": {},
+   "rulers": {
+    "ruler": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 78.2,
+      "per_stream": 78.2,
+      "ttft": 0.036
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 127.1,
+      "per_stream": 127.1,
+      "ttft": 0.037
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 102.5,
+      "per_stream": 102.5,
+      "ttft": 0.037
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 130.6,
+      "per_stream": 130.6,
+      "ttft": 0.039
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 161.1,
+      "per_stream": 40.4,
+      "ttft": 0.082
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 257.2,
+      "per_stream": 66.7,
+      "ttft": 0.091
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 205.2,
+      "per_stream": 50.9,
+      "ttft": 0.095
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 293.5,
+      "per_stream": 69.7,
+      "ttft": 0.096
+     },
+     {
+      "c": 16,
+      "phase": "prose",
+      "agg": 305.1,
+      "per_stream": 19.0,
+      "ttft": 0.464
+     },
+     {
+      "c": 16,
+      "phase": "code",
+      "agg": 516.3,
+      "per_stream": 31.0,
+      "ttft": 0.465
+     },
+     {
+      "c": 16,
+      "phase": "structured",
+      "agg": 393.1,
+      "per_stream": 23.9,
+      "ttft": 0.508
+     },
+     {
+      "c": 16,
+      "phase": "list",
+      "agg": 526.9,
+      "per_stream": 32.0,
+      "ttft": 0.508
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 60,
+      "cases": 60
+     },
+     "json": {
+      "passed": 30,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 130,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 241,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 219,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 283,
+      "cases": 342
+     },
+     "humaneval": {
+      "passed": 157,
+      "cases": 164
+     },
+     "repetition": {
+      "passed": 8,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 55,
+      "cases": 55
+     },
+     "vision": {
+      "passed": 12,
+      "cases": 12
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {},
+   "model_name": "Qwen3.8-Flash-Next INT4-Mixed (AutoRound)",
+   "hardware": "2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE",
+   "engine": "TensorFold native, CUDA"
   }
  ]
 }

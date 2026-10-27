@@ -1,6 +1,43 @@
 # Qwen3.8-Flash-Next INT4-Mixed (AutoRound) on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA. Rendered from `stats/qwen38-int4mixed.json` (20 runs); aggregate tok/s, total (a stream).
+Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA. Rendered from `stats/qwen38-int4mixed.json` (21 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-27 00:00: run `evidence/2026-10-27-native-v1.1.6`
+
+Plan published evidence, published; served as `Qwen3.8-Flash-Next-INT4-Mixed`.
+
+### ruler
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 78.2 (78.2) | 127.1 (127.1) | 102.5 (102.5) | 130.6 (130.6) | 0.04-0.04 s |
+| 4 | 161.1 (40.4) | 257.2 (66.7) | 205.2 (50.9) | 293.5 (69.7) | 0.08-0.10 s |
+| 16 | 305.1 (19.0) | 516.3 (31.0) | 393.1 (23.9) | 526.9 (32.0) | 0.46-0.51 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+| tools | 60/60 |
+| json | 30/30 |
+| ifeval | 130/150 |
+| gsm8k | 241/250 |
+| mgsm | 219/240 |
+| mmlu | 283/342 |
+| humaneval | 157/164 |
+| repetition | 8/8 |
+| long-context | 55/55 |
+| vision | 12/12 |
+| soak | 60/60 |
+| snapshot | 12/12 |
 
 ## 2026-10-17 07:25: run `20261017-072502-rebase`
 

@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-27 00:06 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-27 10:27 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -41,7 +41,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 94/158/133/150 | 4: 234/318/286/370 | 0.05 / 0.13-0.17 |  | 2026-10-26 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64), YaRN x4 to 1M context | 1x Apple M5 Ultra (256 GB unified), macOS | 78/161/106/111 | 4: 447/774/555/871 | 0.06 / 1.58-3.32 | gsm8k 247/250 | 2026-10-26 |
 | Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 279/539/353/338 |  | 0.06 | humaneval 154/164 | 2026-10-26 |
-| Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/130 | 16: 304/516/392/525 | 0.03 / 0.45-0.54 |  | 2026-10-17 |
+| Qwen3.8-Flash-Next INT4-Mixed (AutoRound) | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 78/127/102/131 | 16: 305/516/393/527 | 0.04 / 0.46-0.51 | tools 60/60, json 30/30, gsm8k 241/250, humaneval 157/164, ifeval 130/150 | 2026-10-27 |
 | Qwen3.8-Flash-Next, 6-bit with vision | 1x Apple M5 Ultra (256 GB unified), macOS | 142/210/173/206 | 2: 198/262/222/272 | 0.11 / 0.17-0.19 |  | 2026-10-17 |
 | Qwen3.8-Flash-Next, MLX 6-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 145/206/172/194 | 4: 566/816/673/854 | 0.09 / 1.63-3.07 | gsm8k 242/250, ifeval 134/150 | 2026-10-11 |
 | Recursive Flint 40B-A2.5B, MLX INT4 (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 184/178/194/205 |  | 0.03 |  | 2026-10-25 |
@@ -1730,29 +1730,20 @@ Serving: engine_commit `394d2e35`; binary_sha256 `43a9c01ac3eee31998def08595f5e4
 
 ## Qwen3.8-Flash-Next INT4-Mixed (AutoRound) on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
 
-Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as `Qwen3.8-Flash-Next-INT4-Mixed`. Latest: run `20261017-072502-rebase` (2026-10-17 07:25, plan rebase, done).
+Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as `Qwen3.8-Flash-Next-INT4-Mixed`. Latest: run `evidence/2026-10-27-native-v1.1.6` (2026-10-27 00:00, plan published evidence, published).
 
-Serving: patch_sha `47c78d3f99593702c9e8a0baa64ec32c937520930186c78549004f411cd5f731`; image `tf-qwen38-int4mixed:native-v1.0.12 sha256:276fe2ba4ed3e778ec6f55ffad1430897b9ff439aff8352b`; server_args `--context 1048576 --no-thinking --parallel 16 --vision-urls --vision`
-
-### ruler-fresh
+### ruler
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 78.0 (78.0) | 127.0 (127.0) | 102.1 (102.1) | 130.5 (130.5) | 0.03-0.04 s |
-| 16 | 304.2 (18.9) | 516.3 (31.0) | 391.6 (24.0) | 524.9 (31.7) | 0.45-0.54 s |
-
-Engine rounds (ruler-fresh):
-
-| streams | tokens a round | drafts a round | accepted | ms a round | requests |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 3.621 | 4.042 | 66% | 33.09 | 12 |
-| 16 | 3.212 | 2.921 | 76% | 121.71 | 193 |
+| 1 | 78.2 (78.2) | 127.1 (127.1) | 102.5 (102.5) | 130.6 (130.6) | 0.04-0.04 s |
+| 4 | 161.1 (40.4) | 257.2 (66.7) | 205.2 (50.9) | 293.5 (69.7) | 0.08-0.10 s |
+| 16 | 305.1 (19.0) | 516.3 (31.0) | 393.1 (23.9) | 526.9 (32.0) | 0.46-0.51 s |
 
 ### suite
 
 | check | passed |
 |---|---:|
-| soak | 60/60 |
 | drafts | 12/12 |
 | concurrent | 12/12 |
 | streaming | 4/4 |
@@ -1761,34 +1752,24 @@ Engine rounds (ruler-fresh):
 | thinking | 10/10 |
 | copy | 2/2 |
 | max-tokens | 3/3 |
-
-### suite-guided
-
-| check | passed |
-|---|---:|
-| json-guided | 30/30 |
 | tools | 60/60 |
-
-### suite-thinking
-
-| check | passed |
-|---|---:|
-| gsm8k | 234/250 |
-
-### checks
-
-| check | result |
-|---|---|
-| memory-idle | measured: head 22.6 GiB available; worker 25.3 GiB available |
-| structured | pass: 18/18 obey; a bad regex -> 400 |
-| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
-| turns | pass: resumed == again == cold: True; cached 5575 of 5642; ttft resumed 0.105s, cold 0.035s |
-| thinking | pass: thinking on: 10/10 right, 10/10 with reasoning_content, 0 leaks, 0 errors |
+| json | 30/30 |
+| ifeval | 130/150 |
+| gsm8k | 241/250 |
+| mgsm | 219/240 |
+| mmlu | 283/342 |
+| humaneval | 157/164 |
+| repetition | 8/8 |
+| long-context | 55/55 |
+| vision | 12/12 |
+| soak | 60/60 |
+| snapshot | 12/12 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-10-27 00:00 | published evidence | published | 127.1 | 516.3 | 0.46-0.51 s | 1321/1437 |
 | 2026-10-17 07:25 | rebase | done | 127.0 | 516.3 | 0.45-0.54 s | 114/114 |
 | 2026-10-15 17:13 | full | done | 127.0 | 509.8 | 0.44-0.55 s | 1321/1437 |
 | 2026-10-15 00:00 | published evidence | published | 123.4 | 472.9 | 0.52-0.74 s | 1321/1437 |
