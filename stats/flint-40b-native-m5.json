@@ -2851,8 +2851,8 @@
    "model": "flint",
    "plan": "quick",
    "started": "20261028-033917",
-   "finished": null,
-   "status": "running",
+   "finished": "20261028-034406",
+   "status": "done",
    "identity": {
     "engine_commit": "664b488f3",
     "binary_sha256": "28c72363d214426aca770700842704ab2c8072d5469adc13a2cbdd8e1688453e",
@@ -2890,6 +2890,36 @@
       "per_stream": 180.1,
       "ttft": 0.03
      }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 183.1,
+      "per_stream": 183.1,
+      "ttft": 0.034
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 178.0,
+      "per_stream": 178.0,
+      "ttft": 0.041
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 192.1,
+      "per_stream": 192.1,
+      "ttft": 0.045
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 179.3,
+      "per_stream": 179.3,
+      "ttft": 0.03
+     }
     ]
    },
    "rounds": {
@@ -2907,9 +2937,63 @@
       "accept_rate": 0.52,
       "ms_a_round": 5.67
      }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 4942,
+      "cached": 0,
+      "tokens": 3120,
+      "rounds": 2981,
+      "accepted": 126,
+      "proposed": 240,
+      "tokens_a_round": 1.047,
+      "drafts_a_round": 0.081,
+      "accept_rate": 0.525,
+      "ms_a_round": 5.72
+     }
     }
    },
-   "suite": {},
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 1,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
    "checks": {
     "memory-idle": {
      "ok": null,
@@ -2926,6 +3010,329 @@
     "tools": {
      "ok": true,
      "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.066s, cold 0.717s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 183.1/178.0/192.1/179.3 ttft 0.03-0.04s; engine: c=1 1.05 tokens a round 52% accepted, 5.7 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 1/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "Recursive Flint 40B-A2.5B, MLX INT4 (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261028-034412-together",
+   "target": "flint-40b-native-m5",
+   "model": "flint",
+   "plan": "together",
+   "started": "20261028-034412",
+   "finished": "20261028-034526",
+   "status": "done",
+   "identity": {
+    "engine_commit": "664b488f3",
+    "binary_sha256": "28c72363d214426aca770700842704ab2c8072d5469adc13a2cbdd8e1688453e",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"flint\", \"object\": \"model\", \"created\": 1793177060, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Recursive Flint 40B-A2.5B, MLX INT4 (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261028-034951-streams",
+   "target": "flint-40b-native-m5",
+   "model": "flint",
+   "plan": "streams",
+   "started": "20261028-034951",
+   "finished": "20261028-035340",
+   "status": "done",
+   "identity": {
+    "engine_commit": "664b488f3",
+    "binary_sha256": "28c72363d214426aca770700842704ab2c8072d5469adc13a2cbdd8e1688453e",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"flint\", \"object\": \"model\", \"created\": 1793177399, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 182.6,
+      "per_stream": 182.6,
+      "ttft": 0.035
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 177.8,
+      "per_stream": 177.8,
+      "ttft": 0.041
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 192.2,
+      "per_stream": 192.2,
+      "ttft": 0.045
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 179.3,
+      "per_stream": 179.3,
+      "ttft": 0.03
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 257.6,
+      "per_stream": 128.8,
+      "ttft": 0.051
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 254.7,
+      "per_stream": 127.4,
+      "ttft": 0.054
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 269.5,
+      "per_stream": 134.8,
+      "ttft": 0.065
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 251.1,
+      "per_stream": 125.6,
+      "ttft": 0.044
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 348.6,
+      "per_stream": 87.1,
+      "ttft": 0.085
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 342.2,
+      "per_stream": 86.1,
+      "ttft": 0.093
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 358.5,
+      "per_stream": 89.2,
+      "ttft": 0.11
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 339.2,
+      "per_stream": 85.0,
+      "ttft": 0.075
+     },
+     {
+      "c": 8,
+      "phase": "prose",
+      "agg": 684.9,
+      "per_stream": 86.3,
+      "ttft": 1.59
+     },
+     {
+      "c": 8,
+      "phase": "code",
+      "agg": 675.9,
+      "per_stream": 84.5,
+      "ttft": 1.609
+     },
+     {
+      "c": 8,
+      "phase": "structured",
+      "agg": 707.3,
+      "per_stream": 88.2,
+      "ttft": 1.545
+     },
+     {
+      "c": 8,
+      "phase": "list",
+      "agg": 671.6,
+      "per_stream": 84.0,
+      "ttft": 1.595
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-streams": {
+     "1": {
+      "requests": 12,
+      "prompt": 315,
+      "cached": 0,
+      "tokens": 3072,
+      "rounds": 2943,
+      "accepted": 117,
+      "proposed": 225,
+      "tokens_a_round": 1.044,
+      "drafts_a_round": 0.076,
+      "accept_rate": 0.52,
+      "ms_a_round": 5.7
+     },
+     "2": {
+      "requests": 25,
+      "prompt": 628,
+      "cached": 0,
+      "tokens": 6400,
+      "rounds": 6095,
+      "accepted": 280,
+      "proposed": 735,
+      "tokens_a_round": 1.05,
+      "drafts_a_round": 0.121,
+      "accept_rate": 0.381,
+      "ms_a_round": 8.13
+     },
+     "4": {
+      "requests": 50,
+      "prompt": 1263,
+      "cached": 0,
+      "tokens": 12800,
+      "rounds": 12149,
+      "accepted": 601,
+      "proposed": 1512,
+      "tokens_a_round": 1.054,
+      "drafts_a_round": 0.124,
+      "accept_rate": 0.398,
+      "ms_a_round": 12.13
+     },
+     "8": {
+      "requests": 100,
+      "prompt": 2503,
+      "cached": 0,
+      "tokens": 25600,
+      "rounds": 24317,
+      "accepted": 1183,
+      "proposed": 3011,
+      "tokens_a_round": 1.053,
+      "drafts_a_round": 0.124,
+      "accept_rate": 0.393,
+      "ms_a_round": 12.28
+     }
+    }
+   },
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 86%\ntotal = 4096.00M  us"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 182.6/177.8/192.2/179.3 ttft 0.03-0.05s; c=2 257.6/254.7/269.5/251.1 ttft 0.04-0.07s; c=4 348.6/342.2/358.5/339.2 ttft 0.07-0.11s; c=8 684.9/675.9/707.3/671.6 ttft 1.55-1.61s; engine: c=1 1.04 tokens a round 52% accepted, 5.7 ms a round; c=2 1.05 tokens a round 38% accepted, 8.1 ms a round; c=4 1.05 tokens a round 40% accepted, 12.1 ms a round; c=8 1.05 tokens a round 39% accepted, 12.3 ms a round"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 86%\ntotal = 4096.00M  us"
+    },
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Recursive Flint 40B-A2.5B, MLX INT4 (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261028-035345-prefill",
+   "target": "flint-40b-native-m5",
+   "model": "flint",
+   "plan": "prefill",
+   "started": "20261028-035345",
+   "finished": "20261028-035528",
+   "status": "done",
+   "identity": {
+    "engine_commit": "664b488f3",
+    "binary_sha256": "28c72363d214426aca770700842704ab2c8072d5469adc13a2cbdd8e1688453e",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"flint\", \"object\": \"model\", \"created\": 1793177633, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 86%\ntotal = 4096.00M  us"
+    },
+    "prefill-off": {
+     "ok": null,
+     "summary": "2070 tokens 6388.9 tok/s (0.324 s), 8213 tokens 6954.3 tok/s (1.181 s), 32789 tokens 5783.9 tok/s (5.669 s), 131093 tokens 3286.8 tok/s (39.885 s)"
+    },
+    "prefill-thinking": {
+     "ok": null,
+     "summary": "2068 tokens 6628.2 tok/s (0.312 s), 8212 tokens 6965.2 tok/s (1.179 s), 32789 tokens 5774.7 tok/s (5.678 s), 131095 tokens 3284.8 tok/s (39.91 s)"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 83%\ntotal = 4096.00M  us"
     }
    },
    "model_name": "Recursive Flint 40B-A2.5B, MLX INT4 (g64)",

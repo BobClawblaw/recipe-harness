@@ -1,11 +1,11 @@
 # Nanbeige4.3-33B (Nanbeige, model_type llama), the bf16 release as published with Nanbeige4.1-3B drafting for it (the
 # published MLX 4-bit quant mlx-community/Nanbeige4.1-3B-4bit @ 4d6c41d88f1416777bbda005aad92798e56e5ba9, --drafter), on
 # one 256 GB M5 Ultra Mac, TensorFold native Metal with the llama family (github.com/BobClawblaw/TensorFold branch
-# llama-drafter-pr): the server is a plain
+# llama-drafter-pr, the recipe's default serve): the server is a plain
 # process, its output stamped with Unix seconds for server_log. The quality suite and ruler are the qwen Spark recipe's,
 # from a local checkout (suite_dir). Machine-specific values go in nanbeige43-33b-mlxdraft-m5.local.toml (git-ignored).
 name = "nanbeige43-33b-mlxdraft-m5"
-description = "Nanbeige4.3-33B bf16 with Nanbeige4.1-3B MLX 4-bit (mlx-community) drafting, TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 1 stream: the drafter is recommended at --parallel 1 only)"
+description = "Nanbeige4.3-33B bf16 with Nanbeige4.1-3B MLX 4-bit (mlx-community) drafting, TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams, every stream drafted)"
 model_name = "Nanbeige4.3-33B bf16, drafted by Nanbeige4.1-3B MLX 4-bit"   # the report's model column
 hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
 engine = "TensorFold native, Metal"
@@ -23,7 +23,7 @@ suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (qua
 log_dir = "CHANGE-ME: a folder for the server's log"
 port = "8896"
 context = "131072"
-parallel = "1"
+parallel = "2"
 load_limit_gb = "150"                # LLAMA_LOAD_LIMIT_GB: 62 GiB of weights, scratch and caches; the rest of the Mac stays free
 prompt_cache_gib = "8"
 
