@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-28 02:30 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-28 03:16 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -28,6 +28,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Gemma 4 12B, oQ8e (8-bit) + MTP assistant | 1x Apple M5 Ultra (256 GB unified), macOS | 93/142/146/158 | 4: 262/324/328/340 | 0.05 / 0.12-0.12 |  | 2026-10-16 |
 | Gemma 4 31B, MLX 4-bit + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 87/158/157/130 |  | 0.08 |  | 2026-10-16 |
 | Gemma 4 31B, oQ8e (8-bit) + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 40/63/52/55 | 4: 110/173/142/180 | 0.10 / 0.24-0.27 |  | 2026-10-16 |
+| MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 32k context | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 24/38/29/30 |  | 0.60 |  | 2026-10-28 |
 | MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context | 1x Apple M5 Ultra (256 GB unified), macOS | 44/56/48/51 |  | 0.31 |  | 2026-10-27 |
 | MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34) | 1x Apple M5 Ultra (256 GB unified), macOS | 41/61/49/55 |  | 0.32 |  | 2026-10-27 |
 | MiniMax-M3.1-Flash, NVFP4 (15 MoE layers) + 3-bit refit, 32k context | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 23/41/25/32 |  | 0.47 |  | 2026-10-26 |
@@ -793,6 +794,27 @@ Serving: engine_commit `e8b60549`; binary_sha256 `d90e44c9818187ae4bc61d06312989
 | 2026-10-09 00:00 | published evidence | published | 104.6 |  |  |  |
 | 2026-10-09 00:00 | published evidence | published |  |  |  | 349/403 |
 | 2026-10-09 00:00 | published evidence | published |  |  |  | 42/42 |
+
+## MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 32k context on 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE
+
+Target `minimax-m31-exl3-gb10x2`: MiniMax-M3.1-Flash, Mia-AiLab EXL3 3.06 bpw as published, DSpark drafts, 32k x 2 streams, TensorFold native CUDA, TP=2 on two DGX Sparks. Engine: TensorFold native, CUDA; served as `MiniMax-M3.1-Flash`. Latest: run `20261028-025952-glm-vision` (2026-10-28 02:59, plan glm-vision, done).
+
+Serving: engine_commit `6183c5306; 51`; binary_sha256 `adfa426690e44f3ecf85a2397c525295c9182346c9a1f8434e6079e10156340d`; checkpoint_revision `Mia-AiLab/MiniMax-M3.1-Flash-EXL3-EAQ-v1-3.06-bpw c33e7a6619f0f12ac99098e07ec5e56acb7eeda9`; server_args `TF_MINIMAX_RANK=0 TF_MINIMAX_WORLD=2 NCCL_SOCKET_IFNAME=enp1s0f1np1 NCCL_IB_HCA=rocep1s0f1`; suite_commit `277c842a1481`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 0/0 |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-28 02:59 | glm-vision | done |  |  |  | 3/6 |
+| 2026-10-28 02:31 | quick | done | 38.1 |  |  | 114/114 |
+| 2026-10-28 02:16 | speed | done | 39.2 |  |  |  |
 
 ## MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context on 1x Apple M5 Ultra (256 GB unified), macOS
 

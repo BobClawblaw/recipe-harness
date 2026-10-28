@@ -1,0 +1,6 @@
+[vars]
+recipe_dir = "~/minimax-m31-flash-nvfp4-2x-dgx-sparks"
+engine_dir = "~/TensorFold"
+suite_dir = "~/glm53-flash-exl3-2x-dgx-sparks"  # the suite checkout, at 277c842
+worker = "CHANGE-ME"  # ssh login of rank 1
+run_dir = "~/.cache/minimax-m31-spark/run"
