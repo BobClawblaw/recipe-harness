@@ -1,6 +1,61 @@
 # Recursive Flint 40B-A2.5B, MLX INT4 (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (26 runs); aggregate tok/s, total (a stream).
+Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (27 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-28 09:14: run `20261028-091435-quick`
+
+Plan quick, done; served as `flint`.
+
+Serving: engine_commit `99d178f80`; binary_sha256 `a78d9139c491883aa85c21572cf2f16a172abeec97d474e3a0e5b0c15e64891a`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793196884, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 184.3 (184.3) | 179.2 (179.2) | 194.0 (194.0) | 180.6 (180.6) | 0.03-0.04 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.044 | 0.076 | 52% | 5.66 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 186.5 (186.5) | 181.2 (181.2) | 196.1 (196.1) | 182.7 (182.7) | 0.03-0.04 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.047 | 0.081 | 52% | 5.61 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 1/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 87%; total = 4096.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.067s, cold 0.712s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
 
 ## 2026-10-28 03:53: run `20261028-035345-prefill`
 
