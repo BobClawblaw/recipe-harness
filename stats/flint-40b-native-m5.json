@@ -1766,6 +1766,238 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261027-205816-quick",
+   "target": "flint-40b-native-m5",
+   "model": "flint",
+   "plan": "quick",
+   "started": "20261027-205816",
+   "finished": "20261027-210306",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c0d0c5424",
+    "binary_sha256": "868fb3db38a83b4a7a56f6fbc9c6ff9d36dfd23b00ca9983e2f0f7bc16e44acf",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"flint\", \"object\": \"model\", \"created\": 1793152704, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "a7ba7e392d57-dirty"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 183.4,
+      "per_stream": 183.4,
+      "ttft": 0.034
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 178.5,
+      "per_stream": 178.5,
+      "ttft": 0.04
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 193.1,
+      "per_stream": 193.1,
+      "ttft": 0.045
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 179.6,
+      "per_stream": 179.6,
+      "ttft": 0.03
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 183.2,
+      "per_stream": 183.2,
+      "ttft": 0.034
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 177.9,
+      "per_stream": 177.9,
+      "ttft": 0.039
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 192.5,
+      "per_stream": 192.5,
+      "ttft": 0.043
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 179.6,
+      "per_stream": 179.6,
+      "ttft": 0.029
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 315,
+      "cached": 0,
+      "tokens": 3072,
+      "rounds": 2943,
+      "accepted": 117,
+      "proposed": 225,
+      "tokens_a_round": 1.044,
+      "drafts_a_round": 0.076,
+      "accept_rate": 0.52,
+      "ms_a_round": 5.68
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 4942,
+      "cached": 0,
+      "tokens": 3120,
+      "rounds": 2981,
+      "accepted": 126,
+      "proposed": 240,
+      "tokens_a_round": 1.047,
+      "drafts_a_round": 0.081,
+      "accept_rate": 0.525,
+      "ms_a_round": 5.71
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 1,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 87%\ntotal = 4096.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 183.4/178.5/193.1/179.6 ttft 0.03-0.04s; engine: c=1 1.04 tokens a round 52% accepted, 5.7 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.066s, cold 0.712s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 183.2/177.9/192.5/179.6 ttft 0.03-0.04s; engine: c=1 1.05 tokens a round 52% accepted, 5.7 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 1/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "Recursive Flint 40B-A2.5B, MLX INT4 (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261027-210306-together",
+   "target": "flint-40b-native-m5",
+   "model": "flint",
+   "plan": "together",
+   "started": "20261027-210306",
+   "finished": "20261027-210420",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c0d0c5424",
+    "binary_sha256": "868fb3db38a83b4a7a56f6fbc9c6ff9d36dfd23b00ca9983e2f0f7bc16e44acf",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"flint\", \"object\": \"model\", \"created\": 1793152994, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "a7ba7e392d57-dirty"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-together": {
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     }
+    }
+   },
+   "checks": {
+    "suite-together": {
+     "ok": null,
+     "summary": "concurrent 12/12, drafts 12/12"
+    }
+   },
+   "model_name": "Recursive Flint 40B-A2.5B, MLX INT4 (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
