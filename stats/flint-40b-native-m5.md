@@ -1,6 +1,270 @@
 # Recursive Flint 40B-A2.5B, MLX INT4 (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (17 runs); aggregate tok/s, total (a stream).
+Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (23 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-28 03:39: run `20261028-033917-quick`
+
+Plan quick, running; served as `flint`.
+
+Serving: engine_commit `664b488f3`; binary_sha256 `28c72363d214426aca770700842704ab2c8072d5469adc13a2cbdd8e1688453e`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793176765, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 183.7 (183.7) | 179.0 (179.0) | 193.5 (193.5) | 180.1 (180.1) | 0.03-0.04 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.044 | 0.076 | 52% | 5.67 | 12 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 86%; total = 4096.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+
+## 2026-10-28 01:33: run `20261028-013334-quick`
+
+Plan quick, done; served as `flint`.
+
+Serving: engine_commit `764489e83`; binary_sha256 `b1f534e906d2234474f32a3c995f005980fa46d22e0ac508578d0ef1ac0e9865`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793169222, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 17.8 (17.8) | 171.7 (171.7) | 188.4 (188.4) | 173.9 (173.9) | 0.03-0.28 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.044 | 0.076 | 52% | 7.57 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 17.8 (17.8) | 17.5 (17.5) | 18.5 (18.5) | 14.7 (14.7) | 0.24-0.28 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.047 | 0.081 | 52% | 61.14 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 1/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 83%; total = 4096.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.07s, cold 4.122s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
+
+## 2026-10-28 00:53: run `20261028-005329-quick`
+
+Plan quick, done; served as `flint`.
+
+Serving: engine_commit `40e1403b8`; binary_sha256 `071967bcb5df502d03058c5d1fdaaef3d80cd2a06383885ac4fcf06a92890445`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793166818, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57-dirty`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 6297.6 (6297.6) | 1284.1 (1284.1) | 1363.5 (1363.5) | 3194.0 (3194.0) | 1.80-8.69 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.591 | 0.698 | 84% | 0.52 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 6300.4 (6300.4) | 1280.6 (1280.6) | 1362.2 (1362.2) | 3212.2 (3212.2) | 1.82-8.72 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.585 | 0.692 | 84% | 0.52 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 0/3 |
+| thinking | 10/10 |
+| copy | 1/2 |
+| max-tokens | 0/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 87%; total = 4096.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4592; ttft resumed 0.577s, cold 1.217s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
+
+## 2026-10-28 00:47: run `20261028-004730-together`
+
+Plan together, done; served as `flint`.
+
+Serving: engine_commit `2052603f5`; binary_sha256 `071967bcb5df502d03058c5d1fdaaef3d80cd2a06383885ac4fcf06a92890445`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793166458, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57-dirty`
+
+### suite-together
+
+| check | passed |
+|---|---:|
+| concurrent | 12/12 |
+| drafts | 12/12 |
+
+## 2026-10-28 00:41: run `20261028-004159-quick`
+
+Plan quick, done; served as `flint`.
+
+Serving: engine_commit `2052603f5`; binary_sha256 `071967bcb5df502d03058c5d1fdaaef3d80cd2a06383885ac4fcf06a92890445`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793166127, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57-dirty`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | - | - | - | - | 1.39-1.55 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.044 | 0.076 | 52% |  | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | - | - | - | - | 1.37-1.48 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.043 | 0.075 | 52% |  | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 0/8 |
+| stop | 0/3 |
+| thinking | 10/10 |
+| copy | 1/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 87%; total = 4096.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4529; ttft resumed Nones, cold Nones |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
+
+## 2026-10-27 21:31: run `20261027-213155-quality-off`
+
+Plan quality-off, done; served as `flint`.
+
+Serving: engine_commit `a011f1c4a`; binary_sha256 `7da93990044c5eb2f6a33d770136e8b4a4070899fad7c63027974a492cf0130b`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793154723, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57-dirty`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 181.6 (181.6) | 176.3 (176.3) | 190.9 (190.9) | 202.7 (202.7) | 0.03-0.04 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.085 | 0.133 | 60% | 5.77 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 182.2 (182.2) | 175.6 (175.6) | 191.7 (191.7) | 203.5 (203.5) | 0.03-0.04 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.083 | 0.142 | 56% | 5.75 | 16 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 1/2 |
+| max-tokens | 3/3 |
+| tools | 52/60 |
+| json | 29/30 |
+| ifeval | 91/150 |
+| gsm8k | 226/250 |
+| mgsm | 182/240 |
+| mmlu | 237/342 |
+| math500 | 425/500 |
+| gpqa | 85/198 |
+| humaneval | 0/0 |
+| repetition | 2/8 |
+| long-context | 0/55 |
+| long-tasks | 3/52 |
+| soak | 60/60 |
+| snapshot | 12/12 |
+| vision | 0/6 |
+| docvision | 0/0 |
+| concurrent | 12/12 |
+| vision-concurrent | 0/0 |
 
 ## 2026-10-27 21:03: run `20261027-210306-together`
 
