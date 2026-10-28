@@ -1,6 +1,74 @@
 # MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `minimax-m31-mix256k-m5`: MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-mix256k-m5.json` (31 runs); aggregate tok/s, total (a stream).
+Target `minimax-m31-mix256k-m5`: MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-mix256k-m5.json` (33 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-27 23:38: run `20261027-233821-glm-vision`
+
+Plan glm-vision, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `16ef3b31b`; binary_sha256 `995f469d85230291c7ef5b6ff101dad5aea9de874847facb72a2a5a4bc073eda`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57-dirty`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 12/16 |
+
+## 2026-10-27 23:22: run `20261027-232216-quick`
+
+Plan quick, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `16ef3b31b`; binary_sha256 `995f469d85230291c7ef5b6ff101dad5aea9de874847facb72a2a5a4bc073eda`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `a7ba7e392d57-dirty`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 44.1 (44.1) | 58.2 (58.2) | 48.4 (48.4) | 52.5 (52.5) | 0.31-0.33 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.306 | 1.994 | 65% | 45.41 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 44.2 (44.2) | 57.6 (57.6) | 49.3 (49.3) | 52.5 (52.5) | 0.31-0.33 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.356 | 2.082 | 65% | 46.29 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 96%; total = 4096.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4685 of 4793; ttft resumed 0.267s, cold 5.776s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
 
 ## 2026-10-27 06:07: run `20261027-060717-prefill-32k`
 

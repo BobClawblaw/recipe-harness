@@ -2415,6 +2415,138 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261027-235008-glm-vision",
+   "target": "minimax-m31-mix34-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "glm-vision",
+   "started": "20261027-235008",
+   "finished": "20261027-235201",
+   "status": "done",
+   "identity": {
+    "engine_commit": "16ef3b31b",
+    "binary_sha256": "995f469d85230291c7ef5b6ff101dad5aea9de874847facb72a2a5a4bc073eda",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1793163094, \"owned_by\": \"tensorfold\", \"context_length\": 32768, \"max_model_len\": 32768, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "a7ba7e392d57-dirty"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-vision": {
+     "vision": {
+      "passed": 3,
+      "cases": 6
+     },
+     "vision-concurrent": {
+      "passed": 12,
+      "cases": 16
+     }
+    }
+   },
+   "checks": {
+    "suite-vision": {
+     "ok": null,
+     "summary": "vision 3/6, vision-concurrent 12/16"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261027-235721-quick",
+   "target": "minimax-m31-mix34-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "quick",
+   "started": "20261027-235721",
+   "finished": "20261028-001333",
+   "status": "aborted: minimax-m31-mix34-m5 never came up after 1 starts",
+   "identity": {
+    "engine_commit": "16ef3b31b",
+    "binary_sha256": "995f469d85230291c7ef5b6ff101dad5aea9de874847facb72a2a5a4bc073eda",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1793163562, \"owned_by\": \"tensorfold\", \"context_length\": 32768, \"max_model_len\": 32768, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "a7ba7e392d57-dirty"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 41.0,
+      "per_stream": 41.0,
+      "ttft": 0.324
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 63.4,
+      "per_stream": 63.4,
+      "ttft": 0.338
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 47.6,
+      "per_stream": 47.6,
+      "ttft": 0.343
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 54.5,
+      "per_stream": 54.5,
+      "ttft": 0.321
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 2598,
+      "cached": 0,
+      "tokens": 2805,
+      "rounds": 1261,
+      "accepted": 1539,
+      "proposed": 2319,
+      "tokens_a_round": 2.224,
+      "drafts_a_round": 1.839,
+      "accept_rate": 0.664,
+      "ms_a_round": 43.09
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 16%\ntotal = 4096.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 41.0/63.4/47.6/54.5 ttft 0.32-0.34s; engine: c=1 2.22 tokens a round 66% accepted, 43.1 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34), TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
