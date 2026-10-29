@@ -1,0 +1,59 @@
+# Ornith-1.5-122B (a Qwen3.5-MoE 122B-A10B with a vision tower), the publisher's 8-bit MLX affine release (groups of 64,
+# ornith-ai/Ornith-1.5-122B-MLX-8bit), served by TensorFold's native Metal engine (the qwen27 family's routed path) on one
+# 256 GB M5 Ultra Mac, through the ornith-15-122b-mlx-m5-ultra recipe's launcher with the checkpoint and engine pin
+# overridden (`MODEL_DIR=... python3 -m mac up`). The ruler and suite are the qwen Spark recipe's, from a local checkout
+# (suite_dir). Machine-specific values go in ornith-15-122b-8bit-native-m5.local.toml.
+name = "ornith-15-122b-8bit-native-m5"
+description = "Ornith-1.5-122B, the publisher's 8-bit MLX affine, TensorFold native Metal on one M5 Ultra"
+url = "http://127.0.0.1:$port"
+model = "Ornith-1.5-122B"
+model_name = "Ornith-1.5-122B, 8-bit MLX affine (g64)"
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout"
+recipe_dir = "CHANGE-ME: a checkout of ornith-15-122b-mlx-m5-ultra"
+engine_sha = "CHANGE-ME: the TensorFold commit the recipe builds"
+engine_dir = "CHANGE-ME: the worktree that built the served binary"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+port = "8891"
+drafter_dir = "CHANGE-ME: the incoai/Ornith-1.5-122B-DFlash2 snapshot directory"
+model_dir = "CHANGE-ME: the ornith-ai/Ornith-1.5-122B-MLX-8bit snapshot (revision 5e8df2d2)"
+serve_env = ""
+
+[commands]
+up = "cd $recipe_dir && $serve_env MODEL_DIR=$model_dir SOURCE_REPO=ornith-ai/Ornith-1.5-122B-MLX-8bit SOURCE_REVISION=5e8df2d2e50478f221602f0997b8cbbec51f9c8a TENSORFOLD_SHA=$engine_sha PORT=$port python3 -m mac up"
+down = "cd $recipe_dir && PORT=$port python3 -m mac down"
+status = "cd $recipe_dir && python3 -m mac status"
+diagnose = "cd $recipe_dir && python3 -m mac logs -n 5"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 3
+retry_wait = 20   # the 8-bit frees ~150 GiB on exit: a restart right after can see it still held
+up_timeout = 600
+health_wait = 600
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "echo $engine_sha | cut -c1-8"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
