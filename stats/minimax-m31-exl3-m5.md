@@ -1,6 +1,169 @@
 # MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `minimax-m31-exl3-m5`: MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-exl3-m5.json` (20 runs); aggregate tok/s, total (a stream).
+Target `minimax-m31-exl3-m5`: MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-exl3-m5.json` (25 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-29 13:49: run `20261029-134912-speed`
+
+Plan speed, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `af3573193`; binary_sha256 `f23babaf9b934985f1895b469eb673d02dec58626a836c27f481a9ad4a495011`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 29.6 (29.6) | 40.1 (40.1) | 31.4 (31.4) | 32.2 (32.2) | 1.49-1.57 s |
+| 2 | 37.0 (18.5) | 38.1 (19.0) | 34.1 (17.1) | 41.5 (20.7) | 2.24-2.36 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.817 | 1.271 | 64% | 54.5 | 12 |
+| 2 | 1.612 | 0.827 | 74% | 85.6 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 28.2 (28.2) | 40.1 (40.1) | 31.1 (31.1) | 32.4 (32.4) | 1.49-1.57 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.88 | 1.381 | 63% | 56.99 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 33%; total = 5120.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4645 of 4725; ttft resumed 1.276s, cold 11.685s |
+| memory-busy | measured: mac: System-wide memory free percentage: 31%; total = 5120.00M  us |
+
+## 2026-10-29 13:36: run `20261029-133649-prefill`
+
+Plan prefill, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `af3573193`; binary_sha256 `f23babaf9b934985f1895b469eb673d02dec58626a836c27f481a9ad4a495011`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 34%; total = 5120.00M  us |
+| prefill-off | measured: 2219 tokens 442.0 tok/s (5.02 s), 8362 tokens 486.8 tok/s (17.178 s), 32938 tokens 509.0 tok/s (64.708 s), 131243 tokens 503.6 tok/s (260.596 s) |
+| prefill-thinking | measured: 2217 tokens 438.9 tok/s (5.051 s), 8361 tokens 487.9 tok/s (17.138 s), 32938 tokens 507.9 tok/s (64.854 s), 131241 tokens 503.3 tok/s (260.771 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 27%; total = 5120.00M  us |
+
+## 2026-10-29 13:29: run `20261029-132917-speed`
+
+Plan speed, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `af3573193`; binary_sha256 `f23babaf9b934985f1895b469eb673d02dec58626a836c27f481a9ad4a495011`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 33.4 (33.4) | 33.4 (33.4) | 33.5 (33.5) | 33.5 (33.5) | 1.45-1.54 s |
+| 2 | 43.3 (21.7) | 43.1 (21.6) | 42.1 (21.1) | 42.2 (21.1) | 2.18-2.31 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 30.05 | 12 |
+| 2 | 1.005 | 0.0 |  | 47.07 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 33.4 (33.4) | 33.3 (33.3) | 33.4 (33.4) | 33.4 (33.4) | 1.46-1.54 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 30.11 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 33%; total = 5120.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4645 of 4725; ttft resumed 1.256s, cold 11.218s |
+| memory-busy | measured: mac: System-wide memory free percentage: 34%; total = 5120.00M  us |
+
+## 2026-10-29 13:28: run `20261029-132810-glm-vision`
+
+Plan glm-vision, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `af3573193`; binary_sha256 `f23babaf9b934985f1895b469eb673d02dec58626a836c27f481a9ad4a495011`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 12/16 |
+
+## 2026-10-29 13:09: run `20261029-130901-quick`
+
+Plan quick, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `af3573193`; binary_sha256 `f23babaf9b934985f1895b469eb673d02dec58626a836c27f481a9ad4a495011`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 33.3 (33.3) | 33.3 (33.3) | 33.3 (33.3) | 33.3 (33.3) | 1.47-1.56 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 30.19 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 33.4 (33.4) | 33.3 (33.3) | 33.4 (33.4) | 33.4 (33.4) | 1.47-1.55 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 30.11 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 33%; total = 5120.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4645 of 4725; ttft resumed 1.264s, cold 11.406s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
 
 ## 2026-10-29 12:23: run `20261029-122304-speed`
 
