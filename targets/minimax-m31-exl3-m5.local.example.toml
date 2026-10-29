@@ -1,0 +1,7 @@
+[vars]
+harness_dir = "/path/to/recipe-harness"
+engine_dir = "/path/to/TensorFold worktree at the recipe's pinned commit (branch minimax-m3-metal-exl3)"
+model_dir = "/path/to/MiniMax-M3.1-Flash-EXL3-EAQ-v1-3.06-bpw (Mia-AiLab's pack)"
+suite_dir = "/path/to/glm53-flash-exl3-2x-dgx-sparks"
+log_dir = "/path/to/logs"
+suite_dir_engine = "/path/to/that engine plus the board's community-v1 suite commit, built"

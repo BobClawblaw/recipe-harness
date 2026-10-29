@@ -1,0 +1,72 @@
+# MiniMaxAI/MiniMax-M3.1-Flash (428B-A23B MoE, block-sparse attention with the lightning indexer, a vision tower) as
+# Mia-AiLab's published EXL3 pack (EAQ v1, 3.06 bpw: attention 6-bit, dense and shared MLPs 5-bit, routed experts 3-bit,
+# head 8-bit, mul1 codebook), served by TensorFold's native Metal engine (the minimax_m3 family's EXL3 path: exact bf16
+# key/value cache, images; its DSpark head optional) on one 256 GB M5 Ultra Mac. The server is a plain process, its output stamped with Unix
+# seconds for server_log. The quality suite and ruler are the qwen Spark recipe's, from a local checkout (suite_dir).
+# Machine-specific values go in minimax-m31-exl3-m5.local.toml.
+name = "minimax-m31-exl3-m5"
+description = "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra"
+url = "http://127.0.0.1:$port"
+model = "MiniMax-M3.1-Flash"
+model_name = "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context"
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout (up runs python3 -m harness.detach from it)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (zig-out/native/bin/tensorfold-native)"
+model_dir = "CHANGE-ME: Mia-AiLab/MiniMax-M3.1-Flash-EXL3-EAQ-v1-3.06-bpw, its files as published"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+log_dir = "CHANGE-ME: a folder for the server's log"
+port = "8897"
+context = "262144"
+parallel = "2"
+load_limit_gb = "226"                # MINIMAX_LOAD_LIMIT_GB: weights, scratch and caches (the default 75% holds no caches)
+prompt_cache_gib = "4"
+draft_args = "--no-drafts"         # "" turns on the pack's DSpark head (the release's, widened to bf16 at load)
+suite_dir_engine = "CHANGE-ME: the engine commit plus a benchmark --suite community-v1 commit, built (leaderboard only)"
+
+[commands]
+up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c 'MINIMAX_LOAD_LIMIT_GB=$load_limit_gb $engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --prompt-cache-gib $prompt_cache_gib --vision $draft_args --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
+# only this target's server on its port: one copy of the model at a time on this Mac
+down = "pkill -f 'tensorfold-native serve [^ ]*MiniMax-M3.1-Flash-EXL3-[^ ]* .*--port $port( |$$)' ; sleep 5"
+status = "pgrep -fl 'tensorfold-native serve [^ ]*MiniMax-M3.1-Flash-EXL3-[^ ]* .*--port $port( |$$)'"
+diagnose = "tail -5 $log_dir/$model.log"
+server_log = "awk -v s=$since '$$1 >= s' $log_dir/$model.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 600
+health_wait = 600                    # about 90 s from a warm disk, then a prompt chunk's warm-up
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+# python3 -m harness leaderboard minimax-m31-exl3-m5: the board's suite on the public pack (no drafter), the receipt
+# published with the stored login; only this target's server is brought down.
+[leaderboard]
+model = "Mia-AiLab/MiniMax-M3.1-Flash-EXL3-EAQ-v1-3.06-bpw"   # cached as a Hugging Face snapshot
+binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"   # this engine plus the board's community-v1 suite
+free = "! pgrep -f 'tensorfold-native [s]erve'"
+env = { MINIMAX_LOAD_LIMIT_GB = "$load_limit_gb" }
