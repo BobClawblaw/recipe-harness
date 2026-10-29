@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-29 10:05 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-29 14:16 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -28,6 +28,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Gemma 4 12B, oQ8e (8-bit) + MTP assistant | 1x Apple M5 Ultra (256 GB unified), macOS | 93/142/146/158 | 4: 262/324/328/340 | 0.05 / 0.12-0.12 |  | 2026-10-16 |
 | Gemma 4 31B, MLX 4-bit + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 87/158/157/130 |  | 0.08 |  | 2026-10-16 |
 | Gemma 4 31B, oQ8e (8-bit) + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 40/63/52/55 | 4: 110/173/142/180 | 0.10 / 0.24-0.27 |  | 2026-10-16 |
+| MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context | 1x Apple M5 Ultra (256 GB unified), macOS | 18/20/18/18 | 2: 23/21/22/24 | 1.52 / 2.28-2.41 |  | 2026-10-29 |
 | MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 32k context | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 25/40/30/30 |  | 0.59 |  | 2026-10-28 |
 | MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context | 1x Apple M5 Ultra (256 GB unified), macOS | 44/58/48/52 |  | 0.31 |  | 2026-10-27 |
 | MiniMax-M3.1-Flash, MLX mixed 4/3-bit (mix34) | 1x Apple M5 Ultra (256 GB unified), macOS | 41/63/48/54 |  | 0.32 |  | 2026-10-27 |
@@ -912,6 +913,59 @@ Engine rounds (ruler-after):
 | 2026-10-28 02:59 | glm-vision | done |  |  |  | 3/6 |
 | 2026-10-28 02:31 | quick | done | 38.1 |  |  | 114/114 |
 | 2026-10-28 02:16 | speed | done | 39.2 |  |  |  |
+
+## MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context on 1x Apple M5 Ultra (256 GB unified), macOS
+
+Target `minimax-m31-exl3-m5`: MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `MiniMax-M3.1-Flash`. Latest: run `20261029-085020-speed` (2026-10-29 08:50, plan speed, done).
+
+Serving: engine_commit `ac35cd022`; binary_sha256 `4b73bfa0dda82843ef2c27099e9ed883d9ab4dd8de31f6d7c42026f2bdc1bc1b`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 17.9 (17.9) | 20.0 (20.0) | 17.7 (17.7) | 18.5 (18.5) | 1.52-1.62 s |
+| 2 | 22.9 (11.4) | 21.3 (10.7) | 21.8 (10.9) | 23.6 (11.8) | 2.28-2.41 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.461 | 0.609 | 75% | 78.76 | 12 |
+| 2 | 1.388 | 0.447 | 86% | 123.91 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 17.6 (17.6) | 19.8 (19.8) | 17.7 (17.7) | 18.8 (18.8) | 1.51-1.60 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.415 | 0.555 | 74% | 76.5 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 31%; total = 5120.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4645 of 4725; ttft resumed 1.299s, cold 12.206s |
+| memory-busy | measured: mac: System-wide memory free percentage: 30%; total = 5120.00M  us |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-29 08:50 | speed | done | 20.0 |  |  |  |
+| 2026-10-29 08:23 | quick | done | 20.1 |  |  | 114/114 |
+| 2026-10-29 07:51 | speed | done | 19.5 |  |  |  |
+| 2026-10-29 07:50 | glm-vision | done |  |  |  | 15/22 |
+| 2026-10-29 07:24 | quick | done | 19.5 |  |  | 114/114 |
+| 2026-10-29 06:55 | speed | done | 19.5 |  |  |  |
+| 2026-10-29 06:54 | glm-vision | done |  |  |  | 15/22 |
+| 2026-10-29 06:29 | quick | done | 19.5 |  |  | 114/114 |
 
 ## MiniMax-M3.1-Flash, MLX mixed 3-bit (mix256k), 144k context on 1x Apple M5 Ultra (256 GB unified), macOS
 
