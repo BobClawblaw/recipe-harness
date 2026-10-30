@@ -1,6 +1,50 @@
 # MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `minimax-m31-exl3-m5`: MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-exl3-m5.json` (30 runs); aggregate tok/s, total (a stream).
+Target `minimax-m31-exl3-m5`: MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/minimax-m31-exl3-m5.json` (33 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-29 18:24: run `20261029-182420-minimax-math500`
+
+Plan minimax-math500, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `af3573193`; binary_sha256 `90f54df38bb95056e4520d4d5a2b7c6baec75bcad6190711b9bdedbc813cdb8c`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### suite
+
+| check | passed |
+|---|---:|
+| math500 | 422/500 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 32%; total = 4096.00M  us |
+
+## 2026-10-29 18:23: run `20261029-182313-glm-vision`
+
+Plan glm-vision, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `af3573193`; binary_sha256 `90f54df38bb95056e4520d4d5a2b7c6baec75bcad6190711b9bdedbc813cdb8c`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 12/16 |
+
+## 2026-10-29 15:57: run `20261029-155719-glm-vision`
+
+Plan glm-vision, done; served as `MiniMax-M3.1-Flash`.
+
+Serving: engine_commit `af3573193`; binary_sha256 `90f54df38bb95056e4520d4d5a2b7c6baec75bcad6190711b9bdedbc813cdb8c`; served_model `{"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 3/6 |
+| vision-concurrent | 12/16 |
 
 ## 2026-10-29 15:25: run `20261029-152530-speed`
 

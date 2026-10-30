@@ -3788,6 +3788,126 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261029-155719-glm-vision",
+   "target": "minimax-m31-exl3-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "glm-vision",
+   "started": "20261029-155719",
+   "finished": "20261029-155826",
+   "status": "done",
+   "identity": {
+    "engine_commit": "af3573193",
+    "binary_sha256": "90f54df38bb95056e4520d4d5a2b7c6baec75bcad6190711b9bdedbc813cdb8c",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1793307484, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-vision": {
+     "vision": {
+      "passed": 3,
+      "cases": 6
+     },
+     "vision-concurrent": {
+      "passed": 12,
+      "cases": 16
+     }
+    }
+   },
+   "checks": {
+    "suite-vision": {
+     "ok": null,
+     "summary": "vision 3/6, vision-concurrent 12/16"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261029-182313-glm-vision",
+   "target": "minimax-m31-exl3-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "glm-vision",
+   "started": "20261029-182313",
+   "finished": "20261029-182420",
+   "status": "done",
+   "identity": {
+    "engine_commit": "af3573193",
+    "binary_sha256": "90f54df38bb95056e4520d4d5a2b7c6baec75bcad6190711b9bdedbc813cdb8c",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1793316238, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-vision": {
+     "vision": {
+      "passed": 3,
+      "cases": 6
+     },
+     "vision-concurrent": {
+      "passed": 12,
+      "cases": 16
+     }
+    }
+   },
+   "checks": {
+    "suite-vision": {
+     "ok": null,
+     "summary": "vision 3/6, vision-concurrent 12/16"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261029-182420-minimax-math500",
+   "target": "minimax-m31-exl3-m5",
+   "model": "MiniMax-M3.1-Flash",
+   "plan": "minimax-math500",
+   "started": "20261029-182420",
+   "finished": "20261029-204229",
+   "status": "done",
+   "identity": {
+    "engine_commit": "af3573193",
+    "binary_sha256": "90f54df38bb95056e4520d4d5a2b7c6baec75bcad6190711b9bdedbc813cdb8c",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"MiniMax-M3.1-Flash\", \"object\": \"model\", \"created\": 1793316260, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "math500": {
+      "passed": 422,
+      "cases": 500
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 32%\ntotal = 4096.00M  us"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "math500 422/500"
+    }
+   },
+   "model_name": "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra"
   }
  ]
 }

@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-10-29 20:40 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-30 01:43 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -38,7 +38,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   NVIDIA Nemotron 3.5 Bolt 74B-A9B (24 GB: IQ2_XXS experts, Q8_0, NVFP4 Mamba) + vision  1x NVIDIA RTX 5090 (32 GB)  150/150/150/150    0.03  tools 58/60, json 30/30, gsm8k 241/250, humaneval 153/164, ifeval 120/150  2026-10-15
   Nanbeige4.3-33B bf16, drafted by Nanbeige4.1-3B 4-bit  1x Apple M5 Ultra (256 GB unified), macOS  114/111/108/85  2: 63/64/64/58  0.23 / 0.35-0.39    2026-10-26
   Nanbeige4.3-33B bf16, drafted by Nanbeige4.1-3B MLX 4-bit  1x Apple M5 Ultra (256 GB unified), macOS  117/111/110/102    0.23    2026-10-28
-  Nanbeige4.3-33B bf16, drafted by Nanbeige4.1-3B bf16  1x Apple M5 Ultra (256 GB unified), macOS  114/108/99/99  2: 45/59/54/56  0.23 / 0.35-0.39    2026-10-28
+  Nanbeige4.3-33B bf16, drafted by Nanbeige4.1-3B bf16  1x Apple M5 Ultra (256 GB unified), macOS  114/98/99/107  2: 44/59/54/56  0.23 / 0.34-0.39    2026-10-29
   Nanbeige4.3-33B, MLX 4-bit  1x Apple M5 Ultra (256 GB unified), macOS  47/46/47/47  2: 79/76/79/79  0.12 / 0.18-0.20    2026-10-27
   Nanbeige4.3-33B, MLX 8-bit  1x Apple M5 Ultra (256 GB unified), macOS  28/28/28/28    0.15    2026-10-27
   Nanbeige4.3-33B, affine 4bit  1x Apple M5 Ultra (256 GB unified), macOS  48/48/49/49  2: 85/81/84/85  0.10 / 0.16-0.18    2026-10-26
@@ -932,46 +932,29 @@ history
 MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context on 1x Apple M5 Ultra (256 GB unified), macOS
 ---------------------------------------------------------------------------------------------------------------
 
-Target minimax-m31-exl3-m5: MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as MiniMax-M3.1-Flash. Latest: run 20261029-152530-speed (2026-10-29 15:25, plan speed, done).
+Target minimax-m31-exl3-m5: MiniMax-M3.1-Flash, EXL3 3.06 bpw (Mia-AiLab EAQ v1), 256k context, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as MiniMax-M3.1-Flash. Latest: run 20261029-182420-minimax-math500 (2026-10-29 18:24, plan minimax-math500, done).
 
-Serving: engine_commit 4e9fe87f5; binary_sha256 3536f1a7cbfcca045fda8654186a106ca4a46929195281d134df742de8be8af8; served_model {"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
+Serving: engine_commit af3573193; binary_sha256 90f54df38bb95056e4520d4d5a2b7c6baec75bcad6190711b9bdedbc813cdb8c; served_model {"object": "list", "data": [{"id": "MiniMax-M3.1-Flash", "object": "model", "created": 179; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
 
-ruler-fresh
------------
+suite
+-----
 
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  32.1 (32.1)  33.6 (33.6)  31.3 (31.3)  31.6 (31.6)  1.46-1.54 s
-  2  29.9 (14.9)  38.6 (19.3)  31.0 (15.5)  44.8 (22.4)  2.19-2.33 s
-
-Engine rounds (ruler-fresh):
-
-  streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.359  0.513  69%  42.28  12
-  2  1.669  0.959  69%  92.59  25
-
-ruler-after
------------
-
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  31.8 (31.8)  34.0 (34.0)  31.2 (31.2)  32.0 (32.0)  1.46-1.54 s
-
-Engine rounds (ruler-after):
-
-  streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.364  0.522  69%  42.29  13
+  check  passed
+  math500  422/500
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 31%; total = 5120.00M  us
-  turns  pass: resumed == again: True; cold (after a restart): True; cached 4645 of 4725; ttft resumed 1.247s, cold 12.216s
-  memory-busy  measured: mac: System-wide memory free percentage: 31%; total = 5120.00M  us
+  memory-idle  measured: mac: System-wide memory free percentage: 32%; total = 4096.00M  us
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-29 18:24  minimax-math500  done        422/500
+  2026-10-29 18:23  glm-vision  done        15/22
+  2026-10-29 15:57  glm-vision  done        15/22
   2026-10-29 15:25  speed  done  33.6      
   2026-10-29 15:04  speed  done  33.5      
   2026-10-29 15:03  glm-vision  done        15/22
@@ -1281,46 +1264,48 @@ history
 Nanbeige4.3-33B bf16, drafted by Nanbeige4.1-3B bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 -------------------------------------------------------------------------------------------------
 
-Target nanbeige43-33b-bf16draft-m5: Nanbeige4.3-33B bf16 with Nanbeige4.1-3B bf16 drafting, TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams, every stream drafted). Engine: TensorFold native, Metal; served as nanbeige. Latest: run 20261028-115919-speed (2026-10-28 11:59, plan speed, done).
+Target nanbeige43-33b-bf16draft-m5: Nanbeige4.3-33B bf16 with Nanbeige4.1-3B bf16 drafting, TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams, every stream drafted). Engine: TensorFold native, Metal; served as nanbeige. Latest: run 20261029-180246-speed (2026-10-29 18:02, plan speed, done).
 
-Serving: engine_commit 50fe245ac; binary_sha256 c3fcf8cacf289aec9ee53f1eae52fda4fab2f1eeda1bf75b61482542dba4b3d1; served_model {"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793206767, "; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
+Serving: engine_commit c3ee3db24; binary_sha256 0d5c5c6b34b6267ae99c4d9182b1c71c2e71af9bbfd2e697cbe487398bf0224f; served_model {"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793314979, "; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
 
 ruler-fresh
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  113.9 (113.9)  108.3 (108.3)  98.6 (98.6)  98.9 (98.9)  0.23-0.26 s
-  2  44.6 (22.3)  59.0 (29.5)  54.4 (27.2)  55.9 (27.9)  0.35-0.39 s
+  1  114.0 (114.0)  98.4 (98.4)  99.0 (99.0)  106.9 (106.9)  0.23-0.26 s
+  2  44.1 (22.0)  58.8 (29.4)  54.5 (27.2)  55.9 (27.9)  0.34-0.39 s
 
 Engine rounds (ruler-fresh):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  4.875  4.511  85%  46.47  12
-  2  4.54  3.981  88%  169.8  25
+  1  4.77  4.408  85%  45.61  12
+  2  4.507  3.934  89%  169.14  25
 
 ruler-after
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  113.7 (113.7)  100.2 (100.2)  101.9 (101.9)  94.9 (94.9)  0.23-0.26 s
+  1  114.0 (114.0)  92.5 (92.5)  101.8 (101.8)  101.8 (101.8)  0.23-0.26 s
 
 Engine rounds (ruler-after):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  4.865  4.472  86%  47.38  13
+  1  4.737  4.337  86%  46.21  13
 
 checks
 ------
 
   check  result
   memory-idle  measured: mac: System-wide memory free percentage: 68%; total = 4096.00M  us
-  turns  pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.362s, cold 4.444s
-  memory-busy  measured: mac: System-wide memory free percentage: 68%; total = 4096.00M  us
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.365s, cold 4.407s
+  memory-busy  measured: mac: System-wide memory free percentage: 67%; total = 4096.00M  us
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-29 18:02  speed  done  98.4      
+  2026-10-29 17:37  quick  done  81.9      114/114
   2026-10-28 11:59  speed  done  108.3      
   2026-10-28 11:33  quick  done  100.5      114/114
 
