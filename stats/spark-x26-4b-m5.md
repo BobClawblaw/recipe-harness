@@ -1,6 +1,158 @@
 # Spark-X2.6-4B, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `spark-x26-4b-m5`: Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal. Rendered from `stats/spark-x26-4b-m5.json` (11 runs); aggregate tok/s, total (a stream).
+Target `spark-x26-4b-m5`: Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal. Rendered from `stats/spark-x26-4b-m5.json` (16 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-30 10:15: run `20261030-101524-mlx-speed`
+
+Plan mlx-speed, done; served as `spark`.
+
+Serving: engine_commit `abf822585`; binary_sha256 `e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e`; served_model `{"object": "list", "data": [{"id": "spark", "object": "model", "created": 1793373324, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 105.6 (105.6) | 104.7 (104.7) | 104.6 (104.6) | 105.0 (105.0) | 0.06-0.07 s |
+| 2 | 186.8 (93.4) | 176.4 (88.2) | 186.9 (93.4) | 183.7 (91.9) | 0.08-0.10 s |
+| 4 | 317.9 (79.9) | 293.6 (73.3) | 320.5 (80.5) | 313.5 (78.2) | 0.13-0.17 s |
+
+Engine rounds (ruler-streams):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 9.57 | 13 |
+| 2 | 1.009 | 0.032 | 15% | 11.0 | 25 |
+| 4 | 1.008 | 0.024 | 12% | 12.93 | 50 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 88%; total = 4096.00M  us |
+
+## 2026-10-30 10:14: run `20261030-101405-prefill`
+
+Plan prefill, done; served as `spark`.
+
+Serving: engine_commit `abf822585`; binary_sha256 `e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e`; served_model `{"object": "list", "data": [{"id": "spark", "object": "model", "created": 1793373253, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 90%; total = 4096.00M  us |
+| prefill-off | measured: 2360 tokens 9042.1 tok/s (0.261 s), 9318 tokens 10722.7 tok/s (0.869 s), 37295 tokens 8945.8 tok/s (4.169 s), 148520 tokens 4955.3 tok/s (29.972 s) |
+| prefill-thinking | measured: 2403 tokens 9888.9 tok/s (0.243 s), 9358 tokens 10756.3 tok/s (0.87 s), 37273 tokens 8931.9 tok/s (4.173 s), 148531 tokens 4983.4 tok/s (29.805 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 86%; total = 4096.00M  us |
+
+## 2026-10-30 10:08: run `20261030-100813-prefill`
+
+Plan prefill, done; served as `spark`.
+
+Serving: engine_commit `abf822585`; binary_sha256 `e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e`; served_model `{"object": "list", "data": [{"id": "spark", "object": "model", "created": 1793372901, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 90%; total = 4096.00M  us |
+| prefill-off | measured: 2356 tokens 9096.5 tok/s (0.259 s), 9283 tokens 10832.0 tok/s (0.857 s), 37211 tokens 8955.7 tok/s (4.155 s), 148524 tokens 4943.9 tok/s (30.042 s) |
+| prefill-thinking | measured: 2415 tokens 9433.6 tok/s (0.256 s), 9391 tokens 10683.7 tok/s (0.879 s), 37127 tokens 8858.7 tok/s (4.191 s), 149061 tokens 4925.5 tok/s (30.263 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 86%; total = 4096.00M  us |
+
+## 2026-10-30 10:06: run `20261030-100628-speed`
+
+Plan speed, done; served as `spark`.
+
+Serving: engine_commit `abf822585`; binary_sha256 `e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e`; served_model `{"object": "list", "data": [{"id": "spark", "object": "model", "created": 1793372796, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 104.6 (104.6) | 104.6 (104.6) | 105.1 (105.1) | 105.1 (105.1) | 0.05-0.07 s |
+| 2 | 187.3 (93.6) | 177.4 (88.7) | 188.0 (94.0) | 186.8 (93.4) | 0.08-0.11 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 9.58 | 12 |
+| 2 | 1.009 | 0.032 | 15% | 10.92 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 105.3 (105.3) | 105.2 (105.2) | 105.1 (105.1) | 105.1 (105.1) | 0.05-0.07 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 9.56 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 90%; total = 4096.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5499 of 5624; ttft resumed 0.068s, cold 0.577s |
+| memory-busy | measured: mac: System-wide memory free percentage: 90%; total = 4096.00M  us |
+
+## 2026-10-30 10:00: run `20261030-100048-quick`
+
+Plan quick, done; served as `spark`.
+
+Serving: engine_commit `abf822585`; binary_sha256 `e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e`; served_model `{"object": "list", "data": [{"id": "spark", "object": "model", "created": 1793372456, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 105.5 (105.5) | 105.1 (105.1) | 105.1 (105.1) | 104.7 (104.7) | 0.05-0.07 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 9.56 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 105.1 (105.1) | 105.1 (105.1) | 105.1 (105.1) | 105.0 (105.0) | 0.05-0.07 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 9.56 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 7/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 90%; total = 4096.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5499 of 5624; ttft resumed 0.066s, cold 0.586s |
 
 ## 2026-10-25 17:21: run `20261025-172137-quick`
 

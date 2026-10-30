@@ -1,5 +1,5 @@
 # Spark-X2.6-4B (XHToken, model_type spark2_5) converted to MLX affine 8-bit (tools/zig/spark25_convert.py --bits 8), on one 256 GB M5 Ultra Mac, TensorFold native Metal
-# with the spark2_5 family's Metal port (github.com/BobClawblaw/TensorFold branch spark25-metal): the server is a plain
+# with the spark2_5 family on TensorFold main (github.com/ashhart/TensorFold): the server is a plain
 # process, its output stamped with Unix seconds for server_log. The quality suite and ruler are the qwen Spark recipe's,
 # from a local checkout (suite_dir). Machine-specific values go in spark-x26-4b-8bit-m5.local.toml (git-ignored).
 name = "spark-x26-4b-8bit-m5"

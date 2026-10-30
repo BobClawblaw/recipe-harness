@@ -569,6 +569,575 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Spark-X2.6-4B MLX affine 8-bit (a lossy conversion of the release), TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+  },
+  {
+   "run": "20261030-101706-quick",
+   "target": "spark-x26-4b-8bit-m5",
+   "model": "spark",
+   "plan": "quick",
+   "started": "20261030-101706",
+   "finished": "20261030-102058",
+   "status": "done",
+   "identity": {
+    "engine_commit": "abf822585",
+    "binary_sha256": "e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"spark\", \"object\": \"model\", \"created\": 1793373434, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"high\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 165.3,
+      "per_stream": 165.3,
+      "ttft": 0.036
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 165.6,
+      "per_stream": 165.6,
+      "ttft": 0.037
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 165.7,
+      "per_stream": 165.7,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 165.8,
+      "per_stream": 165.8,
+      "ttft": 0.055
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 165.6,
+      "per_stream": 165.6,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 165.9,
+      "per_stream": 165.9,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 165.9,
+      "per_stream": 165.9,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 165.6,
+      "per_stream": 165.6,
+      "ttft": 0.054
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 501,
+      "cached": 0,
+      "tokens": 2550,
+      "rounds": 2538,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 6.07
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 6131,
+      "cached": 0,
+      "tokens": 2591,
+      "rounds": 2577,
+      "accepted": 1,
+      "proposed": 15,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.006,
+      "accept_rate": 0.067,
+      "ms_a_round": 6.07
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 93%\ntotal = 3072.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 165.3/165.6/165.7/165.8 ttft 0.04-0.05s; engine: c=1 1.00 tokens a round, 6.1 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5499 of 5630; ttft resumed 0.049s, cold 0.648s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 165.6/165.9/165.9/165.6 ttft 0.04-0.05s; engine: c=1 1.00 tokens a round 7% accepted, 6.1 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Spark-X2.6-4B MLX affine 8-bit (a lossy conversion of the release), TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+  },
+  {
+   "run": "20261030-102058-speed",
+   "target": "spark-x26-4b-8bit-m5",
+   "model": "spark",
+   "plan": "speed",
+   "started": "20261030-102058",
+   "finished": "20261030-102210",
+   "status": "done",
+   "identity": {
+    "engine_commit": "abf822585",
+    "binary_sha256": "e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"spark\", \"object\": \"model\", \"created\": 1793373666, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"high\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 166.4,
+      "per_stream": 166.4,
+      "ttft": 0.037
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 166.3,
+      "per_stream": 166.3,
+      "ttft": 0.036
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 166.2,
+      "per_stream": 166.2,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 166.2,
+      "per_stream": 166.2,
+      "ttft": 0.054
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 265.2,
+      "per_stream": 132.6,
+      "ttft": 0.053
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 258.6,
+      "per_stream": 129.3,
+      "ttft": 0.054
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 268.6,
+      "per_stream": 134.3,
+      "ttft": 0.055
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 263.6,
+      "per_stream": 131.8,
+      "ttft": 0.081
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 165.9,
+      "per_stream": 165.9,
+      "ttft": 0.037
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 165.7,
+      "per_stream": 165.7,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 165.6,
+      "per_stream": 165.6,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 166.1,
+      "per_stream": 166.1,
+      "ttft": 0.055
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 501,
+      "cached": 0,
+      "tokens": 2550,
+      "rounds": 2538,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 6.04
+     },
+     "2": {
+      "requests": 26,
+      "prompt": 1049,
+      "cached": 0,
+      "tokens": 5538,
+      "rounds": 5485,
+      "accepted": 27,
+      "proposed": 180,
+      "tokens_a_round": 1.01,
+      "drafts_a_round": 0.033,
+      "accept_rate": 0.15,
+      "ms_a_round": 7.65
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 6131,
+      "cached": 0,
+      "tokens": 2591,
+      "rounds": 2577,
+      "accepted": 1,
+      "proposed": 15,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.006,
+      "accept_rate": 0.067,
+      "ms_a_round": 6.06
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 92%\ntotal = 3072.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 166.4/166.3/166.2/166.2 ttft 0.04-0.05s; c=2 265.2/258.6/268.6/263.6 ttft 0.05-0.08s; engine: c=1 1.00 tokens a round, 6.0 ms a round; c=2 1.01 tokens a round 15% accepted, 7.7 ms a round"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5499 of 5630; ttft resumed 0.052s, cold 0.642s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 165.9/165.7/165.6/166.1 ttft 0.04-0.05s; engine: c=1 1.00 tokens a round 7% accepted, 6.1 ms a round"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 92%\ntotal = 3072.00M  us"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Spark-X2.6-4B MLX affine 8-bit (a lossy conversion of the release), TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+  },
+  {
+   "run": "20261030-102210-prefill",
+   "target": "spark-x26-4b-8bit-m5",
+   "model": "spark",
+   "plan": "prefill",
+   "started": "20261030-102210",
+   "finished": "20261030-102336",
+   "status": "done",
+   "identity": {
+    "engine_commit": "abf822585",
+    "binary_sha256": "e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"spark\", \"object\": \"model\", \"created\": 1793373738, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"high\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 92%\ntotal = 3072.00M  us"
+    },
+    "prefill-off": {
+     "ok": null,
+     "summary": "2337 tokens 8258.0 tok/s (0.283 s), 9396 tokens 9266.3 tok/s (1.014 s), 37247 tokens 7766.3 tok/s (4.796 s), 148571 tokens 4576.5 tok/s (32.464 s)"
+    },
+    "prefill-thinking": {
+     "ok": null,
+     "summary": "2416 tokens 8628.6 tok/s (0.28 s), 9363 tokens 9161.4 tok/s (1.022 s), 37194 tokens 7705.4 tok/s (4.827 s), 148570 tokens 4520.1 tok/s (32.869 s)"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 88%\ntotal = 3072.00M  us"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Spark-X2.6-4B MLX affine 8-bit (a lossy conversion of the release), TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
+  },
+  {
+   "run": "20261030-102337-mlx-speed",
+   "target": "spark-x26-4b-8bit-m5",
+   "model": "spark",
+   "plan": "mlx-speed",
+   "started": "20261030-102337",
+   "finished": "20261030-102445",
+   "status": "done",
+   "identity": {
+    "engine_commit": "abf822585",
+    "binary_sha256": "e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"spark\", \"object\": \"model\", \"created\": 1793373817, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"high\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-streams": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 165.8,
+      "per_stream": 165.8,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 165.9,
+      "per_stream": 165.9,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 165.9,
+      "per_stream": 165.9,
+      "ttft": 0.038
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 165.7,
+      "per_stream": 165.7,
+      "ttft": 0.055
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 261.7,
+      "per_stream": 130.9,
+      "ttft": 0.054
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 259.2,
+      "per_stream": 129.6,
+      "ttft": 0.055
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 267.9,
+      "per_stream": 133.9,
+      "ttft": 0.057
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 263.3,
+      "per_stream": 131.6,
+      "ttft": 0.082
+     },
+     {
+      "c": 4,
+      "phase": "prose",
+      "agg": 366.5,
+      "per_stream": 91.2,
+      "ttft": 0.091
+     },
+     {
+      "c": 4,
+      "phase": "code",
+      "agg": 353.4,
+      "per_stream": 88.4,
+      "ttft": 0.094
+     },
+     {
+      "c": 4,
+      "phase": "structured",
+      "agg": 368.0,
+      "per_stream": 92.1,
+      "ttft": 0.093
+     },
+     {
+      "c": 4,
+      "phase": "list",
+      "agg": 362.5,
+      "per_stream": 90.2,
+      "ttft": 0.134
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-streams": {
+     "1": {
+      "requests": 13,
+      "prompt": 149071,
+      "cached": 0,
+      "tokens": 2558,
+      "rounds": 2545,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 6.06
+     },
+     "2": {
+      "requests": 25,
+      "prompt": 1018,
+      "cached": 0,
+      "tokens": 5316,
+      "rounds": 5264,
+      "accepted": 27,
+      "proposed": 180,
+      "tokens_a_round": 1.01,
+      "drafts_a_round": 0.034,
+      "accept_rate": 0.15,
+      "ms_a_round": 7.68
+     },
+     "4": {
+      "requests": 50,
+      "prompt": 2040,
+      "cached": 0,
+      "tokens": 10745,
+      "rounds": 10662,
+      "accepted": 33,
+      "proposed": 225,
+      "tokens_a_round": 1.008,
+      "drafts_a_round": 0.021,
+      "accept_rate": 0.147,
+      "ms_a_round": 11.13
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 89%\ntotal = 3072.00M  us"
+    },
+    "ruler-streams": {
+     "ok": null,
+     "summary": "c=1 165.8/165.9/165.9/165.7 ttft 0.04-0.06s; c=2 261.7/259.2/267.9/263.3 ttft 0.05-0.08s; c=4 366.5/353.4/368.0/362.5 ttft 0.09-0.13s; engine: c=1 1.00 tokens a round, 6.1 ms a round; c=2 1.01 tokens a round 15% accepted, 7.7 ms a round; c=4 1.01 tokens a round 15% accepted, 11.1 ms a round"
+    }
+   },
+   "model_name": "Spark-X2.6-4B, MLX 8-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Spark-X2.6-4B MLX affine 8-bit (a lossy conversion of the release), TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams)"
   }
  ]
 }

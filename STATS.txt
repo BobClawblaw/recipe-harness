@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-10-30 12:46 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-30 15:26 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -53,10 +53,10 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   Qwen3.8-Flash-Next, 6-bit with vision  1x Apple M5 Ultra (256 GB unified), macOS  142/210/173/206  2: 198/262/222/272  0.11 / 0.17-0.19    2026-10-17
   Qwen3.8-Flash-Next, MLX 6-bit  1x Apple M5 Ultra (256 GB unified), macOS  145/206/172/194  4: 566/816/673/854  0.09 / 1.63-3.07  gsm8k 242/250, ifeval 134/150  2026-10-11
   Recursive Flint 40B-A2.5B, MLX INT4 (g64)  1x Apple M5 Ultra (256 GB unified), macOS  184/179/194/181    0.03    2026-10-28
-  Spark-X2.6-4B, MLX 8-bit  1x Apple M5 Ultra (256 GB unified), macOS  167/167/167/167  4: 368/355/370/364  0.03 / 0.09-0.13    2026-10-25
+  Spark-X2.6-4B, MLX 8-bit  1x Apple M5 Ultra (256 GB unified), macOS  166/166/166/166  4: 366/353/368/362  0.04 / 0.09-0.13    2026-10-30
   Spark-X2.6-4B, MLX 8-bit  1x NVIDIA RTX 4090 (24 GB), Windows  146/144/147/146  4: 548/547/552/550  0.03 / 0.07-0.07  tools 53/60, json 30/30, gsm8k 232/250, humaneval 0/0, ifeval 117/150  2026-10-25
   Spark-X2.6-4B, MLX 8-bit  1x NVIDIA RTX 5090 (32 GB)  199/191/203/204  4: 716/709/726/729  0.03 / 0.06-0.06    2026-10-26
-  Spark-X2.6-4B, bf16  1x Apple M5 Ultra (256 GB unified), macOS  106/106/106/106    0.05    2026-10-25
+  Spark-X2.6-4B, bf16  1x Apple M5 Ultra (256 GB unified), macOS  106/105/105/105  4: 318/294/320/314  0.06 / 0.13-0.17    2026-10-30
   Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP  1x Apple M5 Ultra (256 GB unified), macOS  38/50/40/48    0.24    2026-10-16
   qwen38-27b  ?  150/230/168/185    0.10    2026-10-16
   qwen38-27b  ?  211/398/268/250    0.10    2026-10-16
@@ -2247,35 +2247,38 @@ history
 Spark-X2.6-4B, MLX 8-bit on 1x Apple M5 Ultra (256 GB unified), macOS
 ---------------------------------------------------------------------
 
-Target spark-x26-4b-8bit-m5: Spark-X2.6-4B MLX affine 8-bit (a lossy conversion of the release), TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal; served as spark. Latest: run 20261025-180037-mlx-speed (2026-10-25 18:00, plan mlx-speed, done).
+Target spark-x26-4b-8bit-m5: Spark-X2.6-4B MLX affine 8-bit (a lossy conversion of the release), TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal; served as spark. Latest: run 20261030-102337-mlx-speed (2026-10-30 10:23, plan mlx-speed, done).
 
-Serving: engine_commit cc840195e; binary_sha256 5a20c6f0cb2289384f0deda99840d9acc01d10766beea0cfb1d1de78e938be46; served_model {"object": "list", "data": [{"id": "spark", "object": "model", "created": 1792969237, "own; chip Apple M5 Ultra; 274877906944; suite_commit 277c842a1481
+Serving: engine_commit abf822585; binary_sha256 e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e; served_model {"object": "list", "data": [{"id": "spark", "object": "model", "created": 1793373817, "own; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
 
 ruler-streams
 -------------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  167.1 (167.1)  167.0 (167.0)  166.9 (166.9)  167.1 (167.1)  0.03-0.05 s
-  2  267.6 (133.8)  260.8 (130.4)  272.0 (136.0)  265.4 (132.7)  0.05-0.08 s
-  4  368.3 (92.1)  354.6 (88.6)  369.6 (93.3)  364.3 (90.5)  0.09-0.13 s
+  1  165.8 (165.8)  165.9 (165.9)  165.9 (165.9)  165.7 (165.7)  0.04-0.06 s
+  2  261.7 (130.9)  259.2 (129.6)  267.9 (133.9)  263.3 (131.6)  0.05-0.08 s
+  4  366.5 (91.2)  353.4 (88.4)  368.0 (92.1)  362.5 (90.2)  0.09-0.13 s
 
 Engine rounds (ruler-streams):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.005  0.0    6.02  12
-  2  1.01  0.034  15%  7.58  25
-  4  1.008  0.021  15%  11.06  50
+  1  1.005  0.0    6.06  13
+  2  1.01  0.034  15%  7.68  25
+  4  1.008  0.021  15%  11.13  50
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 93%; total = 3072.00M  us
+  memory-idle  measured: mac: System-wide memory free percentage: 89%; total = 3072.00M  us
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-30 10:23  mlx-speed  done  165.9      
+  2026-10-30 10:20  speed  done  166.3      
+  2026-10-30 10:17  quick  done  165.6      114/114
   2026-10-25 18:00  mlx-speed  done  167.0      
   2026-10-25 17:57  speed  done  166.6      
   2026-10-25 17:54  quick  done  167.7      114/114
@@ -2283,60 +2286,38 @@ history
 Spark-X2.6-4B, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 ----------------------------------------------------------------
 
-Target spark-x26-4b-m5: Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal; served as spark. Latest: run 20261025-172137-quick (2026-10-25 17:21, plan quick, done).
+Target spark-x26-4b-m5: Spark-X2.6-4B bf16 as released, TensorFold native Metal (spark2_5) on one M5 Ultra (262144-token window, 4 streams). Engine: TensorFold native, Metal; served as spark. Latest: run 20261030-101524-mlx-speed (2026-10-30 10:15, plan mlx-speed, done).
 
-Serving: engine_commit cc840195e; binary_sha256 5a20c6f0cb2289384f0deda99840d9acc01d10766beea0cfb1d1de78e938be46; served_model {"object": "list", "data": [{"id": "spark", "object": "model", "created": 1792966905, "own; chip Apple M5 Ultra; 274877906944; suite_commit 277c842a1481
+Serving: engine_commit abf822585; binary_sha256 e247c861a8095bc38f326a3741ee88854b32e3ec23235a1e6bb4fb08bb75276e; served_model {"object": "list", "data": [{"id": "spark", "object": "model", "created": 1793373324, "own; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
 
-ruler-fresh
------------
-
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  106.0 (106.0)  106.1 (106.1)  106.1 (106.1)  106.0 (106.0)  0.05-0.07 s
-
-Engine rounds (ruler-fresh):
-
-  streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.005  0.0    9.47  12
-
-ruler-after
------------
+ruler-streams
+-------------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  105.7 (105.7)  105.7 (105.7)  105.5 (105.5)  105.3 (105.3)  0.05-0.07 s
+  1  105.6 (105.6)  104.7 (104.7)  104.6 (104.6)  105.0 (105.0)  0.06-0.07 s
+  2  186.8 (93.4)  176.4 (88.2)  186.9 (93.4)  183.7 (91.9)  0.08-0.10 s
+  4  317.9 (79.9)  293.6 (73.3)  320.5 (80.5)  313.5 (78.2)  0.13-0.17 s
 
-Engine rounds (ruler-after):
+Engine rounds (ruler-streams):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.005  0.0    9.52  13
-
-suite
------
-
-  check  passed
-  soak  60/60
-  drafts  12/12
-  concurrent  12/12
-  streaming  4/4
-  multiturn  7/8
-  stop  3/3
-  thinking  10/10
-  copy  2/2
-  max-tokens  3/3
+  1  1.005  0.0    9.57  13
+  2  1.009  0.032  15%  11.0  25
+  4  1.008  0.024  12%  12.93  50
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 90%; total = 3072.00M  us
-  structured  pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400
-  tools  pass: 5/5 tool cases right
-  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors
-  turns  pass: resumed == again: True; cold (after a restart): True; cached 5499 of 5624; ttft resumed 0.066s, cold 0.59s
+  memory-idle  measured: mac: System-wide memory free percentage: 88%; total = 4096.00M  us
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-10-30 10:15  mlx-speed  done  104.7      
+  2026-10-30 10:06  speed  done  104.6      
+  2026-10-30 10:00  quick  done  105.1      113/114
   2026-10-25 17:21  quick  done  106.1      113/114
   2026-10-25 17:04  mlx-speed  done  105.3      
   2026-10-25 16:22  speed  done  106.0      
