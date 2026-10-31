@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-10-31 13:08 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-10-31 21:01 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -43,6 +43,8 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Nanbeige4.3-33B, affine 4bit | 1x Apple M5 Ultra (256 GB unified), macOS | 48/48/49/49 | 2: 85/81/84/85 | 0.10 / 0.16-0.18 |  | 2026-10-26 |
 | Nanbeige4.3-33B, affine 8bit | 1x Apple M5 Ultra (256 GB unified), macOS | 29/28/29/29 | 2: 54/52/53/54 | 0.13 / 0.19-0.23 |  | 2026-10-26 |
 | Nanbeige4.3-33B, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 16/16/16/16 | 2: 32/28/31/32 | 0.23 / 0.34-0.39 |  | 2026-10-28 |
+| Nanbeige4.3-33B-INT4 (QAT int4 g32), drafted by Nanbeige4.1-3B bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 86/79/76/71 |  | 0.28 |  | 2026-10-31 |
+| Nanbeige4.3-33B-INT4, int4 g32 (QAT) | 1x Apple M5 Ultra (256 GB unified), macOS | 43/42/43/41 | 2: 75/53/67/75 | 0.27 / 0.41-0.45 |  | 2026-10-31 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 130/194/164/201 | 4: 229/348/298/353 | 0.05 / 0.13-0.17 |  | 2026-10-31 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64), YaRN x4 to 1M context | 1x Apple M5 Ultra (256 GB unified), macOS | 78/161/106/111 | 4: 447/774/555/871 | 0.06 / 1.58-3.32 | gsm8k 247/250 | 2026-10-26 |
@@ -1342,6 +1344,121 @@ Engine rounds (ruler-after):
 | 2026-10-26 12:17 | speed | done | 111.0 |  |  |  |
 | 2026-10-26 11:52 | quick | done | 108.6 |  |  | 114/114 |
 | 2026-10-26 11:21 | quick | done | 102.5 |  |  | 57/60 |
+
+## Nanbeige4.3-33B-INT4, int4 g32 (QAT) on 1x Apple M5 Ultra (256 GB unified), macOS
+
+Target `nanbeige43-33b-int4-m5`: Nanbeige4.3-33B-INT4 as released (QAT int4 g32), TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams). Engine: TensorFold native, Metal; served as `nanbeige`. Latest: run `20261031-140344-speed` (2026-10-31 14:03, plan speed, done).
+
+Serving: engine_commit `a110eeee6`; binary_sha256 `e06dd8097c8bf9a9e6b8ec006c1d516182bf034c8c60ccd4fcb1048833a93741`; served_model `{"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793473432, "`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 42.8 (42.8) | 42.0 (42.0) | 42.9 (42.9) | 41.4 (41.4) | 0.27-0.30 s |
+| 2 | 74.6 (37.3) | 53.4 (26.7) | 66.6 (33.3) | 74.7 (37.4) | 0.41-0.45 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.017 | 0% | 23.75 | 12 |
+| 2 | 1.023 | 0.059 | 30% | 30.38 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 43.0 (43.0) | 42.1 (42.1) | 43.0 (43.0) | 43.0 (43.0) | 0.27-0.30 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.01 | 0.023 | 23% | 23.61 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 85%; total = 1024.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.392s, cold 4.584s |
+| memory-busy | measured: mac: System-wide memory free percentage: 86%; total = 1024.00M  us |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-31 14:03 | speed | done | 42.0 |  |  |  |
+| 2026-10-31 13:44 | quick | done | 42.0 |  |  | 114/114 |
+| 2026-10-31 11:48 | speed | done | 41.4 |  |  |  |
+| 2026-10-31 11:03 | quick | done | 40.8 |  |  | 114/114 |
+
+## Nanbeige4.3-33B-INT4 (QAT int4 g32), drafted by Nanbeige4.1-3B bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
+
+Target `nanbeige43-33b-int4draft-m5`: Nanbeige4.3-33B-INT4 (QAT int4 g32) with Nanbeige4.1-3B bf16 drafting, TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams, every stream drafted). Engine: TensorFold native, Metal; served as `nanbeige`. Latest: run `20261031-153643-quick` (2026-10-31 15:36, plan quick, done).
+
+Serving: engine_commit `2c8196497`; binary_sha256 `9e06644be12d49178b6cb79502ad14a36b3449ff2bdc77e2c19571c9164ee347`; served_model `{"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793479016, "`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 85.9 (85.9) | 79.1 (79.1) | 76.1 (76.1) | 70.7 (70.7) | 0.28-0.33 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.181 | 1.276 | 92% | 27.98 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 79.5 (79.5) | 80.7 (80.7) | 79.5 (79.5) | 73.8 (73.8) | 0.27-0.32 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.007 | 1.09 | 91% | 25.61 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 82%; total = 1024.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.425s, cold 4.946s |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-10-31 15:36 | quick | done | 79.1 |  |  | 114/114 |
+| 2026-10-31 15:01 | quick | done | 76.8 |  |  | 114/114 |
+| 2026-10-31 14:27 | speed | done | 79.6 |  |  |  |
+| 2026-10-31 14:11 | quick | done | 80.9 |  |  | 114/114 |
+| 2026-10-31 12:19 | speed | done | 80.7 |  |  |  |
+| 2026-10-31 11:57 | speed | done | 80.7 |  |  |  |
+| 2026-10-31 11:25 | quick | done | 77.4 |  |  | 114/114 |
 
 ## Nanbeige4.3-33B, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
