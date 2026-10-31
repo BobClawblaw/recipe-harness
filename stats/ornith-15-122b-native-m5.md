@@ -1,6 +1,105 @@
 # Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (63 runs); aggregate tok/s, total (a stream).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (66 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-31 04:51: run `20261031-045144-quick`
+
+Plan quick, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `a410eb56`; binary_sha256 `462b6a0c6d60b2743eb88fdbf0db93a560155a8cf3919ac4f694d1fc9fe156e7`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179344`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 94.0 (94.0) | 157.7 (157.7) | 133.3 (133.3) | 150.0 (150.0) | 0.05-0.07 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 93.8 (93.8) | 157.2 (157.2) | 132.9 (132.9) | 149.6 (149.6) | 0.05-0.07 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 59%; total = 0.00M  used |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | FAIL: 4/5 tool cases right; failed named/thinking (calls ['book_flight', 'book_flight']) |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5624 of 5643; ttft resumed 0.067s, cold 2.64s |
+| urls | pass: public 200; loopback 400; http 400 |
+
+## 2026-10-31 04:49: run `20261031-044951-glm-vision`
+
+Plan glm-vision, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `078e2247`; binary_sha256 `77350f1c4ffaba29a2faf620a707e3ddd49b2f31442a879f2ccced6eab0f0b98`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179344`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### suite-vision
+
+| check | passed |
+|---|---:|
+| vision | 4/6 |
+| vision-concurrent | 16/16 |
+
+## 2026-10-31 04:44: run `20261031-044438-quick`
+
+Plan quick, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `078e2247`; binary_sha256 `77350f1c4ffaba29a2faf620a707e3ddd49b2f31442a879f2ccced6eab0f0b98`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179343`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 132.5 (132.5) | 189.6 (189.6) | 164.7 (164.7) | 198.7 (198.7) | 0.06-0.07 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 132.1 (132.1) | 190.3 (190.3) | 163.3 (163.3) | 197.3 (197.3) | 0.05-0.07 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 59%; total = 0.00M  used |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | FAIL: 4/5 tool cases right; failed named/thinking (calls ['book_flight', 'book_flight']) |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5625 of 5643; ttft resumed 0.066s, cold 2.652s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
 
 ## 2026-10-30 07:45: run `20261030-074547-glm-vision`
 
