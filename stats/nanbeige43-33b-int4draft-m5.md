@@ -1,6 +1,115 @@
 # Nanbeige4.3-33B-INT4 (QAT int4 g32), drafted by Nanbeige4.1-3B bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `nanbeige43-33b-int4draft-m5`: Nanbeige4.3-33B-INT4 (QAT int4 g32) with Nanbeige4.1-3B bf16 drafting, TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams, every stream drafted). Engine: TensorFold native, Metal. Rendered from `stats/nanbeige43-33b-int4draft-m5.json` (11 runs); aggregate tok/s, total (a stream).
+Target `nanbeige43-33b-int4draft-m5`: Nanbeige4.3-33B-INT4 (QAT int4 g32) with Nanbeige4.1-3B bf16 drafting, TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams, every stream drafted). Engine: TensorFold native, Metal. Rendered from `stats/nanbeige43-33b-int4draft-m5.json` (14 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-31 17:40: run `20261031-174034-quick`
+
+Plan quick, done; served as `nanbeige`.
+
+Serving: engine_commit `d8ba67903`; binary_sha256 `0f0997808e0e94760608966df4b23df55d62ac709457c5c2835f32309be010bb`; served_model `{"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793486442, "`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 87.5 (87.5) | 87.0 (87.0) | 88.2 (88.2) | 85.6 (85.6) | 0.27-0.30 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.993 | 1.081 | 91% | 22.89 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 87.5 (87.5) | 87.2 (87.2) | 88.2 (88.2) | 88.2 (88.2) | 0.27-0.30 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.002 | 1.087 | 91% | 22.81 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 84%; total = 1024.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.407s, cold 4.584s |
+
+## 2026-10-31 17:34: run `20261031-173400-prefill-64k`
+
+Plan prefill-64k, done; served as `nanbeige`.
+
+Serving: engine_commit `d8ba67903`; binary_sha256 `0f0997808e0e94760608966df4b23df55d62ac709457c5c2835f32309be010bb`; served_model `{"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793486048, "`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 84%; total = 1024.00M  us |
+| prefill-off | measured: 2110 tokens 1182.7 tok/s (1.784 s), 8251 tokens 1247.3 tok/s (6.615 s), 32830 tokens 1032.7 tok/s (31.791 s), 61499 tokens 841.2 tok/s (73.112 s) |
+| prefill-thinking | measured: 2107 tokens 1181.1 tok/s (1.784 s), 8249 tokens 1248.1 tok/s (6.609 s), 32825 tokens 1036.1 tok/s (31.682 s), 61496 tokens 841.7 tok/s (73.066 s) |
+| memory-busy | measured: mac: System-wide memory free percentage: 78%; total = 1024.00M  us |
+
+## 2026-10-31 17:30: run `20261031-173055-speed`
+
+Plan speed, done; served as `nanbeige`.
+
+Serving: engine_commit `d8ba67903`; binary_sha256 `0f0997808e0e94760608966df4b23df55d62ac709457c5c2835f32309be010bb`; served_model `{"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793485863, "`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 87.7 (87.7) | 87.1 (87.1) | 88.4 (88.4) | 88.2 (88.2) | 0.27-0.30 s |
+| 2 | 82.2 (41.1) | 82.4 (41.2) | 81.4 (40.7) | 82.4 (41.2) | 0.40-0.45 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.992 | 1.078 | 91% | 22.67 | 12 |
+| 2 | 1.031 | 0.027 | 99% | 25.12 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 88.6 (88.6) | 87.4 (87.4) | 88.5 (88.5) | 88.1 (88.1) | 0.27-0.30 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.008 | 1.088 | 92% | 22.78 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 84%; total = 1024.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.39s, cold 4.587s |
+| memory-busy | measured: mac: System-wide memory free percentage: 83%; total = 1024.00M  us |
 
 ## 2026-10-31 15:57: run `20261031-155737-ab-tools-turns`
 
