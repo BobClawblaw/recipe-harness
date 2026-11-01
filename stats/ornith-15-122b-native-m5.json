@@ -6850,6 +6850,140 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261031-190646-speed",
+   "target": "ornith-15-122b-native-m5",
+   "model": "Ornith-1.5-122B",
+   "plan": "speed",
+   "started": "20261031-190646",
+   "finished": "20261031-190752",
+   "status": "done",
+   "identity": {
+    "engine_commit": "078e2247",
+    "binary_sha256": "77350f1c4ffaba29a2faf620a707e3ddd49b2f31442a879f2ccced6eab0f0b98",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Ornith-1.5-122B\", \"object\": \"model\", \"created\": 1793491606, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 133.9,
+      "per_stream": 133.9,
+      "ttft": 0.063
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 192.7,
+      "per_stream": 192.7,
+      "ttft": 0.065
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 165.3,
+      "per_stream": 165.3,
+      "ttft": 0.069
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 203.8,
+      "per_stream": 203.8,
+      "ttft": 0.052
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 183.8,
+      "per_stream": 91.9,
+      "ttft": 0.092
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 289.0,
+      "per_stream": 144.5,
+      "ttft": 0.09
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 221.7,
+      "per_stream": 110.9,
+      "ttft": 0.102
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 308.7,
+      "per_stream": 154.4,
+      "ttft": 0.077
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 131.7,
+      "per_stream": 131.7,
+      "ttft": 0.059
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 195.5,
+      "per_stream": 195.5,
+      "ttft": 0.063
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 163.0,
+      "per_stream": 163.0,
+      "ttft": 0.067
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 204.0,
+      "per_stream": 204.0,
+      "ttft": 0.051
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 59%\ntotal = 1024.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 133.9/192.7/165.3/203.8 ttft 0.05-0.07s; c=2 183.8/289.0/221.7/308.7 ttft 0.08-0.10s"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (padded): True; cached 5625 of 5643; ttft resumed 0.067s, cold 0.056s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 131.7/195.5/163.0/204.0 ttft 0.05-0.07s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 56%\ntotal = 1024.00M  us"
+    }
+   },
+   "model_name": "Ornith-1.5-122B, 4-bit MLX affine (g64)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra"
   }
  ]
 }

@@ -1,6 +1,33 @@
 # Ornith-1.5-122B, 4-bit MLX affine (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (70 runs); aggregate tok/s, total (a stream).
+Target `ornith-15-122b-native-m5`: Ornith-1.5-122B, 4-bit MLX affine, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ornith-15-122b-native-m5.json` (71 runs); aggregate tok/s, total (a stream).
+
+## 2026-10-31 19:06: run `20261031-190646-speed`
+
+Plan speed, done; served as `Ornith-1.5-122B`.
+
+Serving: engine_commit `078e2247`; binary_sha256 `77350f1c4ffaba29a2faf620a707e3ddd49b2f31442a879f2ccced6eab0f0b98`; served_model `{"object": "list", "data": [{"id": "Ornith-1.5-122B", "object": "model", "created": 179349`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 133.9 (133.9) | 192.7 (192.7) | 165.3 (165.3) | 203.8 (203.8) | 0.05-0.07 s |
+| 2 | 183.8 (91.9) | 289.0 (144.5) | 221.7 (110.9) | 308.7 (154.4) | 0.08-0.10 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 131.7 (131.7) | 195.5 (195.5) | 163.0 (163.0) | 204.0 (204.0) | 0.05-0.07 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 59%; total = 1024.00M  us |
+| turns | pass: resumed == again: True; cold (padded): True; cached 5625 of 5643; ttft resumed 0.067s, cold 0.056s |
+| memory-busy | measured: mac: System-wide memory free percentage: 56%; total = 1024.00M  us |
 
 ## 2026-10-31 05:19: run `20261031-051952-glm-vision`
 
