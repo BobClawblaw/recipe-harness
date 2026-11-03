@@ -36,6 +36,42 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream)"
+  },
+  {
+   "run": "20261103-152737-ocr",
+   "target": "unlimited-ocr-2-m5",
+   "model": "Unlimited-OCR-2",
+   "plan": "ocr",
+   "started": "20261103-152737",
+   "finished": "20261103-153031",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c94b385e8",
+    "binary_sha256": "35971dfd7d88b48d2dfc901cedb5b0b61c0d5f6f9580b92c0906cfc81de40b19",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Unlimited-OCR-2\", \"object\": \"model\", \"created\": 1793741265, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072}]}",
+    "chip": "Apple M5 Ultra\n274877906944"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 43%"
+    },
+    "ocr": {
+     "ok": true,
+     "summary": "6/6 cases answered; decode 214-249 tok/s, first token 0.84-4.08 s; 2 at once 102-217 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10)"
+    },
+    "memory-after": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 37%"
+    }
+   },
+   "model_name": "Unlimited-OCR-2, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream)"
   }
  ]
 }

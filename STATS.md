@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-03 21:23 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-03 21:30 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -2499,22 +2499,23 @@ Engine rounds (ruler-fresh):
 
 ## Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal; served as `Unlimited-OCR-2`. Latest: run `20261103-151950-ocr` (2026-11-03 15:19, plan ocr, done).
+Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal; served as `Unlimited-OCR-2`. Latest: run `20261103-152737-ocr` (2026-11-03 15:27, plan ocr, done).
 
-Serving: engine_commit `b2553e5f9`; binary_sha256 `2a2173f5c64a844fcb34acda6e9d1e631afefb3ffa9b111e005fb4f021936824`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179374`; chip `Apple M5 Ultra; 274877906944`
+Serving: engine_commit `c94b385e8`; binary_sha256 `35971dfd7d88b48d2dfc901cedb5b0b61c0d5f6f9580b92c0906cfc81de40b19`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179374`; chip `Apple M5 Ultra; 274877906944`
 
 ### checks
 
 | check | result |
 |---|---|
 | memory-idle | measured: mac: System-wide memory free percentage: 43% |
-| ocr | pass: 6/6 cases answered; decode 213-246 tok/s, first token 0.83-4.10 s; 2 at once 102-217 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
+| ocr | pass: 6/6 cases answered; decode 214-249 tok/s, first token 0.84-4.08 s; 2 at once 102-217 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
 | memory-after | measured: mac: System-wide memory free percentage: 37% |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-03 15:27 | ocr | done |  |  |  |  |
 | 2026-11-03 15:19 | ocr | done |  |  |  |  |
 
 ## Served earlier, numbers in their READMEs only

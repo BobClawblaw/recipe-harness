@@ -23,7 +23,7 @@ context = "131072"
 max_pages = "64"
 
 [commands]
-up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c '$engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --chat-template $engine_dir/zig/src/families/uocr/chat_template.jinja --vision --vision-max-images $max_pages --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
+up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c '$engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --max-tokens $context --chat-template $engine_dir/zig/src/families/uocr/chat_template.jinja --vision --vision-max-images $max_pages --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
 # only this target's server on its port
 down = "pkill -f 'tensorfold-native serve [^ ]*Unlimited-OCR-2[^ ]* .*--port $port( |$$)' ; sleep 3"
 status = "pgrep -fl 'tensorfold-native serve [^ ]*Unlimited-OCR-2[^ ]* .*--port $port( |$$)'"
