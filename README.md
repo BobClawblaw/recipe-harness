@@ -65,6 +65,7 @@ aborted or a check failed.
 | `capacity` | N long prompts at once (`streams`, `tokens`), then a short request | the short request succeeds and no request is lost without a reply |
 | `thinking` | the harness's word problems with `enable_thinking: true` | answers right, reasoning in `reasoning_content`, no `<think>` leaks |
 | `memory` | the target's `[[memory]]` commands (`free -b` read as GiB available) | measured |
+| `ocr` | page images (`$ocr_dir/pages/<page>.png`) as chat requests, each case once, again, and as `streams` at once | every reply ends, carries one `<PAGE>` per page, repeats and matches when concurrent; text against `$ocr_dir/refs/<case>.txt` (exact, similarity, text without boxes, box drift) is measured |
 
 Each check writes `<name>.json` (its data) and `<name>.summary.json` (`ok`, a one-line summary, metrics). Targets turn
 off checks they don't serve in `[features]`. A greedy-only engine, for example, skips `sampling`. A skip is logged
@@ -343,3 +344,4 @@ and the check's options).
 | `after-long` | yes | one stream fresh, one greedy 512-token reply on a cold 245k-token prompt, one stream again (a long prompt must leave the short replies after it as fast) |
 | `full` | yes | ruler at 1/4/8/16 streams, the whole suite, the serving checks, ruler at 1 and 16 after them, capacity |
 | `thinking` | no | thinking-on word problems, and the suite's GSM8K with `--thinking` |
+| `ocr` | yes | an OCR model's pages alone and as one document, each repeated and run 2 at once (see the `ocr` check) |
