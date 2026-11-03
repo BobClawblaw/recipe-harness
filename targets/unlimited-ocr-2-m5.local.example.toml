@@ -1,0 +1,7 @@
+# Copy to unlimited-ocr-2-m5.local.toml (git-ignored) and fill in.
+[vars]
+harness_dir = "/path/to/recipe-harness"
+engine_dir = "/path/to/TensorFold"
+model_dir = "/path/to/Unlimited-OCR-2"
+ocr_dir = "/path/to/unlimited-ocr-2-m5-ultra/ocr"
+log_dir = "/path/to/logs"

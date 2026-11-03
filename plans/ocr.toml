@@ -1,0 +1,22 @@
+description = "OCR serving (a few minutes): five pages alone and as one document, each repeated and run as 2 streams at once; speed, page markers, and similarity to the recipe's reference transcriptions"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ocr"
+streams = 2
+cases = [
+  { name = "report-1", pages = ["report-1"] },
+  { name = "report-2", pages = ["report-2"] },
+  { name = "paper-1", pages = ["paper-1"] },
+  { name = "paper-3", pages = ["paper-3"] },
+  { name = "paper-10", pages = ["paper-10"] },
+  { name = "document", pages = ["report-1", "report-2", "paper-1", "paper-3", "paper-10"] },
+]
+
+[[checks]]
+type = "memory"
+name = "memory-after"

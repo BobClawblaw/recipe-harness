@@ -197,13 +197,18 @@ def markdown() -> str:
     return "\n".join(out) + "\n"
 
 
+def _measured(r: dict) -> bool:
+    """A run the report shows: a ruler, a suite, or a model-specific measurement such as the ocr check."""
+    return bool(r.get("rulers") or r.get("suite") or "ocr" in r.get("checks", {}))
+
+
 def _shown() -> list[dict]:
-    return [b for b in _books() if any(r.get("rulers") or r.get("suite") for r in b["runs"])]
+    return [b for b in _books() if any(_measured(r) for r in b["runs"])]
 
 
 def section(b: dict) -> list[str]:
     """One target's part of the report: its latest run's rulers, rounds, suite and checks, then its history."""
-    runs = [r for r in b["runs"] if r.get("rulers") or r.get("suite")]
+    runs = [r for r in b["runs"] if _measured(r)]
     last = runs[-1]
     facts = {**last, **target_facts(b["target"])}
     out = [f"## {facts.get('model_name') or last.get('model')} on {facts.get('hardware') or b['target']}", "",

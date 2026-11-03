@@ -6,7 +6,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from ..config import Target
-from . import capacity, memory, recipe, server, thinking
+from . import capacity, memory, ocr, recipe, server, thinking
 
 REGISTRY = {
     "suite": recipe.suite,
@@ -21,6 +21,7 @@ REGISTRY = {
     "capacity": capacity.run,
     "thinking": thinking.run,
     "memory": memory.run,
+    "ocr": ocr.run,
 }
 
 # a check whose feature the target turns off is skipped (e.g. a greedy-only engine has no sampling)
