@@ -1,0 +1,63 @@
+# Unlimited-OCR-2 (baidu, model_type unlimited-ocr), the bf16 release as published, on one RTX 4080 SUPER (16 GB,
+# Windows 11), TensorFold native CUDA with the unlimited-ocr family (github.com/BobClawblaw/TensorFold branch
+# unlimited-ocr-cuda): page images in, transcriptions out, one request at a time, greedy under the publisher's page
+# guard. The server is the recipe's own launcher (python -m win, github.com/BobClawblaw/unlimited-ocr-2-rtx-4080);
+# its plan is `ocr` (pages and references from the recipe's ocr/ folder). Machine-specific values go in
+# unlimited-ocr-2-4080.local.toml (git-ignored).
+name = "unlimited-ocr-2-4080"
+description = "Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 4080 SUPER (98304-token window, one stream)"
+model_name = "Unlimited-OCR-2, bf16"
+hardware = "1x NVIDIA RTX 4080 SUPER (16 GB), Windows 11"
+engine = "TensorFold native, CUDA"
+url = "http://127.0.0.1:$port"
+model = "Unlimited-OCR-2"
+cwd = "$recipe_dir"
+
+[vars]
+recipe_dir = "CHANGE-ME: the recipe checkout (python -m win runs from it; its local.toml names the engine)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in"
+ocr_dir = "CHANGE-ME: the recipe's ocr/ folder after pages.py and refs.py (pages/ and refs/)"
+port = "8896"
+
+[commands]
+up = "python -m win up"
+down = "python -m win down"
+status = "python -m win status"
+diagnose = "python -m win logs -n 5"
+
+[session]
+up_retries = 1
+up_timeout = 300
+health_wait = 300
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "python -c \"import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())\" $engine_dir/zig-out/native/bin/tensorfold-native.exe"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "gpu"
+cmd = "nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader"
+
+[[memory]]
+name = "gpu"
+cmd = "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader"
+
+[features]
+drafts = false
+structured = false
+sampling = false      # greedy only: the server refuses a temperature
+vision_urls = false
+capacity = false
+max_concurrency = 1
+thinking = false
+prompt_cache = false
+tools = false
