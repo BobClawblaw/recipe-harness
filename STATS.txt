@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-04 01:19 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-04 01:53 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -2546,22 +2546,24 @@ history
 Unlimited-OCR-2, bf16 on 1x NVIDIA GB10 (DGX Spark class, 128 GB unified)
 -------------------------------------------------------------------------
 
-Target unlimited-ocr-2-gb10: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as Unlimited-OCR-2. Latest: run 20261104-004505-ocr-long (2026-11-04 00:45, plan ocr-long, done).
+Target unlimited-ocr-2-gb10: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as Unlimited-OCR-2. Latest: run 20261104-013355-ocr-long (2026-11-04 01:33, plan ocr-long, done).
 
-Serving: engine_commit 115748f2c; binary_sha256 419536e1ecb59adfb89ab0df8aa59905d2e2a27361bd22344ffd31ce692ba592; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179375; gpu NVIDIA GB10, 580.178.04
+Serving: engine_commit 5be83bba7; binary_sha256 2d73ded9d26be6e37ad2243c04db1ad2599c546fba5b17206df264ef1993def7; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179375; gpu NVIDIA GB10, 580.178.04
 
 checks
 ------
 
   check  result
-  memory-idle  measured: server: 15375 MiB; system 98.9 GiB available
-  ocr  pass: 1/1 cases answered; decode 76-76 tok/s, first token 35.34-35.34 s
+  memory-idle  measured: server: 15375 MiB; system 98.7 GiB available
+  ocr  pass: 1/1 cases answered; decode 108-108 tok/s, first token 34.69-34.69 s
   memory-after  measured: server: 15377 MiB; system 98.6 GiB available
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-04 01:33  ocr-long  done        
+  2026-11-04 01:29  ocr  done        
   2026-11-04 00:45  ocr-long  done        
   2026-11-04 00:40  ocr  done        
 

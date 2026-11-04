@@ -72,6 +72,78 @@
    "hardware": "1x NVIDIA GB10 (DGX Spark class, 128 GB unified)",
    "engine": "TensorFold native, CUDA",
    "description": "Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream)"
+  },
+  {
+   "run": "20261104-012902-ocr",
+   "target": "unlimited-ocr-2-gb10",
+   "model": "Unlimited-OCR-2",
+   "plan": "ocr",
+   "started": "20261104-012902",
+   "finished": "20261104-013350",
+   "status": "done",
+   "identity": {
+    "engine_commit": "5be83bba7",
+    "binary_sha256": "2d73ded9d26be6e37ad2243c04db1ad2599c546fba5b17206df264ef1993def7",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Unlimited-OCR-2\", \"object\": \"model\", \"created\": 1793755746, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072}]}",
+    "gpu": "NVIDIA GB10, 580.178.04"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "server: 15375 MiB; system 98.0 GiB available"
+    },
+    "ocr": {
+     "ok": true,
+     "summary": "6/6 cases answered; decode 114-117 tok/s, first token 0.60-2.90 s; 2 at once 79-113 tok/s in all; vs reference: identical 2/6, similarity 0.9960-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 5)"
+    },
+    "memory-after": {
+     "ok": null,
+     "summary": "server: 15377 MiB; system 98.5 GiB available"
+    }
+   },
+   "model_name": "Unlimited-OCR-2, bf16",
+   "hardware": "1x NVIDIA GB10 (DGX Spark class, 128 GB unified)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream)"
+  },
+  {
+   "run": "20261104-013355-ocr-long",
+   "target": "unlimited-ocr-2-gb10",
+   "model": "Unlimited-OCR-2",
+   "plan": "ocr-long",
+   "started": "20261104-013355",
+   "finished": "20261104-015246",
+   "status": "done",
+   "identity": {
+    "engine_commit": "5be83bba7",
+    "binary_sha256": "2d73ded9d26be6e37ad2243c04db1ad2599c546fba5b17206df264ef1993def7",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Unlimited-OCR-2\", \"object\": \"model\", \"created\": 1793756039, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072}]}",
+    "gpu": "NVIDIA GB10, 580.178.04"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "server: 15375 MiB; system 98.7 GiB available"
+    },
+    "ocr": {
+     "ok": true,
+     "summary": "1/1 cases answered; decode 108-108 tok/s, first token 34.69-34.69 s"
+    },
+    "memory-after": {
+     "ok": null,
+     "summary": "server: 15377 MiB; system 98.6 GiB available"
+    }
+   },
+   "model_name": "Unlimited-OCR-2, bf16",
+   "hardware": "1x NVIDIA GB10 (DGX Spark class, 128 GB unified)",
+   "engine": "TensorFold native, CUDA",
+   "description": "Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream)"
   }
  ]
 }

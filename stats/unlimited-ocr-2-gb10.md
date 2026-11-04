@@ -1,6 +1,34 @@
 # Unlimited-OCR-2, bf16 on 1x NVIDIA GB10 (DGX Spark class, 128 GB unified)
 
-Target `unlimited-ocr-2-gb10`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA. Rendered from `stats/unlimited-ocr-2-gb10.json` (2 runs); aggregate tok/s, total (a stream).
+Target `unlimited-ocr-2-gb10`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA. Rendered from `stats/unlimited-ocr-2-gb10.json` (4 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-04 01:33: run `20261104-013355-ocr-long`
+
+Plan ocr-long, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `5be83bba7`; binary_sha256 `2d73ded9d26be6e37ad2243c04db1ad2599c546fba5b17206df264ef1993def7`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179375`; gpu `NVIDIA GB10, 580.178.04`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: server: 15375 MiB; system 98.7 GiB available |
+| ocr | pass: 1/1 cases answered; decode 108-108 tok/s, first token 34.69-34.69 s |
+| memory-after | measured: server: 15377 MiB; system 98.6 GiB available |
+
+## 2026-11-04 01:29: run `20261104-012902-ocr`
+
+Plan ocr, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `5be83bba7`; binary_sha256 `2d73ded9d26be6e37ad2243c04db1ad2599c546fba5b17206df264ef1993def7`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179375`; gpu `NVIDIA GB10, 580.178.04`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: server: 15375 MiB; system 98.0 GiB available |
+| ocr | pass: 6/6 cases answered; decode 114-117 tok/s, first token 0.60-2.90 s; 2 at once 79-113 tok/s in all; vs reference: identical 2/6, similarity 0.9960-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 5) |
+| memory-after | measured: server: 15377 MiB; system 98.5 GiB available |
 
 ## 2026-11-04 00:45: run `20261104-004505-ocr-long`
 
