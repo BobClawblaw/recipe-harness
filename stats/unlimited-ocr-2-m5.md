@@ -1,6 +1,20 @@
 # Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal. Rendered from `stats/unlimited-ocr-2-m5.json` (5 runs); aggregate tok/s, total (a stream).
+Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal. Rendered from `stats/unlimited-ocr-2-m5.json` (6 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-03 17:51: run `20261103-175105-ocr`
+
+Plan ocr, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `dd7f775f2`; binary_sha256 `b7370f69a8c5d292682fb03bef5348a5f69634ead937293caba6898b8435fb90`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179374`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 43% |
+| ocr | pass: 6/6 cases answered; decode 225-264 tok/s, first token 0.80-3.97 s; 2 at once 108-229 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
+| memory-after | measured: mac: System-wide memory free percentage: 37% |
 
 ## 2026-11-03 17:17: run `20261103-171755-ocr`
 

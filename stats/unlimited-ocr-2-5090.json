@@ -1,0 +1,41 @@
+{
+ "target": "unlimited-ocr-2-5090",
+ "runs": [
+  {
+   "run": "20261104-001831-ocr",
+   "target": "unlimited-ocr-2-5090",
+   "model": "Unlimited-OCR-2",
+   "plan": "ocr",
+   "started": "20261104-001831",
+   "finished": "20261104-002028",
+   "status": "done",
+   "identity": {
+    "engine_commit": "dd7f775f2",
+    "binary_sha256": "2fbcab28edca2e25b7bd78ed8007f12bf47ab949ca9e1619c8557f0efb6534be",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"Unlimited-OCR-2\", \"object\": \"model\", \"created\": 1793751519, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072}]}",
+    "gpu": "NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 15726 MiB, 32607 MiB"
+    },
+    "ocr": {
+     "ok": true,
+     "summary": "6/6 cases answered; decode 292-311 tok/s, first token 0.21-1.05 s; 2 at once 224-300 tok/s in all; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2)"
+    },
+    "memory-after": {
+     "ok": null,
+     "summary": "gpu: 15728 MiB, 32607 MiB"
+    }
+   },
+   "model_name": "Unlimited-OCR-2, bf16",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
+   "engine": "TensorFold native, CUDA",
+   "description": "Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream)"
+  }
+ ]
+}

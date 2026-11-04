@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-04 01:53 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-04 02:02 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -62,6 +62,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Unlimited-OCR-2, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS |  |  |  |  | 2026-11-03 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA GB10 (DGX Spark class, 128 GB unified) |  |  |  |  | 2026-11-04 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 4080 SUPER (16 GB), Windows 11 |  |  |  |  | 2026-11-03 |
+| Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-04 |
 | qwen38-27b | ? | 150/230/168/185 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 211/398/268/250 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 150/229/167/185 |  | 0.10 |  | 2026-10-16 |
@@ -2520,6 +2521,26 @@ Serving: engine_commit `5be83bba7`; binary_sha256 `ca344b3798d371d3540258b1a9505
 | 2026-11-03 18:00 | ocr | done |  |  |  |  |
 | 2026-11-03 17:29 | ocr | done |  |  |  |  |
 
+## Unlimited-OCR-2, bf16 on 1x NVIDIA RTX 5090 (32 GB), Linux
+
+Target `unlimited-ocr-2-5090`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as `Unlimited-OCR-2`. Latest: run `20261104-001831-ocr` (2026-11-04 00:18, plan ocr, done).
+
+Serving: engine_commit `dd7f775f2`; binary_sha256 `2fbcab28edca2e25b7bd78ed8007f12bf47ab949ca9e1619c8557f0efb6534be`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179375`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 15726 MiB, 32607 MiB |
+| ocr | pass: 6/6 cases answered; decode 292-311 tok/s, first token 0.21-1.05 s; 2 at once 224-300 tok/s in all; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2) |
+| memory-after | measured: gpu: 15728 MiB, 32607 MiB |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-11-04 00:18 | ocr | done |  |  |  |  |
+
 ## Unlimited-OCR-2, bf16 on 1x NVIDIA GB10 (DGX Spark class, 128 GB unified)
 
 Target `unlimited-ocr-2-gb10`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as `Unlimited-OCR-2`. Latest: run `20261104-013355-ocr-long` (2026-11-04 01:33, plan ocr-long, done).
@@ -2545,22 +2566,23 @@ Serving: engine_commit `5be83bba7`; binary_sha256 `2d73ded9d26be6e37ad2243c04db1
 
 ## Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal; served as `Unlimited-OCR-2`. Latest: run `20261103-171755-ocr` (2026-11-03 17:17, plan ocr, done).
+Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal; served as `Unlimited-OCR-2`. Latest: run `20261103-175105-ocr` (2026-11-03 17:51, plan ocr, done).
 
-Serving: engine_commit `a05fe5c95`; binary_sha256 `db41c164ccc56642d466f9b88568f14f449822c56e99cff91d4bdebde278b5cd`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179374`; chip `Apple M5 Ultra; 274877906944`
+Serving: engine_commit `dd7f775f2`; binary_sha256 `b7370f69a8c5d292682fb03bef5348a5f69634ead937293caba6898b8435fb90`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179374`; chip `Apple M5 Ultra; 274877906944`
 
 ### checks
 
 | check | result |
 |---|---|
 | memory-idle | measured: mac: System-wide memory free percentage: 43% |
-| ocr | pass: 6/6 cases answered; decode 224-261 tok/s, first token 0.81-4.00 s; 2 at once 108-220 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
+| ocr | pass: 6/6 cases answered; decode 225-264 tok/s, first token 0.80-3.97 s; 2 at once 108-229 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
 | memory-after | measured: mac: System-wide memory free percentage: 37% |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-03 17:51 | ocr | done |  |  |  |  |
 | 2026-11-03 17:17 | ocr | done |  |  |  |  |
 | 2026-11-03 17:03 | ocr | done |  |  |  |  |
 | 2026-11-03 16:40 | ocr | done |  |  |  |  |
