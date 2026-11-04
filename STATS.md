@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-04 18:48 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-04 22:26 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -44,7 +44,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Nanbeige4.3-33B, affine 8bit | 1x Apple M5 Ultra (256 GB unified), macOS | 29/28/29/29 | 2: 54/52/53/54 | 0.13 / 0.19-0.23 |  | 2026-10-26 |
 | Nanbeige4.3-33B, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 16/16/16/16 | 2: 32/28/31/32 | 0.23 / 0.34-0.39 |  | 2026-10-28 |
 | Nanbeige4.3-33B-INT4 (QAT int4 g32), drafted by Nanbeige4.1-3B bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 88/87/88/86 |  | 0.27 |  | 2026-10-31 |
-| Nanbeige4.3-33B-INT4, int4 g32 (QAT) | 1x Apple M5 Ultra (256 GB unified), macOS | 48/47/48/48 |  | 0.27 |  | 2026-10-31 |
+| Nanbeige4.3-33B-INT4, int4 g32 (QAT) | 1x Apple M5 Ultra (256 GB unified), macOS | 48/47/48/48 | 2: 82/57/81/82 | 0.27 / 0.40-0.45 |  | 2026-11-04 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 66/67/66/67 | 4: 176/178/178/180 | 0.08 / 0.25-0.35 |  | 2026-10-20 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 133/192/161/194 |  | 0.05 |  | 2026-10-31 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64), YaRN x4 to 1M context | 1x Apple M5 Ultra (256 GB unified), macOS | 78/161/106/111 | 4: 447/774/555/871 | 0.06 / 1.58-3.32 | gsm8k 247/250 | 2026-10-26 |
@@ -1351,21 +1351,23 @@ Engine rounds (ruler-after):
 
 ## Nanbeige4.3-33B-INT4, int4 g32 (QAT) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `nanbeige43-33b-int4-m5`: Nanbeige4.3-33B-INT4 as released (QAT int4 g32), TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams). Engine: TensorFold native, Metal; served as `nanbeige`. Latest: run `20261031-171554-quick` (2026-10-31 17:15, plan quick, done).
+Target `nanbeige43-33b-int4-m5`: Nanbeige4.3-33B-INT4 as released (QAT int4 g32), TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams). Engine: TensorFold native, Metal; served as `nanbeige`. Latest: run `20261104-120203-speed` (2026-11-04 12:02, plan speed, done).
 
-Serving: engine_commit `d8ba67903`; binary_sha256 `0f0997808e0e94760608966df4b23df55d62ac709457c5c2835f32309be010bb`; served_model `{"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793484962, "`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+Serving: engine_commit `b331731e6`; binary_sha256 `ba743ad6bca6b92868bb781e9fbcfc9c610bb3fdedf471b7b2db7a6b1ed9703f`; served_model `{"object": "list", "data": [{"id": "nanbeige", "object": "model", "created": 1793815331, "`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
 
 ### ruler-fresh
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 47.8 (47.8) | 46.6 (46.6) | 47.9 (47.9) | 47.9 (47.9) | 0.27-0.30 s |
+| 1 | 47.8 (47.8) | 46.6 (46.6) | 47.7 (47.7) | 47.6 (47.6) | 0.27-0.30 s |
+| 2 | 82.3 (41.1) | 57.0 (28.5) | 81.4 (40.7) | 82.2 (41.1) | 0.40-0.45 s |
 
 Engine rounds (ruler-fresh):
 
 | streams | tokens a round | drafts a round | accepted | ms a round | requests |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 1.005 | 0.017 | 0% | 21.13 | 12 |
+| 1 | 1.005 | 0.017 | 0% | 21.18 | 12 |
+| 2 | 1.023 | 0.059 | 30% | 27.02 | 25 |
 
 ### ruler-after
 
@@ -1379,34 +1381,20 @@ Engine rounds (ruler-after):
 |---:|---:|---:|---:|---:|---:|
 | 1 | 1.01 | 0.023 | 23% | 21.3 | 13 |
 
-### suite
-
-| check | passed |
-|---|---:|
-| soak | 60/60 |
-| drafts | 12/12 |
-| concurrent | 12/12 |
-| streaming | 4/4 |
-| multiturn | 8/8 |
-| stop | 3/3 |
-| thinking | 10/10 |
-| copy | 2/2 |
-| max-tokens | 3/3 |
-
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: mac: System-wide memory free percentage: 87%; total = 1024.00M  us |
-| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
-| tools | pass: 5/5 tool cases right |
-| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
-| turns | pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.374s, cold 4.563s |
+| memory-idle | measured: mac: System-wide memory free percentage: 37%; total = 6144.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.382s, cold 4.734s |
+| memory-busy | measured: mac: System-wide memory free percentage: 37%; total = 6144.00M  us |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-04 12:02 | speed | done | 46.6 |  |  |  |
+| 2026-11-04 11:45 | quick | done | 46.6 |  |  | 114/114 |
 | 2026-10-31 17:15 | quick | done | 46.6 |  |  | 114/114 |
 | 2026-10-31 16:57 | speed | done | 46.6 |  |  |  |
 | 2026-10-31 14:03 | speed | done | 42.0 |  |  |  |
@@ -2548,22 +2536,23 @@ Serving: engine_commit `e1e345a25`; binary_sha256 `c0c0eb62c2e4df59e95f28c4e08db
 
 ## Unlimited-OCR-2, bf16 on 1x NVIDIA GB10 (DGX Spark class, 128 GB unified)
 
-Target `unlimited-ocr-2-gb10`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as `Unlimited-OCR-2`. Latest: run `20261104-013355-ocr-long` (2026-11-04 01:33, plan ocr-long, done).
+Target `unlimited-ocr-2-gb10`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as `Unlimited-OCR-2`. Latest: run `20261104-220009-ocr-match` (2026-11-04 22:00, plan ocr-match, done).
 
-Serving: engine_commit `5be83bba7`; binary_sha256 `2d73ded9d26be6e37ad2243c04db1ad2599c546fba5b17206df264ef1993def7`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179375`; gpu `NVIDIA GB10, 580.178.04`
+Serving: engine_commit `e1e345a25`; binary_sha256 `6fba85d1e2683085d0dcacd0aac9cd55e148706a257495969c4b8d4b2274a07b`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179382`; gpu `NVIDIA GB10, 580.178.04`
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: server: 15375 MiB; system 98.7 GiB available |
-| ocr | pass: 1/1 cases answered; decode 108-108 tok/s, first token 34.69-34.69 s |
-| memory-after | measured: server: 15377 MiB; system 98.6 GiB available |
+| memory-idle | measured: server: 15375 MiB; system 98.2 GiB available |
+| ocr | pass: 7/7 cases answered; decode 110-117 tok/s, first token 0.62-26.64 s; vs reference: identical 2/6, similarity 0.9960-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 5) |
+| memory-after | measured: server: 15377 MiB; system 98.0 GiB available |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-04 22:00 | ocr-match | done |  |  |  |  |
 | 2026-11-04 01:33 | ocr-long | done |  |  |  |  |
 | 2026-11-04 01:29 | ocr | done |  |  |  |  |
 | 2026-11-04 00:45 | ocr-long | done |  |  |  |  |
