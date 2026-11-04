@@ -1,0 +1,23 @@
+description = "OCR, engine against engine (about 15 minutes): the ocr plan's five pages alone and as one document, and the release's 15-page paper three times over as one 45-page request (about 41k prompt tokens and a 43k-token reply), each repeated, one stream; the replies' bytes are what two engines compare"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ocr"
+streams = 1
+cases = [
+  { name = "report-1", pages = ["report-1"] },
+  { name = "report-2", pages = ["report-2"] },
+  { name = "paper-1", pages = ["paper-1"] },
+  { name = "paper-3", pages = ["paper-3"] },
+  { name = "paper-10", pages = ["paper-10"] },
+  { name = "document", pages = ["report-1", "report-2", "paper-1", "paper-3", "paper-10"] },
+  { name = "paper-x3", pages = ["paper-1", "paper-2", "paper-3", "paper-4", "paper-5", "paper-6", "paper-7", "paper-8", "paper-9", "paper-10", "paper-11", "paper-12", "paper-13", "paper-14", "paper-15", "paper-1", "paper-2", "paper-3", "paper-4", "paper-5", "paper-6", "paper-7", "paper-8", "paper-9", "paper-10", "paper-11", "paper-12", "paper-13", "paper-14", "paper-15", "paper-1", "paper-2", "paper-3", "paper-4", "paper-5", "paper-6", "paper-7", "paper-8", "paper-9", "paper-10", "paper-11", "paper-12", "paper-13", "paper-14", "paper-15"] },
+]
+
+[[checks]]
+type = "memory"
+name = "memory-after"
