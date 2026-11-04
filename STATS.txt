@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-04 11:26 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-04 18:48 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -2547,22 +2547,25 @@ history
 Unlimited-OCR-2, bf16 on 1x NVIDIA RTX 5090 (32 GB), Linux
 ----------------------------------------------------------
 
-Target unlimited-ocr-2-5090: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as Unlimited-OCR-2. Latest: run 20261104-105127-ocr-match (2026-11-04 10:51, plan ocr-match, done).
+Target unlimited-ocr-2-5090: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as Unlimited-OCR-2. Latest: run 20261104-183803-ocr-match (2026-11-04 18:38, plan ocr-match, done).
 
-Serving: engine_commit 6cad5d7be; binary_sha256 4b29a454ec21077d46823c97a221ddb4914d64eee64ce2ce129ba65d12ad0ff7; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179378; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB
+Serving: engine_commit e1e345a25; binary_sha256 c0c0eb62c2e4df59e95f28c4e08db3e664c6113d794c5a018ad4f27751e0bad5; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179381; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB
 
 checks
 ------
 
   check  result
   memory-idle  measured: gpu: 15726 MiB, 32607 MiB
-  ocr  pass: 7/7 cases answered; decode 276-307 tok/s, first token 0.22-9.32 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2)
+  ocr  pass: 7/7 cases answered; decode 276-306 tok/s, first token 0.22-9.37 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2)
   memory-after  measured: gpu: 15728 MiB, 32607 MiB
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-04 18:38  ocr-match  done        
+  2026-11-04 16:28  ocr-match  done        
+  2026-11-04 15:43  ocr-match  done        
   2026-11-04 10:51  ocr-match  done        
   2026-11-04 00:18  ocr  done        
   2026-11-03 23:56  ocr  done        

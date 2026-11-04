@@ -1,6 +1,48 @@
 # Unlimited-OCR-2, bf16 on 1x NVIDIA RTX 5090 (32 GB), Linux
 
-Target `unlimited-ocr-2-5090`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA. Rendered from `stats/unlimited-ocr-2-5090.json` (3 runs); aggregate tok/s, total (a stream).
+Target `unlimited-ocr-2-5090`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA. Rendered from `stats/unlimited-ocr-2-5090.json` (6 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-04 18:38: run `20261104-183803-ocr-match`
+
+Plan ocr-match, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `e1e345a25`; binary_sha256 `c0c0eb62c2e4df59e95f28c4e08db3e664c6113d794c5a018ad4f27751e0bad5`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179381`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 15726 MiB, 32607 MiB |
+| ocr | pass: 7/7 cases answered; decode 276-306 tok/s, first token 0.22-9.37 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2) |
+| memory-after | measured: gpu: 15728 MiB, 32607 MiB |
+
+## 2026-11-04 16:28: run `20261104-162804-ocr-match`
+
+Plan ocr-match, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `cf52f953c`; binary_sha256 `694ede952cf004f2e9420846992a979e4857ecc0e60eb5cf7a35b81aeaa1c680`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179380`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 15726 MiB, 32607 MiB |
+| ocr | pass: 7/7 cases answered; decode 276-307 tok/s, first token 0.22-9.39 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2) |
+| memory-after | measured: gpu: 15728 MiB, 32607 MiB |
+
+## 2026-11-04 15:43: run `20261104-154351-ocr-match`
+
+Plan ocr-match, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `029369d16`; binary_sha256 `e4811707d672059b5ada63bc783d7ddde9b737bf759db494865520e51cf2288b`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179380`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 15726 MiB, 32607 MiB |
+| ocr | pass: 7/7 cases answered; decode 275-306 tok/s, first token 0.21-9.39 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2) |
+| memory-after | measured: gpu: 15728 MiB, 32607 MiB |
 
 ## 2026-11-04 10:51: run `20261104-105127-ocr-match`
 
