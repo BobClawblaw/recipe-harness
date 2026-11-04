@@ -1221,6 +1221,413 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Nanbeige4.3-33B-INT4 as released (QAT int4 g32), TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams)"
+  },
+  {
+   "run": "20261104-114557-quick",
+   "target": "nanbeige43-33b-int4-m5",
+   "model": "nanbeige",
+   "plan": "quick",
+   "started": "20261104-114557",
+   "finished": "20261104-120103",
+   "status": "done",
+   "identity": {
+    "engine_commit": "b331731e6",
+    "binary_sha256": "ba743ad6bca6b92868bb781e9fbcfc9c610bb3fdedf471b7b2db7a6b1ed9703f",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"nanbeige\", \"object\": \"model\", \"created\": 1793814366, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 47.8,
+      "per_stream": 47.8,
+      "ttft": 0.298
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 46.6,
+      "per_stream": 46.6,
+      "ttft": 0.266
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 47.7,
+      "per_stream": 47.7,
+      "ttft": 0.268
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 47.6,
+      "per_stream": 47.6,
+      "ttft": 0.291
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 47.5,
+      "per_stream": 47.5,
+      "ttft": 0.3
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 46.4,
+      "per_stream": 46.4,
+      "ttft": 0.267
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 47.6,
+      "per_stream": 47.6,
+      "ttft": 0.267
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 47.6,
+      "per_stream": 47.6,
+      "ttft": 0.293
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 735,
+      "cached": 0,
+      "tokens": 2637,
+      "rounds": 2625,
+      "accepted": 0,
+      "proposed": 45,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.017,
+      "accept_rate": 0.0,
+      "ms_a_round": 21.2
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 6384,
+      "cached": 0,
+      "tokens": 2685,
+      "rounds": 2658,
+      "accepted": 14,
+      "proposed": 60,
+      "tokens_a_round": 1.01,
+      "drafts_a_round": 0.023,
+      "accept_rate": 0.233,
+      "ms_a_round": 21.37
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 37%\ntotal = 6144.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 47.8/46.6/47.7/47.6 ttft 0.27-0.30s; engine: c=1 1.00 tokens a round 0% accepted, 21.2 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.387s, cold 4.77s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 47.5/46.4/47.6/47.6 ttft 0.27-0.30s; engine: c=1 1.01 tokens a round 23% accepted, 21.4 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "Nanbeige4.3-33B-INT4, int4 g32 (QAT)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Nanbeige4.3-33B-INT4 as released (QAT int4 g32), TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams)"
+  },
+  {
+   "run": "20261104-120203-speed",
+   "target": "nanbeige43-33b-int4-m5",
+   "model": "nanbeige",
+   "plan": "speed",
+   "started": "20261104-120203",
+   "finished": "20261104-120552",
+   "status": "done",
+   "identity": {
+    "engine_commit": "b331731e6",
+    "binary_sha256": "ba743ad6bca6b92868bb781e9fbcfc9c610bb3fdedf471b7b2db7a6b1ed9703f",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"nanbeige\", \"object\": \"model\", \"created\": 1793815331, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 47.8,
+      "per_stream": 47.8,
+      "ttft": 0.298
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 46.6,
+      "per_stream": 46.6,
+      "ttft": 0.266
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 47.7,
+      "per_stream": 47.7,
+      "ttft": 0.266
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 47.6,
+      "per_stream": 47.6,
+      "ttft": 0.291
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 82.3,
+      "per_stream": 41.1,
+      "ttft": 0.447
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 57.0,
+      "per_stream": 28.5,
+      "ttft": 0.431
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 81.4,
+      "per_stream": 40.7,
+      "ttft": 0.4
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 82.2,
+      "per_stream": 41.1,
+      "ttft": 0.437
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 47.7,
+      "per_stream": 47.7,
+      "ttft": 0.3
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 46.6,
+      "per_stream": 46.6,
+      "ttft": 0.267
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 47.7,
+      "per_stream": 47.7,
+      "ttft": 0.268
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 47.7,
+      "per_stream": 47.7,
+      "ttft": 0.293
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 735,
+      "cached": 0,
+      "tokens": 2637,
+      "rounds": 2625,
+      "accepted": 0,
+      "proposed": 45,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.017,
+      "accept_rate": 0.0,
+      "ms_a_round": 21.18
+     },
+     "2": {
+      "requests": 25,
+      "prompt": 1502,
+      "cached": 0,
+      "tokens": 5470,
+      "rounds": 5349,
+      "accepted": 96,
+      "proposed": 315,
+      "tokens_a_round": 1.023,
+      "drafts_a_round": 0.059,
+      "accept_rate": 0.305,
+      "ms_a_round": 27.02
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 6384,
+      "cached": 0,
+      "tokens": 2685,
+      "rounds": 2658,
+      "accepted": 14,
+      "proposed": 60,
+      "tokens_a_round": 1.01,
+      "drafts_a_round": 0.023,
+      "accept_rate": 0.233,
+      "ms_a_round": 21.3
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 37%\ntotal = 6144.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 47.8/46.6/47.7/47.6 ttft 0.27-0.30s; c=2 82.3/57.0/81.4/82.2 ttft 0.40-0.45s; engine: c=1 1.00 tokens a round 0% accepted, 21.2 ms a round; c=2 1.02 tokens a round 30% accepted, 27.0 ms a round"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5493 of 5649; ttft resumed 0.382s, cold 4.734s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 47.7/46.6/47.7/47.7 ttft 0.27-0.30s; engine: c=1 1.01 tokens a round 23% accepted, 21.3 ms a round"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 37%\ntotal = 6144.00M  us"
+    }
+   },
+   "model_name": "Nanbeige4.3-33B-INT4, int4 g32 (QAT)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Nanbeige4.3-33B-INT4 as released (QAT int4 g32), TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams)"
+  },
+  {
+   "run": "20261104-120652-prefill-64k",
+   "target": "nanbeige43-33b-int4-m5",
+   "model": "nanbeige",
+   "plan": "prefill-64k",
+   "started": "20261104-120652",
+   "finished": "20261104-121052",
+   "status": "done",
+   "identity": {
+    "engine_commit": "b331731e6",
+    "binary_sha256": "ba743ad6bca6b92868bb781e9fbcfc9c610bb3fdedf471b7b2db7a6b1ed9703f",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"nanbeige\", \"object\": \"model\", \"created\": 1793815620, \"owned_by\": \"tensorfold\", \"context_length\": 131072, \"max_model_len\": 131072, \"reasoning\": {\"default_enabled\": true}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 37%\ntotal = 6144.00M  us"
+    },
+    "prefill-off": {
+     "ok": null,
+     "summary": "2109 tokens 1195.6 tok/s (1.764 s), 8252 tokens 1256.4 tok/s (6.568 s), 32829 tokens 1037.7 tok/s (31.637 s), 61503 tokens 842.0 tok/s (73.047 s)"
+    },
+    "prefill-thinking": {
+     "ok": null,
+     "summary": "2103 tokens 1178.8 tok/s (1.784 s), 8249 tokens 1251.7 tok/s (6.59 s), 32823 tokens 1013.8 tok/s (32.377 s), 61496 tokens 809.9 tok/s (75.928 s)"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 32%\ntotal = 6144.00M  us"
+    }
+   },
+   "model_name": "Nanbeige4.3-33B-INT4, int4 g32 (QAT)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Nanbeige4.3-33B-INT4 as released (QAT int4 g32), TensorFold native Metal (llama) on one M5 Ultra (131072-token window, 2 streams)"
   }
  ]
 }

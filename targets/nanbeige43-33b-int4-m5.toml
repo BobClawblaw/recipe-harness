@@ -1,5 +1,5 @@
 # Nanbeige4.3-33B-INT4 (Nanbeige's own QAT int4 release, compressed-tensors pack-quantized), as published, on one 256 GB M5 Ultra Mac, TensorFold native Metal
-# with the llama family (github.com/BobClawblaw/TensorFold branch llama-int4): the server is a plain
+# with the llama family (upstream github.com/ashhart/TensorFold main): the server is a plain
 # process, its output stamped with Unix seconds for server_log. The quality suite and ruler are the qwen Spark recipe's,
 # from a local checkout (suite_dir). Machine-specific values go in nanbeige43-33b-int4-m5.local.toml (git-ignored).
 name = "nanbeige43-33b-int4-m5"
