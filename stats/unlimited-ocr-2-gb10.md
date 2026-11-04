@@ -1,6 +1,20 @@
 # Unlimited-OCR-2, bf16 on 1x NVIDIA GB10 (DGX Spark class, 128 GB unified)
 
-Target `unlimited-ocr-2-gb10`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA. Rendered from `stats/unlimited-ocr-2-gb10.json` (4 runs); aggregate tok/s, total (a stream).
+Target `unlimited-ocr-2-gb10`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA. Rendered from `stats/unlimited-ocr-2-gb10.json` (5 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-04 22:00: run `20261104-220009-ocr-match`
+
+Plan ocr-match, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `e1e345a25`; binary_sha256 `6fba85d1e2683085d0dcacd0aac9cd55e148706a257495969c4b8d4b2274a07b`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179382`; gpu `NVIDIA GB10, 580.178.04`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: server: 15375 MiB; system 98.2 GiB available |
+| ocr | pass: 7/7 cases answered; decode 110-117 tok/s, first token 0.62-26.64 s; vs reference: identical 2/6, similarity 0.9960-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 5) |
+| memory-after | measured: server: 15377 MiB; system 98.0 GiB available |
 
 ## 2026-11-04 01:33: run `20261104-013355-ocr-long`
 
