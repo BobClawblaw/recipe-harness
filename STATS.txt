@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-04 00:03 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-04 01:19 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -61,6 +61,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   Spark-X2.6-4B, bf16  1x Apple M5 Ultra (256 GB unified), macOS  106/105/105/105  4: 318/294/320/314  0.06 / 0.13-0.17    2026-10-30
   Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP  1x Apple M5 Ultra (256 GB unified), macOS  38/50/40/48    0.24    2026-10-16
   Unlimited-OCR-2, bf16  1x Apple M5 Ultra (256 GB unified), macOS          2026-11-03
+  Unlimited-OCR-2, bf16  1x NVIDIA GB10 (DGX Spark class, 128 GB unified)          2026-11-04
   Unlimited-OCR-2, bf16  1x NVIDIA RTX 4080 SUPER (16 GB), Windows 11          2026-11-03
   qwen38-27b  ?  150/230/168/185    0.10    2026-10-16
   qwen38-27b  ?  211/398/268/250    0.10    2026-10-16
@@ -2541,6 +2542,28 @@ history
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
   2026-11-03 18:00  ocr  done        
   2026-11-03 17:29  ocr  done        
+
+Unlimited-OCR-2, bf16 on 1x NVIDIA GB10 (DGX Spark class, 128 GB unified)
+-------------------------------------------------------------------------
+
+Target unlimited-ocr-2-gb10: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as Unlimited-OCR-2. Latest: run 20261104-004505-ocr-long (2026-11-04 00:45, plan ocr-long, done).
+
+Serving: engine_commit 115748f2c; binary_sha256 419536e1ecb59adfb89ab0df8aa59905d2e2a27361bd22344ffd31ce692ba592; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179375; gpu NVIDIA GB10, 580.178.04
+
+checks
+------
+
+  check  result
+  memory-idle  measured: server: 15375 MiB; system 98.9 GiB available
+  ocr  pass: 1/1 cases answered; decode 76-76 tok/s, first token 35.34-35.34 s
+  memory-after  measured: server: 15377 MiB; system 98.6 GiB available
+
+history
+-------
+
+  run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-04 00:45  ocr-long  done        
+  2026-11-04 00:40  ocr  done        
 
 Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 ------------------------------------------------------------------

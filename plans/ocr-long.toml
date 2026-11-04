@@ -1,0 +1,17 @@
+description = "OCR at length (about half an hour): the release's 15-page paper four times over as one 60-page request (about 54k prompt tokens and a 57k-token reply, about 112k of a 131072 window), repeated once: page markers, speed, repeatability"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ocr"
+streams = 1
+cases = [
+  { name = "paper-x4", pages = ["paper-1", "paper-2", "paper-3", "paper-4", "paper-5", "paper-6", "paper-7", "paper-8", "paper-9", "paper-10", "paper-11", "paper-12", "paper-13", "paper-14", "paper-15", "paper-1", "paper-2", "paper-3", "paper-4", "paper-5", "paper-6", "paper-7", "paper-8", "paper-9", "paper-10", "paper-11", "paper-12", "paper-13", "paper-14", "paper-15", "paper-1", "paper-2", "paper-3", "paper-4", "paper-5", "paper-6", "paper-7", "paper-8", "paper-9", "paper-10", "paper-11", "paper-12", "paper-13", "paper-14", "paper-15", "paper-1", "paper-2", "paper-3", "paper-4", "paper-5", "paper-6", "paper-7", "paper-8", "paper-9", "paper-10", "paper-11", "paper-12", "paper-13", "paper-14", "paper-15"] },
+]
+
+[[checks]]
+type = "memory"
+name = "memory-after"

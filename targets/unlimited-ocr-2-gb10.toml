@@ -1,0 +1,68 @@
+# Unlimited-OCR-2 (baidu, model_type unlimited-ocr), the bf16 release as published, on one DGX Spark class GB10
+# (128 GB unified), TensorFold native CUDA with the unlimited-ocr family (github.com/BobClawblaw/TensorFold branch
+# unlimited-ocr-cuda) built for sm_121: page images in, transcriptions out, one request at a time, greedy under the
+# publisher's page guard. The server is the recipe's own launcher (python3 -m spark,
+# github.com/BobClawblaw/unlimited-ocr-2-gb10); its plan is `ocr` (pages and references from the recipe's ocr/ folder).
+# A systemd unit serving the recipe on the same port must be stopped first (up refuses a port that answers).
+# Machine-specific values go in unlimited-ocr-2-gb10.local.toml (git-ignored).
+name = "unlimited-ocr-2-gb10"
+description = "Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one GB10 (131072-token window, one stream)"
+model_name = "Unlimited-OCR-2, bf16"
+hardware = "1x NVIDIA GB10 (DGX Spark class, 128 GB unified)"
+engine = "TensorFold native, CUDA"
+url = "http://127.0.0.1:$port"
+model = "Unlimited-OCR-2"
+cwd = "$recipe_dir"
+
+[vars]
+recipe_dir = "CHANGE-ME: the recipe checkout (python3 -m spark runs from it; its local.toml names the engine)"
+engine_dir = "CHANGE-ME: the engine worktree the served binary was built in (python3 -m spark build: tf_cache/engine/<sha>)"
+ocr_dir = "CHANGE-ME: the recipe's ocr/ folder after pages.py and refs.py (pages/ and refs/)"
+port = "8896"
+
+[commands]
+up = "PORT=$port python3 -m spark up"
+down = "PORT=$port python3 -m spark down"
+status = "PORT=$port python3 -m spark status"
+diagnose = "python3 -m spark logs -n 5"
+
+[session]
+up_retries = 1
+up_timeout = 120
+health_wait = 300
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "sha256sum $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "gpu"
+cmd = "nvidia-smi --query-gpu=name,driver_version --format=csv,noheader"
+
+[[memory]]
+name = "server"
+cmd = "nvidia-smi --query-compute-apps=used_memory --format=csv,noheader"
+
+[[memory]]
+name = "system"
+cmd = "free -b"
+
+[features]
+drafts = false
+structured = false
+sampling = false      # greedy only: the server refuses a temperature
+vision_urls = false
+capacity = false
+max_concurrency = 1
+thinking = false
+prompt_cache = false
+tools = false
