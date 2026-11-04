@@ -60,7 +60,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   Spark-X2.6-4B, MLX 8-bit  1x NVIDIA RTX 5090 (32 GB)  199/191/203/204  4: 716/709/726/729  0.03 / 0.06-0.06    2026-10-26
   Spark-X2.6-4B, bf16  1x Apple M5 Ultra (256 GB unified), macOS  106/105/105/105  4: 318/294/320/314  0.06 / 0.13-0.17    2026-10-30
   Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP  1x Apple M5 Ultra (256 GB unified), macOS  38/50/40/48    0.24    2026-10-16
-  Unlimited-OCR-2, bf16  1x Apple M5 Ultra (256 GB unified), macOS          2026-11-03
+  Unlimited-OCR-2, bf16  1x Apple M5 Ultra (256 GB unified), macOS          2026-11-04
   Unlimited-OCR-2, bf16  1x NVIDIA GB10 (DGX Spark class, 128 GB unified)          2026-11-04
   Unlimited-OCR-2, bf16  1x NVIDIA RTX 4080 SUPER (16 GB), Windows 11          2026-11-03
   Unlimited-OCR-2, bf16  1x NVIDIA RTX 5090 (32 GB), Linux          2026-11-04
@@ -2594,22 +2594,24 @@ history
 Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 ------------------------------------------------------------------
 
-Target unlimited-ocr-2-m5: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal; served as Unlimited-OCR-2. Latest: run 20261103-175105-ocr (2026-11-03 17:51, plan ocr, done).
+Target unlimited-ocr-2-m5: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal; served as Unlimited-OCR-2. Latest: run 20261104-043212-ocr-match (2026-11-04 04:32, plan ocr-match, done).
 
-Serving: engine_commit dd7f775f2; binary_sha256 b7370f69a8c5d292682fb03bef5348a5f69634ead937293caba6898b8435fb90; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179374; chip Apple M5 Ultra; 274877906944
+Serving: engine_commit 6cad5d7be; binary_sha256 49dfc1fb2418dfda88143858bb44dce179e34b7d6fcf43ecef2940ed1a05a172; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179378; chip Apple M5 Ultra; 274877906944
 
 checks
 ------
 
   check  result
   memory-idle  measured: mac: System-wide memory free percentage: 43%
-  ocr  pass: 6/6 cases answered; decode 225-264 tok/s, first token 0.80-3.97 s; 2 at once 108-229 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10)
-  memory-after  measured: mac: System-wide memory free percentage: 37%
+  ocr  pass: 7/7 cases answered; decode 94-265 tok/s, first token 0.80-33.98 s; vs reference: identical 1/6, similarity 0.9850-1.0000, text without boxes identical 5/6, box coords moved 113/284 (at most 824)
+  memory-after  measured: mac: System-wide memory free percentage: 38%
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-04 04:32  ocr-match  done        
+  2026-11-03 22:37  ocr  done        
   2026-11-03 17:51  ocr  done        
   2026-11-03 17:17  ocr  done        
   2026-11-03 17:03  ocr  done        

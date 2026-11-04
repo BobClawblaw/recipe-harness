@@ -519,7 +519,7 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 406.48 92.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 489.43 92.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 555.89 92.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 563.89 92.40 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 703.12 92.40 Td (2026-11-03) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 703.12 92.40 Td (2026-11-04) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
 BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-04 11:26 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
@@ -9495,82 +9495,97 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 192 0 R >>
 endobj
 194 0 obj
-<< /Length 5820 >>
+<< /Length 6730 >>
 stream
 BT /F2 14.50 Tf 0.1 0.27 0.47 rg 42.00 533.00 Td (Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra \(256 GB unified\), macOS) Tj ET
 0.1 0.27 0.47 RG 1.0 w 42.00 526.00 m 750.00 526.00 l S
 BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 505.00 Td (Target unlimited-ocr-2-m5: Unlimited-OCR-2 bf16 as released, TensorFold native Metal \(unlimited-ocr\) on one M5 Ultra \(131072-token window, one stream\). Engine: TensorFold) Tj ET
-BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 492.60 Td (native, Metal; served as Unlimited-OCR-2. Latest: run 20261103-175105-ocr \(2026-11-03 17:51, plan ocr, done\).) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 475.70 Td (Serving: engine_commit dd7f775f2; binary_sha256 b7370f69a8c5d292682fb03bef5348a5f69634ead937293caba6898b8435fb90; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model",) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 465.70 Td ("created": 179374; chip Apple M5 Ultra; 274877906944) Tj ET
+BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 492.60 Td (native, Metal; served as Unlimited-OCR-2. Latest: run 20261104-043212-ocr-match \(2026-11-04 04:32, plan ocr-match, done\).) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 475.70 Td (Serving: engine_commit 6cad5d7be; binary_sha256 49dfc1fb2418dfda88143858bb44dce179e34b7d6fcf43ecef2940ed1a05a172; served_model {"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model",) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 465.70 Td ("created": 179378; chip Apple M5 Ultra; 274877906944) Tj ET
 BT /F2 10.50 Tf 0.13 0.15 0.18 rg 42.00 443.20 Td (Checks) Tj ET
-0.1 0.27 0.47 rg 42.00 419.60 707.60 15.60 re f
+0.1 0.27 0.47 rg 42.00 419.60 705.44 15.60 re f
 BT /F2 7.60 Tf 1 1 1 rg 46.00 424.80 Td (check) Tj ET
 BT /F2 7.60 Tf 1 1 1 rg 100.18 424.80 Td (result) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 409.20 Td (memory-idle) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 409.20 Td (measured: mac: System-wide memory free percentage: 43%) Tj ET
-0.945 0.953 0.965 rg 42.00 378.80 707.60 25.20 re f
+0.945 0.953 0.965 rg 42.00 378.80 705.44 25.20 re f
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 393.60 Td (ocr) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 393.60 Td (pass: 6/6 cases answered; decode 225-264 tok/s, first token 0.80-3.97 s; 2 at once 108-229 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 384.00 Td (coords moved 10/288 \(at most 10\)) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 393.60 Td (pass: 7/7 cases answered; decode 94-265 tok/s, first token 0.80-33.98 s; vs reference: identical 1/6, similarity 0.9850-1.0000, text without boxes identical 5/6, box coords moved 113/284 \(at) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 384.00 Td (most 824\)) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 368.40 Td (memory-after) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 368.40 Td (measured: mac: System-wide memory free percentage: 37%) Tj ET
-0.82 0.84 0.87 RG 0.6 w 42.00 363.20 m 749.60 363.20 l S
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 368.40 Td (measured: mac: System-wide memory free percentage: 38%) Tj ET
+0.82 0.84 0.87 RG 0.6 w 42.00 363.20 m 747.44 363.20 l S
 BT /F2 10.50 Tf 0.13 0.15 0.18 rg 42.00 337.20 Td (History) Tj ET
-0.1 0.27 0.47 rg 42.00 313.60 367.97 15.60 re f
+0.1 0.27 0.47 rg 42.00 313.60 386.13 15.60 re f
 BT /F2 7.60 Tf 1 1 1 rg 46.00 318.80 Td (run) Tj ET
 BT /F2 7.60 Tf 1 1 1 rg 114.99 318.80 Td (plan) Tj ET
-BT /F2 7.60 Tf 1 1 1 rg 139.62 318.80 Td (status) Tj ET
-BT /F2 7.60 Tf 1 1 1 rg 172.00 318.80 Td (1 stream code) Tj ET
-BT /F2 7.60 Tf 1 1 1 rg 232.11 318.80 Td (16 streams code) Tj ET
-BT /F2 7.60 Tf 1 1 1 rg 300.67 318.80 Td (16 streams first token) Tj ET
-BT /F2 7.60 Tf 1 1 1 rg 387.23 318.80 Td (suite) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 303.20 Td (2026-11-03 17:51) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 303.20 Td (ocr) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 139.62 303.20 Td (done) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 223.11 303.20 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 291.67 303.20 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 379.23 303.20 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.23 303.20 Td () Tj ET
-0.945 0.953 0.965 rg 42.00 282.40 367.97 15.60 re f
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 287.60 Td (2026-11-03 17:17) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 157.78 318.80 Td (status) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 190.16 318.80 Td (1 stream code) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 250.27 318.80 Td (16 streams code) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 318.83 318.80 Td (16 streams first token) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 405.39 318.80 Td (suite) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 303.20 Td (2026-11-04 04:32) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 303.20 Td (ocr-match) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 157.78 303.20 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 241.27 303.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 309.83 303.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 303.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 303.20 Td () Tj ET
+0.945 0.953 0.965 rg 42.00 282.40 386.13 15.60 re f
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 287.60 Td (2026-11-03 22:37) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 287.60 Td (ocr) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 139.62 287.60 Td (done) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 223.11 287.60 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 291.67 287.60 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 379.23 287.60 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.23 287.60 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 272.00 Td (2026-11-03 17:03) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 157.78 287.60 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 241.27 287.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 309.83 287.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 287.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 287.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 272.00 Td (2026-11-03 17:51) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 272.00 Td (ocr) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 139.62 272.00 Td (done) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 223.11 272.00 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 291.67 272.00 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 379.23 272.00 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.23 272.00 Td () Tj ET
-0.945 0.953 0.965 rg 42.00 251.20 367.97 15.60 re f
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 256.40 Td (2026-11-03 16:40) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 157.78 272.00 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 241.27 272.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 309.83 272.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 272.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 272.00 Td () Tj ET
+0.945 0.953 0.965 rg 42.00 251.20 386.13 15.60 re f
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 256.40 Td (2026-11-03 17:17) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 256.40 Td (ocr) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 139.62 256.40 Td (done) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 223.11 256.40 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 291.67 256.40 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 379.23 256.40 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.23 256.40 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 240.80 Td (2026-11-03 15:27) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 157.78 256.40 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 241.27 256.40 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 309.83 256.40 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 256.40 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 256.40 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 240.80 Td (2026-11-03 17:03) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 240.80 Td (ocr) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 139.62 240.80 Td (done) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 223.11 240.80 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 291.67 240.80 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 379.23 240.80 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.23 240.80 Td () Tj ET
-0.945 0.953 0.965 rg 42.00 220.00 367.97 15.60 re f
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 225.20 Td (2026-11-03 15:19) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 157.78 240.80 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 241.27 240.80 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 309.83 240.80 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 240.80 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 240.80 Td () Tj ET
+0.945 0.953 0.965 rg 42.00 220.00 386.13 15.60 re f
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 225.20 Td (2026-11-03 16:40) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 225.20 Td (ocr) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 139.62 225.20 Td (done) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 223.11 225.20 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 291.67 225.20 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 379.23 225.20 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.23 225.20 Td () Tj ET
-0.82 0.84 0.87 RG 0.6 w 42.00 220.00 m 409.97 220.00 l S
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 157.78 225.20 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 241.27 225.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 309.83 225.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 225.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 225.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 209.60 Td (2026-11-03 15:27) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 209.60 Td (ocr) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 157.78 209.60 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 241.27 209.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 309.83 209.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 209.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 209.60 Td () Tj ET
+0.945 0.953 0.965 rg 42.00 188.80 386.13 15.60 re f
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 194.00 Td (2026-11-03 15:19) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 194.00 Td (ocr) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 157.78 194.00 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 241.27 194.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 309.83 194.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 194.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 194.00 Td () Tj ET
+0.82 0.84 0.87 RG 0.6 w 42.00 188.80 m 428.13 188.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
 BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-04 11:26 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
@@ -9893,15 +9908,15 @@ xref
 0000612483 00000 n 
 0000617235 00000 n 
 0000617375 00000 n 
-0000623249 00000 n 
-0000623389 00000 n 
-0000625442 00000 n 
-0000625582 00000 n 
-0000629152 00000 n 
-0000629292 00000 n 
-0000632019 00000 n 
+0000624159 00000 n 
+0000624299 00000 n 
+0000626352 00000 n 
+0000626492 00000 n 
+0000630062 00000 n 
+0000630202 00000 n 
+0000632929 00000 n 
 trailer
 << /Size 202 /Root 1 0 R /Info 5 0 R >>
 startxref
-632159
+633069
 %%EOF
