@@ -1,6 +1,86 @@
 # ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ripple-65b-nvfp4-m5`: ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ripple-65b-nvfp4-m5.json` (7 runs); aggregate tok/s, total (a stream).
+Target `ripple-65b-nvfp4-m5`: ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ripple-65b-nvfp4-m5.json` (9 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-05 08:06: run `20261105-080630-speed`
+
+Plan speed, done; served as `ripple`.
+
+Serving: engine_commit `45685de42`; binary_sha256 `5323602e8f282c9f7e5e6f242e5ca2cc4c1f0b9699fec05da11c7b366bdfac1b`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793887605, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 10.2 (10.2) | 10.2 (10.2) | 10.3 (10.3) | 10.2 (10.2) | 0.60-0.72 s |
+| 2 | 18.9 (9.5) | 18.8 (9.4) | 19.2 (9.6) | 18.9 (9.5) | 0.92-1.08 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.006 | 0.0 |  | 98.21 | 12 |
+| 2 | 1.007 | 0.009 | 8% | 106.07 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 10.3 (10.3) | 10.3 (10.3) | 10.3 (10.3) | 10.3 (10.3) | 0.60-0.72 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.007 | 0.0 |  | 98.11 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 69%; total = 6144.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.653s, cold 7.724s |
+| memory-busy | measured: mac: System-wide memory free percentage: 69%; total = 6144.00M  us |
+
+## 2026-11-05 07:55: run `20261105-075517-speed`
+
+Plan speed, done; served as `ripple`.
+
+Serving: engine_commit `3a5954f38`; binary_sha256 `95711121b17e5b171ab2c2c3f7232df13ab281e690453c677bb6554869fa7730`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793886932, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 10.2 (10.2) | 10.2 (10.2) | 10.3 (10.3) | 10.2 (10.2) | 0.60-0.72 s |
+| 2 | 19.0 (9.5) | 18.9 (9.4) | 19.2 (9.6) | 18.9 (9.5) | 0.92-1.08 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.006 | 0.0 |  | 98.19 | 12 |
+| 2 | 1.007 | 0.009 | 8% | 106.0 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 10.2 (10.2) | 10.2 (10.2) | 10.3 (10.3) | 10.2 (10.2) | 0.60-0.72 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.007 | 0.0 |  | 98.22 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 69%; total = 6144.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.653s, cold 7.721s |
+| memory-busy | measured: mac: System-wide memory free percentage: 68%; total = 6144.00M  us |
 
 ## 2026-11-05 05:02: run `20261105-050202-structured`
 
