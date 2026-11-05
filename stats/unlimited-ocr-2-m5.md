@@ -1,6 +1,62 @@
 # Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal. Rendered from `stats/unlimited-ocr-2-m5.json` (8 runs); aggregate tok/s, total (a stream).
+Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal. Rendered from `stats/unlimited-ocr-2-m5.json` (12 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-05 06:51: run `20261105-065147-ocr`
+
+Plan ocr, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `e2fa967c6`; binary_sha256 `207a1e504c2858dfa7ac21c527293dbd1363f1dbc3b3cbf7e813d6753b80c287`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179388`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 89% |
+| ocr | pass: 6/6 cases answered; decode 228-266 tok/s, first token 0.80-3.92 s; 2 at once 108-233 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
+| memory-after | measured: mac: System-wide memory free percentage: 83% |
+
+## 2026-11-04 09:57: run `20261104-095754-ocr`
+
+Plan ocr, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `11b03ae68`; binary_sha256 `f593da3bce9279449fa79d7fdcb22295b11e90e502330a912a4aa50ce34e10c3`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179380`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 44% |
+| ocr | pass: 6/6 cases answered; decode 216-255 tok/s, first token 0.82-3.93 s; 2 at once 101-230 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
+| memory-after | measured: mac: System-wide memory free percentage: 38% |
+
+## 2026-11-04 05:28: run `20261104-052806-ocr`
+
+Plan ocr, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `a4e444f6a`; binary_sha256 `39c3501d296716215a423a32f4de5834ed574dc24a676c5278140664d5eecdfa`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179379`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 44% |
+| ocr | pass: 6/6 cases answered; decode 202-267 tok/s, first token 0.79-4.08 s; 2 at once 108-207 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
+| memory-after | measured: mac: System-wide memory free percentage: 38% |
+
+## 2026-11-04 05:07: run `20261104-050741-ocr`
+
+Plan ocr, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `641e5c0a4`; binary_sha256 `bbcfb7a45d70b6e0184a433dd410822b38b1b13ea41309ffb7abec722cd421a8`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179379`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 44% |
+| ocr | pass: 6/6 cases answered; decode 227-266 tok/s, first token 0.79-3.90 s; 2 at once 109-234 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
+| memory-after | measured: mac: System-wide memory free percentage: 38% |
 
 ## 2026-11-04 04:32: run `20261104-043212-ocr-match`
 
