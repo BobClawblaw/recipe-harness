@@ -1,0 +1,66 @@
+# ricursiveAI Ripple-65B-Preview-NVFP4: the publisher's ModelOpt NVFP4 MLPs (attention, embeddings and head bf16) of a dense 65B: 80 layers, every fifth global and NoPE, the rest sliding over 1,024 keys;
+# PeriNorm, a gated attention output, value residuals), the publisher's bf16 release as published, served by
+# TensorFold's native Metal engine (the ricursive family) on one 256 GB M5 Ultra Mac. No drafter. The release names no
+# sampling settings, so the server's defaults stand (greedy unless a request asks). The server is a plain process, its
+# output stamped with Unix seconds for server_log. Machine-specific values go in ripple-65b-m5.local.toml.
+name = "ripple-65b-nvfp4-m5"
+description = "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+url = "http://127.0.0.1:$port"
+model = "ripple"
+model_name = "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)"
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout (up runs python3 -m harness.detach from it)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (zig-out/native/bin/tensorfold-native)"
+model_dir = "CHANGE-ME: ricursiveAI/Ripple-65B-Preview-NVFP4"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+log_dir = "CHANGE-ME: a folder for the server's log"
+port = "8897"
+context = "262144"
+parallel = "2"
+suite_dir_engine = "CHANGE-ME: the engine commit plus a benchmark --suite community-v1 commit, built (leaderboard only)"
+
+[commands]
+up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c '$engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
+# only this target's server on its port
+down = "pkill -f 'tensorfold-native serve [^ ]*Ripple-65B-Preview-NVFP4 .*--port $port( |$$)' ; sleep 5"
+status = "pgrep -fl 'tensorfold-native serve [^ ]*Ripple-65B-Preview-NVFP4 .*--port $port( |$$)'"
+diagnose = "tail -5 $log_dir/$model.log"
+server_log = "awk -v s=$since '$$1 >= s' $log_dir/$model.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 180
+health_wait = 300                    # loads 55 GiB in about 12 s from a warm disk, then warms a prompt chunk
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+# python3 -m harness leaderboard ripple-65b-m5: the board's suite on the publisher's bf16 checkpoint.
+[leaderboard]
+model = "ricursiveAI/Ripple-65B-Preview-NVFP4"
+binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"
+free = "! pgrep -f 'tensorfold-native serve [^ ]*Ripple-65B-Preview-NVFP4 .*--port $port( |$$)'"

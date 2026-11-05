@@ -1,0 +1,7 @@
+[vars]
+harness_dir = "/path/to/recipe-harness"
+engine_dir = "/path/to/TensorFold"
+model_dir = "/path/to/Ripple-65B-Preview-NVFP4"
+suite_dir = "/path/to/qwen-spark-recipe"
+log_dir = "/path/to/logs"
+suite_dir_engine = "/path/to/TensorFold-suite"

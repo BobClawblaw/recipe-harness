@@ -1,0 +1,866 @@
+{
+ "target": "ripple-65b-nvfp4-m5",
+ "runs": [
+  {
+   "run": "20261104-194257-quick",
+   "target": "ripple-65b-nvfp4-m5",
+   "model": "ripple",
+   "plan": "quick",
+   "started": "20261104-194257",
+   "finished": "20261104-202504",
+   "status": "done",
+   "identity": {
+    "engine_commit": "588e7d2a2",
+    "binary_sha256": "b322b32e218068be2060eb4a76c7b03e50ca7607a3a465aeee1f2b0e5dc4d33b",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"ripple\", \"object\": \"model\", \"created\": 1793842997, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.726
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.603
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 10.3,
+      "per_stream": 10.3,
+      "ttft": 0.612
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.721
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.724
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.602
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 10.3,
+      "per_stream": 10.3,
+      "ttft": 0.612
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.72
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 393,
+      "cached": 0,
+      "tokens": 1881,
+      "rounds": 1869,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.006,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 98.32
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 4990,
+      "cached": 0,
+      "tokens": 1901,
+      "rounds": 1888,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.007,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 98.46
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 5,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 68%\ntotal = 6144.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 10.2/10.2/10.3/10.2 ttft 0.60-0.73s; engine: c=1 1.01 tokens a round, 98.3 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.654s, cold 7.778s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 10.2/10.2/10.3/10.2 ttft 0.60-0.72s; engine: c=1 1.01 tokens a round, 98.5 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 5/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261104-202505-speed",
+   "target": "ripple-65b-nvfp4-m5",
+   "model": "ripple",
+   "plan": "speed",
+   "started": "20261104-202505",
+   "finished": "20261104-203630",
+   "status": "done",
+   "identity": {
+    "engine_commit": "588e7d2a2",
+    "binary_sha256": "b322b32e218068be2060eb4a76c7b03e50ca7607a3a465aeee1f2b0e5dc4d33b",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"ripple\", \"object\": \"model\", \"created\": 1793845520, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 10.1,
+      "per_stream": 10.1,
+      "ttft": 0.737
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 10.1,
+      "per_stream": 10.1,
+      "ttft": 0.606
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.619
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 10.1,
+      "per_stream": 10.1,
+      "ttft": 0.731
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 18.8,
+      "per_stream": 9.4,
+      "ttft": 1.097
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 18.6,
+      "per_stream": 9.3,
+      "ttft": 0.97
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 19.1,
+      "per_stream": 9.5,
+      "ttft": 0.928
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 18.8,
+      "per_stream": 9.4,
+      "ttft": 1.089
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 10.1,
+      "per_stream": 10.1,
+      "ttft": 0.729
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 10.1,
+      "per_stream": 10.1,
+      "ttft": 0.609
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.617
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 10.1,
+      "per_stream": 10.1,
+      "ttft": 0.733
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 393,
+      "cached": 0,
+      "tokens": 1881,
+      "rounds": 1869,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.006,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 99.24
+     },
+     "2": {
+      "requests": 25,
+      "prompt": 796,
+      "cached": 0,
+      "tokens": 4192,
+      "rounds": 4164,
+      "accepted": 3,
+      "proposed": 39,
+      "tokens_a_round": 1.007,
+      "drafts_a_round": 0.009,
+      "accept_rate": 0.077,
+      "ms_a_round": 106.99
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 4990,
+      "cached": 0,
+      "tokens": 1901,
+      "rounds": 1888,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.007,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 99.35
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 68%\ntotal = 6144.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 10.1/10.1/10.2/10.1 ttft 0.61-0.74s; c=2 18.8/18.6/19.1/18.8 ttft 0.93-1.10s; engine: c=1 1.01 tokens a round, 99.2 ms a round; c=2 1.01 tokens a round 8% accepted, 107.0 ms a round"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.666s, cold 8.176s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 10.1/10.1/10.2/10.1 ttft 0.61-0.73s; engine: c=1 1.01 tokens a round, 99.3 ms a round"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 68%\ntotal = 6144.00M  us"
+    }
+   },
+   "model_name": "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261104-203630-prefill",
+   "target": "ripple-65b-nvfp4-m5",
+   "model": "ripple",
+   "plan": "prefill",
+   "started": "20261104-203630",
+   "finished": "20261104-205050",
+   "status": "done",
+   "identity": {
+    "engine_commit": "588e7d2a2",
+    "binary_sha256": "b322b32e218068be2060eb4a76c7b03e50ca7607a3a465aeee1f2b0e5dc4d33b",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"ripple\", \"object\": \"model\", \"created\": 1793846211, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 68%\ntotal = 6144.00M  us"
+    },
+    "prefill-off": {
+     "ok": null,
+     "summary": "2220 tokens 569.1 tok/s (3.901 s), 8776 tokens 604.6 tok/s (14.515 s), 35015 tokens 587.3 tok/s (59.625 s), 139723 tokens 433.8 tok/s (322.123 s)"
+    },
+    "prefill-thinking": {
+     "ok": null,
+     "summary": "2209 tokens 487.7 tok/s (4.529 s), 8798 tokens 458.0 tok/s (19.211 s), 34985 tokens 503.0 tok/s (69.553 s), 139811 tokens 409.9 tok/s (341.105 s)"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 64%\ntotal = 6144.00M  us"
+    }
+   },
+   "model_name": "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261104-212334-quick",
+   "target": "ripple-65b-nvfp4-m5",
+   "model": "ripple",
+   "plan": "quick",
+   "started": "20261104-212334",
+   "finished": "20261104-220519",
+   "status": "done",
+   "identity": {
+    "engine_commit": "d26cd59ad",
+    "binary_sha256": "89a225a8a60c3383a194f2e44cdbad4ce82e5f9008be00678408b30f3465ebee",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"ripple\", \"object\": \"model\", \"created\": 1793849029, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.722
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.602
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.612
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.72
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.722
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.602
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 10.3,
+      "per_stream": 10.3,
+      "ttft": 0.612
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.719
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 393,
+      "cached": 0,
+      "tokens": 1881,
+      "rounds": 1869,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.006,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 98.31
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 4990,
+      "cached": 0,
+      "tokens": 1901,
+      "rounds": 1888,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.007,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 98.25
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 5,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 68%\ntotal = 6144.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 10.2/10.2/10.2/10.2 ttft 0.60-0.72s; engine: c=1 1.01 tokens a round, 98.3 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.65s, cold 7.734s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 10.2/10.2/10.3/10.2 ttft 0.60-0.72s; engine: c=1 1.01 tokens a round, 98.2 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 5/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261104-232908-quick",
+   "target": "ripple-65b-nvfp4-m5",
+   "model": "ripple",
+   "plan": "quick",
+   "started": "20261104-232908",
+   "finished": "20261105-001120",
+   "status": "done",
+   "identity": {
+    "engine_commit": "e2ca8c387",
+    "binary_sha256": "795faeb7019fcf030068f844b7cfcb261744b05be7ddfc2986cb4d0539727bf0",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"ripple\", \"object\": \"model\", \"created\": 1793856569, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.735
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 10.1,
+      "per_stream": 10.1,
+      "ttft": 0.608
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.616
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 10.1,
+      "per_stream": 10.1,
+      "ttft": 0.732
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.728
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.606
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.616
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 10.2,
+      "per_stream": 10.2,
+      "ttft": 0.727
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 393,
+      "cached": 0,
+      "tokens": 1881,
+      "rounds": 1869,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.006,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 99.19
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 4990,
+      "cached": 0,
+      "tokens": 1901,
+      "rounds": 1888,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.007,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 98.98
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 5,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 68%\ntotal = 6144.00M  us"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 10.2/10.1/10.2/10.1 ttft 0.61-0.73s; engine: c=1 1.01 tokens a round, 99.2 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.667s, cold 8.093s"
+    },
+    "urls": {
+     "ok": false,
+     "summary": "public 400; loopback 400; http 400; unexpected: ['public']"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 10.2/10.2/10.2/10.2 ttft 0.61-0.73s; engine: c=1 1.01 tokens a round, 99.0 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 5/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261105-001750-structured",
+   "target": "ripple-65b-nvfp4-m5",
+   "model": "ripple",
+   "plan": "structured",
+   "started": "20261105-001750",
+   "finished": "20261105-002055",
+   "status": "done",
+   "identity": {
+    "engine_commit": "1f5209927",
+    "binary_sha256": "f6540390d02baf06fa92ae5a6bc5141112e06b1c221b55358067321b3c3600db",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"ripple\", \"object\": \"model\", \"created\": 1793859471, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    }
+   },
+   "model_name": "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261105-050202-structured",
+   "target": "ripple-65b-nvfp4-m5",
+   "model": "ripple",
+   "plan": "structured",
+   "started": "20261105-050202",
+   "finished": "20261105-050653",
+   "status": "done",
+   "identity": {
+    "engine_commit": "68e1993d9",
+    "binary_sha256": "844d17a7447fb02f89be67eaefac41ac8769de0cc6cfd4bd8e6d46e5c3dcc52e",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"ripple\", \"object\": \"model\", \"created\": 1793876522, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    }
+   },
+   "model_name": "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+  }
+ ]
+}
