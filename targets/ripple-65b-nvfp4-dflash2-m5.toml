@@ -63,4 +63,5 @@ cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
 [leaderboard]
 model = "ricursiveAI/Ripple-65B-Preview-NVFP4"
 binary = "$suite_dir_engine/zig-out/native/bin/tensorfold-native"
+args = "--drafter ricursiveAI/Ripple-65B-Preview-DFlash2"   # the cached release by its repo ID, so the receipt names it
 free = "! pgrep -f 'tensorfold-native serve [^ ]*Ripple-65B-Preview-NVFP4 .*--port $port( |$$)'"
