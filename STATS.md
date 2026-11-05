@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-04 22:26 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-05 00:37 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -62,7 +62,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Unlimited-OCR-2, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS |  |  |  |  | 2026-11-04 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA GB10 (DGX Spark class, 128 GB unified) |  |  |  |  | 2026-11-04 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 4080 SUPER (16 GB), Windows 11 |  |  |  |  | 2026-11-03 |
-| Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-04 |
+| Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-05 |
 | qwen38-27b | ? | 150/230/168/185 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 211/398/268/250 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 150/229/167/185 |  | 0.10 |  | 2026-10-16 |
@@ -2511,22 +2511,24 @@ Serving: engine_commit `5be83bba7`; binary_sha256 `ca344b3798d371d3540258b1a9505
 
 ## Unlimited-OCR-2, bf16 on 1x NVIDIA RTX 5090 (32 GB), Linux
 
-Target `unlimited-ocr-2-5090`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as `Unlimited-OCR-2`. Latest: run `20261104-183803-ocr-match` (2026-11-04 18:38, plan ocr-match, done).
+Target `unlimited-ocr-2-5090`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA; served as `Unlimited-OCR-2`. Latest: run `20261105-002843-ocr-match` (2026-11-05 00:28, plan ocr-match, done).
 
-Serving: engine_commit `e1e345a25`; binary_sha256 `c0c0eb62c2e4df59e95f28c4e08db3e664c6113d794c5a018ad4f27751e0bad5`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179381`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+Serving: engine_commit `e1e345a25`; binary_sha256 `c0c0eb62c2e4df59e95f28c4e08db3e664c6113d794c5a018ad4f27751e0bad5`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179383`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
 
 ### checks
 
 | check | result |
 |---|---|
 | memory-idle | measured: gpu: 15726 MiB, 32607 MiB |
-| ocr | pass: 7/7 cases answered; decode 276-306 tok/s, first token 0.22-9.37 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2) |
+| ocr | pass: 7/7 cases answered; decode 275-306 tok/s, first token 0.21-9.29 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2) |
 | memory-after | measured: gpu: 15728 MiB, 32607 MiB |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-05 00:28 | ocr-match | done |  |  |  |  |
+| 2026-11-05 00:21 | ocr-match | done |  |  |  |  |
 | 2026-11-04 18:38 | ocr-match | done |  |  |  |  |
 | 2026-11-04 16:28 | ocr-match | done |  |  |  |  |
 | 2026-11-04 15:43 | ocr-match | done |  |  |  |  |

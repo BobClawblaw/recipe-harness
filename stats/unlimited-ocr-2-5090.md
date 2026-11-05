@@ -1,6 +1,34 @@
 # Unlimited-OCR-2, bf16 on 1x NVIDIA RTX 5090 (32 GB), Linux
 
-Target `unlimited-ocr-2-5090`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA. Rendered from `stats/unlimited-ocr-2-5090.json` (6 runs); aggregate tok/s, total (a stream).
+Target `unlimited-ocr-2-5090`: Unlimited-OCR-2 bf16 as released, TensorFold native CUDA (unlimited-ocr) on one RTX 5090 (131072-token window, one stream). Engine: TensorFold native, CUDA. Rendered from `stats/unlimited-ocr-2-5090.json` (8 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-05 00:28: run `20261105-002843-ocr-match`
+
+Plan ocr-match, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `e1e345a25`; binary_sha256 `c0c0eb62c2e4df59e95f28c4e08db3e664c6113d794c5a018ad4f27751e0bad5`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179383`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 15726 MiB, 32607 MiB |
+| ocr | pass: 7/7 cases answered; decode 275-306 tok/s, first token 0.21-9.29 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2) |
+| memory-after | measured: gpu: 15728 MiB, 32607 MiB |
+
+## 2026-11-05 00:21: run `20261105-002110-ocr-match`
+
+Plan ocr-match, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `e0b153ec1`; binary_sha256 `b8b4b597b943794a1f74fe59d02257e68c4e3c8f4502144a55f41d3b3ca33302`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179383`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 15726 MiB, 32607 MiB |
+| ocr | pass: 7/7 cases answered; decode 276-306 tok/s, first token 0.22-9.28 s; vs reference: identical 2/6, similarity 0.9971-1.0000, text without boxes identical 5/6, box coords moved 13/284 (at most 2) |
+| memory-after | measured: gpu: 15728 MiB, 32607 MiB |
 
 ## 2026-11-04 18:38: run `20261104-183803-ocr-match`
 
