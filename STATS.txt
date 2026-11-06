@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-06 01:31 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-06 14:55 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -54,7 +54,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   Qwen3.8-Flash-Next INT4-Mixed (AutoRound)  2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE  78/127/102/131  16: 305/516/393/527  0.04 / 0.46-0.51  tools 60/60, json 30/30, gsm8k 241/250, humaneval 157/164, ifeval 130/150  2026-10-27
   Qwen3.8-Flash-Next, 6-bit with vision  1x Apple M5 Ultra (256 GB unified), macOS  142/210/173/206  2: 198/262/222/272  0.11 / 0.17-0.19    2026-10-17
   Qwen3.8-Flash-Next, MLX 6-bit  1x Apple M5 Ultra (256 GB unified), macOS  145/206/172/194  4: 566/816/673/854  0.09 / 1.63-3.07  gsm8k 242/250, ifeval 134/150  2026-10-11
-  Recursive Flint 40B-A2.5B, MLX INT4 (g64)  1x Apple M5 Ultra (256 GB unified), macOS  184/179/194/181    0.03    2026-10-28
+  Recursive Flint 40B-A2.5B, MLX INT4 (g64)  1x Apple M5 Ultra (256 GB unified), macOS  182/177/192/178    0.03    2026-11-05
   Spark-X2.6-4B, MLX 8-bit  1x Apple M5 Ultra (256 GB unified), macOS  166/166/166/166  4: 366/353/368/362  0.04 / 0.09-0.13    2026-10-30
   Spark-X2.6-4B, MLX 8-bit  1x NVIDIA RTX 4090 (24 GB), Windows  146/144/147/146  4: 548/547/552/550  0.03 / 0.07-0.07  tools 53/60, json 30/30, gsm8k 232/250, humaneval 0/0, ifeval 117/150  2026-10-25
   Spark-X2.6-4B, MLX 8-bit  1x NVIDIA RTX 5090 (32 GB)  199/191/203/204  4: 716/709/726/729  0.03 / 0.06-0.06    2026-10-26
@@ -69,9 +69,10 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   qwen38-27b  ?  150/229/167/185    0.10    2026-10-16
   qwen38-27b  ?  236/437/293/288    0.10  gsm8k 222/250  2026-10-19
   qwen38-27b  ?  210/397/266/259    0.10    2026-10-19
-  ricursiveAI Ripple-65B-Preview (bf16)  1x Apple M5 Ultra (256 GB unified), macOS  6/5/5/5  2: 12/11/10/12  0.51 / 0.86-1.81    2026-11-05
-  ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)  1x Apple M5 Ultra (256 GB unified), macOS  10/10/10/10  2: 19/19/19/19  0.60 / 0.92-1.08    2026-11-05
-  ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) + DFlash2 drafter  1x Apple M5 Ultra (256 GB unified), macOS  16/28/18/20  2: 22/38/27/41  0.53 / 0.82-0.98    2026-11-05
+  ricursiveAI Ripple-65B-Preview (bf16)  1x Apple M5 Ultra (256 GB unified), macOS  6/6/6/6  2: 14/14/13/14  0.52 / 0.79-1.78    2026-11-06
+  ricursiveAI Ripple-65B-Preview (bf16) + DFlash2 drafter  1x Apple M5 Ultra (256 GB unified), macOS  13/31/13/19  2: 26/63/26/55  0.39 / 3.24-7.98    2026-11-06
+  ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)  1x Apple M5 Ultra (256 GB unified), macOS  10/10/10/10  2: 19/19/19/19  0.61 / 0.93-1.10    2026-11-06
+  ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) + DFlash2 drafter  1x Apple M5 Ultra (256 GB unified), macOS  15/26/17/19  2: 21/35/25/37  0.55 / 0.83-1.12    2026-11-06
 
 DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 --------------------------------------------------------------------------------------
@@ -267,31 +268,31 @@ history
 Recursive Flint 40B-A2.5B, MLX INT4 (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 --------------------------------------------------------------------------------------
 
-Target flint-40b-native-m5: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as flint. Latest: run 20261028-091435-quick (2026-10-28 09:14, plan quick, done).
+Target flint-40b-native-m5: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as flint. Latest: run 20261105-213613-quick (2026-11-05 21:36, plan quick, done).
 
-Serving: engine_commit 99d178f80; binary_sha256 a78d9139c491883aa85c21572cf2f16a172abeec97d474e3a0e5b0c15e64891a; served_model {"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793196884, "own; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
+Serving: engine_commit 1cd499e06; binary_sha256 571a288739cfc0d46d121ad06e2153a73cc4dbf282ddce1eb48f5f96cfbb1029; served_model {"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793936182, "own; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
 
 ruler-fresh
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  184.3 (184.3)  179.2 (179.2)  194.0 (194.0)  180.6 (180.6)  0.03-0.04 s
+  1  181.9 (181.9)  176.9 (176.9)  191.5 (191.5)  178.3 (178.3)  0.03-0.04 s
 
 Engine rounds (ruler-fresh):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.044  0.076  52%  5.66  12
+  1  1.044  0.076  52%  5.73  12
 
 ruler-after
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  186.5 (186.5)  181.2 (181.2)  196.1 (196.1)  182.7 (182.7)  0.03-0.04 s
+  1  182.4 (182.4)  177.2 (177.2)  191.9 (191.9)  178.7 (178.7)  0.03-0.04 s
 
 Engine rounds (ruler-after):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.047  0.081  52%  5.61  13
+  1  1.047  0.081  52%  5.73  13
 
 suite
 -----
@@ -311,17 +312,19 @@ checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 87%; total = 4096.00M  us
+  memory-idle  measured: mac: System-wide memory free percentage: 80%; total = 6144.00M  us
   structured  pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400
   tools  pass: 5/5 tool cases right
   sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors
-  turns  pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.067s, cold 0.712s
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.067s, cold 0.719s
   urls  FAIL: public 400; loopback 400; http 400; unexpected: ['public']
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-05 21:36  quick  done  176.9      113/114
+  2026-11-04 13:40  quick  done  178.9      113/114
   2026-10-28 09:14  quick  done  179.2      113/114
   2026-10-28 03:49  streams  done  177.8      24/24
   2026-10-28 03:44  together  done        24/24
@@ -2294,95 +2297,132 @@ history
   2026-10-08 00:00  published evidence  published  107.6  441.7  0.45-0.58 s  
   2026-10-07 00:00  published evidence  published        12/12
 
-ricursiveAI Ripple-65B-Preview (bf16) on 1x Apple M5 Ultra (256 GB unified), macOS
-----------------------------------------------------------------------------------
+ricursiveAI Ripple-65B-Preview (bf16) + DFlash2 drafter on 1x Apple M5 Ultra (256 GB unified), macOS
+----------------------------------------------------------------------------------------------------
 
-Target ripple-65b-m5: ricursiveAI Ripple-65B-Preview, bf16 release, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as ripple. Latest: run 20261105-025221-speed (2026-11-05 02:52, plan speed, done).
+Target ripple-65b-dflash2-m5: ricursiveAI Ripple-65B-Preview (bf16 release) + its DFlash2 drafter (bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as ripple. Latest: run 20261106-051500-speed (2026-11-06 05:15, plan speed, running).
 
-Serving: engine_commit 98743a975; binary_sha256 cf15bebca5c5f0bd89ff4f9a1ffad672c7bc3ebecbfdcd869a286ebbaf6794ea; served_model {"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793868767, "ow; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
+Serving: engine_commit b7ff7854f; binary_sha256 40cade17c2254999237c082761470cdf70982a6a02e5ec3658fdb6fe9bc17016; served_model {"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793963755, "ow; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
 
 ruler-fresh
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  5.8 (5.8)  5.0 (5.0)  4.9 (4.9)  5.0 (5.0)  0.51-1.30 s
-  2  11.5 (5.8)  11.0 (5.5)  10.5 (5.2)  11.8 (5.9)  0.86-1.81 s
+  1  13.4 (13.4)  30.7 (30.7)  13.3 (13.3)  18.7 (18.7)  0.39-1.06 s
+  2  25.7 (12.9)  63.3 (31.6)  26.0 (13.0)  54.8 (27.4)  3.24-7.98 s
 
 Engine rounds (ruler-fresh):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.007  0.0    194.68  12
-  2  1.007  0.01  8%  179.58  25
-
-ruler-after
------------
-
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  5.8 (5.8)  4.4 (4.4)  4.9 (4.9)  5.3 (5.3)  0.52-1.19 s
-
-Engine rounds (ruler-after):
-
-  streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.007  0.0    197.23  13
+  1  2.931  6.547  29%  154.04  12
+  2  3.151  6.027  35%  148.44  25
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 42%; total = 6144.00M  us
-  turns  pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.587s, cold 7.535s
-  memory-busy  measured: mac: System-wide memory free percentage: 42%; total = 6144.00M  us
+  memory-idle  measured: mac: System-wide memory free percentage: 22%; total = 8192.00M  us
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-06 05:15  speed  running  30.7      
+  2026-11-06 05:08  together  done        24/24
+
+ricursiveAI Ripple-65B-Preview (bf16) on 1x Apple M5 Ultra (256 GB unified), macOS
+----------------------------------------------------------------------------------
+
+Target ripple-65b-m5: ricursiveAI Ripple-65B-Preview, bf16 release, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as ripple. Latest: run 20261106-045115-speed (2026-11-06 04:51, plan speed, done).
+
+Serving: engine_commit b7ff7854f; binary_sha256 40cade17c2254999237c082761470cdf70982a6a02e5ec3658fdb6fe9bc17016; served_model {"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793962340, "ow; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
+
+ruler-fresh
+-----------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  6.4 (6.4)  6.4 (6.4)  6.4 (6.4)  6.4 (6.4)  0.52-1.20 s
+  2  13.6 (6.8)  13.6 (6.8)  13.4 (6.7)  13.7 (6.9)  0.79-1.78 s
+
+Engine rounds (ruler-fresh):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.007  0.0    157.24  12
+  2  1.007  0.01  8%  148.42  25
+
+ruler-after
+-----------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  6.4 (6.4)  6.4 (6.4)  6.5 (6.5)  6.4 (6.4)  0.52-1.18 s
+
+Engine rounds (ruler-after):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.007  0.0    156.64  13
+
+checks
+------
+
+  check  result
+  memory-idle  measured: mac: System-wide memory free percentage: 27%; total = 6144.00M  us
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.626s, cold 7.541s
+  memory-busy  measured: mac: System-wide memory free percentage: 25%; total = 6144.00M  us
+
+history
+-------
+
+  run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-06 04:51  speed  done  6.4      
   2026-11-05 02:52  speed  done  5.0      
   2026-11-04 16:37  quick  running  6.5      
 
 ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) + DFlash2 drafter on 1x Apple M5 Ultra (256 GB unified), macOS
 --------------------------------------------------------------------------------------------------------------------------------
 
-Target ripple-65b-nvfp4-dflash2-m5: ricursiveAI Ripple-65B-Preview-NVFP4 + its DFlash2 drafter (bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as ripple. Latest: run 20261105-190943-speed (2026-11-05 19:09, plan speed, done).
+Target ripple-65b-nvfp4-dflash2-m5: ricursiveAI Ripple-65B-Preview-NVFP4 + its DFlash2 drafter (bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as ripple. Latest: run 20261106-043139-speed (2026-11-06 04:31, plan speed, done).
 
-Serving: engine_commit a869c4f32; binary_sha256 99b793dbbfe6dad5e06245e61c6cd0d57fd6e99ef4ea3221f5d69188d163c770; served_model {"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793927408, "ow; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
+Serving: engine_commit b7ff7854f; binary_sha256 40cade17c2254999237c082761470cdf70982a6a02e5ec3658fdb6fe9bc17016; served_model {"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793961124, "ow; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
 
 ruler-fresh
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  15.5 (15.5)  27.5 (27.5)  17.8 (17.8)  19.8 (19.8)  0.53-0.65 s
-  2  22.5 (11.2)  37.7 (18.9)  26.6 (13.3)  40.6 (20.3)  0.82-0.98 s
+  1  15.3 (15.3)  26.3 (26.3)  17.3 (17.3)  18.7 (18.7)  0.55-0.69 s
+  2  21.2 (10.6)  34.7 (17.3)  24.7 (12.3)  37.3 (18.7)  0.83-1.12 s
 
 Engine rounds (ruler-fresh):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  2.646  3.36  48%  131.15  12
-  2  2.646  2.912  56%  166.24  25
+  1  2.649  3.39  48%  136.62  12
+  2  2.677  2.995  56%  181.63  25
 
 ruler-after
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  15.5 (15.5)  27.6 (27.6)  17.8 (17.8)  19.6 (19.6)  0.53-0.65 s
+  1  14.5 (14.5)  25.7 (25.7)  16.7 (16.7)  18.7 (18.7)  0.54-0.71 s
 
 Engine rounds (ruler-after):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  2.648  3.471  47%  131.5  13
+  1  2.618  3.339  48%  138.57  13
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 63%; total = 6144.00M  us
-  turns  pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.593s, cold 8.097s
-  memory-busy  measured: mac: System-wide memory free percentage: 63%; total = 6144.00M  us
+  memory-idle  measured: mac: System-wide memory free percentage: 62%; total = 6144.00M  us
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.615s, cold 8.394s
+  memory-busy  measured: mac: System-wide memory free percentage: 62%; total = 6144.00M  us
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-06 04:31  speed  done  26.3      
+  2026-11-06 04:04  quick  done  29.1      109/114
+  2026-11-06 03:30  streams7  done  27.3      
   2026-11-05 19:09  speed  done  27.5      
   2026-11-05 17:58  speed  contended (another job held ~12 cores; rerun 20261105-190943-speed)  22.8      
   2026-11-05 17:31  quick  done  27.3      109/114
@@ -2394,46 +2434,48 @@ history
 ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) on 1x Apple M5 Ultra (256 GB unified), macOS
 --------------------------------------------------------------------------------------------------------------
 
-Target ripple-65b-nvfp4-m5: ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as ripple. Latest: run 20261105-080630-speed (2026-11-05 08:06, plan speed, done).
+Target ripple-65b-nvfp4-m5: ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as ripple. Latest: run 20261106-043932-speed (2026-11-06 04:39, plan speed, done).
 
-Serving: engine_commit 45685de42; binary_sha256 5323602e8f282c9f7e5e6f242e5ca2cc4c1f0b9699fec05da11c7b366bdfac1b; served_model {"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793887605, "ow; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
+Serving: engine_commit b7ff7854f; binary_sha256 40cade17c2254999237c082761470cdf70982a6a02e5ec3658fdb6fe9bc17016; served_model {"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793961592, "ow; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
 
 ruler-fresh
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  10.2 (10.2)  10.2 (10.2)  10.3 (10.3)  10.2 (10.2)  0.60-0.72 s
-  2  18.9 (9.5)  18.8 (9.4)  19.2 (9.6)  18.9 (9.5)  0.92-1.08 s
+  1  10.2 (10.2)  10.1 (10.1)  10.2 (10.2)  10.1 (10.1)  0.61-0.74 s
+  2  18.7 (9.3)  18.6 (9.3)  19.0 (9.5)  18.6 (9.3)  0.93-1.10 s
 
 Engine rounds (ruler-fresh):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.006  0.0    98.21  12
-  2  1.007  0.009  8%  106.07  25
+  1  1.006  0.0    99.24  12
+  2  1.007  0.009  8%  107.58  25
 
 ruler-after
 -----------
 
   streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  10.3 (10.3)  10.3 (10.3)  10.3 (10.3)  10.3 (10.3)  0.60-0.72 s
+  1  10.1 (10.1)  10.1 (10.1)  10.2 (10.2)  10.1 (10.1)  0.61-0.74 s
 
 Engine rounds (ruler-after):
 
   streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.007  0.0    98.11  13
+  1  1.007  0.0    99.59  13
 
 checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 69%; total = 6144.00M  us
-  turns  pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.653s, cold 7.724s
-  memory-busy  measured: mac: System-wide memory free percentage: 69%; total = 6144.00M  us
+  memory-idle  measured: mac: System-wide memory free percentage: 65%; total = 6144.00M  us
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.692s, cold 8.146s
+  memory-busy  measured: mac: System-wide memory free percentage: 65%; total = 6144.00M  us
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-06 04:39  speed  done  10.1      
+  2026-11-06 03:10  streams7  done  10.2      
   2026-11-05 08:06  speed  done  10.2      
   2026-11-05 07:55  speed  done  10.2      
   2026-11-04 23:29  quick  done  10.1      109/114
@@ -2757,6 +2799,7 @@ history
   2026-11-05 08:26  ocr  done        
   2026-11-05 06:51  ocr  done        
   2026-11-04 09:57  ocr  done        
+  2026-11-04 09:39  ocr-match  done        
   2026-11-04 05:28  ocr  done        
   2026-11-04 05:07  ocr  done        
   2026-11-04 04:32  ocr-match  done        

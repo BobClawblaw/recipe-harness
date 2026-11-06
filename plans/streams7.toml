@@ -1,0 +1,15 @@
+description = "Streams up to seven (about 15 minutes): the ruler at 1, 2, 4 and 7 streams with memory before and under load, for an engine that serves seven"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ruler"
+label = "streams"
+concurrency = [1, 2, 4, 7]
+
+[[checks]]
+type = "memory"
+name = "memory-busy"

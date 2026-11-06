@@ -1,6 +1,132 @@
 # ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) + DFlash2 drafter on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ripple-65b-nvfp4-dflash2-m5`: ricursiveAI Ripple-65B-Preview-NVFP4 + its DFlash2 drafter (bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ripple-65b-nvfp4-dflash2-m5.json` (8 runs); aggregate tok/s, total (a stream).
+Target `ripple-65b-nvfp4-dflash2-m5`: ricursiveAI Ripple-65B-Preview-NVFP4 + its DFlash2 drafter (bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ripple-65b-nvfp4-dflash2-m5.json` (11 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-06 04:31: run `20261106-043139-speed`
+
+Plan speed, done; served as `ripple`.
+
+Serving: engine_commit `b7ff7854f`; binary_sha256 `40cade17c2254999237c082761470cdf70982a6a02e5ec3658fdb6fe9bc17016`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793961124, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 15.3 (15.3) | 26.3 (26.3) | 17.3 (17.3) | 18.7 (18.7) | 0.55-0.69 s |
+| 2 | 21.2 (10.6) | 34.7 (17.3) | 24.7 (12.3) | 37.3 (18.7) | 0.83-1.12 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.649 | 3.39 | 48% | 136.62 | 12 |
+| 2 | 2.677 | 2.995 | 56% | 181.63 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 14.5 (14.5) | 25.7 (25.7) | 16.7 (16.7) | 18.7 (18.7) | 0.54-0.71 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.618 | 3.339 | 48% | 138.57 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 62%; total = 6144.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.615s, cold 8.394s |
+| memory-busy | measured: mac: System-wide memory free percentage: 62%; total = 6144.00M  us |
+
+## 2026-11-06 04:04: run `20261106-040433-quick`
+
+Plan quick, done; served as `ripple`.
+
+Serving: engine_commit `b7ff7854f`; binary_sha256 `40cade17c2254999237c082761470cdf70982a6a02e5ec3658fdb6fe9bc17016`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793959498, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 14.2 (14.2) | 29.1 (29.1) | 17.8 (17.8) | 19.5 (19.5) | 0.53-0.69 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.695 | 3.582 | 47% | 133.73 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 15.5 (15.5) | 27.3 (27.3) | 17.8 (17.8) | 19.6 (19.6) | 0.54-0.65 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.648 | 3.407 | 48% | 131.94 | 13 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 5/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 63%; total = 6144.00M  us |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.595s, cold 7.766s |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
+
+## 2026-11-06 03:30: run `20261106-033020-streams7`
+
+Plan streams7, done; served as `ripple`.
+
+Serving: engine_commit `e1d719275`; binary_sha256 `fe88bbc9b7c520e9e8c24e1437b00440b5f31c205035492923f62973ba341fc4`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793957445, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-streams
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 15.4 (15.4) | 27.3 (27.3) | 17.7 (17.7) | 19.5 (19.5) | 0.54-0.65 s |
+| 2 | 22.0 (11.0) | 36.0 (18.0) | 25.6 (12.8) | 39.6 (19.8) | 0.81-1.02 s |
+| 4 | 30.3 (7.5) | 32.0 (7.9) | 31.3 (7.6) | 43.1 (10.9) | 1.38-1.87 s |
+| 7 | 40.2 (5.9) | 34.7 (4.7) | 22.9 (3.2) | 34.1 (4.8) | 2.16-2.63 s |
+
+Engine rounds (ruler-streams):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.646 | 3.415 | 48% | 132.4 | 12 |
+| 2 | 2.679 | 2.988 | 56% | 173.96 | 25 |
+| 4 | 2.353 | 2.039 | 66% | 277.61 | 49 |
+| 7 | 1.893 | 1.346 | 66% | 406.44 | 85 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 64%; total = 6144.00M  us |
+| memory-busy | measured: mac: System-wide memory free percentage: 63%; total = 6144.00M  us |
 
 ## 2026-11-05 19:09: run `20261105-190943-speed`
 
