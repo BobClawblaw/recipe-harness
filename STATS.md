@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-05 14:31 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-06 01:31 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -68,6 +68,9 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | qwen38-27b | ? | 150/229/167/185 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 236/437/293/288 |  | 0.10 | gsm8k 222/250 | 2026-10-19 |
 | qwen38-27b | ? | 210/397/266/259 |  | 0.10 |  | 2026-10-19 |
+| ricursiveAI Ripple-65B-Preview (bf16) | 1x Apple M5 Ultra (256 GB unified), macOS | 6/5/5/5 | 2: 12/11/10/12 | 0.51 / 0.86-1.81 |  | 2026-11-05 |
+| ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) | 1x Apple M5 Ultra (256 GB unified), macOS | 10/10/10/10 | 2: 19/19/19/19 | 0.60 / 0.92-1.08 |  | 2026-11-05 |
+| ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) + DFlash2 drafter | 1x Apple M5 Ultra (256 GB unified), macOS | 16/28/18/20 | 2: 22/38/27/41 | 0.53 / 0.82-0.98 |  | 2026-11-05 |
 
 ## DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 
@@ -2270,6 +2273,156 @@ Target `qwen38-int4mixed`: Qwen3.8-Flash-Next INT4-Mixed, TensorFold native, TP=
 | 2026-10-08 00:00 | published evidence | published | 107.6 | 442.6 | 0.44-0.58 s | 36/36 |
 | 2026-10-08 00:00 | published evidence | published | 107.6 | 441.7 | 0.45-0.58 s |  |
 | 2026-10-07 00:00 | published evidence | published |  |  |  | 12/12 |
+
+## ricursiveAI Ripple-65B-Preview (bf16) on 1x Apple M5 Ultra (256 GB unified), macOS
+
+Target `ripple-65b-m5`: ricursiveAI Ripple-65B-Preview, bf16 release, TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `ripple`. Latest: run `20261105-025221-speed` (2026-11-05 02:52, plan speed, done).
+
+Serving: engine_commit `98743a975`; binary_sha256 `cf15bebca5c5f0bd89ff4f9a1ffad672c7bc3ebecbfdcd869a286ebbaf6794ea`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793868767, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 5.8 (5.8) | 5.0 (5.0) | 4.9 (4.9) | 5.0 (5.0) | 0.51-1.30 s |
+| 2 | 11.5 (5.8) | 11.0 (5.5) | 10.5 (5.2) | 11.8 (5.9) | 0.86-1.81 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.007 | 0.0 |  | 194.68 | 12 |
+| 2 | 1.007 | 0.01 | 8% | 179.58 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 5.8 (5.8) | 4.4 (4.4) | 4.9 (4.9) | 5.3 (5.3) | 0.52-1.19 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.007 | 0.0 |  | 197.23 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 42%; total = 6144.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.587s, cold 7.535s |
+| memory-busy | measured: mac: System-wide memory free percentage: 42%; total = 6144.00M  us |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-11-05 02:52 | speed | done | 5.0 |  |  |  |
+| 2026-11-04 16:37 | quick | running | 6.5 |  |  |  |
+
+## ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) + DFlash2 drafter on 1x Apple M5 Ultra (256 GB unified), macOS
+
+Target `ripple-65b-nvfp4-dflash2-m5`: ricursiveAI Ripple-65B-Preview-NVFP4 + its DFlash2 drafter (bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `ripple`. Latest: run `20261105-190943-speed` (2026-11-05 19:09, plan speed, done).
+
+Serving: engine_commit `a869c4f32`; binary_sha256 `99b793dbbfe6dad5e06245e61c6cd0d57fd6e99ef4ea3221f5d69188d163c770`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793927408, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 15.5 (15.5) | 27.5 (27.5) | 17.8 (17.8) | 19.8 (19.8) | 0.53-0.65 s |
+| 2 | 22.5 (11.2) | 37.7 (18.9) | 26.6 (13.3) | 40.6 (20.3) | 0.82-0.98 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.646 | 3.36 | 48% | 131.15 | 12 |
+| 2 | 2.646 | 2.912 | 56% | 166.24 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 15.5 (15.5) | 27.6 (27.6) | 17.8 (17.8) | 19.6 (19.6) | 0.53-0.65 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 2.648 | 3.471 | 47% | 131.5 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 63%; total = 6144.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.593s, cold 8.097s |
+| memory-busy | measured: mac: System-wide memory free percentage: 63%; total = 6144.00M  us |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-11-05 19:09 | speed | done | 27.5 |  |  |  |
+| 2026-11-05 17:58 | speed | contended (another job held ~12 cores; rerun 20261105-190943-speed) | 22.8 |  |  |  |
+| 2026-11-05 17:31 | quick | done | 27.3 |  |  | 109/114 |
+| 2026-11-05 07:41 | speed | done | 27.5 |  |  |  |
+| 2026-11-05 07:01 | quick | done | 16.7 |  |  | 109/114 |
+| 2026-11-05 05:37 | speed | done | 27.6 |  |  |  |
+| 2026-11-05 05:10 | quick | done | 25.3 |  |  | 109/114 |
+
+## ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) on 1x Apple M5 Ultra (256 GB unified), macOS
+
+Target `ripple-65b-nvfp4-m5`: ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as `ripple`. Latest: run `20261105-080630-speed` (2026-11-05 08:06, plan speed, done).
+
+Serving: engine_commit `45685de42`; binary_sha256 `5323602e8f282c9f7e5e6f242e5ca2cc4c1f0b9699fec05da11c7b366bdfac1b`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793887605, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 10.2 (10.2) | 10.2 (10.2) | 10.3 (10.3) | 10.2 (10.2) | 0.60-0.72 s |
+| 2 | 18.9 (9.5) | 18.8 (9.4) | 19.2 (9.6) | 18.9 (9.5) | 0.92-1.08 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.006 | 0.0 |  | 98.21 | 12 |
+| 2 | 1.007 | 0.009 | 8% | 106.07 | 25 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 10.3 (10.3) | 10.3 (10.3) | 10.3 (10.3) | 10.3 (10.3) | 0.60-0.72 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.007 | 0.0 |  | 98.11 | 13 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 69%; total = 6144.00M  us |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4513 of 4597; ttft resumed 0.653s, cold 7.724s |
+| memory-busy | measured: mac: System-wide memory free percentage: 69%; total = 6144.00M  us |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-11-05 08:06 | speed | done | 10.2 |  |  |  |
+| 2026-11-05 07:55 | speed | done | 10.2 |  |  |  |
+| 2026-11-04 23:29 | quick | done | 10.1 |  |  | 109/114 |
+| 2026-11-04 21:23 | quick | done | 10.2 |  |  | 109/114 |
+| 2026-11-04 20:25 | speed | done | 10.1 |  |  |  |
+| 2026-11-04 19:42 | quick | done | 10.2 |  |  | 109/114 |
 
 ## Spark-X2.6-4B, MLX 8-bit on 1x NVIDIA RTX 4090 (24 GB), Windows
 
