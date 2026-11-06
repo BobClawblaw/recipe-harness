@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-06 14:55 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-06 16:45 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -59,7 +59,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Spark-X2.6-4B, MLX 8-bit | 1x NVIDIA RTX 5090 (32 GB) | 199/191/203/204 | 4: 716/709/726/729 | 0.03 / 0.06-0.06 |  | 2026-10-26 |
 | Spark-X2.6-4B, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 106/105/105/105 | 4: 318/294/320/314 | 0.06 / 0.13-0.17 |  | 2026-10-30 |
 | Step-5-Preview, MLX 2-bit experts (8-bit rest) + MTP | 1x Apple M5 Ultra (256 GB unified), macOS | 38/50/40/48 |  | 0.24 |  | 2026-10-16 |
-| Unlimited-OCR-2, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS |  |  |  |  | 2026-11-05 |
+| Unlimited-OCR-2, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS |  |  |  |  | 2026-11-06 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA GB10 (DGX Spark class, 128 GB unified) |  |  |  |  | 2026-11-04 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 4080 SUPER (16 GB), Windows 11 |  |  |  |  | 2026-11-03 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-05 |
@@ -2757,26 +2757,27 @@ Serving: engine_commit `e1e345a25`; binary_sha256 `6fba85d1e2683085d0dcacd0aac9c
 
 ## Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal; served as `Unlimited-OCR-2`. Latest: run `20261105-082603-ocr` (2026-11-05 08:26, plan ocr, done).
+Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal; served as `Unlimited-OCR-2`. Latest: run `20261106-104202-ocr` (2026-11-06 10:42, plan ocr, done).
 
-Serving: engine_commit `0af3eb8c8`; binary_sha256 `8b298588bd2754c4a49396e13f40761d933035cc4070f8bb8e53bdd543f12313`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179388`; chip `Apple M5 Ultra; 274877906944`
+Serving: engine_commit `f7c686f36`; binary_sha256 `adf4f3c4bb9f45a1501bbf5d41b1bfc1821284d2cb5b7e484846840046c72313`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179398`; chip `Apple M5 Ultra; 274877906944`
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: mac: System-wide memory free percentage: 89% |
-| ocr | pass: 6/6 cases answered; decode 225-262 tok/s, first token 0.79-3.90 s; 2 at once 108-232 tok/s in all; vs reference: identical 2/6, similarity 0.9973-1.0000, text without boxes identical 6/6, box coords moved 10/288 (at most 10) |
+| memory-idle | measured: mac: System-wide memory free percentage: 88% |
+| ocr | pass: 6/6 cases answered; decode 303-308 tok/s, first token 0.27-1.45 s; 2 at once 200-296 tok/s in all; vs reference: identical 1/6, similarity 0.9844-1.0000, text without boxes identical 3/6, box coords moved 102/284 (at most 824) |
 | memory-after | measured: mac: System-wide memory free percentage: 83% |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-06 10:42 | ocr | done |  |  |  |  |
+| 2026-11-06 10:18 | ocr | done |  |  |  |  |
 | 2026-11-05 08:26 | ocr | done |  |  |  |  |
 | 2026-11-05 06:51 | ocr | done |  |  |  |  |
 | 2026-11-04 09:57 | ocr | done |  |  |  |  |
-| 2026-11-04 09:39 | ocr-match | done |  |  |  |  |
 | 2026-11-04 05:28 | ocr | done |  |  |  |  |
 | 2026-11-04 05:07 | ocr | done |  |  |  |  |
 | 2026-11-04 04:32 | ocr-match | done |  |  |  |  |

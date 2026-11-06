@@ -1,6 +1,34 @@
 # Unlimited-OCR-2, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal. Rendered from `stats/unlimited-ocr-2-m5.json` (13 runs); aggregate tok/s, total (a stream).
+Target `unlimited-ocr-2-m5`: Unlimited-OCR-2 bf16 as released, TensorFold native Metal (unlimited-ocr) on one M5 Ultra (131072-token window, one stream). Engine: TensorFold native, Metal. Rendered from `stats/unlimited-ocr-2-m5.json` (15 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-06 10:42: run `20261106-104202-ocr`
+
+Plan ocr, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `f7c686f36`; binary_sha256 `adf4f3c4bb9f45a1501bbf5d41b1bfc1821284d2cb5b7e484846840046c72313`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179398`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 88% |
+| ocr | pass: 6/6 cases answered; decode 303-308 tok/s, first token 0.27-1.45 s; 2 at once 200-296 tok/s in all; vs reference: identical 1/6, similarity 0.9844-1.0000, text without boxes identical 3/6, box coords moved 102/284 (at most 824) |
+| memory-after | measured: mac: System-wide memory free percentage: 83% |
+
+## 2026-11-06 10:18: run `20261106-101800-ocr`
+
+Plan ocr, done; served as `Unlimited-OCR-2`.
+
+Serving: engine_commit `3ced46888`; binary_sha256 `9d02efd57e1937f673bb26395c8277c1dcdbfad3631f13cbca750137dd0f7561`; served_model `{"object": "list", "data": [{"id": "Unlimited-OCR-2", "object": "model", "created": 179398`; chip `Apple M5 Ultra; 274877906944`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 88% |
+| ocr | pass: 6/6 cases answered; decode 305-309 tok/s, first token 0.28-1.45 s; 2 at once 201-297 tok/s in all; vs reference: identical 1/6, similarity 0.9844-1.0000, text without boxes identical 3/6, box coords moved 102/284 (at most 824) |
+| memory-after | measured: mac: System-wide memory free percentage: 83% |
 
 ## 2026-11-05 08:26: run `20261105-082603-ocr`
 
