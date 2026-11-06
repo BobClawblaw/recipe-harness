@@ -1,6 +1,19 @@
 # ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `ripple-65b-nvfp4-m5`: ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ripple-65b-nvfp4-m5.json` (11 runs); aggregate tok/s, total (a stream).
+Target `ripple-65b-nvfp4-m5`: ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/ripple-65b-nvfp4-m5.json` (12 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-06 11:30: run `20261106-113054-structured`
+
+Plan structured, done; served as `ripple`.
+
+Serving: engine_commit `630f1fc4f`; binary_sha256 `6b1b9effeda7340e68e54acb0662e7db8f3825208ced316c1e4644233d6950df`; served_model `{"object": "list", "data": [{"id": "ripple", "object": "model", "created": 1793986254, "ow`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be`
+
+### checks
+
+| check | result |
+|---|---|
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
 
 ## 2026-11-06 04:39: run `20261106-043932-speed`
 

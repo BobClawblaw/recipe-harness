@@ -1602,6 +1602,39 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
+  },
+  {
+   "run": "20261106-113054-structured",
+   "target": "ripple-65b-nvfp4-m5",
+   "model": "ripple",
+   "plan": "structured",
+   "started": "20261106-113054",
+   "finished": "20261106-113359",
+   "status": "done",
+   "identity": {
+    "engine_commit": "630f1fc4f",
+    "binary_sha256": "6b1b9effeda7340e68e54acb0662e7db8f3825208ced316c1e4644233d6950df",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"ripple\", \"object\": \"model\", \"created\": 1793986254, \"owned_by\": \"tensorfold\", \"context_length\": 262144, \"max_model_len\": 262144}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "21db9b23f7be"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "5/5 tool cases right"
+    }
+   },
+   "model_name": "ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "ricursiveAI Ripple-65B-Preview-NVFP4 (MLPs NVFP4, attention bf16; activations bf16), TensorFold native Metal on one M5 Ultra"
   }
  ]
 }
