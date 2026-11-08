@@ -1,9 +1,9 @@
 # Qwen3.8-27B 4-bit with image input on one RTX 5090 (github.com/BobClawblaw/qwen38-27b-vision-rtx-5090), a systemd
 # service on this machine. The quality suite and ruler are the qwen Spark recipe's, from a local checkout (suite_dir).
-# Machine-specific values go in qwen38-27b-5090.local.toml (git-ignored; copy the .local.example.toml).
-name = "qwen38-27b-5090-exl3-4"
-description = "Qwen3.8-27B EXL3 4.00 bpw (turboderp/Qwen3.8-27B-exl3 at 4.00bpw) + DFlash2, TensorFold native CUDA on one RTX 5090 (bf16 prompts, fp8 KV, the quant comparison of 2026-11-08)"
-model_name = "Qwen3.8-27B, EXL3 4.00 bpw + DFlash2"
+# Machine-specific values go in qwen38-27b-5090-mlx4.local.toml (git-ignored; copy the .local.example.toml).
+name = "qwen38-27b-5090-mlx4"
+description = "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native CUDA on one RTX 5090 (int8 prompts, fp8 KV, 262k, four streams, vision): the recipe until 2026-11-08, kept for its runs (qwen38-27b-5090 serves the EXL3 4.00 bpw pack since)"
+model_name = "Qwen3.8-27B, MLX 4-bit + DFlash2"   # the report's model column
 hardware = "1x NVIDIA RTX 5090 (32 GB)"
 engine = "TensorFold native, CUDA"
 url = "http://127.0.0.1:$port"
@@ -57,3 +57,10 @@ max_concurrency = 1
 thinking = true       # on by default
 prompt_cache = true   # kept prompt states in host memory (PROMPT_CACHE_GIB)
 
+# python3 -m harness leaderboard qwen38-27b-5090: the service down, community-v1 on the public checkpoint, the service
+# up, the receipt published to tensorfold.dev/benchmarks with the stored login (tensorfold benchmark login)
+[leaderboard]
+model = "TensorFold/Qwen3.8-27B-MLX-4bit"   # with z-lab/Qwen3.8-27B-DFlash2, both cached as Hugging Face snapshots
+binary = "$engine_src/zig-out/native/bin/tensorfold-native"
+free = "test $$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | head -1) -lt 1500"
+env = { TENSORFOLD_CUDA_KERNELS = "$kernels" }   # the service's captured glue kernels
