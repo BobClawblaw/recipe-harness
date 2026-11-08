@@ -1,0 +1,20 @@
+description = "Quant comparison (about 45 minutes): memory, one stream fresh, gsm8k with thinking at a 48k budget, then the greedy suite on gsm8k, mmlu, ifeval, humaneval and mgsm; the server needs --thinking-budget 49152 and --max-tokens 50176 or more"
+restart = false
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "ruler"
+label = "fresh"
+concurrency = [1]
+
+[[checks]]
+type = "suite"
+name = "suite-thinking"
+args = "--only gsm8k --thinking --reasoning-budget 49152"
+
+[[checks]]
+type = "suite"
+args = "--only gsm8k mmlu ifeval humaneval mgsm"
