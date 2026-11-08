@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-08 14:19 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-08 22:24 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -49,7 +49,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Ornith-1.5-122B, 4-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 133/192/161/194 |  | 0.05 |  | 2026-10-31 |
 | Ornith-1.5-122B, 4-bit MLX affine (g64), YaRN x4 to 1M context | 1x Apple M5 Ultra (256 GB unified), macOS | 78/161/106/111 | 4: 447/774/555/871 | 0.06 / 1.58-3.32 | gsm8k 247/250 | 2026-10-26 |
 | Ornith-1.5-122B, 8-bit MLX affine (g64) | 1x Apple M5 Ultra (256 GB unified), macOS | 57/111/91/83 | 4: 148/232/186/243 | 0.08 / 0.19-0.27 |  | 2026-10-31 |
-| Qwen3.8-27B, EXL3 4.00 bpw + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 214/454/307/265 |  | 0.03 |  | 2026-11-08 |
+| Qwen3.8-27B, EXL3 4.00 bpw + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 208/427/274/261 |  | 0.03 |  | 2026-11-08 |
 | Qwen3.8-27B, EXL3 5.00 bpw + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 191/366/240/256 |  | 0.03 | humaneval 151/164 | 2026-11-08 |
 | Qwen3.8-27B, MLX 4-bit + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 278/538/353/337 |  | 0.06 |  | 2026-11-08 |
 | Qwen3.8-27B, MLX 4-bit, bf16 prompts + DFlash2 | 1x NVIDIA RTX 5090 (32 GB) | 276/525/354/332 |  | 0.10 | gsm8k 241/250 | 2026-11-08 |
@@ -2347,21 +2347,21 @@ Serving: recipe_commit `6f7277d`; engine_commit `b10231b9`; served_model `{"obje
 
 ## Qwen3.8-27B, EXL3 4.00 bpw + DFlash2 on 1x NVIDIA RTX 5090 (32 GB)
 
-Target `qwen38-27b-5090`: Qwen3.8-27B EXL3 4.00 bpw (turboderp/Qwen3.8-27B-exl3, revision 4.00bpw) + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, three streams, vision). Engine: TensorFold native, CUDA; served as `qwen38-27b`. Latest: run `20261108-140641-quick` (2026-11-08 14:06, plan quick, done).
+Target `qwen38-27b-5090`: Qwen3.8-27B EXL3 4.00 bpw (turboderp/Qwen3.8-27B-exl3, revision 4.00bpw) + DFlash2, TensorFold native CUDA on one RTX 5090 (fp8 KV, 262k, three streams, vision). Engine: TensorFold native, CUDA; served as `qwen38-27b`. Latest: run `20261108-221905-quick` (2026-11-08 22:19, plan quick, done).
 
-Serving: recipe_commit `a52ff23`; engine_commit `267c5af`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1794146801,`; suite_commit `49a346d8899c`
+Serving: recipe_commit `e1bf3ef`; engine_commit `a72aa0222`; served_model `{"object": "list", "data": [{"id": "qwen38-27b", "object": "model", "created": 1794176345,`; suite_commit `49a346d8899c`
 
 ### ruler-fresh
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 214.5 (214.5) | 453.7 (453.7) | 307.4 (307.4) | 265.0 (265.0) | 0.03-0.06 s |
+| 1 | 207.5 (207.5) | 427.2 (427.2) | 273.7 (273.7) | 260.8 (260.8) | 0.03-0.06 s |
 
 ### ruler-after
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 217.2 (217.2) | 452.8 (452.8) | 307.2 (307.2) | 263.8 (263.8) | 0.03-0.06 s |
+| 1 | 218.3 (218.3) | 436.9 (436.9) | 273.2 (273.2) | 259.9 (259.9) | 0.03-0.06 s |
 
 ### suite
 
@@ -2371,7 +2371,7 @@ Serving: recipe_commit `a52ff23`; engine_commit `267c5af`; served_model `{"objec
 | drafts | 12/12 |
 | concurrent | 12/12 |
 | streaming | 4/4 |
-| multiturn | 7/8 |
+| multiturn | 8/8 |
 | stop | 3/3 |
 | thinking | 10/10 |
 | copy | 2/2 |
@@ -2385,12 +2385,14 @@ Serving: recipe_commit `a52ff23`; engine_commit `267c5af`; served_model `{"objec
 | structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
 | tools | pass: 5/5 tool cases right |
 | sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
-| turns | pass: resumed == again: True; cold (padded): True; cached 4096 of 5613; ttft resumed 0.746s, cold 0.746s |
+| turns | pass: resumed == again: True; cold (padded): True; cached 4096 of 5613; ttft resumed 0.749s, cold 0.749s |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-08 22:19 | quick | done | 427.2 |  |  | 114/114 |
+| 2026-11-08 22:19 | vision | done |  |  |  | 12/12 |
 | 2026-11-08 14:06 | quick | done | 453.7 |  |  | 113/114 |
 | 2026-11-08 14:06 | vision | done |  |  |  | 12/12 |
 | 2026-11-08 11:10 | quant-compare | done | 452.6 |  |  | 244/250 |
