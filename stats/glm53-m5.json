@@ -596,7 +596,7 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   },
   {
    "run": "20261016-080418-glm-gate-novision",
@@ -708,7 +708,7 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   },
   {
    "run": "20261016-082326-glm-gate-novision",
@@ -820,7 +820,7 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   },
   {
    "run": "20261109-110901-speed",
@@ -924,7 +924,7 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   },
   {
    "run": "20261109-113557-quick",
@@ -1071,7 +1071,7 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   },
   {
    "run": "20261109-120751-quick",
@@ -1218,7 +1218,7 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   },
   {
    "run": "20261109-121446-structured",
@@ -1249,7 +1249,7 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   },
   {
    "run": "20261109-121502-sampling",
@@ -1276,7 +1276,7 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   },
   {
    "run": "20261109-121537-glm-vision",
@@ -1303,7 +1303,461 @@
    "model_name": "GLM-5.3-Flash, MLX 4-bit",
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
-   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
+  },
+  {
+   "run": "20261109-122358-quick",
+   "target": "glm53-m5",
+   "model": "GLM-5.3-Flash-MLX-4bit",
+   "plan": "quick",
+   "started": "20261109-122358",
+   "finished": "20261109-124052",
+   "status": "done",
+   "identity": {
+    "engine_commit": "7070b25ca",
+    "binary_sha256": "351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad",
+    "suite_commit": "206803ca7135"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 89.7,
+      "per_stream": 89.7,
+      "ttft": 0.119
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 62.9,
+      "per_stream": 62.9,
+      "ttft": 0.134
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 96.6,
+      "per_stream": 96.6,
+      "ttft": 0.14
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 92.8,
+      "per_stream": 92.8,
+      "ttft": 0.106
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 89.7,
+      "per_stream": 89.7,
+      "ttft": 0.123
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 101.7,
+      "per_stream": 101.7,
+      "ttft": 0.136
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 95.7,
+      "per_stream": 95.7,
+      "ttft": 0.139
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 93.6,
+      "per_stream": 93.6,
+      "ttft": 0.106
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 10,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 3,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: ssh: Could not resolve hostname unused: nodename nor servnam"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 89.7/62.9/96.6/92.8 ttft 0.11-0.14s"
+    },
+    "tools": {
+     "ok": true,
+     "summary": "1/1 tool cases right; not tested (features.structured = false): required, named, named/thinking, named/stream"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": null,
+     "summary": "resumed == again: True; cold (padded) not compared: 4777 prompt tokens (cached 0) against 4776; cached 4652 of 4776; ttft resumed 0.196s, cold 3.945s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 89.7/101.7/95.7/93.6 ttft 0.11-0.14s"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 10/10, copy 2/2, max-tokens 3/3"
+    }
+   },
+   "model_name": "GLM-5.3-Flash, MLX 4-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
+  },
+  {
+   "run": "20261109-125005-speed3",
+   "target": "glm53-m5",
+   "model": "GLM-5.3-Flash-MLX-4bit",
+   "plan": "speed3",
+   "started": "20261109-125005",
+   "finished": "20261109-125104",
+   "status": "done",
+   "identity": {
+    "engine_commit": "7070b25ca",
+    "binary_sha256": "351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad",
+    "suite_commit": "206803ca7135"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 89.9,
+      "per_stream": 89.9,
+      "ttft": 0.12
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 102.8,
+      "per_stream": 102.8,
+      "ttft": 0.135
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 96.9,
+      "per_stream": 96.9,
+      "ttft": 0.14
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 93.9,
+      "per_stream": 93.9,
+      "ttft": 0.107
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 90.1,
+      "per_stream": 90.1,
+      "ttft": 0.119
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 102.5,
+      "per_stream": 102.5,
+      "ttft": 0.135
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 97.3,
+      "per_stream": 97.3,
+      "ttft": 0.141
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 86.9,
+      "per_stream": 86.9,
+      "ttft": 0.108
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: ssh: Could not resolve hostname unused: nodename nor servnam"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 89.9/102.8/96.9/93.9 ttft 0.11-0.14s"
+    },
+    "turns": {
+     "ok": null,
+     "summary": "resumed == again: True; cold (padded) not compared: 4777 prompt tokens (cached 4653) against 4776; cached 4652 of 4776; ttft resumed 0.204s, cold 0.213s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 90.1/102.5/97.3/86.9 ttft 0.11-0.14s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: ssh: Could not resolve hostname unused: nodename nor servnam"
+    }
+   },
+   "model_name": "GLM-5.3-Flash, MLX 4-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
+  },
+  {
+   "run": "20261109-125104-prefill",
+   "target": "glm53-m5",
+   "model": "GLM-5.3-Flash-MLX-4bit",
+   "plan": "prefill",
+   "started": "20261109-125104",
+   "finished": "20261109-125446",
+   "status": "done",
+   "identity": {
+    "engine_commit": "7070b25ca",
+    "binary_sha256": "351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad",
+    "suite_commit": "206803ca7135"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: ssh: Could not resolve hostname unused: nodename nor servnam"
+    },
+    "prefill-off": {
+     "ok": null,
+     "summary": "2216 tokens 1928.6 tok/s (1.149 s), 8746 tokens 1414.8 tok/s (6.182 s), 35125 tokens 1711.7 tok/s (20.521 s), 139815 tokens 1621.0 tok/s (86.253 s)"
+    },
+    "prefill-thinking": {
+     "ok": null,
+     "summary": "2233 tokens 1972.6 tok/s (1.132 s), 8767 tokens 1986.2 tok/s (4.414 s), 34950 tokens 1696.4 tok/s (20.603 s), 139894 tokens 1730.9 tok/s (80.822 s)"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: ssh: Could not resolve hostname unused: nodename nor servnam"
+    }
+   },
+   "model_name": "GLM-5.3-Flash, MLX 4-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
+  },
+  {
+   "run": "20261109-125500-speed3",
+   "target": "glm53-m5",
+   "model": "GLM-5.3-Flash-MLX-4bit",
+   "plan": "speed3",
+   "started": "20261109-125500",
+   "finished": "20261109-125757",
+   "status": "done",
+   "identity": {
+    "engine_commit": "7070b25ca",
+    "binary_sha256": "351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad",
+    "suite_commit": "206803ca7135"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 90.7,
+      "per_stream": 90.7,
+      "ttft": 0.119
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 102.7,
+      "per_stream": 102.7,
+      "ttft": 0.136
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 97.1,
+      "per_stream": 97.1,
+      "ttft": 0.14
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 94.0,
+      "per_stream": 94.0,
+      "ttft": 0.107
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 115.7,
+      "per_stream": 57.8,
+      "ttft": 0.194
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 123.8,
+      "per_stream": 61.9,
+      "ttft": 0.201
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 124.5,
+      "per_stream": 62.2,
+      "ttft": 0.228
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 136.9,
+      "per_stream": 68.4,
+      "ttft": 0.189
+     },
+     {
+      "c": 3,
+      "phase": "prose",
+      "agg": 118.2,
+      "per_stream": 40.9,
+      "ttft": 0.335
+     },
+     {
+      "c": 3,
+      "phase": "code",
+      "agg": 132.7,
+      "per_stream": 44.4,
+      "ttft": 0.32
+     },
+     {
+      "c": 3,
+      "phase": "structured",
+      "agg": 134.3,
+      "per_stream": 45.2,
+      "ttft": 0.29
+     },
+     {
+      "c": 3,
+      "phase": "list",
+      "agg": 152.7,
+      "per_stream": 52.7,
+      "ttft": 0.257
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 90.6,
+      "per_stream": 90.6,
+      "ttft": 0.118
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 102.9,
+      "per_stream": 102.9,
+      "ttft": 0.136
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 97.7,
+      "per_stream": 97.7,
+      "ttft": 0.14
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 92.2,
+      "per_stream": 92.2,
+      "ttft": 0.108
+     }
+    ]
+   },
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: ssh: Could not resolve hostname unused: nodename nor servnam"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 90.7/102.7/97.1/94.0 ttft 0.11-0.14s; c=2 115.7/123.8/124.5/136.9 ttft 0.19-0.23s; c=3 118.2/132.7/134.3/152.7 ttft 0.26-0.34s"
+    },
+    "turns": {
+     "ok": null,
+     "summary": "resumed == again: True; cold (padded) not compared: 4777 prompt tokens (cached 4653) against 4776; cached 4652 of 4776; ttft resumed 0.189s, cold 0.197s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 90.6/102.9/97.7/92.2 ttft 0.11-0.14s"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: ssh: Could not resolve hostname unused: nodename nor servnam"
+    }
+   },
+   "model_name": "GLM-5.3-Flash, MLX 4-bit",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
   }
  ]
 }

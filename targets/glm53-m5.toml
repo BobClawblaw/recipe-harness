@@ -3,7 +3,7 @@
 # recipe's, as the GLM recipe itself uses them: a checkout of that recipe on this machine (suite_dir) runs them
 # against the Mac's endpoint. Machine-specific values go in glm53-m5.local.toml (git-ignored).
 name = "glm53-m5"
-description = "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy)"
+description = "GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window)"
 model_name = "GLM-5.3-Flash, MLX 4-bit"   # the report's model column
 hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
 engine = "TensorFold native, Metal"
@@ -53,8 +53,8 @@ drafts = true
 structured = false    # 400 on 1.2.5: backend glm-zig has no token grammar support (json_schema, tool_choice required/named)
 sampling = true       # 1.2.5 samples (temperature, top_p, top_k, seed); 1.0.5 served a temperature greedily
 vision_urls = false   # data URLs only
-capacity = false      # one stream
-max_concurrency = 1   # the ruler measures one stream only (parallel = 1)
+capacity = false      # three streams share the window; no capacity probe
+max_concurrency = 3   # the ruler measures up to the recipe's three streams (parallel = 3)
 thinking = true       # on by default, at effort High
 prompt_cache = true
 

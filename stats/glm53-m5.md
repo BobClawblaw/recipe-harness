@@ -1,6 +1,116 @@
 # GLM-5.3-Flash, MLX 4-bit on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `glm53-m5`: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy). Engine: TensorFold native, Metal. Rendered from `stats/glm53-m5.json` (16 runs); aggregate tok/s, total (a stream).
+Target `glm53-m5`: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (three streams, the full 1M window). Engine: TensorFold native, Metal. Rendered from `stats/glm53-m5.json` (20 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-09 12:55: run `20261109-125500-speed3`
+
+Plan speed3, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 90.7 (90.7) | 102.7 (102.7) | 97.1 (97.1) | 94.0 (94.0) | 0.11-0.14 s |
+| 2 | 115.7 (57.8) | 123.8 (61.9) | 124.5 (62.2) | 136.9 (68.4) | 0.19-0.23 s |
+| 3 | 118.2 (40.9) | 132.7 (44.4) | 134.3 (45.2) | 152.7 (52.7) | 0.26-0.34 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 90.6 (90.6) | 102.9 (102.9) | 97.7 (97.7) | 92.2 (92.2) | 0.11-0.14 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+| turns | measured: resumed == again: True; cold (padded) not compared: 4777 prompt tokens (cached 4653) against 4776; cached 4652 of 4776; ttft resumed 0.189s, cold 0.197s |
+| memory-busy | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+
+## 2026-11-09 12:51: run `20261109-125104-prefill`
+
+Plan prefill, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+| prefill-off | measured: 2216 tokens 1928.6 tok/s (1.149 s), 8746 tokens 1414.8 tok/s (6.182 s), 35125 tokens 1711.7 tok/s (20.521 s), 139815 tokens 1621.0 tok/s (86.253 s) |
+| prefill-thinking | measured: 2233 tokens 1972.6 tok/s (1.132 s), 8767 tokens 1986.2 tok/s (4.414 s), 34950 tokens 1696.4 tok/s (20.603 s), 139894 tokens 1730.9 tok/s (80.822 s) |
+| memory-busy | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+
+## 2026-11-09 12:50: run `20261109-125005-speed3`
+
+Plan speed3, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 89.9 (89.9) | 102.8 (102.8) | 96.9 (96.9) | 93.9 (93.9) | 0.11-0.14 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 90.1 (90.1) | 102.5 (102.5) | 97.3 (97.3) | 86.9 (86.9) | 0.11-0.14 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+| turns | measured: resumed == again: True; cold (padded) not compared: 4777 prompt tokens (cached 4653) against 4776; cached 4652 of 4776; ttft resumed 0.204s, cold 0.213s |
+| memory-busy | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+
+## 2026-11-09 12:23: run `20261109-122358-quick`
+
+Plan quick, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 89.7 (89.7) | 62.9 (62.9) | 96.6 (96.6) | 92.8 (92.8) | 0.11-0.14 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 89.7 (89.7) | 101.7 (101.7) | 95.7 (95.7) | 93.6 (93.6) | 0.11-0.14 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+| tools | pass: 1/1 tool cases right; not tested (features.structured = false): required, named, named/thinking, named/stream |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | measured: resumed == again: True; cold (padded) not compared: 4777 prompt tokens (cached 0) against 4776; cached 4652 of 4776; ttft resumed 0.196s, cold 3.945s |
 
 ## 2026-11-09 12:15: run `20261109-121537-glm-vision`
 
