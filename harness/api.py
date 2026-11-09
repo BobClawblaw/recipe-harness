@@ -31,9 +31,37 @@ def healthy(base: str, timeout: float = 10) -> bool:
     return s1 == 200 and s2 == 200
 
 
+_switch: dict[str, bool | None] = {}
+
+
+def thinking_switch(base: str, model: str) -> bool | None:
+    """The served model's `thinking_switch` capability (TensorFold's /v1/models), None when the server doesn't say."""
+    key = f"{base} {model}"
+    if key not in _switch:
+        status, d = request(f"{base}/v1/models", timeout=10)
+        caps = {}
+        if status == 200 and isinstance(d, dict):
+            for m in d.get("data") or []:
+                if m.get("id") == model:
+                    caps = m.get("capabilities") or {}
+        _switch[key] = caps.get("thinking_switch")
+    return _switch[key]
+
+
+def honoured(base: str, model: str, extra: dict) -> dict:
+    """`extra` without an `enable_thinking: false` the served template has no switch for: TensorFold refuses that
+    request (its reasoning cannot be turned off), and without the flag the model reasons as it always does."""
+    kw = extra.get("chat_template_kwargs")
+    if not kw or kw.get("enable_thinking") is not False or thinking_switch(base, model) is not False:
+        return extra
+    kw = {k: v for k, v in kw.items() if k != "enable_thinking"}
+    extra = {k: v for k, v in extra.items() if k != "chat_template_kwargs"}
+    return {**extra, "chat_template_kwargs": kw} if kw else extra
+
+
 def chat(base: str, model: str, messages: list, timeout: float = 600, **extra) -> dict:
     """One non-streamed completion: status, text, reasoning, finish, usage, seconds (and error when not 200)."""
-    body = {"model": model, "messages": messages, **extra}
+    body = {"model": model, "messages": messages, **honoured(base, model, extra)}
     t0 = time.time()
     status, d = request(f"{base}/v1/chat/completions", body, timeout)
     out = {"status": status, "s": round(time.time() - t0, 3)}
@@ -50,7 +78,7 @@ def chat(base: str, model: str, messages: list, timeout: float = 600, **extra) -
 def stream(base: str, model: str, messages: list, timeout: float = 600, **extra) -> dict:
     """One streamed completion: text, time to the first content token (and to the first token of any kind), usage,
     finish, and tool calls joined from their deltas."""
-    body = {"model": model, "messages": messages, "stream": True, "stream_options": {"include_usage": True}, **extra}
+    body = {"model": model, "messages": messages, "stream": True, "stream_options": {"include_usage": True}, **honoured(base, model, extra)}
     req = urllib.request.Request(f"{base}/v1/chat/completions", json.dumps(body).encode(), {"Content-Type": "application/json"})
     t0, first, first_any, text, usage, finish, calls = time.time(), None, None, "", {}, None, {}
     try:
