@@ -1,6 +1,37 @@
 # Recursive Flint 40B-A2.5B, MLX INT4 (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (29 runs); aggregate tok/s, total (a stream).
+Target `flint-40b-native-m5`: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal. Rendered from `stats/flint-40b-native-m5.json` (30 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-09 10:52: run `20261109-105247-quick`
+
+Plan quick, done; served as `flint`.
+
+Serving: engine_commit `06c04ccc6`; binary_sha256 `034c77766e023bb128a2292769071613f6932a29d7228045880d1432c3e6cd62`; served_model `{"object": "list", "data": [{"id": "flint", "object": "model", "created": 1794243175, "own`; chip `Apple M5 Ultra; 274877906944`; suite_commit `21db9b23f7be-dirty`
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 1/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 16%; total = 14336.00M  u |
+| structured | pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400 |
+| tools | pass: 5/5 tool cases right |
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4529; ttft resumed Nones, cold Nones |
+| urls | FAIL: public 400; loopback 400; http 400; unexpected: ['public'] |
 
 ## 2026-11-05 21:36: run `20261105-213613-quick`
 

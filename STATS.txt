@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-09 03:34 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-09 17:01 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -274,31 +274,9 @@ history
 Recursive Flint 40B-A2.5B, MLX INT4 (g64) on 1x Apple M5 Ultra (256 GB unified), macOS
 --------------------------------------------------------------------------------------
 
-Target flint-40b-native-m5: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as flint. Latest: run 20261105-213613-quick (2026-11-05 21:36, plan quick, done).
+Target flint-40b-native-m5: Recursive Flint 40B-A2.5B, MLX INT4 (g64), TensorFold native Metal on one M5 Ultra. Engine: TensorFold native, Metal; served as flint. Latest: run 20261109-105247-quick (2026-11-09 10:52, plan quick, done).
 
-Serving: engine_commit 1cd499e06; binary_sha256 571a288739cfc0d46d121ad06e2153a73cc4dbf282ddce1eb48f5f96cfbb1029; served_model {"object": "list", "data": [{"id": "flint", "object": "model", "created": 1793936182, "own; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be
-
-ruler-fresh
------------
-
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  181.9 (181.9)  176.9 (176.9)  191.5 (191.5)  178.3 (178.3)  0.03-0.04 s
-
-Engine rounds (ruler-fresh):
-
-  streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.044  0.076  52%  5.73  12
-
-ruler-after
------------
-
-  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
-  1  182.4 (182.4)  177.2 (177.2)  191.9 (191.9)  178.7 (178.7)  0.03-0.04 s
-
-Engine rounds (ruler-after):
-
-  streams  tokens a round  drafts a round  accepted  ms a round  requests
-  1  1.047  0.081  52%  5.73  13
+Serving: engine_commit 06c04ccc6; binary_sha256 034c77766e023bb128a2292769071613f6932a29d7228045880d1432c3e6cd62; served_model {"object": "list", "data": [{"id": "flint", "object": "model", "created": 1794243175, "own; chip Apple M5 Ultra; 274877906944; suite_commit 21db9b23f7be-dirty
 
 suite
 -----
@@ -318,17 +296,18 @@ checks
 ------
 
   check  result
-  memory-idle  measured: mac: System-wide memory free percentage: 80%; total = 6144.00M  us
+  memory-idle  measured: mac: System-wide memory free percentage: 16%; total = 14336.00M  u
   structured  pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400
   tools  pass: 5/5 tool cases right
   sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors
-  turns  pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4627; ttft resumed 0.067s, cold 0.719s
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 4507 of 4529; ttft resumed Nones, cold Nones
   urls  FAIL: public 400; loopback 400; http 400; unexpected: ['public']
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-09 10:52  quick  done        113/114
   2026-11-05 21:36  quick  done  176.9      113/114
   2026-11-04 13:40  quick  done  178.9      113/114
   2026-10-28 09:14  quick  done  179.2      113/114
