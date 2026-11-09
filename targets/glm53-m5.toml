@@ -15,6 +15,7 @@ mac = "CHANGE-ME: ssh login of the Mac"
 mac_host = "CHANGE-ME: the Mac's address as this machine reaches it"
 recipe_dir = "CHANGE-ME: the GLM recipe checkout on the Mac"
 suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+engine_dir = "CHANGE-ME: the TensorFold checkout whose native build runs the leaderboard suite (a release plus the board-suite commits)"
 
 [commands]
 up = "ssh $mac 'cd $recipe_dir && python3 -m mac up'"
@@ -49,10 +50,17 @@ cmd = "ssh $mac 'vm_stat | head -6; sysctl -n kern.memorystatus_vm_pressure_leve
 
 [features]
 drafts = true
-structured = false    # refused with a 400: the native GLM engine has no grammars yet
-sampling = false      # greedy only; a temperature is served greedily
+structured = false    # 400 on 1.2.5: backend glm-zig has no token grammar support (json_schema, tool_choice required/named)
+sampling = true       # 1.2.5 samples (temperature, top_p, top_k, seed); 1.0.5 served a temperature greedily
 vision_urls = false   # data URLs only
 capacity = false      # one stream
 max_concurrency = 1   # the ruler measures one stream only (parallel = 1)
 thinking = true       # on by default, at effort High
 prompt_cache = true
+
+[leaderboard]
+# tensorfold.dev/benchmarks: the public checkpoint by its repo ID (cached as a Hugging Face snapshot), run by the
+# board-suite build of the engine on this Mac, once the recipe's own server has left the port
+model = "TensorFold/GLM-5.3-Flash-MLX-4bit-MTP"
+binary = "$engine_dir/zig-out/native/bin/tensorfold-native"
+free = "! pgrep -f 'tensorfold-native serve [^ ]*GLM-5.3-Flash-MLX'"

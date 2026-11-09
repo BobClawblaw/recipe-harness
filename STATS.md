@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-09 17:01 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-09 18:16 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -23,7 +23,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/38/33/31 | 16: 124/156/150/145 | 0.18 / 8.50-17.20 |  | 2026-10-16 |
 | GLM-5.3-Flash EXL3 4bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 28/39/34/31 | 16: 86/101/100/102 | 0.18 / 3.23-3.72 |  | 2026-10-17 |
 | GLM-5.3-Flash, EXL3 4 bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 46/69/57/59 |  | 0.18 | tools 59/60, json 30/30, gsm8k 246/250, humaneval 159/164, ifeval 118/150 | 2026-10-14 |
-| GLM-5.3-Flash, MLX 4-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 74/78/78/86 |  | 0.11 | tools 57/60, json 30/30, gsm8k 246/250 | 2026-10-16 |
+| GLM-5.3-Flash, MLX 4-bit | 1x Apple M5 Ultra (256 GB unified), macOS | 92/103/97/94 |  | 0.10 |  | 2026-11-09 |
 | Gemma 4 12B, MLX 4-bit + MTP assistant | 1x Apple M5 Ultra (256 GB unified), macOS | 140/223/205/248 |  | 0.04 | tools 58/60, json 30/30, gsm8k 239/250 | 2026-10-16 |
 | Gemma 4 12B, oQ8e (8-bit) + MTP assistant | 1x Apple M5 Ultra (256 GB unified), macOS | 93/142/146/158 | 4: 262/324/328/340 | 0.05 / 0.12-0.12 |  | 2026-10-16 |
 | Gemma 4 31B, MLX 4-bit + DFlash | 1x Apple M5 Ultra (256 GB unified), macOS | 87/158/157/130 |  | 0.08 |  | 2026-10-16 |
@@ -802,20 +802,27 @@ Target `glm53-exl3-sparks`: GLM-5.3-Flash EXL3 4 bpw, TensorFold native, TP=2 on
 
 ## GLM-5.3-Flash, MLX 4-bit on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `glm53-m5`: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy). Engine: TensorFold native, Metal; served as `GLM-5.3-Flash-MLX-4bit`. Latest: run `20261016-082326-glm-gate-novision` (2026-10-16 08:23, plan glm-gate-novision, done).
+Target `glm53-m5`: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy). Engine: TensorFold native, Metal; served as `GLM-5.3-Flash-MLX-4bit`. Latest: run `20261109-120751-quick` (2026-11-09 12:07, plan quick, done).
 
-Serving: engine_commit `e8b60549`; binary_sha256 `d90e44c9818187ae4bc61d06312989cd796033b5dea6e0fc02164fe2730660fe`
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
 
 ### ruler-fresh
 
 | streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
 |---:|---:|---:|---:|---:|---:|
-| 1 | 74.4 (74.4) | 78.3 (78.3) | 77.5 (77.5) | 86.5 (86.5) | 0.11-0.15 s |
+| 1 | 91.9 (91.9) | 103.0 (103.0) | 97.2 (97.2) | 94.0 (94.0) | 0.10-0.14 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 90.9 (90.9) | 103.0 (103.0) | 98.1 (98.1) | 94.8 (94.8) | 0.10-0.14 s |
 
 ### suite
 
 | check | passed |
 |---|---:|
+| soak | 60/60 |
 | drafts | 12/12 |
 | concurrent | 12/12 |
 | streaming | 4/4 |
@@ -824,15 +831,22 @@ Serving: engine_commit `e8b60549`; binary_sha256 `d90e44c9818187ae4bc61d06312989
 | thinking | 10/10 |
 | copy | 2/2 |
 | max-tokens | 3/3 |
-| tools | 57/60 |
-| json | 30/30 |
-| gsm8k | 246/250 |
-| mmlu | 290/342 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+| tools | pass: 1/1 tool cases right; not tested (features.structured = false): required, named, named/thinking, named/stream |
+| turns | measured: resumed == again: True; cold (padded) not compared: 4777 prompt tokens (cached 0) against 4776; cached 4652 of 4776; ttft resumed 0.19s, cold 4.294s |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-09 12:07 | quick | done | 103.0 |  |  | 114/114 |
+| 2026-11-09 11:35 | quick | done | 103.1 |  |  | 54/114 |
+| 2026-11-09 11:09 | speed | done | 101.7 |  |  |  |
 | 2026-10-16 08:23 | glm-gate-novision | done | 78.3 |  |  | 677/736 |
 | 2026-10-16 08:04 | glm-gate-novision | done | 77.6 |  |  | 679/736 |
 | 2026-10-16 00:35 | glm-gate | done | 78.7 |  |  | 689/748 |

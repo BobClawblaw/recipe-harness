@@ -1,0 +1,5 @@
+description = "About two minutes: the sampling check alone (seeded sampled replies differ from greedy and repeat with the seed), no restart"
+restart = false
+
+[[checks]]
+type = "sampling"

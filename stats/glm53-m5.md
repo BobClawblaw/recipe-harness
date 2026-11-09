@@ -1,6 +1,143 @@
 # GLM-5.3-Flash, MLX 4-bit on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `glm53-m5`: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy). Engine: TensorFold native, Metal. Rendered from `stats/glm53-m5.json` (10 runs); aggregate tok/s, total (a stream).
+Target `glm53-m5`: GLM-5.3-Flash MLX 4-bit, TensorFold native on one M5 Ultra Mac (one stream, greedy). Engine: TensorFold native, Metal. Rendered from `stats/glm53-m5.json` (16 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-09 12:15: run `20261109-121537-glm-vision`
+
+Plan glm-vision, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+## 2026-11-09 12:15: run `20261109-121502-sampling`
+
+Plan sampling, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### checks
+
+| check | result |
+|---|---|
+| sampling | pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors |
+
+## 2026-11-09 12:14: run `20261109-121446-structured`
+
+Plan structured, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### checks
+
+| check | result |
+|---|---|
+| structured | FAIL: 0/18 obey, drafted == plain 12/12; a bad regex -> 400; failed json_object/greedy, json_object/sampled, json_object/thinking, json_schema/greedy, json_schema/sampled, json_schema/thinking, guided_json/greedy, guided_json/sampled, guided_json/thinking, regex/greedy, regex/sampled, regex/thinking, choice/greedy, choice/sampled, choice/thinking, grammar/greedy, grammar/sampled, grammar/thinking |
+| tools | FAIL: 1/5 tool cases right; failed required (400 {"error": {"message": "backend 'glm-zig' cannot enforce tool_choice \"required\" or a named function: it has no token grammar support; send \"auto\" or \"none\"", "type": "invalid_request_error"}}); named (400 {"error": {"message": "backend 'glm-zig' cannot enforce tool_choice \"required\" or a named function: it has no token grammar support; send \"auto\" or \"none\"", "type": "invalid_request_error"}}); named/thinking (400 {"error": {"message": "backend 'glm-zig' cannot enforce tool_choice \"required\" or a named function: it has no token grammar support; send \"auto\" or \"none\"", "type": "invalid_request_error"}}); named/stream (400 {"error": {"message": "backend 'glm-zig' cannot enforce tool_choice \"required\" or a named function: it has no token grammar support; send \"auto\" or \"none\"", "type": "invalid_request_error"}}) |
+
+## 2026-11-09 12:07: run `20261109-120751-quick`
+
+Plan quick, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 91.9 (91.9) | 103.0 (103.0) | 97.2 (97.2) | 94.0 (94.0) | 0.10-0.14 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 90.9 (90.9) | 103.0 (103.0) | 98.1 (98.1) | 94.8 (94.8) | 0.10-0.14 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 60/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+| tools | pass: 1/1 tool cases right; not tested (features.structured = false): required, named, named/thinking, named/stream |
+| turns | measured: resumed == again: True; cold (padded) not compared: 4777 prompt tokens (cached 0) against 4776; cached 4652 of 4776; ttft resumed 0.19s, cold 4.294s |
+
+## 2026-11-09 11:35: run `20261109-113557-quick`
+
+Plan quick, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 91.2 (91.2) | 103.1 (103.1) | 97.5 (97.5) | 93.9 (93.9) | 0.10-0.14 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 91.4 (91.4) | 103.1 (103.1) | 97.5 (97.5) | 93.4 (93.4) | 0.11-0.14 s |
+
+### suite
+
+| check | passed |
+|---|---:|
+| soak | 0/60 |
+| drafts | 12/12 |
+| concurrent | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 10/10 |
+| copy | 2/2 |
+| max-tokens | 3/3 |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+| tools | pass: 1/1 tool cases right; not tested (features.structured = false): required, named, named/thinking, named/stream |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4652 of 4776; ttft resumed 0.187s, cold 2.445s |
+
+## 2026-11-09 11:09: run `20261109-110901-speed`
+
+Plan speed, done; served as `GLM-5.3-Flash-MLX-4bit`.
+
+Serving: engine_commit `7070b25ca`; binary_sha256 `351fb8c93fee1f096435e85890f21c6a0a9328d7b6623c6d8f52542a6fac12ad`; suite_commit `206803ca7135`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 43.1 (43.1) | 101.7 (101.7) | 22.4 (22.4) | 19.5 (19.5) | 0.12-0.15 s |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 30.7 (30.7) | 65.7 (65.7) | 55.0 (55.0) | 15.1 (15.1) | 0.12-0.14 s |
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
+| turns | pass: resumed == again: True; cold (after a restart): True; cached 4652 of 4776; ttft resumed 1.314s, cold 3.922s |
+| memory-busy | measured: mac: ssh: Could not resolve hostname unused: nodename nor servnam |
 
 ## 2026-10-16 08:23: run `20261016-082326-glm-gate-novision`
 
