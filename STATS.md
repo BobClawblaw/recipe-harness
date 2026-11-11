@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-11 00:21 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-11 04:46 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -8,7 +8,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 
 | model | hardware | one stream | most streams: total | first token (s) | suite | measured |
 |---|---|---:|---:|---:|---|---|
-| Bimo-7B-CyberAgent, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 56/44/56/56 | 2: 89/104/113/113 | 0.07 / 0.11-0.14 |  | 2026-11-10 |
+| Bimo-7B-CyberAgent, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 50/46/54/40 |  | 0.07 | humaneval 79/164 | 2026-11-10 |
 | Bimo-7B-CyberAgent, bf16 | 1x Apple M5 Ultra (256 GB unified), macOS | 65/51/49/44 |  | 0.07 |  | 2026-11-10 |
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 55/100/62/71 | 4: 106/162/112/179 | 0.19 / 0.73-0.99 |  | 2026-10-18 |
 | DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw | 2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE | 55/104/63/71 | 8: 135/203/144/203 | 0.19 / 1.35-1.84 |  | 2026-10-18 |
@@ -83,48 +83,24 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 
 ## Bimo-7B-CyberAgent, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `bimo-7b-m5`: Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams). Engine: TensorFold native, Metal; served as `bimo`. Latest: run `20261110-181601-speed` (2026-11-10 18:16, plan speed, done).
+Target `bimo-7b-m5`: Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams). Engine: TensorFold native, Metal; served as `bimo`. Latest: run `20261110-222925-humaneval-long-32k-off` (2026-11-10 22:29, plan humaneval-long-32k-off, done).
 
-Serving: engine_commit `7662e079c`; binary_sha256 `cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be`; served_model `{"object": "list", "data": [{"id": "bimo", "object": "model", "created": 1794356169, "owne`; chip `Apple M5 Ultra; 274877906944`; suite_commit `b3b0ef38b8bc`
+Serving: engine_commit `4cc353f0b`; binary_sha256 `cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be`; served_model `{"object": "list", "data": [{"id": "bimo", "object": "model", "created": 1794371373, "owne`; chip `Apple M5 Ultra; 274877906944`; suite_commit `b3b0ef38b8bc`
 
-### ruler-fresh
+### suite-humaneval-long-32k
 
-| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 55.7 (55.7) | 44.4 (44.4) | 55.6 (55.6) | 55.9 (55.9) | 0.07-0.10 s |
-| 2 | 88.6 (44.3) | 103.8 (51.9) | 113.3 (56.7) | 113.4 (56.7) | 0.11-0.14 s |
-
-Engine rounds (ruler-fresh):
-
-| streams | tokens a round | drafts a round | accepted | ms a round | requests |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 1.004 | 0.0 |  | 18.99 | 12 |
-| 2 | 1.005 | 0.0 |  | 19.17 | 25 |
-
-### ruler-after
-
-| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 44.3 (44.3) | 45.6 (45.6) | 48.9 (48.9) | 42.4 (42.4) | 0.09-0.10 s |
-
-Engine rounds (ruler-after):
-
-| streams | tokens a round | drafts a round | accepted | ms a round | requests |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 1.004 | 0.0 |  | 22.17 | 13 |
-
-### checks
-
-| check | result |
-|---|---|
-| memory-idle | measured: mac: System-wide memory free percentage: 89%; total = 13312.00M  u |
-| turns | pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5583; ttft resumed 0.133s, cold 1.061s |
-| memory-busy | measured: mac: System-wide memory free percentage: 55%; total = 13312.00M  u |
+| check | passed |
+|---|---:|
+| humaneval | 79/164 |
+| long-context | 3/3 |
+| long-tasks | 0/0 |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-10 22:29 | humaneval-long-32k-off | done |  |  |  | 82/167 |
+| 2026-11-10 18:34 | quality-off | done | 45.6 |  |  | 922/1962 |
 | 2026-11-10 18:16 | speed | done | 44.4 |  |  |  |
 | 2026-11-10 18:03 | speed | done | 44.4 |  |  |  |
 | 2026-11-10 17:54 | quick | done | 43.7 |  |  | 103/114 |
@@ -3108,7 +3084,6 @@ Serving: engine_commit `f7c686f36`; binary_sha256 `adf4f3c4bb9f45a1501bbf5d41b1b
 | 2026-11-05 08:26 | ocr | done |  |  |  |  |
 | 2026-11-05 06:51 | ocr | done |  |  |  |  |
 | 2026-11-04 09:57 | ocr | done |  |  |  |  |
-| 2026-11-04 09:39 | ocr-match | done |  |  |  |  |
 | 2026-11-04 05:28 | ocr | done |  |  |  |  |
 | 2026-11-04 05:07 | ocr | done |  |  |  |  |
 | 2026-11-04 04:32 | ocr-match | done |  |  |  |  |

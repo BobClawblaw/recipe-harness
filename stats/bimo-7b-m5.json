@@ -585,6 +585,282 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
+  },
+  {
+   "run": "20261110-183417-quality-off",
+   "target": "bimo-7b-m5",
+   "model": "bimo",
+   "plan": "quality-off",
+   "started": "20261110-183417",
+   "finished": "20261110-222621",
+   "status": "done",
+   "identity": {
+    "engine_commit": "4cc353f0b",
+    "binary_sha256": "cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"bimo\", \"object\": \"model\", \"created\": 1794357265, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": true, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": true, \"thinking_budget\": true, \"reasoning\": false, \"answer_limit\": true, \"structures\": true, \"logprobs\": true, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": true, \"warm_turns\": false, \"plain_only\": false, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": false, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": true, \"thinking_applicable\": false}, \"context_length\": 32768, \"max_model_len\": 32768}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "b3b0ef38b8bc"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 49.7,
+      "per_stream": 49.7,
+      "ttft": 0.074
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 45.6,
+      "per_stream": 45.6,
+      "ttft": 0.102
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 54.0,
+      "per_stream": 54.0,
+      "ttft": 0.076
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 40.5,
+      "per_stream": 40.5,
+      "ttft": 0.1
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 41.4,
+      "per_stream": 41.4,
+      "ttft": 0.102
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 40.8,
+      "per_stream": 40.8,
+      "ttft": 0.11
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 41.6,
+      "per_stream": 41.6,
+      "ttft": 0.105
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 43.5,
+      "per_stream": 43.5,
+      "ttft": 0.101
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 1104,
+      "cached": 0,
+      "tokens": 2973,
+      "rounds": 2961,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.004,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 21.17
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 14,
+      "prompt": 1279,
+      "cached": 0,
+      "tokens": 3079,
+      "rounds": 3065,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 24.01
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 0,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 2,
+      "cases": 3
+     },
+     "tools": {
+      "passed": 9,
+      "cases": 60
+     },
+     "json": {
+      "passed": 25,
+      "cases": 30
+     },
+     "ifeval": {
+      "passed": 61,
+      "cases": 150
+     },
+     "gsm8k": {
+      "passed": 180,
+      "cases": 250
+     },
+     "mgsm": {
+      "passed": 96,
+      "cases": 240
+     },
+     "mmlu": {
+      "passed": 182,
+      "cases": 342
+     },
+     "math500": {
+      "passed": 207,
+      "cases": 500
+     },
+     "gpqa": {
+      "passed": 47,
+      "cases": 198
+     },
+     "humaneval": {
+      "passed": 0,
+      "cases": 0
+     },
+     "repetition": {
+      "passed": 0,
+      "cases": 8
+     },
+     "long-context": {
+      "passed": 0,
+      "cases": 0
+     },
+     "long-tasks": {
+      "passed": 0,
+      "cases": 52
+     },
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "snapshot": {
+      "passed": 12,
+      "cases": 12
+     },
+     "vision": {
+      "passed": 0,
+      "cases": 6
+     },
+     "docvision": {
+      "passed": 0,
+      "cases": 0
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "vision-concurrent": {
+      "passed": 0,
+      "cases": 0
+     }
+    }
+   },
+   "checks": {
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 49.7/45.6/54.0/40.5 ttft 0.07-0.10s; engine: c=1 1.00 tokens a round, 21.2 ms a round"
+    },
+    "suite": {
+     "ok": false,
+     "summary": "cut at max_tokens: gsm8k 5; no cases (errors) in humaneval, long-context, docvision, vision-concurrent; drafts 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 0/10, copy 2/2, max-tokens 2/3, tools 9/60, json 25/30, ifeval 61/150, gsm8k 180/250, mgsm 96/240, mmlu 182/342, math500 207/500, gpqa 47/198, humaneval 0/0, repetition 0/8, long-context 0/0, long-tasks 0/52, soak 60/60, snapshot 12/12, vision 0/6, docvision 0/0, concurrent 12/12, vision-concurrent 0/0"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 41.4/40.8/41.6/43.5 ttft 0.10-0.11s; engine: c=1 1.00 tokens a round, 24.0 ms a round"
+    }
+   },
+   "model_name": "Bimo-7B-CyberAgent, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
+  },
+  {
+   "run": "20261110-222925-humaneval-long-32k-off",
+   "target": "bimo-7b-m5",
+   "model": "bimo",
+   "plan": "humaneval-long-32k-off",
+   "started": "20261110-222925",
+   "finished": "20261110-223742",
+   "status": "done",
+   "identity": {
+    "engine_commit": "4cc353f0b",
+    "binary_sha256": "cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"bimo\", \"object\": \"model\", \"created\": 1794371373, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": true, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": true, \"thinking_budget\": true, \"reasoning\": false, \"answer_limit\": true, \"structures\": true, \"logprobs\": true, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": true, \"warm_turns\": false, \"plain_only\": false, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": false, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": true, \"thinking_applicable\": false}, \"context_length\": 32768, \"max_model_len\": 32768}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "b3b0ef38b8bc"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {
+    "suite-humaneval-long-32k": {
+     "humaneval": {
+      "passed": 79,
+      "cases": 164
+     },
+     "long-context": {
+      "passed": 3,
+      "cases": 3
+     },
+     "long-tasks": {
+      "passed": 0,
+      "cases": 0
+     }
+    }
+   },
+   "checks": {
+    "suite-humaneval-long-32k": {
+     "ok": false,
+     "summary": "no cases (errors) in long-tasks; humaneval 79/164, long-context 3/3, long-tasks 0/0"
+    }
+   },
+   "model_name": "Bimo-7B-CyberAgent, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
   }
  ]
 }

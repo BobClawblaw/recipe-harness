@@ -1,6 +1,80 @@
 # Bimo-7B-CyberAgent, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `bimo-7b-m5`: Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams). Engine: TensorFold native, Metal. Rendered from `stats/bimo-7b-m5.json` (4 runs); aggregate tok/s, total (a stream).
+Target `bimo-7b-m5`: Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams). Engine: TensorFold native, Metal. Rendered from `stats/bimo-7b-m5.json` (6 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-10 22:29: run `20261110-222925-humaneval-long-32k-off`
+
+Plan humaneval-long-32k-off, done; served as `bimo`.
+
+Serving: engine_commit `4cc353f0b`; binary_sha256 `cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be`; served_model `{"object": "list", "data": [{"id": "bimo", "object": "model", "created": 1794371373, "owne`; chip `Apple M5 Ultra; 274877906944`; suite_commit `b3b0ef38b8bc`
+
+### suite-humaneval-long-32k
+
+| check | passed |
+|---|---:|
+| humaneval | 79/164 |
+| long-context | 3/3 |
+| long-tasks | 0/0 |
+
+## 2026-11-10 18:34: run `20261110-183417-quality-off`
+
+Plan quality-off, done; served as `bimo`.
+
+Serving: engine_commit `4cc353f0b`; binary_sha256 `cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be`; served_model `{"object": "list", "data": [{"id": "bimo", "object": "model", "created": 1794357265, "owne`; chip `Apple M5 Ultra; 274877906944`; suite_commit `b3b0ef38b8bc`
+
+### ruler-fresh
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 49.7 (49.7) | 45.6 (45.6) | 54.0 (54.0) | 40.5 (40.5) | 0.07-0.10 s |
+
+Engine rounds (ruler-fresh):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.004 | 0.0 |  | 21.17 | 12 |
+
+### ruler-after
+
+| streams | prose total (a stream) | code total (a stream) | structured total (a stream) | list total (a stream) | first token |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 41.4 (41.4) | 40.8 (40.8) | 41.6 (41.6) | 43.5 (43.5) | 0.10-0.11 s |
+
+Engine rounds (ruler-after):
+
+| streams | tokens a round | drafts a round | accepted | ms a round | requests |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 1.005 | 0.0 |  | 24.01 | 14 |
+
+### suite
+
+| check | passed |
+|---|---:|
+| drafts | 12/12 |
+| streaming | 4/4 |
+| multiturn | 8/8 |
+| stop | 3/3 |
+| thinking | 0/10 |
+| copy | 2/2 |
+| max-tokens | 2/3 |
+| tools | 9/60 |
+| json | 25/30 |
+| ifeval | 61/150 |
+| gsm8k | 180/250 |
+| mgsm | 96/240 |
+| mmlu | 182/342 |
+| math500 | 207/500 |
+| gpqa | 47/198 |
+| humaneval | 0/0 |
+| repetition | 0/8 |
+| long-context | 0/0 |
+| long-tasks | 0/52 |
+| soak | 60/60 |
+| snapshot | 12/12 |
+| vision | 0/6 |
+| docvision | 0/0 |
+| concurrent | 12/12 |
+| vision-concurrent | 0/0 |
 
 ## 2026-11-10 18:16: run `20261110-181601-speed`
 

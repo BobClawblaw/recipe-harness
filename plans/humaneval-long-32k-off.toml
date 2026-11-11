@@ -1,0 +1,7 @@
+description = "HumanEval (sandbox python:3.12-slim through docker on PATH) plus long-context and long-tasks capped for a 32k window, thinking off, after a restart (about 10 minutes); for a target whose quality-off run lost these to a missing sandbox or to documents over its window"
+restart = true
+
+[[checks]]
+type = "suite"
+name = "suite-humaneval-long-32k"
+args = "--only humaneval long-context long-tasks --long-max 30000 --sandbox-image python:3.12-slim "
