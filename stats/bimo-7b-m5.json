@@ -1,0 +1,590 @@
+{
+ "target": "bimo-7b-m5",
+ "runs": [
+  {
+   "run": "20261110-175449-quick",
+   "target": "bimo-7b-m5",
+   "model": "bimo",
+   "plan": "quick",
+   "started": "20261110-175449",
+   "finished": "20261110-180301",
+   "status": "done",
+   "identity": {
+    "engine_commit": "7662e079c",
+    "binary_sha256": "cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"bimo\", \"object\": \"model\", \"created\": 1794354897, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": true, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": true, \"thinking_budget\": true, \"reasoning\": false, \"answer_limit\": true, \"structures\": true, \"logprobs\": true, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": true, \"warm_turns\": false, \"plain_only\": false, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": false, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": true, \"thinking_applicable\": false}, \"context_length\": 32768, \"max_model_len\": 32768}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "b3b0ef38b8bc"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 63.7,
+      "per_stream": 63.7,
+      "ttft": 0.074
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 43.7,
+      "per_stream": 43.7,
+      "ttft": 0.098
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 56.4,
+      "per_stream": 56.4,
+      "ttft": 0.077
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 43.9,
+      "per_stream": 43.9,
+      "ttft": 0.097
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 61.1,
+      "per_stream": 61.1,
+      "ttft": 0.079
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 51.7,
+      "per_stream": 51.7,
+      "ttft": 0.078
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 48.2,
+      "per_stream": 48.2,
+      "ttft": 0.096
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 52.7,
+      "per_stream": 52.7,
+      "ttft": 0.075
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 1104,
+      "cached": 0,
+      "tokens": 2973,
+      "rounds": 2835,
+      "accepted": 126,
+      "proposed": 270,
+      "tokens_a_round": 1.049,
+      "drafts_a_round": 0.095,
+      "accept_rate": 0.467,
+      "ms_a_round": 20.19
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 6687,
+      "cached": 0,
+      "tokens": 3000,
+      "rounds": 2861,
+      "accepted": 126,
+      "proposed": 270,
+      "tokens_a_round": 1.049,
+      "drafts_a_round": 0.094,
+      "accept_rate": 0.467,
+      "ms_a_round": 19.63
+     }
+    }
+   },
+   "suite": {
+    "suite": {
+     "soak": {
+      "passed": 60,
+      "cases": 60
+     },
+     "drafts": {
+      "passed": 12,
+      "cases": 12
+     },
+     "concurrent": {
+      "passed": 12,
+      "cases": 12
+     },
+     "streaming": {
+      "passed": 4,
+      "cases": 4
+     },
+     "multiturn": {
+      "passed": 8,
+      "cases": 8
+     },
+     "stop": {
+      "passed": 3,
+      "cases": 3
+     },
+     "thinking": {
+      "passed": 0,
+      "cases": 10
+     },
+     "copy": {
+      "passed": 2,
+      "cases": 2
+     },
+     "max-tokens": {
+      "passed": 2,
+      "cases": 3
+     }
+    }
+   },
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 89%\ntotal = 13312.00M  u"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 63.7/43.7/56.4/43.9 ttft 0.07-0.10s; engine: c=1 1.05 tokens a round 47% accepted, 20.2 ms a round"
+    },
+    "structured": {
+     "ok": true,
+     "summary": "18/18 obey, drafted == plain 12/12; a bad regex -> 400"
+    },
+    "tools": {
+     "ok": false,
+     "summary": "4/5 tool cases right; failed auto (finish stop)"
+    },
+    "sampling": {
+     "ok": true,
+     "summary": "9/9 seeded replies equal on repeat and undrafted; 0 errors"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5493 of 5583; ttft resumed 0.133s, cold 0.959s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 61.1/51.7/48.2/52.7 ttft 0.08-0.10s; engine: c=1 1.05 tokens a round 47% accepted, 19.6 ms a round"
+    },
+    "suite": {
+     "ok": null,
+     "summary": "soak 60/60, drafts 12/12, concurrent 12/12, streaming 4/4, multiturn 8/8, stop 3/3, thinking 0/10, copy 2/2, max-tokens 2/3"
+    }
+   },
+   "model_name": "Bimo-7B-CyberAgent, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
+  },
+  {
+   "run": "20261110-180301-speed",
+   "target": "bimo-7b-m5",
+   "model": "bimo",
+   "plan": "speed",
+   "started": "20261110-180301",
+   "finished": "20261110-180619",
+   "status": "done",
+   "identity": {
+    "engine_commit": "7662e079c",
+    "binary_sha256": "cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"bimo\", \"object\": \"model\", \"created\": 1794355389, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": true, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": true, \"thinking_budget\": true, \"reasoning\": false, \"answer_limit\": true, \"structures\": true, \"logprobs\": true, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": true, \"warm_turns\": false, \"plain_only\": false, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": false, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": true, \"thinking_applicable\": false}, \"context_length\": 32768, \"max_model_len\": 32768}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "b3b0ef38b8bc"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 50.6,
+      "per_stream": 50.6,
+      "ttft": 0.101
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 44.4,
+      "per_stream": 44.4,
+      "ttft": 0.092
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 57.4,
+      "per_stream": 57.4,
+      "ttft": 0.076
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 55.3,
+      "per_stream": 55.3,
+      "ttft": 0.073
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 119.3,
+      "per_stream": 59.7,
+      "ttft": 0.11
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 112.4,
+      "per_stream": 56.2,
+      "ttft": 0.113
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 109.3,
+      "per_stream": 54.7,
+      "ttft": 0.113
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 113.7,
+      "per_stream": 56.9,
+      "ttft": 0.109
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 53.0,
+      "per_stream": 53.0,
+      "ttft": 0.103
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 42.4,
+      "per_stream": 42.4,
+      "ttft": 0.113
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 43.9,
+      "per_stream": 43.9,
+      "ttft": 0.097
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 53.5,
+      "per_stream": 53.5,
+      "ttft": 0.1
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 1104,
+      "cached": 0,
+      "tokens": 2973,
+      "rounds": 2835,
+      "accepted": 126,
+      "proposed": 270,
+      "tokens_a_round": 1.049,
+      "drafts_a_round": 0.095,
+      "accept_rate": 0.467,
+      "ms_a_round": 20.21
+     },
+     "2": {
+      "requests": 25,
+      "prompt": 2274,
+      "cached": 0,
+      "tokens": 5560,
+      "rounds": 5397,
+      "accepted": 138,
+      "proposed": 402,
+      "tokens_a_round": 1.03,
+      "drafts_a_round": 0.074,
+      "accept_rate": 0.343,
+      "ms_a_round": 18.12
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 6687,
+      "cached": 0,
+      "tokens": 3000,
+      "rounds": 2861,
+      "accepted": 126,
+      "proposed": 270,
+      "tokens_a_round": 1.049,
+      "drafts_a_round": 0.094,
+      "accept_rate": 0.467,
+      "ms_a_round": 21.76
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 70%\ntotal = 13312.00M  u"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 50.6/44.4/57.4/55.3 ttft 0.07-0.10s; c=2 119.3/112.4/109.3/113.7 ttft 0.11-0.11s; engine: c=1 1.05 tokens a round 47% accepted, 20.2 ms a round; c=2 1.03 tokens a round 34% accepted, 18.1 ms a round"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5493 of 5583; ttft resumed 0.095s, cold 0.962s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 53.0/42.4/43.9/53.5 ttft 0.10-0.11s; engine: c=1 1.05 tokens a round 47% accepted, 21.8 ms a round"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 89%\ntotal = 13312.00M  u"
+    }
+   },
+   "model_name": "Bimo-7B-CyberAgent, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
+  },
+  {
+   "run": "20261110-180619-prefill-32k",
+   "target": "bimo-7b-m5",
+   "model": "bimo",
+   "plan": "prefill-32k",
+   "started": "20261110-180619",
+   "finished": "20261110-180638",
+   "status": "done",
+   "identity": {
+    "engine_commit": "7662e079c",
+    "binary_sha256": "cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"bimo\", \"object\": \"model\", \"created\": 1794355587, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": true, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": true, \"thinking_budget\": true, \"reasoning\": false, \"answer_limit\": true, \"structures\": true, \"logprobs\": true, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": true, \"warm_turns\": false, \"plain_only\": false, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": false, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": true, \"thinking_applicable\": false}, \"context_length\": 32768, \"max_model_len\": 32768}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "b3b0ef38b8bc"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 89%\ntotal = 13312.00M  u"
+    },
+    "prefill-off": {
+     "ok": false,
+     "summary": "2288 tokens 5973.9 tok/s (0.383 s), 8838 tokens 6163.2 tok/s (1.434 s), 17567 tokens 5654.0 tok/s (3.107 s); not cold or failed: ['30720']"
+    },
+    "prefill-thinking": {
+     "ok": false,
+     "summary": "2256 tokens 6130.4 tok/s (0.368 s), 8808 tokens 6150.8 tok/s (1.432 s), 17551 tokens 5700.2 tok/s (3.079 s); not cold or failed: ['30720']"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 88%\ntotal = 13312.00M  u"
+    }
+   },
+   "model_name": "Bimo-7B-CyberAgent, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
+  },
+  {
+   "run": "20261110-181601-speed",
+   "target": "bimo-7b-m5",
+   "model": "bimo",
+   "plan": "speed",
+   "started": "20261110-181601",
+   "finished": "20261110-181929",
+   "status": "done",
+   "identity": {
+    "engine_commit": "7662e079c",
+    "binary_sha256": "cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"bimo\", \"object\": \"model\", \"created\": 1794356169, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": true, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": true, \"thinking_budget\": true, \"reasoning\": false, \"answer_limit\": true, \"structures\": true, \"logprobs\": true, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": true, \"warm_turns\": false, \"plain_only\": false, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": false, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": true, \"thinking_applicable\": false}, \"context_length\": 32768, \"max_model_len\": 32768}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "b3b0ef38b8bc"
+   },
+   "rulers": {
+    "ruler-fresh": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 55.7,
+      "per_stream": 55.7,
+      "ttft": 0.073
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 44.4,
+      "per_stream": 44.4,
+      "ttft": 0.096
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 55.6,
+      "per_stream": 55.6,
+      "ttft": 0.077
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 55.9,
+      "per_stream": 55.9,
+      "ttft": 0.073
+     },
+     {
+      "c": 2,
+      "phase": "prose",
+      "agg": 88.6,
+      "per_stream": 44.3,
+      "ttft": 0.115
+     },
+     {
+      "c": 2,
+      "phase": "code",
+      "agg": 103.8,
+      "per_stream": 51.9,
+      "ttft": 0.139
+     },
+     {
+      "c": 2,
+      "phase": "structured",
+      "agg": 113.3,
+      "per_stream": 56.7,
+      "ttft": 0.112
+     },
+     {
+      "c": 2,
+      "phase": "list",
+      "agg": 113.4,
+      "per_stream": 56.7,
+      "ttft": 0.109
+     }
+    ],
+    "ruler-after": [
+     {
+      "c": 1,
+      "phase": "prose",
+      "agg": 44.3,
+      "per_stream": 44.3,
+      "ttft": 0.095
+     },
+     {
+      "c": 1,
+      "phase": "code",
+      "agg": 45.6,
+      "per_stream": 45.6,
+      "ttft": 0.094
+     },
+     {
+      "c": 1,
+      "phase": "structured",
+      "agg": 48.9,
+      "per_stream": 48.9,
+      "ttft": 0.093
+     },
+     {
+      "c": 1,
+      "phase": "list",
+      "agg": 42.4,
+      "per_stream": 42.4,
+      "ttft": 0.1
+     }
+    ]
+   },
+   "rounds": {
+    "ruler-fresh": {
+     "1": {
+      "requests": 12,
+      "prompt": 1104,
+      "cached": 0,
+      "tokens": 2973,
+      "rounds": 2961,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.004,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 18.99
+     },
+     "2": {
+      "requests": 25,
+      "prompt": 2274,
+      "cached": 0,
+      "tokens": 5560,
+      "rounds": 5535,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.005,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 19.17
+     }
+    },
+    "ruler-after": {
+     "1": {
+      "requests": 13,
+      "prompt": 6687,
+      "cached": 0,
+      "tokens": 3000,
+      "rounds": 2987,
+      "accepted": 0,
+      "proposed": 0,
+      "tokens_a_round": 1.004,
+      "drafts_a_round": 0.0,
+      "accept_rate": null,
+      "ms_a_round": 22.17
+     }
+    }
+   },
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 89%\ntotal = 13312.00M  u"
+    },
+    "ruler-fresh": {
+     "ok": null,
+     "summary": "c=1 55.7/44.4/55.6/55.9 ttft 0.07-0.10s; c=2 88.6/103.8/113.3/113.4 ttft 0.11-0.14s; engine: c=1 1.00 tokens a round, 19.0 ms a round; c=2 1.00 tokens a round, 19.2 ms a round"
+    },
+    "turns": {
+     "ok": true,
+     "summary": "resumed == again: True; cold (after a restart): True; cached 5493 of 5583; ttft resumed 0.133s, cold 1.061s"
+    },
+    "ruler-after": {
+     "ok": null,
+     "summary": "c=1 44.3/45.6/48.9/42.4 ttft 0.09-0.10s; engine: c=1 1.00 tokens a round, 22.2 ms a round"
+    },
+    "memory-busy": {
+     "ok": null,
+     "summary": "mac: System-wide memory free percentage: 55%\ntotal = 13312.00M  u"
+    }
+   },
+   "model_name": "Bimo-7B-CyberAgent, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
+  }
+ ]
+}

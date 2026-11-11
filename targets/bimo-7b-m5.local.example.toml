@@ -1,0 +1,7 @@
+[vars]
+harness_dir = "/path/to/recipe-harness"
+engine_dir = "/path/to/TensorFold worktree with the llama family's Qwen2 support"
+model_dir = "/path/to/Bimo-7B-CyberAgent"
+suite_dir = "/path/to/glm53-flash-exl3-2x-dgx-sparks"
+log_dir = "/path/to/logs"
+suite_dir_engine = "/path/to/TensorFold worktree with the community-v1 suite commit"

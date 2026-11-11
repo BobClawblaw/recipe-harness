@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-09 19:21 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-11 00:21 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -9,6 +9,8 @@ Overview: by model and hardware
 Aggregate tok/s as prose/code/structured/list; first token in seconds (one stream / the most streams).
 
   model  hardware  one stream  most streams: total  first token (s)  suite  measured
+  Bimo-7B-CyberAgent, bf16  1x Apple M5 Ultra (256 GB unified), macOS  56/44/56/56  2: 89/104/113/113  0.07 / 0.11-0.14    2026-11-10
+  Bimo-7B-CyberAgent, bf16  1x Apple M5 Ultra (256 GB unified), macOS  65/51/49/44    0.07    2026-11-10
   DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw  2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE  55/100/62/71  4: 106/162/112/179  0.19 / 0.73-0.99    2026-10-18
   DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw  2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE  55/104/63/71  8: 135/203/144/203  0.19 / 1.35-1.84    2026-10-18
   DeepSeek-V4.1-Flash-1017 EXL3 2.9bpw  2x NVIDIA DGX Spark (GB10, 128 GB unified each), TP=2 over RoCE  53/98/61/69  4: 106/158/111/176  0.20 / 0.75-1.00    2026-10-18
@@ -79,6 +81,112 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
   ricursiveAI Ripple-65B-Preview (bf16) + DFlash2 drafter  1x Apple M5 Ultra (256 GB unified), macOS  13/31/13/19  2: 26/63/26/55  0.39 / 3.24-7.98    2026-11-06
   ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention)  1x Apple M5 Ultra (256 GB unified), macOS  10/10/10/10  2: 19/19/19/19  0.61 / 0.93-1.10    2026-11-06
   ricursiveAI Ripple-65B-Preview-NVFP4 (NVFP4 MLPs, bf16 attention) + DFlash2 drafter  1x Apple M5 Ultra (256 GB unified), macOS  15/26/17/19  2: 21/35/25/37  0.55 / 0.83-1.12    2026-11-06
+
+Bimo-7B-CyberAgent, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
+---------------------------------------------------------------------
+
+Target bimo-7b-m5: Bimo-7B-CyberAgent bf16 as released, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams). Engine: TensorFold native, Metal; served as bimo. Latest: run 20261110-181601-speed (2026-11-10 18:16, plan speed, done).
+
+Serving: engine_commit 7662e079c; binary_sha256 cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be; served_model {"object": "list", "data": [{"id": "bimo", "object": "model", "created": 1794356169, "owne; chip Apple M5 Ultra; 274877906944; suite_commit b3b0ef38b8bc
+
+ruler-fresh
+-----------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  55.7 (55.7)  44.4 (44.4)  55.6 (55.6)  55.9 (55.9)  0.07-0.10 s
+  2  88.6 (44.3)  103.8 (51.9)  113.3 (56.7)  113.4 (56.7)  0.11-0.14 s
+
+Engine rounds (ruler-fresh):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.004  0.0    18.99  12
+  2  1.005  0.0    19.17  25
+
+ruler-after
+-----------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  44.3 (44.3)  45.6 (45.6)  48.9 (48.9)  42.4 (42.4)  0.09-0.10 s
+
+Engine rounds (ruler-after):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.004  0.0    22.17  13
+
+checks
+------
+
+  check  result
+  memory-idle  measured: mac: System-wide memory free percentage: 89%; total = 13312.00M  u
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5583; ttft resumed 0.133s, cold 1.061s
+  memory-busy  measured: mac: System-wide memory free percentage: 55%; total = 13312.00M  u
+
+history
+-------
+
+  run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-10 18:16  speed  done  44.4      
+  2026-11-10 18:03  speed  done  44.4      
+  2026-11-10 17:54  quick  done  43.7      103/114
+
+Bimo-7B-CyberAgent, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
+---------------------------------------------------------------------
+
+Target bimo-7b-tools-m5: Bimo-7B-CyberAgent bf16 as released with the base model's tool-rendering template, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams). Engine: TensorFold native, Metal; served as bimo. Latest: run 20261110-180712-quick (2026-11-10 18:07, plan quick, done).
+
+Serving: engine_commit 7662e079c; binary_sha256 cd01a302a7cdf9cd0969961abd4b57d766b6c75da3185472c8fd3cfe9632b5be; served_model {"object": "list", "data": [{"id": "bimo", "object": "model", "created": 1794355640, "owne; chip Apple M5 Ultra; 274877906944; suite_commit b3b0ef38b8bc
+
+ruler-fresh
+-----------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  64.8 (64.8)  51.4 (51.4)  48.6 (48.6)  44.1 (44.1)  0.07-0.09 s
+
+Engine rounds (ruler-fresh):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.049  0.095  47%  20.09  12
+
+ruler-after
+-----------
+
+  streams  prose total (a stream)  code total (a stream)  structured total (a stream)  list total (a stream)  first token
+  1  53.4 (53.4)  52.9 (52.9)  55.2 (55.2)  47.9 (47.9)  0.07-0.10 s
+
+Engine rounds (ruler-after):
+
+  streams  tokens a round  drafts a round  accepted  ms a round  requests
+  1  1.049  0.094  47%  20.03  13
+
+suite
+-----
+
+  check  passed
+  soak  60/60
+  drafts  12/12
+  concurrent  12/12
+  streaming  4/4
+  multiturn  8/8
+  stop  3/3
+  thinking  0/10
+  copy  2/2
+  max-tokens  2/3
+
+checks
+------
+
+  check  result
+  memory-idle  measured: mac: System-wide memory free percentage: 89%; total = 13312.00M  u
+  structured  pass: 18/18 obey, drafted == plain 12/12; a bad regex -> 400
+  tools  FAIL: 4/5 tool cases right; failed auto (finish stop)
+  sampling  pass: 9/9 seeded replies equal on repeat and undrafted; 0 errors
+  turns  pass: resumed == again: True; cold (after a restart): True; cached 5493 of 5583; ttft resumed 0.106s, cold 1.082s
+
+history
+-------
+
+  run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-10 18:07  quick  done  51.4      103/114
 
 DeepSeek-V4.1-Flash-1017, 2/3-bit experts on 1x Apple M5 Ultra (256 GB unified), macOS
 --------------------------------------------------------------------------------------
@@ -3029,6 +3137,7 @@ history
   2026-11-05 08:26  ocr  done        
   2026-11-05 06:51  ocr  done        
   2026-11-04 09:57  ocr  done        
+  2026-11-04 09:39  ocr-match  done        
   2026-11-04 05:28  ocr  done        
   2026-11-04 05:07  ocr  done        
   2026-11-04 04:32  ocr-match  done        
