@@ -47,9 +47,14 @@ cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-
 name = "served_model"
 cmd = "curl -s $url/v1/models"
 
+# The weights the server loads, through the recipe's own settings (recipe.toml, then local.toml, then the environment):
+# their conversion settings and whether the folder was modified locally after conversion (a *_META.json record beside
+# the shards, given here by its hash). A modified folder keeps the base's config.json and index byte for byte, so the
+# settings alone cannot tell them apart. (This read recipe.toml alone until 2026-11-14, so the runs from 20261020 on
+# recorded the public pack while the server loaded a locally modified checkpoint named in local.toml.)
 [[identity]]
 name = "checkpoint"
-cmd = "cd $recipe_dir && python3 -c \"import json,os,tomllib; s=tomllib.load(open('recipe.toml','rb'))['model']; print(json.load(open(os.path.expanduser(s['model_dir'])+'/config.json'))['source'])\""
+cmd = '''cd $recipe_dir && python3 -c "import hashlib, json; from mac import config; d = config.load().model; m = sorted(d.glob('*_META.json')); print(json.dumps(json.loads((d / 'config.json').read_text())['source'], sort_keys=True), 'locally modified, record sha256 ' + hashlib.sha256(m[0].read_bytes()).hexdigest()[:16] if m else 'unmodified')"'''
 
 [[identity]]
 name = "chip"

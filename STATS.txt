@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-14 02:18 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-16 21:45 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -3165,4 +3165,15 @@ TensorFold native Metal, branch step5-native (engine 5ad7660c, images aa221b11),
   MTP drafts against `"draft": false` (replies token-identical)  code 25.7 to 44.6 tok/s (70% accepted), prose 26.4 to 34.8 (56%), math 26.2 to 46.0 (75%)
   an image, 1200 x 800 PNG (six 504-px crops and the overview, 692 prompt tokens)  2.1 s to a 4-token answer
   an image, 600 x 400 PNG (overview only, 193 prompt tokens)  0.7 s
+
+DeepSeek-V4.1-Flash on one M5 Ultra: which checkpoint each run served
+---------------------------------------------------------------------
+
+The deepseek-v41-m5 runs from 20261017-145733 to 20261019-090829 served the public pack,
+BobClawblaw/DeepSeek-V4.1-Flash-1017-TensorFold-e2e3-p4-h8. Every run from 20261020-042547 on served a local
+modified checkpoint instead (not published; the same formats and shapes, with some attention weights changed). Its
+checkpoint identity reads the same as the public pack's because the probe read recipe.toml, not the folder the
+server loaded, and the modified folder keeps the base's config.json and index. Prompt speed has the same shapes and
+formats on both; decode (draft acceptance) and quality are the modified checkpoint's and were not measured on the
+public pack.
 
