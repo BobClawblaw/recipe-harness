@@ -1,6 +1,19 @@
 # Bimo-7B-CyberAgent, bf16 on 1x Apple M5 Ultra (256 GB unified), macOS
 
-Target `bimo-7b-tools-m5`: Bimo-7B-CyberAgent bf16 as released with the base model's tool-rendering template, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams). Engine: TensorFold native, Metal. Rendered from `stats/bimo-7b-tools-m5.json` (1 runs); aggregate tok/s, total (a stream).
+Target `bimo-7b-tools-m5`: Bimo-7B-CyberAgent bf16 as released with the base model's tool-rendering template, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams). Engine: TensorFold native, Metal. Rendered from `stats/bimo-7b-tools-m5.json` (2 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-13 19:10: run `20261113-191009-agentic-both`
+
+Plan agentic-both, done; served as `bimo`.
+
+Serving: engine_commit `3c74a3ccb`; binary_sha256 `8fec48397e087f30192163b175c87d5767a0a3188e62b32c5556988ae2e3ddb5`; served_model `{"object": "list", "data": [{"id": "bimo", "object": "model", "created": 1794618618, "owne`; chip `Apple M5 Ultra; 274877906944`; suite_commit `b3b0ef38b8bc`
+
+### checks
+
+| check | result |
+|---|---|
+| agentic-off | FAIL: FAILED: 4 replies called no tool; 4 replies, 0/4 trail modules read, 0 repeat reads, longest identical run 2, peak prompt 2561 tokens, 122.6 s |
+| agentic-required | FAIL: FAILED: answered 407, the live value is 308; 3 replies, 1/4 trail modules read, 0 repeat reads, longest identical run 1, peak prompt 6213 tokens, 4.2 s |
 
 ## 2026-11-10 18:07: run `20261110-180712-quick`
 

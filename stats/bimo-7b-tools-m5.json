@@ -188,6 +188,39 @@
    "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
    "engine": "TensorFold native, Metal",
    "description": "Bimo-7B-CyberAgent bf16 as released with the base model's tool-rendering template, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
+  },
+  {
+   "run": "20261113-191009-agentic-both",
+   "target": "bimo-7b-tools-m5",
+   "model": "bimo",
+   "plan": "agentic-both",
+   "started": "20261113-191009",
+   "finished": "20261113-191225",
+   "status": "done",
+   "identity": {
+    "engine_commit": "3c74a3ccb",
+    "binary_sha256": "8fec48397e087f30192163b175c87d5767a0a3188e62b32c5556988ae2e3ddb5",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"bimo\", \"object\": \"model\", \"created\": 1794618618, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": true, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": true, \"thinking_budget\": true, \"reasoning\": false, \"answer_limit\": true, \"structures\": true, \"logprobs\": true, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": true, \"warm_turns\": false, \"plain_only\": false, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": false, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": true, \"thinking_applicable\": false}, \"context_length\": 32768, \"max_model_len\": 32768}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "b3b0ef38b8bc"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "agentic-off": {
+     "ok": false,
+     "summary": "FAILED: 4 replies called no tool; 4 replies, 0/4 trail modules read, 0 repeat reads, longest identical run 2, peak prompt 2561 tokens, 122.6 s"
+    },
+    "agentic-required": {
+     "ok": false,
+     "summary": "FAILED: answered 407, the live value is 308; 3 replies, 1/4 trail modules read, 0 repeat reads, longest identical run 1, peak prompt 6213 tokens, 4.2 s"
+    }
+   },
+   "model_name": "Bimo-7B-CyberAgent, bf16",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Bimo-7B-CyberAgent bf16 as released with the base model's tool-rendering template, TensorFold native Metal (llama family, Qwen2) on one M5 Ultra (32768-token window, 2 streams)"
   }
  ]
 }
