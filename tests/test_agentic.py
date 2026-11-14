@@ -119,6 +119,14 @@ class Agentic(unittest.TestCase):
         self.assertTrue(r["ok"], r["summary"])
         self.assertEqual(r["metrics"]["repeat_reads"], r["metrics"]["hops"])
 
+    def test_thinking_on_skips_a_target_without_thinking(self):
+        from harness.checks import applies, skip_reason
+        off = config.Target("t", {"url": "http://x", "features": {"thinking": False}}, {})
+        self.assertTrue(applies(off, "agentic", {}))
+        self.assertFalse(applies(off, "agentic", {"thinking": True}))
+        self.assertIn("features.thinking = false", skip_reason(off, "agentic"))
+        self.assertTrue(applies(self.target, "agentic", {"thinking": True}))
+
     def test_the_same_task_for_every_target(self):
         a = agentic.workspace("s-5-400", 5, 400)
         self.assertEqual(a, agentic.workspace("s-5-400", 5, 400))

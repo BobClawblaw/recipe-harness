@@ -71,9 +71,8 @@ def workspace(seed: str, hops: int, file_tokens: int) -> tuple[dict[str, str], l
     rng.shuffle(names)
     trail = names[:hops]
     values = rng.sample(range(3, 1000), hops + 1)
-    files = {"app/main.py": "\n".join(["from config import settings", "",
-                                       f"# RETRY_LIMIT moved out of this file; see {trail[0]}", "",
-                                       "def main():", "    return settings.run(retries=RETRY_LIMIT)", ""])}
+    files = {"app/main.py": "\n".join([f"# RETRY_LIMIT moved out of this file; see {trail[0]}", "",
+                                       "def main():", "    return run(retries=RETRY_LIMIT)", ""])}
     for i, path in enumerate(names):
         lines = _module(rng, file_tokens)
         if i < hops:
@@ -93,7 +92,8 @@ def _fingerprint(r: dict) -> str:
 def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     """Pass: submit_answer gets the live value, without a loop (`loop` identical replies in a row, 3) and without any
     file read more than `max_reads` times (3). Fails on an error, a wrong answer, `max_nudges` (3) replies that call no
-    tool, or `max_turns` replies without an answer."""
+    tool, or `max_turns` replies without an answer. `tool_choice` is "auto" (as an agent sends it); "required" makes a
+    grammar force every reply to be a call, which tests the long session on a model that rarely calls a tool unforced."""
     served = int(target.vars.get("context", 0) or 0)
     context = int(spec.get("context", 131072))
     if served:
@@ -106,8 +106,8 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     files, trail, want = workspace(f"{seed}-{hops}-{file_tokens}", hops, file_tokens)
     max_turns = int(spec.get("max_turns", 3 * len(trail) + 10))
     loop, max_reads, max_nudges = int(spec.get("loop", 3)), int(spec.get("max_reads", 3)), int(spec.get("max_nudges", 3))
-    kw = {"max_tokens": max_tokens, "temperature": float(spec.get("temperature", 0)), "tools": TOOLS, "tool_choice": "auto",
-          "chat_template_kwargs": {"enable_thinking": bool(spec.get("thinking"))}, **spec.get("extra", {})}
+    kw = {"max_tokens": max_tokens, "temperature": float(spec.get("temperature", 0)), "tools": TOOLS,
+          "tool_choice": spec.get("tool_choice", "auto"), "chat_template_kwargs": {"enable_thinking": bool(spec.get("thinking"))}, **spec.get("extra", {})}
     if "seed_sampling" in spec:
         kw["seed"] = spec["seed_sampling"]
 
@@ -182,7 +182,7 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     seconds = round(time.time() - t0, 1)
     (run_dir / f"{name}.json").write_text(json.dumps({
         "spec": {"context": context, "hops": hops, "file_tokens": file_tokens, "max_tokens": max_tokens, "seed": seed,
-                 "thinking": bool(spec.get("thinking")), "temperature": kw["temperature"]},
+                 "thinking": bool(spec.get("thinking")), "temperature": kw["temperature"], "tool_choice": kw["tool_choice"]},
         "trail": trail, "want": want, "answer": answer, "why": why, "reads": reads, "turns": turns}, indent=1))
     summary = (f"{'right' if why is None else 'FAILED: ' + why}; {len(turns)} replies, {on_trail}/{hops} trail modules read, "
                f"{repeats} repeat reads, longest identical run {longest}, peak prompt {peak} tokens, {seconds} s")

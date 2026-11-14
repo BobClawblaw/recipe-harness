@@ -37,6 +37,8 @@ def skip_reason(target: Target, kind: str) -> str:
         if NEEDS[kind] == "structured":
             why += f"; {server.probe_structured(target)}"
         return why
+    if kind == "agentic" and not target.feature("thinking"):
+        return "thinking = true and features.thinking = false"
     return "the target does not serve it"
 
 
@@ -46,6 +48,8 @@ def applies(target: Target, kind: str, spec: dict) -> bool:
     if kind in ("suite", "ruler") and kind not in target.section("commands"):
         return False
     if kind == "memory" and not target.get("memory"):
+        return False
+    if kind == "agentic" and spec.get("thinking") and not target.feature("thinking"):
         return False
     return bool(target.feature(NEEDS[kind])) if kind in NEEDS else True
 
