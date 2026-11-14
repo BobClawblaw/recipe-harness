@@ -6,7 +6,7 @@ the tool checks, then, 190k-312k tokens into a real coding session, asked for th
 (ashhart/TensorFold#847). This check reproduces that shape: a trail of `hops` modules, each a few thousand tokens of
 code, where each superseded definition of RETRY_LIMIT names the module it moved to. The model has `list_files`,
 `read_file` and `submit_answer` and no search, so reaching the live value means reading the whole trail: the prompt
-grows to about `context` tokens.
+grows to about 80% of `context`: the target's window unless the plan caps it.
 
 The repository comes from `seed` alone, so every target gets the same task: run the plan on a quantized checkpoint and
 on its release (or a less lossy pack) and compare the two runs.
@@ -94,10 +94,9 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     file read more than `max_reads` times (3). Fails on an error, a wrong answer, `max_nudges` (3) replies that call no
     tool, or `max_turns` replies without an answer. `tool_choice` is "auto" (as an agent sends it); "required" makes a
     grammar force every reply to be a call, which tests the long session on a model that rarely calls a tool unforced."""
+    # the target's whole window by default (#847's loops began past 190k); a plan's `context` caps it
     served = int(target.vars.get("context", 0) or 0)
-    context = int(spec.get("context", 131072))
-    if served:
-        context = min(context, served)
+    context = min(c for c in (served, int(spec.get("context", 0) or 0)) if c) if served or spec.get("context") else 131072
     file_tokens = int(spec.get("file_tokens", 6000))
     max_tokens = int(spec.get("max_tokens", 8192 if spec.get("thinking") else 1024))
     # the trail fills about 80% of the window, leaving room for replies and a turn's max_tokens

@@ -1,13 +1,11 @@
-description = "A long agentic session (tens of minutes at 128k): the model follows a trail of modules with list_files, read_file and submit_answer until its prompt nears the window, thinking off and then on; run it on the release too and compare (a lossy pack can pass short checks and still loop late in a long session)"
+description = "A long agentic session over the target's whole window (a few minutes a session on a 27B at 262k): the model follows a trail of modules with list_files, read_file and submit_answer until its prompt nears the window, thinking off and then on; run it on the release too and compare (a lossy pack can pass short checks and still loop late in a long session)"
 restart = true
 
 [[checks]]
 type = "agentic"
 label = "off"
-context = 131072
 
 [[checks]]
 type = "agentic"
 label = "thinking"
-context = 131072
 thinking = true

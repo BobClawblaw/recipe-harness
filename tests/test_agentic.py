@@ -88,7 +88,7 @@ class Agentic(unittest.TestCase):
         m = r["metrics"]
         self.assertEqual(m["trail_read"], m["hops"])
         self.assertEqual(m["repeat_reads"], 0)
-        self.assertEqual(m["hops"], (int(8192 * 0.8) - 1024) // 400)  # the served context caps the plan's 131072
+        self.assertEqual(m["hops"], (int(8192 * 0.8) - 1024) // 400)  # the target's whole window by default
         saved = json.loads((Path(self.dir.name) / "a.json").read_text())
         self.assertEqual(saved["answer"], saved["want"])
 
@@ -118,6 +118,15 @@ class Agentic(unittest.TestCase):
         r = self.run_check("twice")
         self.assertTrue(r["ok"], r["summary"])
         self.assertEqual(r["metrics"]["repeat_reads"], r["metrics"]["hops"])
+
+    def test_window(self):
+        def hops(target, **spec):
+            return agentic.run(target, {"file_tokens": 400, **spec}, Path(self.dir.name), "w")["metrics"]["hops"]
+        Fake.mode = "good"
+        self.assertEqual(hops(self.target, context=4096), (int(4096 * 0.8) - 1024) // 400)  # the plan caps it
+        self.assertEqual(hops(self.target, context=65536), (int(8192 * 0.8) - 1024) // 400)  # never past the target's
+        bare = config.Target("t", {"url": self.target.url, "model": "m"}, {})
+        self.assertEqual(hops(bare, hops=3), 3)
 
     def test_thinking_on_skips_a_target_without_thinking(self):
         from harness.checks import applies, skip_reason
