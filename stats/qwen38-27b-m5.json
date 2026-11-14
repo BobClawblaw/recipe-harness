@@ -1,0 +1,38 @@
+{
+ "target": "qwen38-27b-m5",
+ "runs": [
+  {
+   "run": "20261113-191947-agentic",
+   "target": "qwen38-27b-m5",
+   "model": "qwen27",
+   "plan": "agentic",
+   "started": "20261113-191947",
+   "finished": "20261113-192616",
+   "status": "done",
+   "identity": {
+    "engine_commit": "8ff047753",
+    "binary_sha256": "1acce1a163b6e87fe875869f600151b30b400cd13183ead34d4938dda67280b3",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"qwen27\", \"object\": \"model\", \"created\": 1794619351, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": true, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": true, \"thinking_budget\": true, \"reasoning\": true, \"answer_limit\": true, \"structures\": true, \"logprobs\": false, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": true, \"warm_turns\": true, \"plain_only\": false, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": false, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": true, \"thinking_applicable\": true}, \"context_length\": 262144, \"max_model_len\": 262144, \"reasoning\": {\"default_enabled\": true, \"supported_efforts\": [\"xhigh\", \"medium\", \"low\", \"none\"]}}]}",
+    "chip": "Apple M5 Ultra\n274877906944",
+    "suite_commit": "b3b0ef38b8bc"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "agentic-off": {
+     "ok": true,
+     "summary": "right; 19 replies, 17/17 trail modules read, 0 repeat reads, longest identical run 1, peak prompt 103828 tokens, 104.7 s"
+    },
+    "agentic-thinking": {
+     "ok": true,
+     "summary": "right; 18 replies, 16/16 trail modules read, 0 repeat reads, longest identical run 1, peak prompt 97790 tokens, 120.4 s"
+    }
+   },
+   "model_name": "Qwen3.8-27B, MLX 4-bit + DFlash2",
+   "hardware": "1x Apple M5 Ultra (256 GB unified), macOS",
+   "engine": "TensorFold native, Metal",
+   "description": "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native Metal on one M5 Ultra (262144-token window, 2 streams)"
+  }
+ ]
+}

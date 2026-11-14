@@ -1,0 +1,70 @@
+# Qwen3.8-27B as TensorFold's Metal recipe serves it: TensorFold/Qwen3.8-27B-MLX-4bit (byte-identical to
+# mlx-community/Qwen3.8-27B-4bit, the weights Splash repacks) with z-lab's DFlash2 drafter, on one 256 GB M5 Ultra Mac,
+# TensorFold native Metal from a main build. The server is a plain process, its output stamped with Unix seconds for
+# server_log. Machine-specific values go in qwen38-27b-m5.local.toml (git-ignored).
+name = "qwen38-27b-m5"
+description = "Qwen3.8-27B MLX 4-bit + DFlash2, TensorFold native Metal on one M5 Ultra (262144-token window, 2 streams)"
+model_name = "Qwen3.8-27B, MLX 4-bit + DFlash2"   # the report's model column
+hardware = "1x Apple M5 Ultra (256 GB unified), macOS"
+engine = "TensorFold native, Metal"
+url = "http://127.0.0.1:$port"
+model = "qwen27"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout (up runs python3 -m harness.detach from it)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (zig-out/native/bin/tensorfold-native)"
+model_dir = "CHANGE-ME: TensorFold/Qwen3.8-27B-MLX-4bit as downloaded"
+drafter_dir = "CHANGE-ME: z-lab/Qwen3.8-27B-DFlash2 as downloaded"
+suite_dir = "CHANGE-ME: a checkout of the qwen Spark recipe on this machine (quality/ and bench/)"
+log_dir = "CHANGE-ME: a folder for the server's log"
+port = "8898"
+context = "262144"
+parallel = "2"
+prompt_cache_gib = "8"
+
+[commands]
+up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c '$engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --prompt-cache-gib $prompt_cache_gib --drafter $drafter_dir --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
+# only this target's server on its port
+down = "pkill -f 'tensorfold-native serve [^ ]*Qwen3.8-27B-MLX-4bit[^ ]* .*--port $port( |$$)' ; sleep 3"
+status = "pgrep -fl 'tensorfold-native serve [^ ]*Qwen3.8-27B-MLX-4bit[^ ]* .*--port $port( |$$)'"
+diagnose = "tail -5 $log_dir/$model.log"
+server_log = "awk -v s=$since '$$1 >= s' $log_dir/$model.log"
+suite = "cd $suite_dir && python3 -m quality.suite --url $url --model $model --out $out $args"
+ruler = "cd $suite_dir && python3 bench/ruler.py --url $url --model $model --concurrency $concurrency --json $out $args"
+
+[session]
+up_retries = 1
+up_timeout = 120
+health_wait = 600                    # maps 15 GiB of shards and the drafter, then prices its verify rows
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+[features]
+drafts = true
+structured = false    # no libtfgrammar beside a plain zig build native
+sampling = true
+vision_urls = false
+capacity = false
+max_concurrency = 2
+thinking = true
+prompt_cache = true
