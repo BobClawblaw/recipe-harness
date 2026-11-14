@@ -6,7 +6,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from ..config import Target
-from . import capacity, memory, ocr, recipe, server, thinking
+from . import agentic, capacity, memory, ocr, recipe, server, thinking
 
 REGISTRY = {
     "suite": recipe.suite,
@@ -22,11 +22,12 @@ REGISTRY = {
     "thinking": thinking.run,
     "memory": memory.run,
     "ocr": ocr.run,
+    "agentic": agentic.run,
 }
 
 # a check whose feature the target turns off is skipped (e.g. a greedy-only engine has no sampling)
 NEEDS = {"structured": "structured", "structured_speed": "structured", "sampling": "sampling", "urls": "vision_urls", "capacity": "capacity",
-         "thinking": "thinking", "turns": "prompt_cache", "tools": "tools"}
+         "thinking": "thinking", "turns": "prompt_cache", "tools": "tools", "agentic": "tools"}
 
 
 def skip_reason(target: Target, kind: str) -> str:
