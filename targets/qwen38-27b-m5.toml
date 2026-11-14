@@ -21,7 +21,7 @@ log_dir = "CHANGE-ME: a folder for the server's log"
 port = "8898"
 context = "262144"
 parallel = "2"
-prompt_cache_gib = "8"
+prompt_cache_gib = "32"
 
 [commands]
 up = "python3 -m harness.detach --log $log_dir/$model.log -- sh -c '$engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --port $port --context $context --parallel $parallel --prompt-cache-gib $prompt_cache_gib --drafter $drafter_dir --no-update-check 2>&1 | perl -ne \"\\$$|=1; print time(), q( ), \\$$_\"'"
