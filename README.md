@@ -351,3 +351,4 @@ and the check's options).
 | `ocr` | yes | an OCR model's pages alone and as one document, each repeated and run 2 at once (see the `ocr` check) |
 | `speech` | yes | a text-to-speech model's replies: a long passage, a short one, a second voice and a voice cloned from the short reply, each repeated whole and streamed; two more requests while one is spoken; five refusals (see the `speech` check) |
 | `speech-normalize` | yes | a text-to-speech model's text normalization: six written sentences (English, German, Portuguese, Japanese) that must give the audio of their spoken forms and not the audio of the text as typed; an unknown language refused |
+| `speech-controls` | yes | a text-to-speech model's condition values and speaker guidance: a guided case and a slow and a fast speaking rate, each repeated whole and streamed; raw values against the buckets they resolve to, all-unknown buckets and guidance 1 against a request without them; four refusals |

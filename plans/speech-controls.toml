@@ -1,0 +1,23 @@
+description = "Condition values and speaker guidance in text to speech (under a minute): a guided case and a slow and a fast speaking rate, each repeated whole and streamed; values against the buckets they resolve to, and the settings that must change nothing; refusals"
+restart = true
+
+[[checks]]
+type = "speech"
+repeats = 3
+cases = [
+  { name = "plain", voice = "rupert", seed = 5, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "guided", voice = "rupert", seed = 5, speaker_cfg_scale = 1.5, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "slow", voice = "rupert", seed = 5, condition_values = { speaking_rate = 8.0 }, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "fast", voice = "rupert", seed = 5, condition_values = { speaking_rate = 25.0 }, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+]
+same = [
+  { name = "value-is-its-bucket", a = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", condition_values = { speaking_rate = 18.0, loudness = -20.0 } }, b = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", condition_buckets = { speaking_rate = 22, loudness = 6 } }, other = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning." } },
+  { name = "unknown-buckets-are-none", a = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", condition_buckets = [10, 10, 30] }, b = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning." } },
+  { name = "guidance-one-is-off", a = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", speaker_cfg_scale = 1.0 }, b = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning." }, other = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", speaker_cfg_scale = 1.5 } },
+]
+refusals = [
+  { name = "guidance-negative", status = 400, body = { input = "x", speaker_cfg_scale = -1 } },
+  { name = "condition-unknown-name", status = 400, body = { input = "x", condition_buckets = { pitch = 1 } } },
+  { name = "condition-bucket-too-large", status = 400, body = { input = "x", condition_buckets = { loudness = 11 } } },
+  { name = "condition-value-not-a-number", status = 400, body = { input = "x", condition_values = { fmax = "high" } } },
+]
