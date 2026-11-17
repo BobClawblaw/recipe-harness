@@ -73,6 +73,20 @@ class Check(unittest.TestCase):
         self.assertTrue(res["ok"], res["summary"])
         self.assertEqual(res["metrics"]["busy"], {"statuses": [200, 200, 200], "identical": 3})
 
+    def test_same_pairs_need_equal_audio_and_another_from_other(self):
+        audio = {"hello": b"\x01\x00" * 100, "$5": b"\x02\x00" * 100, "five dollars": b"\x02\x00" * 100, "5 typed": b"\x03\x00" * 100}
+        pair = {"name": "dollars", "a": {"input": "$5"}, "b": {"input": "five dollars"}, "other": {"input": "5 typed"}}
+        spec = {"sample_rate": RATE, "repeats": 1, "cases": [{"name": "a", "input": "hello"}], "same": [pair]}
+        res, _ = self.run_check(audio, spec)
+        self.assertTrue(res["ok"], res["summary"])
+        self.assertEqual(res["metrics"]["same"]["dollars"], {"statuses": [200, 200, 200], "equal": True, "other_differs": True})
+        self.assertIn("same audio 1/1", res["summary"])
+        res, _ = self.run_check({**audio, "five dollars": b"\x04\x00" * 100}, spec)
+        self.assertFalse(res["ok"])
+        res, _ = self.run_check({**audio, "5 typed": b"\x02\x00" * 100}, spec)
+        self.assertFalse(res["ok"])
+        self.assertIn("same dollars", res["summary"])
+
     def test_formats_start_as_their_files_do_and_a_refused_one_fails(self):
         spec = {"sample_rate": RATE, "repeats": 1, "formats": ["mp3", "flac", "aac"], "cases": [{"name": "a", "input": "hello"}]}
         res, _ = self.run_check({"hello": b"\x00\x01" * 200}, spec)

@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-17 21:55 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-17 22:13 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -3101,22 +3101,25 @@ Serving: engine_commit `f7c686f36`; binary_sha256 `adf4f3c4bb9f45a1501bbf5d41b1b
 
 ## ZONOS3 Mini on 1x NVIDIA RTX 5090 (32 GB), Linux
 
-Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, one request at a time). Engine: TensorFold native, CUDA; served as `zonos3-mini`. Latest: run `20261117-194134-speech` (2026-11-17 19:41, plan speech, done).
+Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, one request at a time). Engine: TensorFold native, CUDA; served as `zonos3-mini`. Latest: run `20261117-221158-speech` (2026-11-17 22:11, plan speech, done).
 
-Serving: engine_commit `9757d2378`; binary_sha256 `54072eb9adb494c513bc15e050233fe26d4fe0862c993fe30e8c3920ab76e643`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794944507`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+Serving: engine_commit `2a4379862`; binary_sha256 `3be1df9fae14edb862512cd75ca4ce3e4c8a720c6e54cc836d0c760c7acece5a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794953527`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: gpu: 4282 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
-| speech | pass: 4/4 cases spoken; 7.1-29.2 times real time (32.2 s of audio), streamed first byte 0.03-0.58 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200, 503, 503]; formats mp3, opus, flac served and repeat; refusals 5/5 |
-| memory-after | measured: gpu: 10092 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| memory-idle | measured: gpu: 8551 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | pass: 4/4 cases spoken; 7.4-29.3 times real time (32.2 s of audio), streamed first byte 0.03-0.54 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200, 503, 503]; formats mp3, opus, flac served and repeat; refusals 5/5 |
+| memory-after | measured: gpu: 14361 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-17 22:11 | speech | done |  |  |  |  |
+| 2026-11-17 22:11 | speech-normalize | done |  |  |  |  |
+| 2026-11-17 22:10 | speech | done |  |  |  |  |
 | 2026-11-17 19:41 | speech | done |  |  |  |  |
 | 2026-11-17 18:13 | speech | done |  |  |  |  |
 | 2026-11-17 18:03 | speech | done |  |  |  |  |

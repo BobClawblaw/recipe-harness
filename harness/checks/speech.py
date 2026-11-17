@@ -8,7 +8,11 @@ cases = [{ name = "passage", input = "...", voice = "rupert", seed = 11 }, { nam
 A case's other keys go into the request as they are; `ref_from` sends an earlier case's reply as `ref_audio` (a WAV).
 refusals = [{ name = "unknown-voice", status = 400, body = { input = "x", voice = "nobody" } }]
 formats = ["mp3", "opus", "aac", "flac"] asks the first case again in each format, twice: a reply that starts as that
-format's files do and repeats."""
+format's files do and repeats.
+same = [{ name = "dollars", a = { input = "It costs $5." }, b = { input = "It costs five dollars.", text_normalization = false },
+          other = { input = "It costs $5.", text_normalization = false } }]
+asks `a` and `b`, which must give the same audio (a text normalizer's written and spoken forms), and `other`, when
+given, which must not."""
 
 from __future__ import annotations
 
@@ -81,6 +85,18 @@ def _formats(target: Target, case: dict, formats: list[str], run_dir: Path, name
     return out
 
 
+def _same(target: Target, pair: dict, bad: list[str]) -> dict:
+    """Two requests that must give one audio, and a third that must give another."""
+    got = {k: api.speech(target.url, {"model": target.model, "response_format": "pcm", **pair[k]}) for k in ("a", "b", "other") if k in pair}
+    a, b = got["a"], got["b"]
+    out = {"statuses": [r["status"] for r in got.values()], "equal": a["status"] == 200 and bool(a["audio"]) and a["audio"] == b["audio"]}
+    if "other" in got:
+        out["other_differs"] = got["other"]["status"] == 200 and got["other"]["audio"] != a["audio"]
+    if not out["equal"] or not out.get("other_differs", True):
+        bad.append(f"same {pair['name']}: statuses {out['statuses']}, a equals b {out['equal']}, other differs {out.get('other_differs')} {a.get('error', '')[:120]}")
+    return out
+
+
 def _busy(target: Target, case: dict, pcm: bytes, extra: int, bad: list[str]) -> dict:
     """`extra` more requests sent while one is being spoken: each answers the same audio or 503."""
     body = {"model": target.model, "response_format": "pcm", **{k: v for k, v in case.items() if k not in OWN}}
@@ -120,6 +136,8 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
         res["busy"] = _busy(target, first, replies[first["name"]], int(spec["busy"]), bad)
     if spec.get("formats") and first["name"] in replies:
         res["formats"] = _formats(target, first, spec["formats"], run_dir, name, bad)
+    if spec.get("same"):
+        res["same"] = {pair["name"]: _same(target, pair, bad) for pair in spec["same"]}
     for r in spec.get("refusals", []):
         got = api.speech(target.url, {"model": target.model, **r["body"]})
         res["refusals"][r["name"]] = {"status": got["status"], "message": got.get("error", "")[:200]}
@@ -140,6 +158,8 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
         summary += f"; {len(res['busy']['statuses'])} at once: statuses {res['busy']['statuses']}"
     if "formats" in res:
         summary += f"; formats {', '.join(f for f, v in res['formats'].items() if v['starts_as'] and v['repeat_identical'])} served and repeat"
+    if "same" in res:
+        summary += f"; same audio {sum(v['equal'] and v.get('other_differs', True) for v in res['same'].values())}/{len(res['same'])}"
     if res["refusals"]:
         summary += f"; refusals {sum(v['status'] == r.get('status', 400) for v, r in zip(res['refusals'].values(), spec['refusals']))}/{len(res['refusals'])}"
     summary += f"; failed {'; '.join(bad)}" if bad else ""
