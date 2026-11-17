@@ -6,7 +6,9 @@ command (given `$wav` and the quoted text `$said`, printing `WER <number>`), eac
 
 cases = [{ name = "passage", input = "...", voice = "rupert", seed = 11 }, { name = "clone", input = "...", seed = 4, ref_from = "passage" }]
 A case's other keys go into the request as they are; `ref_from` sends an earlier case's reply as `ref_audio` (a WAV).
-refusals = [{ name = "unknown-voice", status = 400, body = { input = "x", voice = "nobody" } }]"""
+refusals = [{ name = "unknown-voice", status = 400, body = { input = "x", voice = "nobody" } }]
+formats = ["mp3", "opus", "aac", "flac"] asks the first case again in each format, twice: a reply that starts as that
+format's files do and repeats."""
 
 from __future__ import annotations
 
@@ -23,6 +25,8 @@ from .. import api
 from ..config import Target
 
 OWN = ("name", "ref_from")
+# how a file of each response_format starts
+MAGIC = {"mp3": (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2", b"ID3"), "opus": (b"OggS",), "aac": (b"\xff\xf1", b"\xff\xf9"), "flac": (b"fLaC",), "wav": (b"RIFF",)}
 WER = re.compile(r"WER\s+([0-9.]+)")
 
 
@@ -62,6 +66,21 @@ def _case(target: Target, case: dict, replies: dict, rate: int, repeats: int, ba
     return entry, pcm
 
 
+def _formats(target: Target, case: dict, formats: list[str], run_dir: Path, name: str, bad: list[str]) -> dict:
+    """The case in each format, twice: the status, the size, whether it starts as the format does and repeats."""
+    body = {"model": target.model, **{k: v for k, v in case.items() if k not in OWN}}
+    out = {}
+    for fmt in formats:
+        a, b = (api.speech(target.url, {**body, "response_format": fmt}) for _ in range(2))
+        ok = a["status"] == 200 and a["audio"].startswith(MAGIC.get(fmt, (b"",)))
+        out[fmt] = {"status": a["status"], "bytes": len(a["audio"]), "s": a["s"], "starts_as": ok, "repeat_identical": a["audio"] == b.get("audio")}
+        if a["status"] == 200:
+            (run_dir / f"{name}.{case['name']}.{'ogg' if fmt == 'opus' else fmt}").write_bytes(a["audio"])
+        if not ok or not out[fmt]["repeat_identical"]:
+            bad.append(f"format {fmt}: status {a['status']}, starts as {fmt} {ok}, repeats {out[fmt]['repeat_identical']} {a.get('error', '')[:120]}")
+    return out
+
+
 def _busy(target: Target, case: dict, pcm: bytes, extra: int, bad: list[str]) -> dict:
     """`extra` more requests sent while one is being spoken: each answers the same audio or 503."""
     body = {"model": target.model, "response_format": "pcm", **{k: v for k, v in case.items() if k not in OWN}}
@@ -99,6 +118,8 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
     first = spec["cases"][0]
     if spec.get("busy") and first["name"] in replies:
         res["busy"] = _busy(target, first, replies[first["name"]], int(spec["busy"]), bad)
+    if spec.get("formats") and first["name"] in replies:
+        res["formats"] = _formats(target, first, spec["formats"], run_dir, name, bad)
     for r in spec.get("refusals", []):
         got = api.speech(target.url, {"model": target.model, **r["body"]})
         res["refusals"][r["name"]] = {"status": got["status"], "message": got.get("error", "")[:200]}
@@ -117,6 +138,8 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
         summary += f"; WER {min(wers):.3f}-{max(wers):.3f}" if wers else ""
     if "busy" in res:
         summary += f"; {len(res['busy']['statuses'])} at once: statuses {res['busy']['statuses']}"
+    if "formats" in res:
+        summary += f"; formats {', '.join(f for f, v in res['formats'].items() if v['starts_as'] and v['repeat_identical'])} served and repeat"
     if res["refusals"]:
         summary += f"; refusals {sum(v['status'] == r.get('status', 400) for v, r in zip(res['refusals'].values(), spec['refusals']))}/{len(res['refusals'])}"
     summary += f"; failed {'; '.join(bad)}" if bad else ""

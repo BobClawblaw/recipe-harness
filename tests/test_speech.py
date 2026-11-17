@@ -21,6 +21,9 @@ def server(audio: dict, busy_status: int = 503):
         calls.append(body)
         if body.get("voice") == "nobody":
             return {"status": 400, "audio": b"", "s": 0.01, "error": "unknown voice"}
+        if body.get("response_format") in ("mp3", "flac", "aac"):
+            head = {"mp3": b"\xff\xfb", "flac": b"fLaC"}.get(body["response_format"])
+            return {"status": 400, "audio": b"", "s": 0.01, "error": "no library"} if head is None else {"status": 200, "audio": head + b"data", "first": 0.1, "s": 0.1}
         pcm = audio[body["input"]]
         pcm = pcm.pop(0) if isinstance(pcm, list) else pcm
         return {"status": 200, "audio": pcm, "first": 0.05 if body.get("stream") else 0.5, "s": 0.5}
@@ -69,6 +72,14 @@ class Check(unittest.TestCase):
         res, _ = self.run_check({"hello": b"\x00\x01" * 200}, spec)
         self.assertTrue(res["ok"], res["summary"])
         self.assertEqual(res["metrics"]["busy"], {"statuses": [200, 200, 200], "identical": 3})
+
+    def test_formats_start_as_their_files_do_and_a_refused_one_fails(self):
+        spec = {"sample_rate": RATE, "repeats": 1, "formats": ["mp3", "flac", "aac"], "cases": [{"name": "a", "input": "hello"}]}
+        res, _ = self.run_check({"hello": b"\x00\x01" * 200}, spec)
+        f = res["metrics"]["formats"]
+        self.assertEqual((f["mp3"]["starts_as"], f["flac"]["repeat_identical"], f["aac"]["status"]), (True, True, 400))
+        self.assertEqual(len(res["metrics"]["failures"]), 1)
+        self.assertIn("format aac: status 400", res["metrics"]["failures"][0])
 
     def test_wer_from_the_asr_command(self):
         spec = {"sample_rate": RATE, "repeats": 1, "max_wer": 0.1, "cases": [{"name": "a", "input": "hello"}]}

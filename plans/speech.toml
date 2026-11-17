@@ -1,4 +1,4 @@
-description = "Text to speech (a few minutes): four spoken cases, each repeated whole and streamed, a busy server, and the recipe's refusals; speed against the audio's length and, with an asr command, word error rate"
+description = "Text to speech (a few minutes): four spoken cases, each repeated whole and streamed, MP3, Opus and FLAC replies, a busy server, and the recipe's refusals; speed against the audio's length and, with an asr command, word error rate"
 restart = true
 
 [[checks]]
@@ -9,6 +9,7 @@ name = "memory-idle"
 type = "speech"
 repeats = 3
 busy = 2
+formats = ["mp3", "opus", "flac"]
 cases = [
   { name = "passage", voice = "rupert", seed = 11, input = "TensorFold now speaks with a second voice model. This is a longer passage, read at the default sampling settings, so that we can measure how fast the backbone and the codec run together on one graphics card, and how much memory the whole request needs from start to finish." },
   { name = "short", seed = 3, input = "The harbor was quiet this morning, and the boats had not yet gone out." },
