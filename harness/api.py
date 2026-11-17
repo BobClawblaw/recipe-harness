@@ -112,3 +112,19 @@ def stream(base: str, model: str, messages: list, timeout: float = 600, **extra)
     return {"status": 200, "text": text, "ttft": round(first, 3) if first is not None else None,
             "ttft_any": round(first_any, 3) if first_any is not None else None, "usage": usage,
             "s": round(time.time() - t0, 3), "finish": finish, "tool_calls": [calls[i] for i in sorted(calls)] or None}
+
+
+def speech(base: str, body: dict, timeout: float = 600) -> dict:
+    """One /v1/audio/speech request: status, the reply's bytes, seconds to its first byte and to its end."""
+    req = urllib.request.Request(f"{base}/v1/audio/speech", json.dumps(body).encode(), {"Content-Type": "application/json"})
+    t0, first, parts = time.time(), None, []
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            while chunk := r.read1(65536):
+                first = first if first is not None else time.time() - t0
+                parts.append(chunk)
+    except urllib.error.HTTPError as e:
+        return {"status": e.code, "audio": b"", "s": round(time.time() - t0, 3), "error": e.read().decode(errors="replace")[:2000]}
+    except Exception as e:
+        return {"status": -1, "audio": b"", "s": round(time.time() - t0, 3), "error": repr(e)[:500]}
+    return {"status": 200, "audio": b"".join(parts), "first": round(first, 3) if first is not None else None, "s": round(time.time() - t0, 3)}

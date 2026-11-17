@@ -4,7 +4,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R 47 0 R 49 0 R 51 0 R 53 0 R 55 0 R 57 0 R 59 0 R 61 0 R 63 0 R 65 0 R 67 0 R 69 0 R 71 0 R 73 0 R 75 0 R 77 0 R 79 0 R 81 0 R 83 0 R 85 0 R 87 0 R 89 0 R 91 0 R 93 0 R 95 0 R 97 0 R 99 0 R 101 0 R 103 0 R 105 0 R 107 0 R 109 0 R 111 0 R 113 0 R 115 0 R 117 0 R 119 0 R 121 0 R 123 0 R 125 0 R 127 0 R 129 0 R 131 0 R 133 0 R 135 0 R 137 0 R 139 0 R 141 0 R 143 0 R 145 0 R 147 0 R 149 0 R 151 0 R 153 0 R 155 0 R 157 0 R 159 0 R 161 0 R 163 0 R 165 0 R 167 0 R 169 0 R 171 0 R 173 0 R 175 0 R 177 0 R 179 0 R 181 0 R 183 0 R 185 0 R 187 0 R 189 0 R 191 0 R 193 0 R 195 0 R 197 0 R 199 0 R 201 0 R 203 0 R 205 0 R 207 0 R 209 0 R 211 0 R 213 0 R 215 0 R 217 0 R 219 0 R 221 0 R 223 0 R 225 0 R 227 0 R 229 0 R 231 0 R 233 0 R 235 0 R 237 0 R 239 0 R] /Count 117 >>
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R 47 0 R 49 0 R 51 0 R 53 0 R 55 0 R 57 0 R 59 0 R 61 0 R 63 0 R 65 0 R 67 0 R 69 0 R 71 0 R 73 0 R 75 0 R 77 0 R 79 0 R 81 0 R 83 0 R 85 0 R 87 0 R 89 0 R 91 0 R 93 0 R 95 0 R 97 0 R 99 0 R 101 0 R 103 0 R 105 0 R 107 0 R 109 0 R 111 0 R 113 0 R 115 0 R 117 0 R 119 0 R 121 0 R 123 0 R 125 0 R 127 0 R 129 0 R 131 0 R 133 0 R 135 0 R 137 0 R 139 0 R 141 0 R 143 0 R 145 0 R 147 0 R 149 0 R 151 0 R 153 0 R 155 0 R 157 0 R 159 0 R 161 0 R 163 0 R 165 0 R 167 0 R 169 0 R 171 0 R 173 0 R 175 0 R 177 0 R 179 0 R 181 0 R 183 0 R 185 0 R 187 0 R 189 0 R 191 0 R 193 0 R 195 0 R 197 0 R 199 0 R 201 0 R 203 0 R 205 0 R 207 0 R 209 0 R 211 0 R 213 0 R 215 0 R 217 0 R 219 0 R 221 0 R 223 0 R 225 0 R 227 0 R 229 0 R 231 0 R 233 0 R 235 0 R 237 0 R 239 0 R 241 0 R] /Count 118 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
@@ -21,8 +21,8 @@ stream
 0.1 0.27 0.47 rg 0.00 484.00 792.00 128.00 re f
 BT /F2 26.00 Tf 1 1 1 rg 42.00 540.00 Td (Served stats) Tj ET
 BT /F1 11.00 Tf 0.82 0.87 0.93 rg 42.00 516.00 Td (Throughput, latency and quality of each served recipe, by model and hardware) Tj ET
-BT /F1 9.00 Tf 0.82 0.87 0.93 rg 657.96 516.00 Td (2026-11-16 21:45 UTC) Tj ET
-BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 453.00 Td (Rendered 2026-11-16 21:45 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate tok/s,) Tj ET
+BT /F1 9.00 Tf 0.82 0.87 0.93 rg 657.96 516.00 Td (2026-11-17 19:44 UTC) Tj ET
+BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 453.00 Td (Rendered 2026-11-17 19:44 UTC from stats/*.json, the ledger every harness run and harness export adds to \(python3 -m harness stats renders it again\). Aggregate tok/s,) Tj ET
 BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 440.60 Td (greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.) Tj ET
 BT /F2 14.50 Tf 0.1 0.27 0.47 rg 42.00 416.20 Td (Overview: by model and hardware) Tj ET
 0.1 0.27 0.47 RG 1.0 w 42.00 409.20 m 750.00 409.20 l S
@@ -143,7 +143,7 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 94.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 94.80 Td (2026-10-18) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 1 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 1 of 118) Tj ET
 endstream
 endobj
 7 0 obj
@@ -321,11 +321,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 93.60 Td (0.23 / 0.35-0.39) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 93.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 93.60 Td (2026-10-26) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 2 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 2 of 118) Tj ET
 endstream
 endobj
 9 0 obj
@@ -524,18 +524,18 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 69.60 Td (0.11 / 0.17-0.19) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 69.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 69.60 Td (2026-10-17) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 3 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 3 of 118) Tj ET
 endstream
 endobj
 11 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
 endobj
 12 0 obj
-<< /Length 12346 >>
+<< /Length 12814 >>
 stream
 0.1 0.27 0.47 rg 42.00 532.40 704.86 15.60 re f
 BT /F2 7.60 Tf 1 1 1 rg 46.00 537.60 Td (model) Tj ET
@@ -634,16 +634,16 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 554.67 308.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 308.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 308.40 Td (2026-11-06) Tj ET
 0.945 0.953 0.965 rg 42.00 287.60 704.86 15.60 re f
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 292.80 Td (qwen38-27b) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 292.80 Td (?) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 292.80 Td (150/230/168/185) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 292.80 Td (ZONOS3 Mini) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 292.80 Td (1x NVIDIA RTX 5090 \(32 GB\), Linux) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 409.11 292.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 488.21 292.80 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 539.88 292.80 Td (0.10) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 554.67 292.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 292.80 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 292.80 Td (2026-10-16) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 292.80 Td (2026-11-17) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 277.20 Td (qwen38-27b) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 277.20 Td (?) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 277.20 Td (211/398/268/250) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 277.20 Td (150/230/168/185) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 488.21 277.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 539.88 277.20 Td (0.10) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 277.20 Td () Tj ET
@@ -651,67 +651,74 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 277.20 Td (2026-10-16) Tj ET
 0.945 0.953 0.965 rg 42.00 256.40 704.86 15.60 re f
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 261.60 Td (qwen38-27b) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 261.60 Td (?) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 261.60 Td (150/229/167/185) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 261.60 Td (211/398/268/250) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 488.21 261.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 539.88 261.60 Td (0.10) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 261.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 261.60 Td (2026-10-16) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 246.00 Td (qwen38-27b) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 246.00 Td (?) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 246.00 Td (236/437/293/288) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 246.00 Td (150/229/167/185) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 488.21 246.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 539.88 246.00 Td (0.10) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 246.00 Td (gsm8k 222/250) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 246.00 Td (2026-10-19) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 246.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 246.00 Td (2026-10-16) Tj ET
 0.945 0.953 0.965 rg 42.00 225.20 704.86 15.60 re f
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 230.40 Td (qwen38-27b) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 230.40 Td (?) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 230.40 Td (210/397/266/259) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 230.40 Td (236/437/293/288) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 488.21 230.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 539.88 230.40 Td (0.10) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 230.40 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 230.40 Td (gsm8k 222/250) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 230.40 Td (2026-10-19) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 214.80 Td (ricursiveAI Ripple-65B-Preview \(bf16\)) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 214.80 Td (1x Apple M5 Ultra \(256 GB unified\), macOS) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 385.87 214.80 Td (6/6/6/6) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 439.61 214.80 Td (2: 14/14/13/14) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 214.80 Td (0.52 / 0.79-1.78) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 214.80 Td (qwen38-27b) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 214.80 Td (?) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 352.06 214.80 Td (210/397/266/259) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 488.21 214.80 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 539.88 214.80 Td (0.10) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 214.80 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 214.80 Td (2026-11-06) Tj ET
-0.945 0.953 0.965 rg 42.00 184.40 704.86 25.20 re f
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 199.20 Td (ricursiveAI Ripple-65B-Preview \(bf16\) +) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 189.60 Td (DFlash2 drafter) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 214.80 Td (2026-10-19) Tj ET
+0.945 0.953 0.965 rg 42.00 194.00 704.86 15.60 re f
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 199.20 Td (ricursiveAI Ripple-65B-Preview \(bf16\)) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 199.20 Td (1x Apple M5 Ultra \(256 GB unified\), macOS) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 368.96 199.20 Td (13/31/13/19) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 439.61 199.20 Td (2: 26/63/26/55) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 199.20 Td (0.39 / 3.24-7.98) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 385.87 199.20 Td (6/6/6/6) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 439.61 199.20 Td (2: 14/14/13/14) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 199.20 Td (0.52 / 0.79-1.78) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 199.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 199.20 Td (2026-11-06) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 174.00 Td (ricursiveAI Ripple-65B-Preview-NVFP4) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 164.40 Td (\(NVFP4 MLPs, bf16 attention\)) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 174.00 Td (1x Apple M5 Ultra \(256 GB unified\), macOS) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 368.96 174.00 Td (10/10/10/10) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 439.61 174.00 Td (2: 19/19/19/19) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 174.00 Td (0.61 / 0.93-1.10) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 174.00 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 174.00 Td (2026-11-06) Tj ET
-0.945 0.953 0.965 rg 42.00 124.40 704.86 34.80 re f
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 148.80 Td (ricursiveAI Ripple-65B-Preview-NVFP4) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 139.20 Td (\(NVFP4 MLPs, bf16 attention\) + DFlash2) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 129.60 Td (drafter) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 148.80 Td (1x Apple M5 Ultra \(256 GB unified\), macOS) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 368.96 148.80 Td (15/26/17/19) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 439.61 148.80 Td (2: 21/35/25/37) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 148.80 Td (0.55 / 0.83-1.12) Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 148.80 Td () Tj ET
-BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 148.80 Td (2026-11-06) Tj ET
-0.82 0.84 0.87 RG 0.6 w 42.00 124.40 m 746.86 124.40 l S
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 183.60 Td (ricursiveAI Ripple-65B-Preview \(bf16\) +) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 174.00 Td (DFlash2 drafter) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 183.60 Td (1x Apple M5 Ultra \(256 GB unified\), macOS) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 368.96 183.60 Td (13/31/13/19) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 439.61 183.60 Td (2: 26/63/26/55) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 183.60 Td (0.39 / 3.24-7.98) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 183.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 183.60 Td (2026-11-06) Tj ET
+0.945 0.953 0.965 rg 42.00 143.60 704.86 25.20 re f
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 158.40 Td (ricursiveAI Ripple-65B-Preview-NVFP4) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 148.80 Td (\(NVFP4 MLPs, bf16 attention\)) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 158.40 Td (1x Apple M5 Ultra \(256 GB unified\), macOS) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 368.96 158.40 Td (10/10/10/10) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 439.61 158.40 Td (2: 19/19/19/19) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 158.40 Td (0.61 / 0.93-1.10) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 158.40 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 158.40 Td (2026-11-06) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 133.20 Td (ricursiveAI Ripple-65B-Preview-NVFP4) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 123.60 Td (\(NVFP4 MLPs, bf16 attention\) + DFlash2) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 114.00 Td (drafter) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 193.20 133.20 Td (1x Apple M5 Ultra \(256 GB unified\), macOS) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 368.96 133.20 Td (15/26/17/19) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 439.61 133.20 Td (2: 21/35/25/37) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 501.43 133.20 Td (0.55 / 0.83-1.12) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 562.67 133.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 702.99 133.20 Td (2026-11-06) Tj ET
+0.82 0.84 0.87 RG 0.6 w 42.00 108.80 m 746.86 108.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 4 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 4 of 118) Tj ET
 endstream
 endobj
 13 0 obj
@@ -786,11 +793,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 443.44 250.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 451.44 250.40 Td (103/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 245.20 m 488.13 245.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 5 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 5 of 118) Tj ET
 endstream
 endobj
 15 0 obj
@@ -885,11 +892,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 93.20 Td (8/8) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 77.60 Td (stop) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 77.60 Td (3/3) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 6 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 6 of 118) Tj ET
 endstream
 endobj
 17 0 obj
@@ -944,11 +951,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 381.35 298.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 389.35 298.00 Td (103/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 292.80 m 421.81 292.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 7 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 7 of 118) Tj ET
 endstream
 endobj
 19 0 obj
@@ -1027,11 +1034,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 331.80 76.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 419.36 76.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 427.36 76.00 Td (1498/1614) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 8 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 8 of 118) Tj ET
 endstream
 endobj
 21 0 obj
@@ -1155,11 +1162,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 419.36 319.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 427.36 319.20 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 314.00 m 468.28 314.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 9 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 703.30 38.00 Td (Page 9 of 118) Tj ET
 endstream
 endobj
 23 0 obj
@@ -1250,11 +1257,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 411.34 188.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 419.34 188.40 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 183.20 m 451.81 183.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 10 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 10 of 118) Tj ET
 endstream
 endobj
 25 0 obj
@@ -1323,11 +1330,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 407.12 232.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 415.12 232.80 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 227.60 m 437.86 227.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 11 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 11 of 118) Tj ET
 endstream
 endobj
 27 0 obj
@@ -1402,11 +1409,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 411.34 229.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 419.34 229.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 224.40 m 442.08 224.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 12 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 12 of 118) Tj ET
 endstream
 endobj
 29 0 obj
@@ -1474,11 +1481,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 407.12 245.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 415.12 245.20 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 240.00 m 437.86 240.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 13 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 13 of 118) Tj ET
 endstream
 endobj
 31 0 obj
@@ -1546,11 +1553,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 407.12 245.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 415.12 245.20 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 240.00 m 437.86 240.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 14 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 14 of 118) Tj ET
 endstream
 endobj
 33 0 obj
@@ -1629,11 +1636,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 311.10 76.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 398.66 76.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 406.66 76.00 Td (113/114) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 15 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 15 of 118) Tj ET
 endstream
 endobj
 35 0 obj
@@ -1817,11 +1824,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 398.66 194.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 406.66 194.40 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 189.20 m 447.58 189.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 16 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 16 of 118) Tj ET
 endstream
 endobj
 37 0 obj
@@ -1877,11 +1884,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 400.78 281.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 408.78 281.60 Td (112/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 276.40 m 441.25 276.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 17 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 17 of 118) Tj ET
 endstream
 endobj
 39 0 obj
@@ -1983,11 +1990,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 89.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 89.60 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 84.40 m 416.33 84.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 18 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 18 of 118) Tj ET
 endstream
 endobj
 41 0 obj
@@ -2082,11 +2089,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 93.20 Td (8/8) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 77.60 Td (stop) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 77.60 Td (3/3) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 19 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 19 of 118) Tj ET
 endstream
 endobj
 43 0 obj
@@ -2154,11 +2161,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 381.35 282.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 389.35 282.40 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 277.20 m 421.81 277.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 20 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 20 of 118) Tj ET
 endstream
 endobj
 45 0 obj
@@ -2252,11 +2259,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 105.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 105.20 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 100.00 m 416.33 100.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 21 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 21 of 118) Tj ET
 endstream
 endobj
 47 0 obj
@@ -2352,11 +2359,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 369.08 216.80 Td (2.55-3.14 s) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 415.10 216.80 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 211.60 m 447.57 211.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 22 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 22 of 118) Tj ET
 endstream
 endobj
 49 0 obj
@@ -2427,11 +2434,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 409.63 229.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 417.63 229.60 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 224.40 m 441.65 224.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 23 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 23 of 118) Tj ET
 endstream
 endobj
 51 0 obj
@@ -2511,11 +2518,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 371.63 180.00 Td (2.69-3.38 s) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 417.65 180.00 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 174.80 m 441.66 174.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 24 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 24 of 118) Tj ET
 endstream
 endobj
 53 0 obj
@@ -2602,11 +2609,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 371.63 176.80 Td (1.28-1.58 s) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 417.65 176.80 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 171.60 m 441.66 171.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 25 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 25 of 118) Tj ET
 endstream
 endobj
 55 0 obj
@@ -2701,11 +2708,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 371.63 148.80 Td (1.35-1.67 s) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 417.65 148.80 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 143.60 m 458.57 143.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 26 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 26 of 118) Tj ET
 endstream
 endobj
 57 0 obj
@@ -2748,11 +2755,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 407.10 326.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 415.10 326.00 Td (133/180) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 320.80 m 447.57 320.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 27 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 27 of 118) Tj ET
 endstream
 endobj
 59 0 obj
@@ -2852,11 +2859,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.41 179.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 413.41 179.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 174.40 m 437.42 174.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 28 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 28 of 118) Tj ET
 endstream
 endobj
 61 0 obj
@@ -2941,11 +2948,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 367.39 210.80 Td (3.20-3.67 s) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 413.41 210.80 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 205.60 m 437.42 205.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 29 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 29 of 118) Tj ET
 endstream
 endobj
 63 0 obj
@@ -3049,11 +3056,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 388.75 109.20 Td (60.2 \(56.8\)) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 434.50 109.20 Td (0.16-0.23 s) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 104.00 m 476.52 104.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 30 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 30 of 118) Tj ET
 endstream
 endobj
 65 0 obj
@@ -3137,11 +3144,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 117.20 Td (mgsm) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 93.17 117.20 Td (223/240) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 112.00 m 124.64 112.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 31 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 31 of 118) Tj ET
 endstream
 endobj
 67 0 obj
@@ -3183,11 +3190,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 400.79 468.80 Td (0.45-1.19 s) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 446.81 468.80 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 463.60 m 487.73 463.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 32 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 32 of 118) Tj ET
 endstream
 endobj
 69 0 obj
@@ -3311,11 +3318,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 351.25 83.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 438.81 83.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 446.81 83.20 Td () Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 33 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 33 of 118) Tj ET
 endstream
 endobj
 71 0 obj
@@ -3409,11 +3416,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 438.81 381.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 446.81 381.60 Td (42/42) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 376.40 m 487.73 376.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 34 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 34 of 118) Tj ET
 endstream
 endobj
 73 0 obj
@@ -3508,11 +3515,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 93.20 Td (8/8) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 77.60 Td (stop) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 77.60 Td (3/3) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 35 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 35 of 118) Tj ET
 endstream
 endobj
 75 0 obj
@@ -3600,11 +3607,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.81 220.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.81 220.00 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 214.80 m 438.28 214.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 36 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 36 of 118) Tj ET
 endstream
 endobj
 77 0 obj
@@ -3748,11 +3755,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 336.44 76.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 424.00 76.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 432.00 76.00 Td (15/22) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 37 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 37 of 118) Tj ET
 endstream
 endobj
 79 0 obj
@@ -3868,11 +3875,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 424.00 334.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 432.00 334.80 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 329.60 m 464.46 329.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 38 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 38 of 118) Tj ET
 endstream
 endobj
 81 0 obj
@@ -4034,11 +4041,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 331.80 78.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 419.36 78.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 427.36 78.80 Td (114/114) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 39 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 39 of 118) Tj ET
 endstream
 endobj
 83 0 obj
@@ -4095,11 +4102,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 419.36 459.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 427.36 459.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 454.40 m 468.28 454.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 40 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 40 of 118) Tj ET
 endstream
 endobj
 85 0 obj
@@ -4221,11 +4228,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 517.64 76.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 605.20 76.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 613.20 76.80 Td () Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 41 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 41 of 118) Tj ET
 endstream
 endobj
 87 0 obj
@@ -4312,11 +4319,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 605.20 397.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 613.20 397.20 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 392.00 m 654.12 392.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 42 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 42 of 118) Tj ET
 endstream
 endobj
 89 0 obj
@@ -4425,11 +4432,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 427.37 131.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 435.37 131.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 126.40 m 472.06 126.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 43 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 43 of 118) Tj ET
 endstream
 endobj
 91 0 obj
@@ -4524,11 +4531,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 93.20 Td (8/8) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 77.60 Td (stop) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 77.60 Td (3/3) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 44 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 44 of 118) Tj ET
 endstream
 endobj
 93 0 obj
@@ -4639,11 +4646,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 173.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 173.20 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 168.00 m 424.78 168.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 45 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 45 of 118) Tj ET
 endstream
 endobj
 95 0 obj
@@ -4745,11 +4752,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 53%; total = 4096.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 46 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 46 of 118) Tj ET
 endstream
 endobj
 97 0 obj
@@ -4784,11 +4791,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 484.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 484.40 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 479.20 m 424.78 479.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 47 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 47 of 118) Tj ET
 endstream
 endobj
 99 0 obj
@@ -4890,11 +4897,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 48%; total = 4096.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 48 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 48 of 118) Tj ET
 endstream
 endobj
 101 0 obj
@@ -4929,11 +4936,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 484.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 484.40 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 479.20 m 424.78 479.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 49 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 49 of 118) Tj ET
 endstream
 endobj
 103 0 obj
@@ -5035,11 +5042,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 67%; total = 4096.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 50 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 50 of 118) Tj ET
 endstream
 endobj
 105 0 obj
@@ -5089,11 +5096,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 453.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 453.20 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 448.00 m 424.78 448.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 51 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 51 of 118) Tj ET
 endstream
 endobj
 107 0 obj
@@ -5195,11 +5202,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 32%; total = 5120.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 52 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 52 of 118) Tj ET
 endstream
 endobj
 109 0 obj
@@ -5241,11 +5248,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 468.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 468.80 Td (57/60) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 463.60 m 424.78 463.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 53 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 53 of 118) Tj ET
 endstream
 endobj
 111 0 obj
@@ -5347,11 +5354,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 37%; total = 6144.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 54 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 54 of 118) Tj ET
 endstream
 endobj
 113 0 obj
@@ -5431,11 +5438,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 390.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 390.80 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 385.60 m 424.78 385.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 55 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 55 of 118) Tj ET
 endstream
 endobj
 115 0 obj
@@ -5530,11 +5537,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 93.20 Td (8/8) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 77.60 Td (stop) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 77.60 Td (3/3) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 56 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 56 of 118) Tj ET
 endstream
 endobj
 117 0 obj
@@ -5649,11 +5656,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 173.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 173.20 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 168.00 m 424.78 168.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 57 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 57 of 118) Tj ET
 endstream
 endobj
 119 0 obj
@@ -5755,11 +5762,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 70%; total = 4096.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 58 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 58 of 118) Tj ET
 endstream
 endobj
 121 0 obj
@@ -5824,11 +5831,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 558.77 422.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 566.77 422.00 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 416.80 m 599.24 416.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 59 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 59 of 118) Tj ET
 endstream
 endobj
 123 0 obj
@@ -5930,11 +5937,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 52%; total = 4096.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 476.93 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 60 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 60 of 118) Tj ET
 endstream
 endobj
 125 0 obj
@@ -5969,11 +5976,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 484.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 484.40 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 479.20 m 424.78 479.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 61 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 61 of 118) Tj ET
 endstream
 endobj
 127 0 obj
@@ -6068,11 +6075,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 93.20 Td (8/8) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 77.60 Td (stop) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 110.90 77.60 Td (3/3) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 62 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 62 of 118) Tj ET
 endstream
 endobj
 129 0 obj
@@ -6135,11 +6142,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 282.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 282.40 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 277.20 m 424.78 277.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 63 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 63 of 118) Tj ET
 endstream
 endobj
 131 0 obj
@@ -6278,11 +6285,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 399.52 114.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 407.52 114.00 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 108.80 m 439.99 108.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 64 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 64 of 118) Tj ET
 endstream
 endobj
 133 0 obj
@@ -6378,11 +6385,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 105.85 87.60 Td (10/10) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 72.00 Td (copy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.30 72.00 Td (2/2) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 65 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 65 of 118) Tj ET
 endstream
 endobj
 135 0 obj
@@ -6486,11 +6493,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 95.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 95.20 Td (51/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 90.00 m 433.23 90.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 66 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 66 of 118) Tj ET
 endstream
 endobj
 137 0 obj
@@ -6611,11 +6618,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 398.66 138.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 406.66 138.40 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 133.20 m 439.13 133.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 67 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 67 of 118) Tj ET
 endstream
 endobj
 139 0 obj
@@ -6683,11 +6690,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 398.66 247.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 406.66 247.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 242.40 m 429.40 242.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 68 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 68 of 118) Tj ET
 endstream
 endobj
 141 0 obj
@@ -6849,11 +6856,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 334.77 78.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 422.33 78.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 430.33 78.80 Td (244/250) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 69 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 69 of 118) Tj ET
 endstream
 endobj
 143 0 obj
@@ -7096,11 +7103,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 334.77 69.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 422.33 69.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 430.33 69.60 Td () Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 70 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 70 of 118) Tj ET
 endstream
 endobj
 145 0 obj
@@ -7194,11 +7201,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 422.33 381.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 430.33 381.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 376.40 m 471.24 376.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 71 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 71 of 118) Tj ET
 endstream
 endobj
 147 0 obj
@@ -7341,11 +7348,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 419.36 91.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 427.36 91.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 86.40 m 468.28 86.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 72 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 72 of 118) Tj ET
 endstream
 endobj
 149 0 obj
@@ -7401,11 +7408,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 285.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 285.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 280.40 m 415.05 280.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 73 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 73 of 118) Tj ET
 endstream
 endobj
 151 0 obj
@@ -7484,11 +7491,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 238.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 238.80 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 233.60 m 415.05 233.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 74 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 74 of 118) Tj ET
 endstream
 endobj
 153 0 obj
@@ -7567,11 +7574,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 414.72 83.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 422.72 83.60 Td (241/250) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 78.40 m 455.19 78.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 75 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 75 of 118) Tj ET
 endstream
 endobj
 155 0 obj
@@ -7626,11 +7633,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 414.72 310.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 422.72 310.40 Td (246/250) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 305.20 m 463.64 305.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 76 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 76 of 118) Tj ET
 endstream
 endobj
 157 0 obj
@@ -7797,11 +7804,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 358.42 76.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 445.99 76.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 453.99 76.40 Td (153/164) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 77 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 77 of 118) Tj ET
 endstream
 endobj
 159 0 obj
@@ -8044,11 +8051,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 358.42 69.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 445.99 69.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 453.99 69.60 Td (1294/1437) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 78 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 78 of 118) Tj ET
 endstream
 endobj
 161 0 obj
@@ -8232,11 +8239,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 445.99 194.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 453.99 194.40 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 189.20 m 494.90 189.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 79 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 79 of 118) Tj ET
 endstream
 endobj
 163 0 obj
@@ -8321,11 +8328,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 97.40 89.20 Td (210/240) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 73.60 Td (mmlu) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 97.40 73.60 Td (277/342) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 80 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 80 of 118) Tj ET
 endstream
 endobj
 165 0 obj
@@ -8386,11 +8393,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 417.68 347.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 425.68 347.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 342.40 m 466.60 342.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 81 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 81 of 118) Tj ET
 endstream
 endobj
 167 0 obj
@@ -8475,11 +8482,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 97.40 89.20 Td (213/240) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 73.60 Td (mmlu) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 97.40 73.60 Td (277/342) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 82 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 82 of 118) Tj ET
 endstream
 endobj
 169 0 obj
@@ -8533,11 +8540,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 414.72 363.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 422.72 363.20 Td (245/250) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 358.00 m 463.64 358.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 83 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 83 of 118) Tj ET
 endstream
 endobj
 171 0 obj
@@ -8622,11 +8629,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 97.40 89.20 Td (215/240) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 73.60 Td (mmlu) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 97.40 73.60 Td (270/342) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 84 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 84 of 118) Tj ET
 endstream
 endobj
 173 0 obj
@@ -8680,11 +8687,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 414.72 363.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 422.72 363.20 Td (244/250) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 358.00 m 463.64 358.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 85 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 85 of 118) Tj ET
 endstream
 endobj
 175 0 obj
@@ -8740,11 +8747,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 384.31 285.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 392.31 285.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 280.40 m 415.05 280.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 86 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 86 of 118) Tj ET
 endstream
 endobj
 177 0 obj
@@ -8804,11 +8811,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 389.80 270.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.80 270.00 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 264.80 m 438.72 264.80 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 87 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 87 of 118) Tj ET
 endstream
 endobj
 179 0 obj
@@ -8861,11 +8868,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 382.20 301.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 390.20 301.20 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 296.00 m 412.94 296.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 88 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 88 of 118) Tj ET
 endstream
 endobj
 181 0 obj
@@ -8964,11 +8971,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 414.72 229.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 422.72 229.20 Td (244/250) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 224.00 m 463.64 224.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 89 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 89 of 118) Tj ET
 endstream
 endobj
 183 0 obj
@@ -9062,11 +9069,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 438.81 182.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 446.81 182.80 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 177.60 m 483.50 177.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 90 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 90 of 118) Tj ET
 endstream
 endobj
 185 0 obj
@@ -9190,11 +9197,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 351.25 73.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 438.81 73.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 446.81 73.20 Td (24/24) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 91 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 91 of 118) Tj ET
 endstream
 endobj
 187 0 obj
@@ -9273,11 +9280,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 438.81 412.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 446.81 412.80 Td (513/544) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 407.60 m 479.28 407.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 92 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 92 of 118) Tj ET
 endstream
 endobj
 189 0 obj
@@ -9368,11 +9375,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 105.85 89.20 Td (55/55) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 73.60 Td (vision) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 105.85 73.60 Td (12/12) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 93 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 93 of 118) Tj ET
 endstream
 endobj
 191 0 obj
@@ -9558,11 +9565,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 438.81 129.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 446.81 129.20 Td (12/12) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 124.00 m 487.73 124.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 94 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 94 of 118) Tj ET
 endstream
 endobj
 193 0 obj
@@ -9654,11 +9661,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 394.46 170.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 402.46 170.40 Td (24/24) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 165.20 m 426.47 165.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 95 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 95 of 118) Tj ET
 endstream
 endobj
 195 0 obj
@@ -9760,11 +9767,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 25%; total = 6144.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 96 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 96 of 118) Tj ET
 endstream
 endobj
 197 0 obj
@@ -9806,11 +9813,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.28 468.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 395.28 468.80 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 463.60 m 418.01 463.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 97 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 97 of 118) Tj ET
 endstream
 endobj
 199 0 obj
@@ -9912,11 +9919,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 62%; total = 6144.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 98 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 98 of 118) Tj ET
 endstream
 endobj
 201 0 obj
@@ -10011,11 +10018,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 614.34 359.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 622.34 359.60 Td (109/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 354.40 m 654.81 354.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 99 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 699.13 38.00 Td (Page 99 of 118) Tj ET
 endstream
 endobj
 203 0 obj
@@ -10117,11 +10124,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 93.20 Td (memory-busy) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 101.03 93.20 Td (measured: mac: System-wide memory free percentage: 65%; total = 6144.00M us) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 88.00 m 485.38 88.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 100 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 100 of 118) Tj ET
 endstream
 endobj
 205 0 obj
@@ -10201,11 +10208,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 394.86 390.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 402.86 390.80 Td (109/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 385.60 m 435.33 385.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 101 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 101 of 118) Tj ET
 endstream
 endobj
 207 0 obj
@@ -10294,11 +10301,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 97.40 91.60 Td (232/250) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 76.00 Td (mgsm) Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 97.40 76.00 Td (175/240) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 102 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 102 of 118) Tj ET
 endstream
 endobj
 209 0 obj
@@ -10370,11 +10377,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 379.23 235.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.23 235.60 Td (997/1218) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 230.40 m 428.15 230.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 103 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 103 of 118) Tj ET
 endstream
 endobj
 211 0 obj
@@ -10459,11 +10466,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 390.63 210.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 398.63 210.80 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 205.60 m 422.65 205.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 104 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 104 of 118) Tj ET
 endstream
 endobj
 213 0 obj
@@ -10597,11 +10604,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 398.66 76.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 406.66 76.80 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 71.60 m 439.13 71.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 105 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 105 of 118) Tj ET
 endstream
 endobj
 215 0 obj
@@ -10734,11 +10741,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 311.10 76.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 398.66 76.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 406.66 76.80 Td () Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 106 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 106 of 118) Tj ET
 endstream
 endobj
 217 0 obj
@@ -10794,11 +10801,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 398.66 459.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 406.66 459.60 Td (114/114) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 454.40 m 439.13 454.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 107 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 107 of 118) Tj ET
 endstream
 endobj
 219 0 obj
@@ -10897,11 +10904,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 314.48 74.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 402.04 74.00 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 410.04 74.00 Td (220/232) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 108 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 108 of 118) Tj ET
 endstream
 endobj
 221 0 obj
@@ -10950,11 +10957,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 402.04 475.20 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 410.04 475.20 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 470.00 m 442.51 470.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 109 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 109 of 118) Tj ET
 endstream
 endobj
 223 0 obj
@@ -11008,11 +11015,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 379.23 287.60 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 387.23 287.60 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 282.40 m 409.97 282.40 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 110 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 110 of 118) Tj ET
 endstream
 endobj
 225 0 obj
@@ -11156,11 +11163,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 100.40 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 100.40 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 95.20 m 428.13 95.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 111 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 111 of 118) Tj ET
 endstream
 endobj
 227 0 obj
@@ -11236,11 +11243,11 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 240.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 240.80 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 235.60 m 428.13 235.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 112 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 112 of 118) Tj ET
 endstream
 endobj
 229 0 obj
@@ -11391,17 +11398,82 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 397.39 84.80 Td () Tj ET
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 405.39 84.80 Td () Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 79.60 m 428.13 79.60 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 113 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 113 of 118) Tj ET
 endstream
 endobj
 231 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 230 0 R >>
 endobj
 232 0 obj
+<< /Length 4556 >>
+stream
+BT /F2 14.50 Tf 0.1 0.27 0.47 rg 42.00 533.00 Td (ZONOS3 Mini on 1x NVIDIA RTX 5090 \(32 GB\), Linux) Tj ET
+0.1 0.27 0.47 RG 1.0 w 42.00 526.00 m 750.00 526.00 l S
+BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 505.00 Td (Target zonos3-mini-5090: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA \(zonos3\) on one RTX 5090 \(text to speech, one request at a time\). Engine:) Tj ET
+BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 492.60 Td (TensorFold native, CUDA; served as zonos3-mini. Latest: run 20261117-194134-speech \(2026-11-17 19:41, plan speech, done\).) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 475.70 Td (Serving: engine_commit 9757d2378; binary_sha256 54072eb9adb494c513bc15e050233fe26d4fe0862c993fe30e8c3920ab76e643; served_model {"object": "list", "data": [{"id": "zonos3-mini", "object": "model",) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 465.70 Td ("created": 1794944507; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB) Tj ET
+BT /F2 10.50 Tf 0.13 0.15 0.18 rg 42.00 443.20 Td (Checks) Tj ET
+0.1 0.27 0.47 rg 42.00 419.60 707.66 15.60 re f
+BT /F2 7.60 Tf 1 1 1 rg 46.00 424.80 Td (check) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 100.18 424.80 Td (result) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 409.20 Td (memory-idle) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 409.20 Td (measured: gpu: 4282 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte) Tj ET
+0.945 0.953 0.965 rg 42.00 378.80 707.66 25.20 re f
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 393.60 Td (speech) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 393.60 Td (pass: 4/4 cases spoken; 7.1-29.2 times real time \(32.2 s of audio\), streamed first byte 0.03-0.58 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200,) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 384.00 Td (503, 503]; formats mp3, opus, flac served and repeat; refusals 5/5) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 368.40 Td (memory-after) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 100.18 368.40 Td (measured: gpu: 10092 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte) Tj ET
+0.82 0.84 0.87 RG 0.6 w 42.00 363.20 m 749.66 363.20 l S
+BT /F2 10.50 Tf 0.13 0.15 0.18 rg 42.00 337.20 Td (History) Tj ET
+0.1 0.27 0.47 rg 42.00 313.60 376.85 15.60 re f
+BT /F2 7.60 Tf 1 1 1 rg 46.00 318.80 Td (run) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 114.99 318.80 Td (plan) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 148.50 318.80 Td (status) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 180.88 318.80 Td (1 stream code) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 240.99 318.80 Td (16 streams code) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 309.55 318.80 Td (16 streams first token) Tj ET
+BT /F2 7.60 Tf 1 1 1 rg 396.11 318.80 Td (suite) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 303.20 Td (2026-11-17 19:41) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 303.20 Td (speech) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 148.50 303.20 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 231.99 303.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 300.55 303.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 388.11 303.20 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 396.11 303.20 Td () Tj ET
+0.945 0.953 0.965 rg 42.00 282.40 376.85 15.60 re f
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 287.60 Td (2026-11-17 18:13) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 287.60 Td (speech) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 148.50 287.60 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 231.99 287.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 300.55 287.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 388.11 287.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 396.11 287.60 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 272.00 Td (2026-11-17 18:03) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 114.99 272.00 Td (speech) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 148.50 272.00 Td (done) Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 231.99 272.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 300.55 272.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 388.11 272.00 Td () Tj ET
+BT /F1 7.60 Tf 0.13 0.15 0.18 rg 396.11 272.00 Td () Tj ET
+0.82 0.84 0.87 RG 0.6 w 42.00 266.80 m 418.85 266.80 l S
+BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
+0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
+0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 114 of 118) Tj ET
+endstream
+endobj
+233 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 232 0 R >>
+endobj
+234 0 obj
 << /Length 2001 >>
 stream
 BT /F2 14.50 Tf 0.1 0.27 0.47 rg 42.00 533.00 Td (Served earlier, numbers in their READMEs only) Tj ET
@@ -11424,17 +11496,17 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 514.20 454.00 Td (github.com/BobClawblaw/qwen38
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 514.20 444.40 Td (s) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 439.20 m 748.35 439.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 114 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 115 of 118) Tj ET
 endstream
 endobj
-233 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 232 0 R >>
+235 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 234 0 R >>
 endobj
-234 0 obj
+236 0 obj
 << /Length 3518 >>
 stream
 BT /F2 14.50 Tf 0.1 0.27 0.47 rg 42.00 533.00 Td (Step-5-Preview on one M5 Ultra, final build: measured outside the harness) Tj ET
@@ -11468,17 +11540,17 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 332.40 Td (two 18k/31k-token chats at onc
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 318.48 332.40 Td (both right) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 327.20 m 632.71 327.20 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 115 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 116 of 118) Tj ET
 endstream
 endobj
-235 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 234 0 R >>
+237 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 236 0 R >>
 endobj
-236 0 obj
+238 0 obj
 << /Length 2675 >>
 stream
 BT /F2 14.50 Tf 0.1 0.27 0.47 rg 42.00 533.00 Td (Step-5-Preview on one M5 Ultra, first build \(512-row chunks\): measured outside the harness) Tj ET
@@ -11505,17 +11577,17 @@ BT /F1 7.60 Tf 0.13 0.15 0.18 rg 46.00 379.20 Td (an image, 600 x 400 PNG \(over
 BT /F1 7.60 Tf 0.13 0.15 0.18 rg 335.90 379.20 Td (0.7 s) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 374.00 m 646.77 374.00 l S
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 116 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 117 of 118) Tj ET
 endstream
 endobj
-237 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 236 0 R >>
+239 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 238 0 R >>
 endobj
-238 0 obj
+240 0 obj
 << /Length 1495 >>
 stream
 BT /F2 14.50 Tf 0.1 0.27 0.47 rg 42.00 533.00 Td (DeepSeek-V4.1-Flash on one M5 Ultra: which checkpoint each run served) Tj ET
@@ -11525,260 +11597,262 @@ BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 492.60 Td (from 20261020-042547 on served
 BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 480.20 Td (reads the same as the public pack's because the probe read recipe.toml, not the folder the server loaded, and the modified folder keeps the base's config.json and index. Prompt) Tj ET
 BT /F1 9.00 Tf 0.13 0.15 0.18 rg 42.00 467.80 Td (speed has the same shapes and formats on both; decode \(draft acceptance\) and quality are the modified checkpoint's and were not measured on the public pack.) Tj ET
 BT /F2 8.00 Tf 0.1 0.27 0.47 rg 42.00 574.00 Td (Served stats) Tj ET
-BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-16 21:45 UTC) Tj ET
+BT /F1 8.00 Tf 0.42 0.45 0.5 rg 668.18 574.00 Td (2026-11-17 19:44 UTC) Tj ET
 0.82 0.84 0.87 RG 0.6 w 42.00 568.00 m 750.00 568.00 l S
 0.82 0.84 0.87 RG 0.6 w 42.00 50.00 m 750.00 50.00 l S
 BT /F1 7.50 Tf 0.42 0.45 0.5 rg 42.00 38.00 Td (recipe-harness served stats) Tj ET
-BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 117 of 117) Tj ET
+BT /F1 7.50 Tf 0.42 0.45 0.5 rg 694.96 38.00 Td (Page 118 of 118) Tj ET
 endstream
 endobj
-239 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 238 0 R >>
+241 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 240 0 R >>
 endobj
 xref
-0 240
+0 242
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000001004 00000 n 
-0000001101 00000 n 
-0000001203 00000 n 
-0000001273 00000 n 
-0000010919 00000 n 
-0000011055 00000 n 
-0000023975 00000 n 
-0000024111 00000 n 
-0000038561 00000 n 
-0000038699 00000 n 
-0000051099 00000 n 
-0000051237 00000 n 
-0000056383 00000 n 
-0000056521 00000 n 
-0000063009 00000 n 
-0000063147 00000 n 
-0000066664 00000 n 
-0000066802 00000 n 
-0000072254 00000 n 
-0000072392 00000 n 
-0000079995 00000 n 
-0000080133 00000 n 
-0000086541 00000 n 
-0000086679 00000 n 
-0000091592 00000 n 
-0000091730 00000 n 
-0000097032 00000 n 
-0000097170 00000 n 
-0000101955 00000 n 
-0000102093 00000 n 
-0000106849 00000 n 
-0000106987 00000 n 
-0000112575 00000 n 
-0000112713 00000 n 
-0000124106 00000 n 
-0000124244 00000 n 
-0000128081 00000 n 
-0000128219 00000 n 
-0000135029 00000 n 
-0000135167 00000 n 
-0000141570 00000 n 
-0000141708 00000 n 
-0000145955 00000 n 
-0000146093 00000 n 
-0000152395 00000 n 
-0000152533 00000 n 
-0000158993 00000 n 
-0000159131 00000 n 
-0000163946 00000 n 
-0000164084 00000 n 
-0000169481 00000 n 
-0000169619 00000 n 
-0000175454 00000 n 
-0000175592 00000 n 
-0000181973 00000 n 
-0000182111 00000 n 
-0000185091 00000 n 
-0000185229 00000 n 
-0000191870 00000 n 
-0000192008 00000 n 
-0000197751 00000 n 
-0000197889 00000 n 
-0000205075 00000 n 
-0000205213 00000 n 
-0000210390 00000 n 
-0000210528 00000 n 
-0000213046 00000 n 
-0000213184 00000 n 
-0000221690 00000 n 
-0000221828 00000 n 
-0000227685 00000 n 
-0000227823 00000 n 
-0000234431 00000 n 
-0000234569 00000 n 
-0000240160 00000 n 
-0000240298 00000 n 
-0000249794 00000 n 
-0000249932 00000 n 
-0000257017 00000 n 
-0000257155 00000 n 
-0000267789 00000 n 
-0000267927 00000 n 
-0000271310 00000 n 
-0000271448 00000 n 
-0000279837 00000 n 
-0000279975 00000 n 
-0000285301 00000 n 
-0000285439 00000 n 
-0000293056 00000 n 
-0000293194 00000 n 
-0000299765 00000 n 
-0000299903 00000 n 
-0000306935 00000 n 
-0000307073 00000 n 
-0000314262 00000 n 
-0000314400 00000 n 
-0000316394 00000 n 
-0000316532 00000 n 
-0000323723 00000 n 
-0000323863 00000 n 
-0000325858 00000 n 
-0000325998 00000 n 
-0000333253 00000 n 
-0000333393 00000 n 
-0000336331 00000 n 
-0000336471 00000 n 
-0000343703 00000 n 
-0000343843 00000 n 
-0000346287 00000 n 
-0000346427 00000 n 
-0000353623 00000 n 
-0000353763 00000 n 
-0000358581 00000 n 
-0000358721 00000 n 
-0000365270 00000 n 
-0000365410 00000 n 
-0000372666 00000 n 
-0000372806 00000 n 
-0000379963 00000 n 
-0000380103 00000 n 
-0000384038 00000 n 
-0000384178 00000 n 
-0000391389 00000 n 
-0000391529 00000 n 
-0000393524 00000 n 
-0000393664 00000 n 
-0000400146 00000 n 
-0000400286 00000 n 
-0000404271 00000 n 
-0000404411 00000 n 
-0000413727 00000 n 
-0000413867 00000 n 
-0000420336 00000 n 
-0000420476 00000 n 
-0000426953 00000 n 
-0000427093 00000 n 
-0000435293 00000 n 
-0000435433 00000 n 
-0000440363 00000 n 
-0000440503 00000 n 
-0000451068 00000 n 
-0000451208 00000 n 
-0000466393 00000 n 
-0000466533 00000 n 
-0000472233 00000 n 
-0000472373 00000 n 
-0000482042 00000 n 
-0000482182 00000 n 
-0000485860 00000 n 
-0000486000 00000 n 
-0000491098 00000 n 
-0000491238 00000 n 
-0000496617 00000 n 
-0000496757 00000 n 
-0000500599 00000 n 
-0000500739 00000 n 
-0000511660 00000 n 
-0000511800 00000 n 
-0000527000 00000 n 
-0000527140 00000 n 
-0000538627 00000 n 
-0000538767 00000 n 
-0000544563 00000 n 
-0000544703 00000 n 
-0000548322 00000 n 
-0000548462 00000 n 
-0000554258 00000 n 
-0000554398 00000 n 
-0000557562 00000 n 
-0000557702 00000 n 
-0000563502 00000 n 
-0000563642 00000 n 
-0000566807 00000 n 
-0000566947 00000 n 
-0000570658 00000 n 
-0000570798 00000 n 
-0000574712 00000 n 
-0000574852 00000 n 
-0000578366 00000 n 
-0000578506 00000 n 
-0000585087 00000 n 
-0000585227 00000 n 
-0000591306 00000 n 
-0000591446 00000 n 
-0000599707 00000 n 
-0000599847 00000 n 
-0000604707 00000 n 
-0000604847 00000 n 
-0000610819 00000 n 
-0000610959 00000 n 
-0000623053 00000 n 
-0000623193 00000 n 
-0000629503 00000 n 
-0000629643 00000 n 
-0000636753 00000 n 
-0000636893 00000 n 
-0000639322 00000 n 
-0000639462 00000 n 
-0000646686 00000 n 
-0000646826 00000 n 
-0000652646 00000 n 
-0000652786 00000 n 
-0000659987 00000 n 
-0000660127 00000 n 
-0000664942 00000 n 
-0000665082 00000 n 
-0000671195 00000 n 
-0000671335 00000 n 
-0000675868 00000 n 
-0000676008 00000 n 
-0000681656 00000 n 
-0000681796 00000 n 
-0000690792 00000 n 
-0000690932 00000 n 
-0000699822 00000 n 
-0000699962 00000 n 
-0000703286 00000 n 
-0000703426 00000 n 
-0000710164 00000 n 
-0000710304 00000 n 
-0000713187 00000 n 
-0000713327 00000 n 
-0000717347 00000 n 
-0000717487 00000 n 
-0000727050 00000 n 
-0000727190 00000 n 
-0000732572 00000 n 
-0000732712 00000 n 
-0000742709 00000 n 
-0000742849 00000 n 
-0000744904 00000 n 
-0000745044 00000 n 
-0000748616 00000 n 
-0000748756 00000 n 
-0000751485 00000 n 
-0000751625 00000 n 
-0000753174 00000 n 
+0000001012 00000 n 
+0000001109 00000 n 
+0000001211 00000 n 
+0000001281 00000 n 
+0000010927 00000 n 
+0000011063 00000 n 
+0000023983 00000 n 
+0000024119 00000 n 
+0000038569 00000 n 
+0000038707 00000 n 
+0000051575 00000 n 
+0000051713 00000 n 
+0000056859 00000 n 
+0000056997 00000 n 
+0000063485 00000 n 
+0000063623 00000 n 
+0000067140 00000 n 
+0000067278 00000 n 
+0000072730 00000 n 
+0000072868 00000 n 
+0000080471 00000 n 
+0000080609 00000 n 
+0000087017 00000 n 
+0000087155 00000 n 
+0000092068 00000 n 
+0000092206 00000 n 
+0000097508 00000 n 
+0000097646 00000 n 
+0000102431 00000 n 
+0000102569 00000 n 
+0000107325 00000 n 
+0000107463 00000 n 
+0000113051 00000 n 
+0000113189 00000 n 
+0000124582 00000 n 
+0000124720 00000 n 
+0000128557 00000 n 
+0000128695 00000 n 
+0000135505 00000 n 
+0000135643 00000 n 
+0000142046 00000 n 
+0000142184 00000 n 
+0000146431 00000 n 
+0000146569 00000 n 
+0000152871 00000 n 
+0000153009 00000 n 
+0000159469 00000 n 
+0000159607 00000 n 
+0000164422 00000 n 
+0000164560 00000 n 
+0000169957 00000 n 
+0000170095 00000 n 
+0000175930 00000 n 
+0000176068 00000 n 
+0000182449 00000 n 
+0000182587 00000 n 
+0000185567 00000 n 
+0000185705 00000 n 
+0000192346 00000 n 
+0000192484 00000 n 
+0000198227 00000 n 
+0000198365 00000 n 
+0000205551 00000 n 
+0000205689 00000 n 
+0000210866 00000 n 
+0000211004 00000 n 
+0000213522 00000 n 
+0000213660 00000 n 
+0000222166 00000 n 
+0000222304 00000 n 
+0000228161 00000 n 
+0000228299 00000 n 
+0000234907 00000 n 
+0000235045 00000 n 
+0000240636 00000 n 
+0000240774 00000 n 
+0000250270 00000 n 
+0000250408 00000 n 
+0000257493 00000 n 
+0000257631 00000 n 
+0000268265 00000 n 
+0000268403 00000 n 
+0000271786 00000 n 
+0000271924 00000 n 
+0000280313 00000 n 
+0000280451 00000 n 
+0000285777 00000 n 
+0000285915 00000 n 
+0000293532 00000 n 
+0000293670 00000 n 
+0000300241 00000 n 
+0000300379 00000 n 
+0000307411 00000 n 
+0000307549 00000 n 
+0000314738 00000 n 
+0000314876 00000 n 
+0000316870 00000 n 
+0000317008 00000 n 
+0000324199 00000 n 
+0000324339 00000 n 
+0000326334 00000 n 
+0000326474 00000 n 
+0000333729 00000 n 
+0000333869 00000 n 
+0000336807 00000 n 
+0000336947 00000 n 
+0000344179 00000 n 
+0000344319 00000 n 
+0000346763 00000 n 
+0000346903 00000 n 
+0000354099 00000 n 
+0000354239 00000 n 
+0000359057 00000 n 
+0000359197 00000 n 
+0000365746 00000 n 
+0000365886 00000 n 
+0000373142 00000 n 
+0000373282 00000 n 
+0000380439 00000 n 
+0000380579 00000 n 
+0000384514 00000 n 
+0000384654 00000 n 
+0000391865 00000 n 
+0000392005 00000 n 
+0000394000 00000 n 
+0000394140 00000 n 
+0000400622 00000 n 
+0000400762 00000 n 
+0000404747 00000 n 
+0000404887 00000 n 
+0000414203 00000 n 
+0000414343 00000 n 
+0000420812 00000 n 
+0000420952 00000 n 
+0000427429 00000 n 
+0000427569 00000 n 
+0000435769 00000 n 
+0000435909 00000 n 
+0000440839 00000 n 
+0000440979 00000 n 
+0000451544 00000 n 
+0000451684 00000 n 
+0000466869 00000 n 
+0000467009 00000 n 
+0000472709 00000 n 
+0000472849 00000 n 
+0000482518 00000 n 
+0000482658 00000 n 
+0000486336 00000 n 
+0000486476 00000 n 
+0000491574 00000 n 
+0000491714 00000 n 
+0000497093 00000 n 
+0000497233 00000 n 
+0000501075 00000 n 
+0000501215 00000 n 
+0000512136 00000 n 
+0000512276 00000 n 
+0000527476 00000 n 
+0000527616 00000 n 
+0000539103 00000 n 
+0000539243 00000 n 
+0000545039 00000 n 
+0000545179 00000 n 
+0000548798 00000 n 
+0000548938 00000 n 
+0000554734 00000 n 
+0000554874 00000 n 
+0000558038 00000 n 
+0000558178 00000 n 
+0000563978 00000 n 
+0000564118 00000 n 
+0000567283 00000 n 
+0000567423 00000 n 
+0000571134 00000 n 
+0000571274 00000 n 
+0000575188 00000 n 
+0000575328 00000 n 
+0000578842 00000 n 
+0000578982 00000 n 
+0000585563 00000 n 
+0000585703 00000 n 
+0000591782 00000 n 
+0000591922 00000 n 
+0000600183 00000 n 
+0000600323 00000 n 
+0000605183 00000 n 
+0000605323 00000 n 
+0000611295 00000 n 
+0000611435 00000 n 
+0000623529 00000 n 
+0000623669 00000 n 
+0000629979 00000 n 
+0000630119 00000 n 
+0000637229 00000 n 
+0000637369 00000 n 
+0000639798 00000 n 
+0000639938 00000 n 
+0000647162 00000 n 
+0000647302 00000 n 
+0000653122 00000 n 
+0000653262 00000 n 
+0000660463 00000 n 
+0000660603 00000 n 
+0000665418 00000 n 
+0000665558 00000 n 
+0000671671 00000 n 
+0000671811 00000 n 
+0000676344 00000 n 
+0000676484 00000 n 
+0000682132 00000 n 
+0000682272 00000 n 
+0000691268 00000 n 
+0000691408 00000 n 
+0000700298 00000 n 
+0000700438 00000 n 
+0000703762 00000 n 
+0000703902 00000 n 
+0000710640 00000 n 
+0000710780 00000 n 
+0000713663 00000 n 
+0000713803 00000 n 
+0000717823 00000 n 
+0000717963 00000 n 
+0000727526 00000 n 
+0000727666 00000 n 
+0000733048 00000 n 
+0000733188 00000 n 
+0000743185 00000 n 
+0000743325 00000 n 
+0000747935 00000 n 
+0000748075 00000 n 
+0000750130 00000 n 
+0000750270 00000 n 
+0000753842 00000 n 
+0000753982 00000 n 
+0000756711 00000 n 
+0000756851 00000 n 
+0000758400 00000 n 
 trailer
-<< /Size 240 /Root 1 0 R /Info 5 0 R >>
+<< /Size 242 /Root 1 0 R /Info 5 0 R >>
 startxref
-753314
+758540
 %%EOF

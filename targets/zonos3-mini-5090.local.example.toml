@@ -1,0 +1,7 @@
+# Copy to zonos3-mini-5090.local.toml (git-ignored) and fill in.
+[vars]
+harness_dir = "/path/to/recipe-harness"
+engine_dir = "/path/to/TensorFold"
+model_dir = "/path/to/ZONOS3-Mini"
+asr = "/path/to/venv/bin/python /path/to/zonos3-mini-rtx-5090/tools/asr.py"
+log_dir = "/path/to/logs"

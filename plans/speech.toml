@@ -1,0 +1,28 @@
+description = "Text to speech (a few minutes): four spoken cases, each repeated whole and streamed, a busy server, and the recipe's refusals; speed against the audio's length and, with an asr command, word error rate"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "speech"
+repeats = 3
+busy = 2
+cases = [
+  { name = "passage", voice = "rupert", seed = 11, input = "TensorFold now speaks with a second voice model. This is a longer passage, read at the default sampling settings, so that we can measure how fast the backbone and the codec run together on one graphics card, and how much memory the whole request needs from start to finish." },
+  { name = "short", seed = 3, input = "The harbor was quiet this morning, and the boats had not yet gone out." },
+  { name = "second-voice", voice = "imogen", seed = 5, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "clone", seed = 4, ref_from = "short", input = "This voice was cloned from an uploaded clip, by the engine itself this time." },
+]
+refusals = [
+  { name = "unknown-voice", status = 400, body = { input = "x", voice = "nobody" } },
+  { name = "top-k-too-large", status = 400, body = { input = "x", top_k = 5000 } },
+  { name = "ref-audio-not-a-wav", status = 400, body = { input = "x", ref_audio = "bm90IGEgd2F2" } },
+  { name = "reference-codes-malformed", status = 400, body = { input = "x", speaker_reference_codes = [[1, 2, 3]] } },
+  { name = "empty-input", status = 400, body = { input = "" } },
+]
+
+[[checks]]
+type = "memory"
+name = "memory-after"

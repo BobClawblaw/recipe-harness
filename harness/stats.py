@@ -198,8 +198,8 @@ def markdown() -> str:
 
 
 def _measured(r: dict) -> bool:
-    """A run the report shows: a ruler, a suite, or a model-specific measurement such as the ocr check."""
-    return bool(r.get("rulers") or r.get("suite") or "ocr" in r.get("checks", {}))
+    """A run the report shows: a ruler, a suite, or a model-specific measurement such as the ocr or speech check."""
+    return bool(r.get("rulers") or r.get("suite") or {"ocr", "speech"} & set(r.get("checks", {})))
 
 
 def _shown() -> list[dict]:
