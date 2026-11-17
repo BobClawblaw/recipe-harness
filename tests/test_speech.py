@@ -73,6 +73,19 @@ class Check(unittest.TestCase):
         self.assertTrue(res["ok"], res["summary"])
         self.assertEqual(res["metrics"]["busy"], {"statuses": [200, 200, 200], "identical": 3})
 
+    def test_cases_sent_together_must_each_give_their_lone_audio(self):
+        audio = {"hello": b"\x01\x00" * 100, "again": b"\x02\x00" * 200}
+        spec = {"sample_rate": RATE, "repeats": 1, "cases": [{"name": "a", "input": "hello"}, {"name": "b", "input": "again"}], "together": [["a", "b", "a"]]}
+        res, _ = self.run_check(audio, spec)
+        self.assertTrue(res["ok"], res["summary"])
+        t = res["metrics"]["together"][0]
+        self.assertEqual((t["statuses"], t["identical"], t["audio_s"]), ([200, 200, 200], 3, 4.0))
+        self.assertIn("at once: 3/3 equal to alone in 1 mixes", res["summary"])
+        # a reply that differs beside others fails: the stand-in gives the first request one audio and later ones another
+        res, _ = self.run_check({"hello": [b"\x01\x00" * 100] * 3 + [b"\x05\x00" * 100] * 2, "again": b"\x02\x00" * 200}, spec)
+        self.assertFalse(res["ok"])
+        self.assertIn("together", res["summary"])
+
     def test_same_pairs_need_equal_audio_and_another_from_other(self):
         audio = {"hello": b"\x01\x00" * 100, "$5": b"\x02\x00" * 100, "five dollars": b"\x02\x00" * 100, "5 typed": b"\x03\x00" * 100}
         pair = {"name": "dollars", "a": {"input": "$5"}, "b": {"input": "five dollars"}, "other": {"input": "5 typed"}}

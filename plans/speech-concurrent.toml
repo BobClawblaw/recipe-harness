@@ -1,0 +1,30 @@
+description = "Text to speech with several requests at once (about a minute, for a server started with room for four): each reply must be the audio the request gives alone; the mixes' audio against their wall time; six at once"
+restart = true
+
+[[checks]]
+type = "memory"
+name = "memory-idle"
+
+[[checks]]
+type = "speech"
+repeats = 1
+busy = 5
+cases = [
+  { name = "passage", voice = "rupert", seed = 11, input = "TensorFold now speaks with a second voice model. This is a longer passage, read at the default sampling settings, so that we can measure how fast the backbone and the codec run together on one graphics card, and how much memory the whole request needs from start to finish." },
+  { name = "short", seed = 3, input = "The harbor was quiet this morning, and the boats had not yet gone out." },
+  { name = "guided", voice = "imogen", seed = 5, speaker_cfg_scale = 1.5, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "rate", voice = "rupert", seed = 2, condition_values = { speaking_rate = 9.0 }, input = "It costs $5 and takes 3 days to arrive." },
+  { name = "clone", seed = 4, ref_from = "short", input = "This voice was cloned from an uploaded clip, by the engine itself this time." },
+  { name = "guided-clone", seed = 6, ref_from = "short", speaker_cfg_scale = 1.5, input = "A cloned voice, followed harder." },
+]
+together = [
+  ["passage", "short", "guided", "rate"],
+  ["clone", "guided-clone", "passage", "short"],
+  ["guided", "clone", "rate", "guided-clone"],
+  ["passage", "passage", "passage", "passage"],
+  ["passage", "passage"],
+]
+
+[[checks]]
+type = "memory"
+name = "memory-after"

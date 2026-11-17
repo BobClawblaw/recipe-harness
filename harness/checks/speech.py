@@ -12,7 +12,9 @@ format's files do and repeats.
 same = [{ name = "dollars", a = { input = "It costs $5." }, b = { input = "It costs five dollars.", text_normalization = false },
           other = { input = "It costs $5.", text_normalization = false } }]
 asks `a` and `b`, which must give the same audio (a text normalizer's written and spoken forms), and `other`, when
-given, which must not."""
+given, which must not.
+together = [["passage", "short", "clone"], ["passage", "passage"]] sends each list's cases at once: every reply must
+be the audio the case gave alone, and the mix's audio against its wall time is measured."""
 
 from __future__ import annotations
 
@@ -43,10 +45,15 @@ def _span(xs: list[float]) -> list[float]:
     return [round(min(xs), 3), round(max(xs), 3)]
 
 
-def _case(target: Target, case: dict, replies: dict, rate: int, repeats: int, bad: list[str]) -> tuple[dict, bytes]:
+def _body(target: Target, case: dict, replies: dict, rate: int) -> dict:
     body = {"model": target.model, "response_format": "pcm", **{k: v for k, v in case.items() if k not in OWN}}
     if "ref_from" in case:
         body["ref_audio"] = base64.b64encode(wav(replies[case["ref_from"]], rate)).decode()
+    return body
+
+
+def _case(target: Target, case: dict, replies: dict, rate: int, repeats: int, bad: list[str]) -> tuple[dict, bytes]:
+    body = _body(target, case, replies, rate)
     name = case["name"]
     first = api.speech(target.url, body)
     entry = {"status": first["status"], "first_request_s": first["s"]}
@@ -97,6 +104,21 @@ def _same(target: Target, pair: dict, bad: list[str]) -> dict:
     return out
 
 
+def _together(target: Target, cases: dict, replies: dict, mix: list[str], rate: int, bad: list[str]) -> dict:
+    """The named cases sent at once: each reply against the case's reply alone, and the mix's audio against its wall time."""
+    bodies = [_body(target, cases[n], replies, rate) for n in mix]
+    t0 = time.time()
+    with ThreadPoolExecutor(len(mix)) as ex:
+        got = list(ex.map(lambda b: api.speech(target.url, b), bodies))
+    wall = time.time() - t0
+    audio_s = sum(len(r["audio"]) for r in got) / (2 * rate)
+    out = {"cases": mix, "statuses": [r["status"] for r in got], "identical": sum(r.get("audio") == replies[n] for r, n in zip(got, mix)),
+           "audio_s": round(audio_s, 2), "wall_s": round(wall, 3), "times_real_time": round(audio_s / wall, 1), "slowest_s": max(r["s"] for r in got)}
+    if out["identical"] != len(mix):
+        bad.append(f"together {mix}: statuses {out['statuses']}, {out['identical']} of {len(mix)} equal to the lone replies")
+    return out
+
+
 def _busy(target: Target, case: dict, pcm: bytes, extra: int, bad: list[str]) -> dict:
     """`extra` more requests sent while one is being spoken: each answers the same audio or 503."""
     body = {"model": target.model, "response_format": "pcm", **{k: v for k, v in case.items() if k not in OWN}}
@@ -136,6 +158,11 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
         res["busy"] = _busy(target, first, replies[first["name"]], int(spec["busy"]), bad)
     if spec.get("formats") and first["name"] in replies:
         res["formats"] = _formats(target, first, spec["formats"], run_dir, name, bad)
+    if spec.get("together"):
+        by_name = {c["name"]: c for c in spec["cases"]}
+        res["together"] = [_together(target, by_name, replies, mix, rate, bad) for mix in spec["together"] if all(n in replies for n in mix)]
+        if len(res["together"]) != len(spec["together"]):
+            bad.append("together: a mix names a case that was not spoken")
     if spec.get("same"):
         res["same"] = {pair["name"]: _same(target, pair, bad) for pair in spec["same"]}
     for r in spec.get("refusals", []):
@@ -158,6 +185,10 @@ def run(target: Target, spec: dict, run_dir: Path, name: str) -> dict:
         summary += f"; {len(res['busy']['statuses'])} at once: statuses {res['busy']['statuses']}"
     if "formats" in res:
         summary += f"; formats {', '.join(f for f, v in res['formats'].items() if v['starts_as'] and v['repeat_identical'])} served and repeat"
+    if res.get("together"):
+        t = res["together"]
+        summary += (f"; at once: {sum(v['identical'] for v in t)}/{sum(len(v['cases']) for v in t)} equal to alone in {len(t)} mixes, "
+                    f"{min(v['times_real_time'] for v in t):.1f}-{max(v['times_real_time'] for v in t):.1f} times real time in total")
     if "same" in res:
         summary += f"; same audio {sum(v['equal'] and v.get('other_differs', True) for v in res['same'].values())}/{len(res['same'])}"
     if res["refusals"]:
