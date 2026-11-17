@@ -1,6 +1,6 @@
 # ZONOS3 Mini (Zyphra/ZONOS3-Mini), the release as published, on one M5 Ultra (256 GB), TensorFold native Metal with
-# the zonos3 family's Metal port (on top of ashhart/TensorFold#3720): text to speech on /v1/audio/speech, the release's
-# voices, one request at a time. Cloning from a clip is not on Metal yet, so the plan's clone case fails until it is.
+# the zonos3 family's Metal port (draft ashhart/TensorFold#3732, on #3720): text to speech on /v1/audio/speech, the
+# release's voices and cloning from a clip, one request at a time. The recipe: BobClawblaw/zonos3-mini-m5-ultra.
 # Its plan is `speech`. Machine-specific values go in zonos3-mini-m5.local.toml (git-ignored).
 name = "zonos3-mini-m5"
 description = "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native Metal (zonos3) on one M5 Ultra (text to speech, one request at a time)"
