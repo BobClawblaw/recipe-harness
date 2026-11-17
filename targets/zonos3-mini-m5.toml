@@ -1,0 +1,67 @@
+# ZONOS3 Mini (Zyphra/ZONOS3-Mini), the release as published, on one M5 Ultra (256 GB), TensorFold native Metal with
+# the zonos3 family's Metal port (on top of ashhart/TensorFold#3720): text to speech on /v1/audio/speech, the release's
+# voices, one request at a time. Cloning from a clip is not on Metal yet, so the plan's clone case fails until it is.
+# Its plan is `speech`. Machine-specific values go in zonos3-mini-m5.local.toml (git-ignored).
+name = "zonos3-mini-m5"
+description = "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native Metal (zonos3) on one M5 Ultra (text to speech, one request at a time)"
+model_name = "ZONOS3 Mini"
+hardware = "1x Apple M5 Ultra (256 GB), macOS"
+engine = "TensorFold native, Metal"
+url = "http://127.0.0.1:$port"
+model = "zonos3-mini"
+cwd = "$harness_dir"
+
+[vars]
+harness_dir = "CHANGE-ME: this checkout (up runs python3 -m harness.detach from it)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (zig-out/native/bin/tensorfold-native)"
+model_dir = "CHANGE-ME: the release as downloaded (Zyphra/ZONOS3-Mini)"
+log_dir = "CHANGE-ME: a folder for the server's log"
+port = "30117"
+
+[commands]
+up = "python3 -m harness.detach --log $log_dir/$model.log -- $engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --host 127.0.0.1 --port $port --parallel 1 --no-update-check"
+# only this target's server on its port
+down = "pkill -f 'tensorfold-native serve .*--name $model .*--port $port( |$$)' ; sleep 3"
+status = "pgrep -fl 'tensorfold-native serve .*--name $model .*--port $port( |$$)'"
+diagnose = "tail -5 $log_dir/$model.log"
+
+[session]
+up_retries = 1
+up_timeout = 120
+health_wait = 300
+leave_up = false
+
+[[identity]]
+name = "engine_commit"
+cmd = "git -C $engine_dir rev-parse --short HEAD"
+
+[[identity]]
+name = "binary_sha256"
+cmd = "shasum -a 256 $engine_dir/zig-out/native/bin/tensorfold-native | cut -c1-64"
+
+[[identity]]
+name = "served_model"
+cmd = "curl -s $url/v1/models"
+
+[[identity]]
+name = "chip"
+cmd = "sysctl -n machdep.cpu.brand_string hw.memsize; sw_vers -productVersion"
+
+[[memory]]
+name = "mac"
+cmd = "memory_pressure | tail -1; sysctl -n vm.swapusage"
+
+[[memory]]
+name = "engine"
+cmd = "curl -s $url/v1/memory"
+
+[features]
+drafts = false
+structured = false
+sampling = false
+vision_urls = false
+capacity = false
+max_concurrency = 1
+thinking = false
+prompt_cache = false
+tools = false

@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-17 21:23 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-17 21:48 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -71,6 +71,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Unlimited-OCR-2, bf16 | 1x NVIDIA GB10 (DGX Spark class, 128 GB unified) |  |  |  |  | 2026-11-04 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 4080 SUPER (16 GB), Windows 11 |  |  |  |  | 2026-11-03 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-17 |
+| ZONOS3 Mini | 1x Apple M5 Ultra (256 GB), macOS |  |  |  |  | 2026-11-17 |
 | ZONOS3 Mini | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-17 |
 | qwen38-27b | ? | 150/230/168/185 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 211/398/268/250 |  | 0.10 |  | 2026-10-16 |
@@ -3119,6 +3120,27 @@ Serving: engine_commit `9757d2378`; binary_sha256 `54072eb9adb494c513bc15e050233
 | 2026-11-17 19:41 | speech | done |  |  |  |  |
 | 2026-11-17 18:13 | speech | done |  |  |  |  |
 | 2026-11-17 18:03 | speech | done |  |  |  |  |
+
+## ZONOS3 Mini on 1x Apple M5 Ultra (256 GB), macOS
+
+Target `zonos3-mini-m5`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native Metal (zonos3) on one M5 Ultra (text to speech, one request at a time). Engine: TensorFold native, Metal; served as `zonos3-mini`. Latest: run `20261117-134557-speech` (2026-11-17 13:45, plan speech, done).
+
+Serving: engine_commit `d6f616ec4`; binary_sha256 `0b592be5130e54569995fe8a2c4d23dfb4ce88ebe6bda809371a2dbf1b04ea70`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794944765`; chip `Apple M5 Ultra; 274877906944; 27.2`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: mac: System-wide memory free percentage: 95%; total = 12288.00M  u; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | pass: 4/4 cases spoken; 3.9-19.1 times real time (32.2 s of audio), streamed first byte 0.06-1.07 s; repeats identical 4/4, streamed identical 4/4; 3 at once: statuses [200, 503, 503]; refusals 5/5 |
+| memory-after | measured: mac: System-wide memory free percentage: 93%; total = 12288.00M  u; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+
+### history
+
+| run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
+|---|---|---|---:|---:|---:|---|
+| 2026-11-17 13:45 | speech | done |  |  |  |  |
+| 2026-11-17 13:19 | speech | done |  |  |  |  |
 
 ## Served earlier, numbers in their READMEs only
 
