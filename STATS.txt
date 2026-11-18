@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-18 04:41 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-18 06:30 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -3133,20 +3133,26 @@ history
 ZONOS3 Mini on 1x NVIDIA RTX 5090 (32 GB), Linux
 ------------------------------------------------
 
-Target zonos3-mini-5090: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA; served as zonos3-mini. Latest: run 20261118-043842-speech-steer (2026-11-18 04:38, plan speech-steer, done).
+Target zonos3-mini-5090: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA; served as zonos3-mini. Latest: run 20261118-062823-speech-laci (2026-11-18 06:28, plan speech-laci, done).
 
-Serving: engine_commit 33285c8ea; binary_sha256 10268128f5feeff37c064a1d584ed71aad34f21c81609af9f8764fb34f674059; served_model {"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794976735; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB
+Serving: engine_commit 0b3c39654; binary_sha256 64d682d72bb69f6109715791704db809ae880424ef54139c3fb4a5dbbc9ff51a; served_model {"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794983316; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB
 
 checks
 ------
 
   check  result
-  speech  pass: 6/6 cases spoken; 30.9-36.6 times real time (31.3 s of audio), streamed first byte 0.02-0.04 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.118; same audio 4/4; refusals 6/6
+  speech  pass: 6/6 cases spoken; 17.0-37.2 times real time (27.7 s of audio), streamed first byte 0.03-0.08 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.200; same audio 3/3; refusals 6/6
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-18 06:28  speech-laci  done        
+  2026-11-18 06:27  speech-steer  done        
+  2026-11-18 06:26  speech-concurrent  done        
+  2026-11-18 06:25  speech-controls  done        
+  2026-11-18 06:25  speech-normalize  done        
+  2026-11-18 06:24  speech  done        
   2026-11-18 04:38  speech-steer  done        
   2026-11-18 04:37  speech-concurrent  done        
   2026-11-18 04:37  speech-controls  done        

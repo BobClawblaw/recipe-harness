@@ -6,3 +6,5 @@ steer_bundle = "/path/to/.cache/zonos3-mini/steering/96d9e0ec1e39/assets/steerin
 model_dir = "/path/to/ZONOS3-Mini"
 asr = "/path/to/venv/bin/python /path/to/zonos3-mini-rtx-5090/tools/asr.py"
 log_dir = "/path/to/logs"
+laci_heads = "/path/to/.cache/zonos3-mini/steering/96d9e0ec1e39/assets/laci_heads"
+short_text = "/path/to/.cache/zonos3-mini/steering/96d9e0ec1e39/model/src/zonos3/registries/short_text.json"

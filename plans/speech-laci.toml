@@ -1,0 +1,27 @@
+description = "LACI, short texts and the phoneme, start and pause tokens in text to speech (under a minute): a long passage under LACI, a short text with and without its filler, a pause marker, a start marker and a pronunciation group, each repeated whole and streamed; the settings that must change nothing; refusals. The server needs LACI heads, the short-text registry and a release with the extra text rows"
+restart = true
+
+[[checks]]
+type = "speech"
+repeats = 3
+cases = [
+  { name = "watched", voice = "rupert", seed = 11, laci = true, input = "TensorFold now speaks with a second voice model. This is a longer passage, read at the default sampling settings, so that we can measure how fast the backbone and the codec run together on one graphics card, and how much memory the whole request needs from start to finish." },
+  { name = "short", voice = "rupert", seed = 5, input = "Hello." },
+  { name = "short-off", voice = "rupert", seed = 5, short_text = "off", input = "Hello." },
+  { name = "pause", voice = "rupert", seed = 5, input = "Wait, what did you say just now?" },
+  { name = "start", voice = "rupert", seed = 5, start_immediately = true, input = "Right away, I will see to it." },
+  { name = "phones", voice = "rupert", seed = 5, input = "The quick brown fɒks jumps over the lazy dog." },
+]
+same = [
+  { name = "start-immediately-is-the-start-marker", a = { voice = "rupert", seed = 5, input = "Right away, I will see to it.", start_immediately = true }, b = { voice = "rupert", seed = 5, input = "Right away, I will see to it." }, other = { voice = "rupert", seed = 5, input = "Right away, I will see to it." } },
+  { name = "laci-false-is-off", a = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", laci = false }, b = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning." } },
+  { name = "short-text-auto-is-the-default", a = { voice = "rupert", seed = 5, input = "Good morning.", short_text = "auto" }, b = { voice = "rupert", seed = 5, input = "Good morning." }, other = { voice = "rupert", seed = 5, input = "Good morning.", short_text = "off" } },
+]
+refusals = [
+  { name = "laci-with-guidance", status = 400, body = { input = "x", laci = true, speaker_cfg_scale = 1.5 } },
+  { name = "start-marker-not-first", status = 400, body = { input = "Not first." } },
+  { name = "pause-marker-out-of-range", status = 400, body = { input = "Too long." } },
+  { name = "group-not-closed", status = 400, body = { input = "An open group." } },
+  { name = "phone-outside-the-inventory", status = 400, body = { input = "A 中 phone." } },
+  { name = "short-text-bad-value", status = 400, body = { input = "Hi.", short_text = "maybe" } },
+]
