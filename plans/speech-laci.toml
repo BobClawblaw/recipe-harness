@@ -1,4 +1,4 @@
-description = "LACI, short texts, the phoneme, start and pause tokens, and steering spans that follow the reading position, in text to speech (under a minute): a long passage under LACI, a short text with and without its filler, a pause marker, a start marker and a pronunciation group, two spans placed by the reading alone and under LACI, each repeated whole and streamed; the settings that must change nothing; refusals. The server needs LACI heads, the short-text registry, a steering bundle and a release with the extra text rows"
+description = "LACI, short texts, the phoneme, start and pause tokens, and steering spans that follow the reading position, in text to speech (under a minute): a long passage under LACI, a short text with and without its filler, a pause marker, a start marker and a pronunciation group, two spans placed by the reading alone and under LACI, a reply held to a duration, each repeated whole and streamed; the settings that must change nothing; refusals. The server needs LACI heads, the short-text registry, a steering bundle and a release with the extra text rows"
 restart = true
 
 [[checks]]
@@ -13,6 +13,7 @@ cases = [
   { name = "phones", voice = "rupert", seed = 5, input = "The quick brown fɒks jumps over the lazy dog." },
   { name = "follow", voice = "rupert", seed = 5, speaker_mode = "embedding", control_span_follow = "reading", control_spans = [{ start = 12, end = 20, controls = { "emphasis_nv_nodur.emphasis" = 2.0 } }, { start = 41, end = 54, controls = { "mood.arousal" = 1.5 } }], input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
   { name = "follow-laci", voice = "rupert", seed = 5, speaker_mode = "embedding", laci = true, control_span_follow = "reading", control_spans = [{ start = 12, end = 20, controls = { "emphasis_nv_nodur.emphasis" = 2.0 } }, { start = 41, end = 54, controls = { "mood.arousal" = 1.5 } }], input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "duration", voice = "rupert", seed = 5, laci = true, duration_seconds = 3.6, condition_values = { speaking_rate = 12.0 }, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
 ]
 same = [
   { name = "start-immediately-is-the-start-marker", a = { voice = "rupert", seed = 5, input = "Right away, I will see to it.", start_immediately = true }, b = { voice = "rupert", seed = 5, input = "Right away, I will see to it." }, other = { voice = "rupert", seed = 5, input = "Right away, I will see to it." } },
@@ -28,5 +29,7 @@ refusals = [
   { name = "phone-outside-the-inventory", status = 400, body = { input = "A 中 phone." } },
   { name = "short-text-bad-value", status = 400, body = { input = "Hi.", short_text = "maybe" } },
   { name = "follow-bad-value", status = 400, body = { input = "x", control_span_follow = "words" } },
+  { name = "duration-without-laci", status = 400, body = { input = "x", duration_seconds = 2.0 } },
+  { name = "duration-past-the-budget", status = 400, body = { input = "x", laci = true, duration_seconds = 500.0 } },
   { name = "follow-lag-out-of-range", status = 400, body = { input = "x", control_span_follow = "reading", control_span_lag = -5.0 } },
 ]
