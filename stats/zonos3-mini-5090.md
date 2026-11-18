@@ -1,6 +1,18 @@
 # ZONOS3 Mini on 1x NVIDIA RTX 5090 (32 GB), Linux
 
-Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA. Rendered from `stats/zonos3-mini-5090.json` (45 runs); aggregate tok/s, total (a stream).
+Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA. Rendered from `stats/zonos3-mini-5090.json` (46 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-18 13:09: run `20261118-130921-speech-edit`
+
+Plan speech-edit, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0a1a216c3`; binary_sha256 `1ab6ed6a3fa90443a2aa28b2e745acba13ce92ced20fc327ada4774859bc5ec5`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795007361`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech-edit | pass: 6/6 edits made in 0.65-4.22 s each (8 regions); repeats identical 6/6, lengths as planned 6/6; WER against the target 0.000-0.062; audio before the first region within 7.6-9.8 dB of the clip; aligned 75 words in 2 clips (0.07 s); at once: 5/5 equal to alone; refusals 11/11 |
 
 ## 2026-11-18 12:17: run `20261118-121739-speech-laci`
 
