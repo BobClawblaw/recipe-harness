@@ -1,6 +1,58 @@
 # ZONOS3 Mini on 1x NVIDIA RTX 5090 (32 GB), Linux
 
-Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA. Rendered from `stats/zonos3-mini-5090.json` (56 runs); aggregate tok/s, total (a stream).
+Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA. Rendered from `stats/zonos3-mini-5090.json` (67 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-18 18:36: run `20261118-183605-speech-edit`
+
+Plan speech-edit, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c7769764f68a3e50de2229bd4b13ace75f21`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795026965`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech-edit | pass: 6/6 edits made in 0.64-4.29 s each (8 regions); repeats identical 6/6, lengths as planned 6/6; WER against the target 0.000-0.062; audio before the first region within 7.6-9.8 dB of the clip; aligned 75 words in 2 clips (0.07 s); at once: 5/5 equal to alone; refusals 11/11 |
+
+## 2026-11-18 18:35: run `20261118-183525-speech-concurrent`
+
+Plan speech-concurrent, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c7769764f68a3e50de2229bd4b13ace75f21`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795026925`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 18786 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | pass: 6/6 cases spoken; 4.5-37.0 times real time (41.3 s of audio), streamed first byte 0.04-0.55 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.200; 6 at once: statuses [200, 200, 200, 503, 200, 503]; at once: 18/18 equal to alone in 5 mixes, 12.9-60.6 times real time in total |
+| memory-after | measured: gpu: 18798 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+
+## 2026-11-18 18:34: run `20261118-183447-speech-controls`
+
+Plan speech-controls, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c7769764f68a3e50de2229bd4b13ace75f21`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795026888`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech | pass: 5/5 cases spoken; 20.4-33.9 times real time (25.9 s of audio), streamed first byte 0.03-0.04 s; repeats identical 5/5, streamed identical 5/5; WER 0.000-0.059; same audio 4/4; refusals 5/5 |
+
+## 2026-11-18 18:34: run `20261118-183406-speech`
+
+Plan speech, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c7769764f68a3e50de2229bd4b13ace75f21`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795026846`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 5302 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | pass: 4/4 cases spoken; 7.9-37.2 times real time (33.4 s of audio), streamed first byte 0.03-0.54 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200, 200, 200]; formats mp3, opus, flac served and repeat; refusals 5/5 |
+| memory-after | measured: gpu: 11112 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
 
 ## 2026-11-18 16:40: run `20261118-164058-speech-laci`
 
@@ -26,6 +78,32 @@ Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c
 |---|---|
 | speech | pass: 6/6 cases spoken; 31.1-36.6 times real time (31.3 s of audio), streamed first byte 0.02-0.04 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.118; same audio 4/4; refusals 6/6 |
 
+## 2026-11-18 16:39: run `20261118-163932-speech-concurrent`
+
+Plan speech-concurrent, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c7769764f68a3e50de2229bd4b13ace75f21`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795019986`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 25817 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | FAIL: 4/6 cases spoken; 28.6-37.2 times real time (32.2 s of audio), streamed first byte 0.03-0.04 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.111; 6 at once: statuses [200, 200, 503, 200, 200, 503]; at once: 10/10 equal to alone in 3 mixes, 43.7-60.7 times real time in total; failed clone: status 500 {"error": {"message": "cloning from a clip needs 5.26 GiB of device memory for its encoder, and less than that is free"}; guided-clone: status 500 {"error": {"message": "cloning from a clip needs 5.26 GiB of device memory for its encoder, and less than that is free"}; together: a mix names a case that was not spoken |
+| memory-after | measured: gpu: 25841 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+
+## 2026-11-18 16:38: run `20261118-163856-speech-controls`
+
+Plan speech-controls, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c7769764f68a3e50de2229bd4b13ace75f21`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795019949`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech | FAIL: 4/5 cases spoken; 28.8-34.0 times real time (20.5 s of audio), streamed first byte 0.03-0.04 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.059; same audio 3/4; refusals 5/5; failed full-decoder: status 500 {"error": {"message": "this decoder is loaded on its first request, and the device has too little memory free for it"}}; same default-decoder-is-keep2: statuses [200, 200, 500], a equals b True, other differs False |
+
 ## 2026-11-18 16:38: run `20261118-163836-speech-normalize`
 
 Plan speech-normalize, done; served as `zonos3-mini`.
@@ -37,6 +115,20 @@ Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c
 | check | result |
 |---|---|
 | speech | pass: 1/1 cases spoken; 31.8-31.8 times real time (4.1 s of audio), streamed first byte 0.03-0.03 s; repeats identical 1/1, streamed identical 1/1; WER 0.000-0.000; same audio 6/6; refusals 1/1 |
+
+## 2026-11-18 16:37: run `20261118-163759-speech`
+
+Plan speech, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0829d0907`; binary_sha256 `366b2bc0be5c19b28e01088e0a87c7769764f68a3e50de2229bd4b13ace75f21`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795019892`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 25817 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | FAIL: 3/4 cases spoken; 32.5-37.1 times real time (27.1 s of audio), streamed first byte 0.03-0.04 s; repeats identical 3/3, streamed identical 3/3; WER 0.000-0.000; 3 at once: statuses [200, 200, 200]; formats mp3, opus, flac served and repeat; refusals 5/5; failed clone: status 500 {"error": {"message": "cloning from a clip needs 5.26 GiB of device memory for its encoder, and less than that is free"} |
+| memory-after | measured: gpu: 25817 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
 
 ## 2026-11-18 15:01: run `20261118-150112-speech-edit`
 
@@ -137,6 +229,42 @@ Serving: engine_commit `0a1a216c3`; binary_sha256 `1ab6ed6a3fa90443a2aa28b2e745a
 | check | result |
 |---|---|
 | speech-edit | pass: 6/6 edits made in 0.65-4.22 s each (8 regions); repeats identical 6/6, lengths as planned 6/6; WER against the target 0.000-0.062; audio before the first region within 7.6-9.8 dB of the clip; aligned 75 words in 2 clips (0.07 s); at once: 5/5 equal to alone; refusals 11/11 |
+
+## 2026-11-18 12:21: run `20261118-122144-speech-edit`
+
+Plan speech-edit, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0a1a216c3`; binary_sha256 `1ab6ed6a3fa90443a2aa28b2e745acba13ce92ced20fc327ada4774859bc5ec5`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795004517`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech-edit | FAIL: 6/6 edits made in 0.65-4.19 s each (8 regions); repeats identical 6/6, lengths as planned 6/6; audio before the first region within 7.6-9.8 dB of the clip; aligned 75 words in 2 clips (0.07 s); at once: 5/5 equal to alone; refusals 11/11; failed by-span: asr gave no WER (exit 1): ages/torch/cuda/__init__.py", line 410, in _lazy_init; torch._C._cuda_init(); RuntimeError: No CUDA GPUs are available; by-transcript: asr gave no WER (exit 1): ages/torch/cuda/__init__.py", line 410, in _lazy_init; torch._C._cuda_init(); RuntimeError: No CUDA GPUs are available; steered: asr gave no WER (exit 1): ages/torch/cuda/__init__.py", line 410, in _lazy_init; torch._C._cuda_init(); RuntimeError: No CUDA GPUs are available; plain-row: asr gave no WER (exit 1): ages/torch/cuda/__init__.py", line 410, in _lazy_init; torch._C._cuda_init(); RuntimeError: No CUDA GPUs are available; windows: asr gave no WER (exit 1): ages/torch/cuda/__init__.py", line 410, in _lazy_init; torch._C._cuda_init(); RuntimeError: No CUDA GPUs are available; two-takes: asr gave no WER (exit 1): ages/torch/cuda/__init__.py", line 410, in _lazy_init; torch._C._cuda_init(); RuntimeError: No CUDA GPUs are available |
+
+## 2026-11-18 12:20: run `20261118-122006-speech-edit`
+
+Plan speech-edit, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0a1a216c3`; binary_sha256 `1ab6ed6a3fa90443a2aa28b2e745acba13ce92ced20fc327ada4774859bc5ec5`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795004419`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech-edit | FAIL: 6/6 edits made in 0.65-4.17 s each (8 regions); repeats identical 6/6, lengths as planned 6/6; WER against the target 0.062-0.062; audio before the first region within 7.6-9.8 dB of the clip; aligned 75 words in 2 clips (0.07 s); at once: 5/5 equal to alone; refusals 11/11; failed by-transcript: asr gave no WER (exit 1): ation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables); steered: asr gave no WER (exit 1): ation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables); plain-row: asr gave no WER (exit 1): ation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables); windows: asr gave no WER (exit 1): ation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables); two-takes: asr gave no WER (exit 1): ation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables) |
+
+## 2026-11-18 12:18: run `20261118-121836-speech-edit`
+
+Plan speech-edit, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0a1a216c3`; binary_sha256 `1ab6ed6a3fa90443a2aa28b2e745acba13ce92ced20fc327ada4774859bc5ec5`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1795004329`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech-edit | FAIL: 1/6 edits made in 1.01-1.03 s each (1 regions); repeats identical 1/1, lengths as planned 1/1; WER against the target 0.062-0.062; audio before the first region within 9.7-9.7 dB of the clip; aligned 0 words in 0 clips (0.00 s); at once: 3/3 equal to alone; refusals 9/11; failed by-transcript: status 500 {"error": {"message": "aligning words needs 2.2 GiB of device memory for the aligner, and less than that is free"}}; steered: status 500 {"error": {"message": "aligning words needs 2.2 GiB of device memory for the aligner, and less than that is free"}}; plain-row: status 500 {"error": {"message": "aligning words needs 2.2 GiB of device memory for the aligner, and less than that is free"}}; windows: status 500 {"error": {"message": "aligning words needs 2.2 GiB of device memory for the aligner, and less than that is free"}}; two-takes: status 500 {"error": {"message": "aligning words needs 2.2 GiB of device memory for the aligner, and less than that is free"}}; align line: status 500 {"error": {"message": "aligning words needs 2.2 GiB of device memory for the aligner, and less than that is free"}}; align long: status 500 {"error": {"message": "aligning words needs 2.2 GiB of device memory for the aligner, and less than that is free"}}; refusal same-text: status 500, expected 400; refusal region-controls-without-spans: status 500, expected 400 |
 
 ## 2026-11-18 12:17: run `20261118-121739-speech-laci`
 
@@ -301,6 +429,18 @@ Serving: engine_commit `c47b77649`; binary_sha256 `899db760a6998b2ba8f856c3e0e12
 | memory-idle | measured: gpu: 16065 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
 | speech | pass: 4/4 cases spoken; 8.5-37.3 times real time (32.2 s of audio), streamed first byte 0.03-0.48 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200, 200, 200]; formats mp3, opus, flac served and repeat; refusals 5/5 |
 | memory-after | measured: gpu: 21877 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+
+## 2026-11-18 10:02: run `20261118-100218-speech-edit`
+
+Plan speech-edit, done; served as `zonos3-mini`.
+
+Serving: engine_commit `0b3c39654`; binary_sha256 `64d682d72bb69f6109715791704db809ae880424ef54139c3fb4a5dbbc9ff51a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794996139`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech-edit | pass: 6/6 edits made in 0.65-2.91 s each (8 regions); repeats identical 6/6, lengths as planned 6/6; WER against the target 0.000-0.062; audio before the first region within 6.8-9.8 dB of the clip; aligned 63 words in 2 clips (0.07 s); at once: 5/5 equal to alone; refusals 11/11 |
 
 ## 2026-11-18 06:28: run `20261118-062823-speech-laci`
 
