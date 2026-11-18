@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-18 02:55 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-18 04:41 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -3133,22 +3133,25 @@ history
 ZONOS3 Mini on 1x NVIDIA RTX 5090 (32 GB), Linux
 ------------------------------------------------
 
-Target zonos3-mini-5090: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA; served as zonos3-mini. Latest: run 20261118-025356-speech-concurrent (2026-11-18 02:53, plan speech-concurrent, done).
+Target zonos3-mini-5090: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA; served as zonos3-mini. Latest: run 20261118-043842-speech-steer (2026-11-18 04:38, plan speech-steer, done).
 
-Serving: engine_commit c8c90565a; binary_sha256 b92098c6e8aa823e06267769847e872ca2d7d7f563a90287a10048f9860950b2; served_model {"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794970449; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB
+Serving: engine_commit 33285c8ea; binary_sha256 10268128f5feeff37c064a1d584ed71aad34f21c81609af9f8764fb34f674059; served_model {"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794976735; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB
 
 checks
 ------
 
   check  result
-  memory-idle  measured: gpu: 15811 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte
-  speech  pass: 6/6 cases spoken; 4.0-37.4 times real time (40.0 s of audio), streamed first byte 0.03-0.61 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.111; 6 at once: statuses [200, 200, 200, 503, 200, 503]; at once: 18/18 equal to alone in 5 mixes, 11.7-61.1 times real time in total
-  memory-after  measured: gpu: 21649 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte
+  speech  pass: 6/6 cases spoken; 30.9-36.6 times real time (31.3 s of audio), streamed first byte 0.02-0.04 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.118; same audio 4/4; refusals 6/6
 
 history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-18 04:38  speech-steer  done        
+  2026-11-18 04:37  speech-concurrent  done        
+  2026-11-18 04:37  speech-controls  done        
+  2026-11-18 04:36  speech-normalize  done        
+  2026-11-18 04:35  speech  done        
   2026-11-18 02:53  speech-concurrent  done        
   2026-11-18 02:53  speech-controls  done        
   2026-11-18 02:53  speech-normalize  done        

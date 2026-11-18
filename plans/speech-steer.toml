@@ -1,0 +1,28 @@
+description = "Steering controls in text to speech (under a minute): a steered reply on a reference voice, a voice by its embedding plain, reshaped, with a span and with guidance on its controls, each repeated whole and streamed; the settings that must change nothing; refusals. The server needs a steering bundle"
+restart = true
+
+[[checks]]
+type = "speech"
+repeats = 3
+cases = [
+  { name = "plain", voice = "rupert", seed = 5, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "steered", voice = "rupert", seed = 5, controls = { "mood.valence" = 2.0, "delivery.whisper" = 1.0 }, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "embedding", voice = "rupert", seed = 5, speaker_mode = "embedding", input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "reshaped", voice = "rupert", seed = 5, speaker_mode = "embedding", controls = { "identity.age" = 1.5, "texture.deep" = 1.0 }, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "span", voice = "rupert", seed = 5, speaker_mode = "embedding", control_spans = [{ start = 12, end = 20, controls = { "emphasis_nv_nodur.emphasis" = 2.0 } }], input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+  { name = "guided", voice = "rupert", seed = 5, speaker_mode = "embedding", controls = { "mood.arousal" = 1.0 }, controls_cfg_scale = 1.5, input = "By noon the wind had turned, so we walked the long way home along the sea wall." },
+]
+same = [
+  { name = "dose-zero-is-off", a = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", controls = { "mood.valence" = 0.0 } }, b = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning." }, other = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", controls = { "mood.valence" = 2.0 } } },
+  { name = "controls-guidance-one-is-off", a = { voice = "rupert", seed = 5, speaker_mode = "embedding", input = "The harbor was quiet this morning.", controls = { "mood.arousal" = 1.0 }, controls_cfg_scale = 1.0 }, b = { voice = "rupert", seed = 5, speaker_mode = "embedding", input = "The harbor was quiet this morning.", controls = { "mood.arousal" = 1.0 } }, other = { voice = "rupert", seed = 5, speaker_mode = "embedding", input = "The harbor was quiet this morning.", controls = { "mood.arousal" = 1.0 }, controls_cfg_scale = 1.5 } },
+  { name = "span-rate-one-is-the-default", a = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", control_spans = [{ start = 4, end = 10, controls = { "emphasis_nv_nodur.emphasis" = 2.0 } }], control_span_rate = 1.0 }, b = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", control_spans = [{ start = 4, end = 10, controls = { "emphasis_nv_nodur.emphasis" = 2.0 } }] }, other = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning." } },
+  { name = "hold-one-on-an-exempt-control-changes-nothing", a = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", controls = { "delivery.whisper" = 1.0 }, steer_hold = 1.0 }, b = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning.", controls = { "delivery.whisper" = 1.0 } }, other = { voice = "rupert", seed = 5, input = "The harbor was quiet this morning." } },
+]
+refusals = [
+  { name = "control-unknown", status = 400, body = { input = "x", controls = { "mood.nope" = 1.0 } } },
+  { name = "voice-control-on-a-reference-voice", status = 400, body = { input = "x", controls = { "identity.age" = 1.0 } } },
+  { name = "span-outside-the-text", status = 400, body = { input = "x", control_spans = [{ start = 5, end = 9, controls = { "mood.valence" = 1.0 } }] } },
+  { name = "two-guidances", status = 400, body = { input = "x", controls = { "mood.valence" = 1.0 }, speaker_cfg_scale = 1.5, controls_cfg_scale = 1.5 } },
+  { name = "spans-by-reading-position", status = 400, body = { input = "x", control_span_follow = "reading" } },
+  { name = "hold-above-one", status = 400, body = { input = "x", controls = { "mood.valence" = 1.0 }, steer_hold = 2.0 } },
+]
