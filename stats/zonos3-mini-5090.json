@@ -1024,6 +1024,218 @@
    "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
    "engine": "TensorFold native, CUDA",
    "description": "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
+  },
+  {
+   "run": "20261118-103534-speech",
+   "target": "zonos3-mini-5090",
+   "model": "zonos3-mini",
+   "plan": "speech",
+   "started": "20261118-103534",
+   "finished": "20261118-103628",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c47b77649",
+    "binary_sha256": "899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"zonos3-mini\", \"object\": \"model\", \"created\": 1794998147, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": false, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": false, \"thinking_budget\": true, \"reasoning\": true, \"answer_limit\": false, \"structures\": false, \"logprobs\": false, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": false, \"warm_turns\": false, \"plain_only\": true, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": true, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": false, \"thinking_applicable\": false}, \"context_length\": 4096, \"max_model_len\": 4096, \"speech\": {\"max_assembled_prompt_rows\": 2096, \"max_generated_acoustic_frames\": 2000, \"sample_rate_hz\": 44100, \"samples_per_acoustic_frame\": 2940, \"max_input_code_points\": 4096}, \"input_types\": [\"text\"]}]}",
+    "gpu": "NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 16065 MiB, 32607 MiB; engine: {\"schema_version\": 1, \"context_window\": 4096, \"context_fitte"
+    },
+    "speech": {
+     "ok": true,
+     "summary": "4/4 cases spoken; 8.5-37.3 times real time (32.2 s of audio), streamed first byte 0.03-0.48 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200, 200, 200]; formats mp3, opus, flac served and repeat; refusals 5/5"
+    },
+    "memory-after": {
+     "ok": null,
+     "summary": "gpu: 21877 MiB, 32607 MiB; engine: {\"schema_version\": 1, \"context_window\": 4096, \"context_fitte"
+    }
+   },
+   "model_name": "ZONOS3 Mini",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
+   "engine": "TensorFold native, CUDA",
+   "description": "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
+  },
+  {
+   "run": "20261118-103628-speech-normalize",
+   "target": "zonos3-mini-5090",
+   "model": "zonos3-mini",
+   "plan": "speech-normalize",
+   "started": "20261118-103628",
+   "finished": "20261118-103651",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c47b77649",
+    "binary_sha256": "899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"zonos3-mini\", \"object\": \"model\", \"created\": 1794998201, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": false, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": false, \"thinking_budget\": true, \"reasoning\": true, \"answer_limit\": false, \"structures\": false, \"logprobs\": false, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": false, \"warm_turns\": false, \"plain_only\": true, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": true, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": false, \"thinking_applicable\": false}, \"context_length\": 4096, \"max_model_len\": 4096, \"speech\": {\"max_assembled_prompt_rows\": 2096, \"max_generated_acoustic_frames\": 2000, \"sample_rate_hz\": 44100, \"samples_per_acoustic_frame\": 2940, \"max_input_code_points\": 4096}, \"input_types\": [\"text\"]}]}",
+    "gpu": "NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "speech": {
+     "ok": true,
+     "summary": "1/1 cases spoken; 32.0-32.0 times real time (4.1 s of audio), streamed first byte 0.03-0.03 s; repeats identical 1/1, streamed identical 1/1; WER 0.000-0.000; same audio 6/6; refusals 1/1"
+    }
+   },
+   "model_name": "ZONOS3 Mini",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
+   "engine": "TensorFold native, CUDA",
+   "description": "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
+  },
+  {
+   "run": "20261118-103651-speech-controls",
+   "target": "zonos3-mini-5090",
+   "model": "zonos3-mini",
+   "plan": "speech-controls",
+   "started": "20261118-103651",
+   "finished": "20261118-103728",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c47b77649",
+    "binary_sha256": "899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"zonos3-mini\", \"object\": \"model\", \"created\": 1794998224, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": false, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": false, \"thinking_budget\": true, \"reasoning\": true, \"answer_limit\": false, \"structures\": false, \"logprobs\": false, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": false, \"warm_turns\": false, \"plain_only\": true, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": true, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": false, \"thinking_applicable\": false}, \"context_length\": 4096, \"max_model_len\": 4096, \"speech\": {\"max_assembled_prompt_rows\": 2096, \"max_generated_acoustic_frames\": 2000, \"sample_rate_hz\": 44100, \"samples_per_acoustic_frame\": 2940, \"max_input_code_points\": 4096}, \"input_types\": [\"text\"]}]}",
+    "gpu": "NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "speech": {
+     "ok": true,
+     "summary": "4/4 cases spoken; 28.8-34.2 times real time (20.5 s of audio), streamed first byte 0.03-0.04 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.059; same audio 3/3; refusals 4/4"
+    }
+   },
+   "model_name": "ZONOS3 Mini",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
+   "engine": "TensorFold native, CUDA",
+   "description": "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
+  },
+  {
+   "run": "20261118-103728-speech-concurrent",
+   "target": "zonos3-mini-5090",
+   "model": "zonos3-mini",
+   "plan": "speech-concurrent",
+   "started": "20261118-103728",
+   "finished": "20261118-103829",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c47b77649",
+    "binary_sha256": "899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"zonos3-mini\", \"object\": \"model\", \"created\": 1794998261, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": false, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": false, \"thinking_budget\": true, \"reasoning\": true, \"answer_limit\": false, \"structures\": false, \"logprobs\": false, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": false, \"warm_turns\": false, \"plain_only\": true, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": true, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": false, \"thinking_applicable\": false}, \"context_length\": 4096, \"max_model_len\": 4096, \"speech\": {\"max_assembled_prompt_rows\": 2096, \"max_generated_acoustic_frames\": 2000, \"sample_rate_hz\": 44100, \"samples_per_acoustic_frame\": 2940, \"max_input_code_points\": 4096}, \"input_types\": [\"text\"]}]}",
+    "gpu": "NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "memory-idle": {
+     "ok": null,
+     "summary": "gpu: 16065 MiB, 32607 MiB; engine: {\"schema_version\": 1, \"context_window\": 4096, \"context_fitte"
+    },
+    "speech": {
+     "ok": true,
+     "summary": "6/6 cases spoken; 4.8-37.2 times real time (40.0 s of audio), streamed first byte 0.03-0.49 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.111; 6 at once: statuses [200, 503, 200, 503, 200, 200]; at once: 18/18 equal to alone in 5 mixes, 13.8-60.4 times real time in total"
+    },
+    "memory-after": {
+     "ok": null,
+     "summary": "gpu: 21915 MiB, 32607 MiB; engine: {\"schema_version\": 1, \"context_window\": 4096, \"context_fitte"
+    }
+   },
+   "model_name": "ZONOS3 Mini",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
+   "engine": "TensorFold native, CUDA",
+   "description": "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
+  },
+  {
+   "run": "20261118-103829-speech-steer",
+   "target": "zonos3-mini-5090",
+   "model": "zonos3-mini",
+   "plan": "speech-steer",
+   "started": "20261118-103829",
+   "finished": "20261118-103919",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c47b77649",
+    "binary_sha256": "899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"zonos3-mini\", \"object\": \"model\", \"created\": 1794998322, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": false, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": false, \"thinking_budget\": true, \"reasoning\": true, \"answer_limit\": false, \"structures\": false, \"logprobs\": false, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": false, \"warm_turns\": false, \"plain_only\": true, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": true, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": false, \"thinking_applicable\": false}, \"context_length\": 4096, \"max_model_len\": 4096, \"speech\": {\"max_assembled_prompt_rows\": 2096, \"max_generated_acoustic_frames\": 2000, \"sample_rate_hz\": 44100, \"samples_per_acoustic_frame\": 2940, \"max_input_code_points\": 4096}, \"input_types\": [\"text\"]}]}",
+    "gpu": "NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "speech": {
+     "ok": true,
+     "summary": "6/6 cases spoken; 31.1-36.9 times real time (31.3 s of audio), streamed first byte 0.02-0.04 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.118; same audio 4/4; refusals 6/6"
+    }
+   },
+   "model_name": "ZONOS3 Mini",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
+   "engine": "TensorFold native, CUDA",
+   "description": "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
+  },
+  {
+   "run": "20261118-103920-speech-laci",
+   "target": "zonos3-mini-5090",
+   "model": "zonos3-mini",
+   "plan": "speech-laci",
+   "started": "20261118-103920",
+   "finished": "20261118-104007",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c47b77649",
+    "binary_sha256": "899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"zonos3-mini\", \"object\": \"model\", \"created\": 1794998373, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": false, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": false, \"thinking_budget\": true, \"reasoning\": true, \"answer_limit\": false, \"structures\": false, \"logprobs\": false, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": false, \"warm_turns\": false, \"plain_only\": true, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": true, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": false, \"thinking_applicable\": false}, \"context_length\": 4096, \"max_model_len\": 4096, \"speech\": {\"max_assembled_prompt_rows\": 2096, \"max_generated_acoustic_frames\": 2000, \"sample_rate_hz\": 44100, \"samples_per_acoustic_frame\": 2940, \"max_input_code_points\": 4096}, \"input_types\": [\"text\"]}]}",
+    "gpu": "NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "speech": {
+     "ok": true,
+     "summary": "6/6 cases spoken; 17.0-37.2 times real time (27.7 s of audio), streamed first byte 0.03-0.08 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.200; same audio 3/3; refusals 6/6"
+    }
+   },
+   "model_name": "ZONOS3 Mini",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
+   "engine": "TensorFold native, CUDA",
+   "description": "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
+  },
+  {
+   "run": "20261118-104008-speech-edit",
+   "target": "zonos3-mini-5090",
+   "model": "zonos3-mini",
+   "plan": "speech-edit",
+   "started": "20261118-104008",
+   "finished": "20261118-104139",
+   "status": "done",
+   "identity": {
+    "engine_commit": "c47b77649",
+    "binary_sha256": "899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a",
+    "served_model": "{\"object\": \"list\", \"data\": [{\"id\": \"zonos3-mini\", \"object\": \"model\", \"created\": 1794998421, \"owned_by\": \"tensorfold\", \"capabilities\": {\"text_generation\": false, \"context_fitted\": false, \"call_gates\": false, \"loop_guard\": false, \"thinking_budget\": true, \"reasoning\": true, \"answer_limit\": false, \"structures\": false, \"logprobs\": false, \"penalties\": false, \"prompt_logprobs\": false, \"prompt_cache\": false, \"warm_turns\": false, \"plain_only\": true, \"decides\": false, \"pictures\": false, \"greedy_only\": false, \"slide_conversations\": false, \"vision\": false, \"speech\": true, \"embeddings\": false, \"readouts\": false, \"rerank\": false, \"thinking_switch\": false, \"thinking_applicable\": false}, \"context_length\": 4096, \"max_model_len\": 4096, \"speech\": {\"max_assembled_prompt_rows\": 2096, \"max_generated_acoustic_frames\": 2000, \"sample_rate_hz\": 44100, \"samples_per_acoustic_frame\": 2940, \"max_input_code_points\": 4096}, \"input_types\": [\"text\"]}]}",
+    "gpu": "NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB"
+   },
+   "rulers": {},
+   "rounds": {},
+   "suite": {},
+   "checks": {
+    "speech-edit": {
+     "ok": true,
+     "summary": "6/6 edits made in 0.65-4.32 s each (8 regions); repeats identical 6/6, lengths as planned 6/6; WER against the target 0.000-0.062; audio before the first region within 7.6-9.8 dB of the clip; aligned 75 words in 2 clips (0.07 s); at once: 5/5 equal to alone; refusals 11/11"
+    }
+   },
+   "model_name": "ZONOS3 Mini",
+   "hardware": "1x NVIDIA RTX 5090 (32 GB), Linux",
+   "engine": "TensorFold native, CUDA",
+   "description": "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
   }
  ]
 }

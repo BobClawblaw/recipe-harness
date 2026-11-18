@@ -1,0 +1,33 @@
+description = "Speech editing on /v1/audio/edit (about a minute): two clips the server speaks itself, then edits of them by time span, by word diff from the transcript, with steering on a region, on a long clip's windows and in two takes; word timings from /v1/audio/edit/align; an edit beside speech; refusals. The release folder needs the edit adapter, the speaker encoder and the aligner"
+restart = true
+
+[[checks]]
+type = "speech-edit"
+repeats = 2
+clips = [
+  { name = "line", voice = "rupert", seed = 5, short_text = "off", input = "The quick brown fox jumps over the lazy dog, and then it rests by the river." },
+  { name = "long", voice = "rupert", seed = 7, input = "The harbor was quiet this morning, and the boats lay still on the water. A few gulls circled above the pier while the fishermen mended their nets. By noon the wind had picked up, and the first sails slipped out past the breakwater toward the open sea. Nobody on the shore noticed the small grey ship that followed them." },
+]
+cases = [
+  { name = "by-span", clip = "line", seed = 3, spans = [[1.2, 1.9]], target_text = "The quick brown cat jumps over the lazy dog, and then it rests by the river." },
+  { name = "by-transcript", clip = "line", seed = 3, transcript = true, target_text = "The quick small grey cat jumps over the lazy dog, and then it sleeps by the river." },
+  { name = "steered", clip = "line", seed = 3, transcript = true, target_text = "The quick brown fox jumps over the sleepy dog, and then it rests by the river.", controls = { "delivery.whisper" = 1.0 } },
+  { name = "plain-row", clip = "line", seed = 3, transcript = true, speaker_embedding = false, target_text = "The quick brown fox leaps over the lazy dog, and then it rests by the river." },
+  { name = "windows", clip = "long", seed = 3, transcript = true, target_text = "The harbor was busy this morning, and the boats lay still on the water. A few gulls circled above the pier while the fishermen mended their nets. By noon the wind had picked up, and the first sails slipped out past the breakwater toward the open sea. Nobody on the shore noticed the small white ship that followed them." },
+  { name = "two-takes", clip = "line", seed = 9, num_takes = 2, transcript = true, target_text = "The quick brown fox jumps over the lazy dog, and then it rests by the lake." },
+]
+align = ["line", "long"]
+together = [["by-span", "line", "long"], ["by-transcript", "windows"]]
+refusals = [
+  { name = "no-target", status = 400, clip = "line", body = { spans = [[0.5, 1.0]] } },
+  { name = "no-clip", status = 400, body = { target_text = "Hello there." } },
+  { name = "same-text", status = 400, clip = "line", body = { target_text = "The quick brown fox jumps over the lazy dog, and then it rests by the river.", original_text = "The quick brown fox jumps over the lazy dog, and then it rests by the river." } },
+  { name = "no-transcript", status = 400, clip = "line", body = { target_text = "The quick brown cat." } },
+  { name = "spans-out-of-order", status = 400, clip = "line", body = { target_text = "x", spans = [[2.0, 2.5], [1.0, 1.5]] } },
+  { name = "four-regions", status = 400, clip = "line", body = { target_text = "x", spans = [[0.2, 0.4], [0.9, 1.1], [1.6, 1.8], [2.3, 2.5]] } },
+  { name = "pause-marker-in-target", status = 400, clip = "line", body = { target_text = "The quick brown cat,\uE004 it said.", spans = [[1.2, 1.9]] } },
+  { name = "verify-needs-recognition", status = 400, clip = "line", body = { target_text = "The quick brown cat.", spans = [[1.2, 1.9]], verify = true } },
+  { name = "japanese", status = 400, clip = "line", body = { target_text = "x", spans = [[1.2, 1.9]], language = "ja" } },
+  { name = "region-controls-without-spans", status = 400, clip = "line", body = { target_text = "The quick brown cat.", original_text = "The quick brown fox.", region_controls = [{ "delivery.whisper" = 1.0 }] } },
+  { name = "align-without-text", status = 400, clip = "line", route = "/v1/audio/edit/align", body = {} },
+]

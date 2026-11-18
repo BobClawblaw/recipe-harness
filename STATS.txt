@@ -1,7 +1,7 @@
 Served stats
 ============
 
-Rendered 2026-11-18 06:30 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-18 10:41 UTC from stats/*.json, the ledger every harness run and harness export adds to (python3 -m harness stats renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 Overview: by model and hardware
 -------------------------------
@@ -3133,9 +3133,9 @@ history
 ZONOS3 Mini on 1x NVIDIA RTX 5090 (32 GB), Linux
 ------------------------------------------------
 
-Target zonos3-mini-5090: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA; served as zonos3-mini. Latest: run 20261118-062823-speech-laci (2026-11-18 06:28, plan speech-laci, done).
+Target zonos3-mini-5090: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA; served as zonos3-mini. Latest: run 20261118-103920-speech-laci (2026-11-18 10:39, plan speech-laci, done).
 
-Serving: engine_commit 0b3c39654; binary_sha256 64d682d72bb69f6109715791704db809ae880424ef54139c3fb4a5dbbc9ff51a; served_model {"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794983316; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB
+Serving: engine_commit c47b77649; binary_sha256 899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a; served_model {"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794998373; gpu NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB
 
 checks
 ------
@@ -3147,6 +3147,12 @@ history
 -------
 
   run  plan  status  1 stream code  16 streams code  16 streams first token  suite
+  2026-11-18 10:39  speech-laci  done        
+  2026-11-18 10:38  speech-steer  done        
+  2026-11-18 10:37  speech-concurrent  done        
+  2026-11-18 10:36  speech-controls  done        
+  2026-11-18 10:36  speech-normalize  done        
+  2026-11-18 10:35  speech  done        
   2026-11-18 06:28  speech-laci  done        
   2026-11-18 06:27  speech-steer  done        
   2026-11-18 06:26  speech-concurrent  done        

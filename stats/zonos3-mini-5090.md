@@ -1,6 +1,94 @@
 # ZONOS3 Mini on 1x NVIDIA RTX 5090 (32 GB), Linux
 
-Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA. Rendered from `stats/zonos3-mini-5090.json` (32 runs); aggregate tok/s, total (a stream).
+Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA. Rendered from `stats/zonos3-mini-5090.json` (39 runs); aggregate tok/s, total (a stream).
+
+## 2026-11-18 10:40: run `20261118-104008-speech-edit`
+
+Plan speech-edit, done; served as `zonos3-mini`.
+
+Serving: engine_commit `c47b77649`; binary_sha256 `899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794998421`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech-edit | pass: 6/6 edits made in 0.65-4.32 s each (8 regions); repeats identical 6/6, lengths as planned 6/6; WER against the target 0.000-0.062; audio before the first region within 7.6-9.8 dB of the clip; aligned 75 words in 2 clips (0.07 s); at once: 5/5 equal to alone; refusals 11/11 |
+
+## 2026-11-18 10:39: run `20261118-103920-speech-laci`
+
+Plan speech-laci, done; served as `zonos3-mini`.
+
+Serving: engine_commit `c47b77649`; binary_sha256 `899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794998373`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech | pass: 6/6 cases spoken; 17.0-37.2 times real time (27.7 s of audio), streamed first byte 0.03-0.08 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.200; same audio 3/3; refusals 6/6 |
+
+## 2026-11-18 10:38: run `20261118-103829-speech-steer`
+
+Plan speech-steer, done; served as `zonos3-mini`.
+
+Serving: engine_commit `c47b77649`; binary_sha256 `899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794998322`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech | pass: 6/6 cases spoken; 31.1-36.9 times real time (31.3 s of audio), streamed first byte 0.02-0.04 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.118; same audio 4/4; refusals 6/6 |
+
+## 2026-11-18 10:37: run `20261118-103728-speech-concurrent`
+
+Plan speech-concurrent, done; served as `zonos3-mini`.
+
+Serving: engine_commit `c47b77649`; binary_sha256 `899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794998261`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 16065 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | pass: 6/6 cases spoken; 4.8-37.2 times real time (40.0 s of audio), streamed first byte 0.03-0.49 s; repeats identical 6/6, streamed identical 6/6; WER 0.000-0.111; 6 at once: statuses [200, 503, 200, 503, 200, 200]; at once: 18/18 equal to alone in 5 mixes, 13.8-60.4 times real time in total |
+| memory-after | measured: gpu: 21915 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+
+## 2026-11-18 10:36: run `20261118-103651-speech-controls`
+
+Plan speech-controls, done; served as `zonos3-mini`.
+
+Serving: engine_commit `c47b77649`; binary_sha256 `899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794998224`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech | pass: 4/4 cases spoken; 28.8-34.2 times real time (20.5 s of audio), streamed first byte 0.03-0.04 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.059; same audio 3/3; refusals 4/4 |
+
+## 2026-11-18 10:36: run `20261118-103628-speech-normalize`
+
+Plan speech-normalize, done; served as `zonos3-mini`.
+
+Serving: engine_commit `c47b77649`; binary_sha256 `899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794998201`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| speech | pass: 1/1 cases spoken; 32.0-32.0 times real time (4.1 s of audio), streamed first byte 0.03-0.03 s; repeats identical 1/1, streamed identical 1/1; WER 0.000-0.000; same audio 6/6; refusals 1/1 |
+
+## 2026-11-18 10:35: run `20261118-103534-speech`
+
+Plan speech, done; served as `zonos3-mini`.
+
+Serving: engine_commit `c47b77649`; binary_sha256 `899db760a6998b2ba8f856c3e0e12f28213ca36a0c98f7b65d2357a90226e92a`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794998147`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+
+### checks
+
+| check | result |
+|---|---|
+| memory-idle | measured: gpu: 16065 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | pass: 4/4 cases spoken; 8.5-37.3 times real time (32.2 s of audio), streamed first byte 0.03-0.48 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200, 200, 200]; formats mp3, opus, flac served and repeat; refusals 5/5 |
+| memory-after | measured: gpu: 21877 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
 
 ## 2026-11-18 06:28: run `20261118-062823-speech-laci`
 

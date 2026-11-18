@@ -1,7 +1,7 @@
 # ZONOS3 Mini (Zyphra/ZONOS3-Mini), the release as published, on one RTX 5090 (32 GB, Linux), TensorFold native CUDA
 # with the zonos3 family (ashhart/TensorFold#3720) and its encoded reply formats: text to speech on
-# /v1/audio/speech, the release's voices, cloning from a clip, steering controls, LACI and short texts, four requests at once. Recipe:
-# github.com/BobClawblaw/zonos3-mini-rtx-5090. Its plan is `speech`. Machine-specific values go in
+# /v1/audio/speech, the release's voices, cloning from a clip, steering controls, LACI and short texts, four requests at once;
+# speech editing on /v1/audio/edit. Recipe: github.com/BobClawblaw/zonos3-mini-rtx-5090. Its plans are `speech` to `speech-edit`. Machine-specific values go in
 # zonos3-mini-5090.local.toml (git-ignored).
 name = "zonos3-mini-5090"
 description = "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once)"
