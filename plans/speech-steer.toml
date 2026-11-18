@@ -23,6 +23,6 @@ refusals = [
   { name = "voice-control-on-a-reference-voice", status = 400, body = { input = "x", controls = { "identity.age" = 1.0 } } },
   { name = "span-outside-the-text", status = 400, body = { input = "x", control_spans = [{ start = 5, end = 9, controls = { "mood.valence" = 1.0 } }] } },
   { name = "two-guidances", status = 400, body = { input = "x", controls = { "mood.valence" = 1.0 }, speaker_cfg_scale = 1.5, controls_cfg_scale = 1.5 } },
-  { name = "spans-by-reading-position", status = 400, body = { input = "x", control_span_follow = "reading" } },
+  { name = "span-lead-out-of-range", status = 400, body = { input = "x", control_span_follow = "reading", control_span_lead = 9.0 } },
   { name = "hold-above-one", status = 400, body = { input = "x", controls = { "mood.valence" = 1.0 }, steer_hold = 2.0 } },
 ]
