@@ -1,6 +1,6 @@
 # Served stats
 
-Rendered 2026-11-17 23:36 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
+Rendered 2026-11-18 00:37 UTC from `stats/*.json`, the ledger every `harness run` and `harness export` adds to (`python3 -m harness stats` renders it again). Aggregate tok/s, greedy, 256-token replies, the recipe's own ruler; engine rounds from the server's own counters.
 
 ## Overview: by model and hardware
 
@@ -72,7 +72,7 @@ Aggregate tok/s as prose/code/structured/list; first token in seconds (one strea
 | Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 4080 SUPER (16 GB), Windows 11 |  |  |  |  | 2026-11-03 |
 | Unlimited-OCR-2, bf16 | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-17 |
 | ZONOS3 Mini | 1x Apple M5 Ultra (256 GB), macOS |  |  |  |  | 2026-11-17 |
-| ZONOS3 Mini | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-17 |
+| ZONOS3 Mini | 1x NVIDIA RTX 5090 (32 GB), Linux |  |  |  |  | 2026-11-18 |
 | qwen38-27b | ? | 150/230/168/185 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 211/398/268/250 |  | 0.10 |  | 2026-10-16 |
 | qwen38-27b | ? | 150/229/167/185 |  | 0.10 |  | 2026-10-16 |
@@ -3101,22 +3101,26 @@ Serving: engine_commit `f7c686f36`; binary_sha256 `adf4f3c4bb9f45a1501bbf5d41b1b
 
 ## ZONOS3 Mini on 1x NVIDIA RTX 5090 (32 GB), Linux
 
-Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA; served as `zonos3-mini`. Latest: run `20261117-233434-speech` (2026-11-17 23:34, plan speech, done).
+Target `zonos3-mini-5090`: ZONOS3 Mini as released, fp32 arithmetic, TensorFold native CUDA (zonos3) on one RTX 5090 (text to speech, four requests at once). Engine: TensorFold native, CUDA; served as `zonos3-mini`. Latest: run `20261118-003621-speech` (2026-11-18 00:36, plan speech, done).
 
-Serving: engine_commit `14a3ccb34`; binary_sha256 `f43394dea56639950389d33b621ef4cb8650748c06b400b320e83785d3af4c62`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794958487`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
+Serving: engine_commit `a158fcdaf`; binary_sha256 `163bf5e64d6030f3632222aa4ffddfc6233b43effab933b20adc0b918bcbc56e`; served_model `{"object": "list", "data": [{"id": "zonos3-mini", "object": "model", "created": 1794962194`; gpu `NVIDIA GeForce RTX 5090, 615.71.09, 32607 MiB`
 
 ### checks
 
 | check | result |
 |---|---|
-| memory-idle | measured: gpu: 12145 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
-| speech | pass: 4/4 cases spoken; 7.4-29.2 times real time (32.2 s of audio), streamed first byte 0.03-0.55 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200, 200, 200]; formats mp3, opus, flac served and repeat; refusals 5/5 |
-| memory-after | measured: gpu: 17957 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| memory-idle | measured: gpu: 21539 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
+| speech | pass: 4/4 cases spoken; 7.4-29.1 times real time (32.2 s of audio), streamed first byte 0.03-0.54 s; repeats identical 4/4, streamed identical 4/4; WER 0.000-0.000; 3 at once: statuses [200, 200, 200]; formats mp3, opus, flac served and repeat; refusals 5/5 |
+| memory-after | measured: gpu: 27351 MiB, 32607 MiB; engine: {"schema_version": 1, "context_window": 4096, "context_fitte |
 
 ### history
 
 | run | plan | status | 1 stream code | 16 streams code | 16 streams first token | suite |
 |---|---|---|---:|---:|---:|---|
+| 2026-11-18 00:36 | speech | done |  |  |  |  |
+| 2026-11-18 00:35 | speech-concurrent | done |  |  |  |  |
+| 2026-11-18 00:34 | speech-controls | done |  |  |  |  |
+| 2026-11-18 00:34 | speech-normalize | done |  |  |  |  |
 | 2026-11-17 23:34 | speech | done |  |  |  |  |
 | 2026-11-17 23:33 | speech-concurrent | done |  |  |  |  |
 | 2026-11-17 23:32 | speech-controls | done |  |  |  |  |
