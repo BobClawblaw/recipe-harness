@@ -1,9 +1,10 @@
 # ZONOS3 Mini (Zyphra/ZONOS3-Mini), the release as published, on one M5 Ultra (256 GB), TensorFold native Metal with
-# the zonos3 family's Metal port (draft ashhart/TensorFold#3732, on #3720): text to speech on /v1/audio/speech, the
-# release's voices and cloning from a clip, one request at a time. The recipe: BobClawblaw/zonos3-mini-m5-ultra.
-# Its plan is `speech`. Machine-specific values go in zonos3-mini-m5.local.toml (git-ignored).
+# the zonos3 family's Metal port (draft ashhart/TensorFold#3732, on the ZONOS3 stack #3720 to #3885): text to speech on
+# /v1/audio/speech, the release's voices, cloning from a clip, steering controls, LACI and short texts, four requests at
+# once; speech editing on /v1/audio/edit. The recipe: BobClawblaw/zonos3-mini-m5-ultra. Its plans are `speech` to
+# `speech-edit`. Machine-specific values go in zonos3-mini-m5.local.toml (git-ignored).
 name = "zonos3-mini-m5"
-description = "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native Metal (zonos3) on one M5 Ultra (text to speech, one request at a time)"
+description = "ZONOS3 Mini as released, fp32 arithmetic, TensorFold native Metal (zonos3) on one M5 Ultra (text to speech, four requests at once)"
 model_name = "ZONOS3 Mini"
 hardware = "1x Apple M5 Ultra (256 GB), macOS"
 engine = "TensorFold native, Metal"
@@ -13,13 +14,17 @@ cwd = "$harness_dir"
 
 [vars]
 harness_dir = "CHANGE-ME: this checkout (up runs python3 -m harness.detach from it)"
-engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (zig-out/native/bin/tensorfold-native)"
+engine_dir = "CHANGE-ME: the TensorFold checkout the served binary was built in (the recipe's: ~/.cache/zonos3-mini-m5/engine/<commit>)"
 model_dir = "CHANGE-ME: the release as downloaded (Zyphra/ZONOS3-Mini)"
 log_dir = "CHANGE-ME: a folder for the server's log"
 port = "30117"
+parallel = "4"   # requests at once (--parallel): 4.40 GiB loaded at 4 with the edit adapter
+steer_bundle = "CHANGE-ME: the publisher's steering bundle JSON (the recipe's build fetches it: ~/.cache/zonos3-mini-m5/steering/<commit>/assets/steering/studio_bundle_mect60k_x10.json)"
+laci_heads = "CHANGE-ME: the publisher's assets/laci_heads folder (the recipe's build fetches it beside the steering bundle)"
+short_text = "CHANGE-ME: the publisher's registries/short_text.json (fetched with them: .../model/src/zonos3/registries/short_text.json)"
 
 [commands]
-up = "python3 -m harness.detach --log $log_dir/$model.log -- $engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --host 127.0.0.1 --port $port --parallel 1 --no-update-check"
+up = "python3 -m harness.detach --log $log_dir/$model.log -- $engine_dir/zig-out/native/bin/tensorfold-native serve $model_dir --name $model --host 127.0.0.1 --port $port --parallel $parallel --no-update-check --steer-bundle $steer_bundle --laci-heads $laci_heads --short-text $short_text"
 # only this target's server on its port
 down = "pkill -f 'tensorfold-native serve .*--name $model .*--port $port( |$$)' ; sleep 3"
 status = "pgrep -fl 'tensorfold-native serve .*--name $model .*--port $port( |$$)'"
