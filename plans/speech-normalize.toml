@@ -1,4 +1,4 @@
-description = "Text normalization in text to speech (under a minute): written sentences must give the audio of their spoken forms, not of the text as typed; an unknown language is refused"
+description = "Text normalization in text to speech (under a minute): written sentences must give the audio of their spoken forms, not of the text as typed; an unknown language is refused; text_normalization is opt-in (true)"
 restart = true
 
 [[checks]]
@@ -9,12 +9,12 @@ cases = [
 ]
 # the expected spoken forms are zyphra-textnorm's own test cases
 same = [
-  { name = "dollars", a = { seed = 7, input = "It costs $5.\nNext day." }, b = { seed = 7, input = "It costs five dollars. Next day.", text_normalization = false }, other = { seed = 7, input = "It costs $5.\nNext day.", text_normalization = false } },
-  { name = "year", a = { seed = 7, input = "In 1990, he moved." }, b = { seed = 7, input = "In nineteen ninety, he moved.", text_normalization = false }, other = { seed = 7, input = "In 1990, he moved.", text_normalization = false } },
-  { name = "address", a = { seed = 7, input = "Call me at 123 Main Street, please." }, b = { seed = 7, input = "Call me at one twenty three Main Street, please.", text_normalization = false }, other = { seed = 7, input = "Call me at 123 Main Street, please.", text_normalization = false } },
-  { name = "german", a = { seed = 7, language = "de", input = "Seit 1990. Danach nichts." }, b = { seed = 7, language = "de", input = "Seit ein tausend neun hundert neunzig. Danach nichts.", text_normalization = false }, other = { seed = 7, language = "de", input = "Seit 1990. Danach nichts.", text_normalization = false } },
-  { name = "portuguese", a = { seed = 7, language = "pt_br", input = "Custa 10%. Depois 20%, talvez." }, b = { seed = 7, language = "pt_br", input = "Custa dez por cento. Depois vinte por cento, talvez.", text_normalization = false }, other = { seed = 7, language = "pt_br", input = "Custa 10%. Depois 20%, talvez.", text_normalization = false } },
-  { name = "japanese", a = { seed = 7, language = "ja", input = "値段は5.5ドルです。\n次。" }, b = { seed = 7, language = "ja", input = "値段は五点五ドルです。次。", text_normalization = false }, other = { seed = 7, language = "ja", input = "値段は5.5ドルです。\n次。", text_normalization = false } },
+  { name = "dollars", a = { seed = 7, text_normalization = true, input = "It costs $5.\nNext day." }, b = { seed = 7, input = "It costs five dollars. Next day.", text_normalization = false }, other = { seed = 7, input = "It costs $5.\nNext day.", text_normalization = false } },
+  { name = "year", a = { seed = 7, text_normalization = true, input = "In 1990, he moved." }, b = { seed = 7, input = "In nineteen ninety, he moved.", text_normalization = false }, other = { seed = 7, input = "In 1990, he moved.", text_normalization = false } },
+  { name = "address", a = { seed = 7, text_normalization = true, input = "Call me at 123 Main Street, please." }, b = { seed = 7, input = "Call me at one twenty three Main Street, please.", text_normalization = false }, other = { seed = 7, input = "Call me at 123 Main Street, please.", text_normalization = false } },
+  { name = "german", a = { seed = 7, text_normalization = true, language = "de", input = "Seit 1990. Danach nichts." }, b = { seed = 7, language = "de", input = "Seit ein tausend neun hundert neunzig. Danach nichts.", text_normalization = false }, other = { seed = 7, language = "de", input = "Seit 1990. Danach nichts.", text_normalization = false } },
+  { name = "portuguese", a = { seed = 7, text_normalization = true, language = "pt_br", input = "Custa 10%. Depois 20%, talvez." }, b = { seed = 7, language = "pt_br", input = "Custa dez por cento. Depois vinte por cento, talvez.", text_normalization = false }, other = { seed = 7, language = "pt_br", input = "Custa 10%. Depois 20%, talvez.", text_normalization = false } },
+  { name = "japanese", a = { seed = 7, text_normalization = true, language = "ja", input = "値段は5.5ドルです。\n次。" }, b = { seed = 7, language = "ja", input = "値段は五点五ドルです。次。", text_normalization = false }, other = { seed = 7, language = "ja", input = "値段は5.5ドルです。\n次。", text_normalization = false } },
 ]
 refusals = [
   { name = "unknown-language", status = 400, body = { input = "x", language = "xx" } },
